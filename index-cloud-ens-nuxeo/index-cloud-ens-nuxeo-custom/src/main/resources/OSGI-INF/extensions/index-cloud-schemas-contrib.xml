@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<component name="fr.index.cloud.ens.schemas">
+    <require>org.nuxeo.ecm.core.schema.TypeService</require>
+
+    <extension target="org.nuxeo.ecm.core.schema.TypeService" point="schema">
+        <schema name="resourceSharing" prefix="rshr" src="schemas/resource-sharing.xsd"/>
+        <schema name="oauth2Tokens" prefix="oatk" src="schemas/oauth2-tokens.xsd"/>
+        <schema name="indexClassifiers" prefix="idxcl" src="schemas/index-classifiers.xsd"/>
+        <schema name="mutualization" prefix="mtz" src="schemas/mutualization.xsd"/>
+        <schema name="indexUserPreferences" prefix="idxup" src="schemas/index-user-preferences.xsd"/>
+        <schema name="virusScan" prefix="idxvs" src="schemas/virus-scan.xsd"/>
+        <schema name="discussion" prefix="disc" src="schemas/discussion.xsd"/>
+    </extension>
+</component>

@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<fragment version="1">
+
+	<require>fr.toutatice.ecm.platform.core</require>
+
+	<extension target="pages#PAGES">
+	</extension>
+
+	<extension target="application#MODULE">
+		<module>
+			<java>${bundle.fileName}</java>
+		</module>
+	</extension>
+
+	<install>
+		<unzip from="${bundle.fileName}" to="/">
+			<include>nuxeo.war/**</include>
+		</unzip>
+        
+                <!-- append l10n files -->
+                <delete path="${bundle.fileName}.tmp" />
+                <mkdir path="${bundle.fileName}.tmp" />
+
+                <unzip from="${bundle.fileName}" to="${bundle.fileName}.tmp">
+                        <include>OSGI-INF/l10n/**</include>
+                </unzip>        
+	</install>
+
+</fragment>

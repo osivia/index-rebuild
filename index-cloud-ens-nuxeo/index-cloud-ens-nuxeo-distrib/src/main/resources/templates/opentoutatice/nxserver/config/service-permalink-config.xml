@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<component name="org.osivia.permalink.config">
+
+	<require>fr.toutatice.ecm.platform.core.services.permalink</require>
+
+	<extension target="fr.toutatice.ecm.platform.core.services.permalink"
+		point="permalinks">
+
+		<permalink name="permalinkByPath" classpath="fr.toutatice.ecm.platform.services.permalink.PermalinkByPathDoc"
+			default="true" enabled="true">
+			<host>${portal.permalink}</host>
+			<parameters>
+				<param name="param1">portal</param>
+				<param name="param2">cms</param>
+			</parameters>
+		</permalink>
+	</extension>
+	
+</component>

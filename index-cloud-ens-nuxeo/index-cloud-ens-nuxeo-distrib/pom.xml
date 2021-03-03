@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.index.cloud.ens.nuxeo</groupId>
+        <artifactId>index-cloud-ens-nuxeo-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>index-cloud-ens-nuxeo-distrib</artifactId>
+    <packaging>pom</packaging>
+
+    <name>Cloud enseignant - Distribution Nuxeo</name>
+
+    <properties>
+
+        <nuxeo.version>6.1.3</nuxeo.version>
+         <ottc.collab.version>4.9.2</ottc.collab.version>
+        <ottc.filenaming.version>4.7.17</ottc.filenaming.version>
+        <ottc.file.versioning.version>4.7.17</ottc.file.versioning.version>
+        <!-- <ottc.wf.version>4.6</ottc.wf.version> -->
+        <ottc.notif.version>4.7.17</ottc.notif.version>
+
+
+        <!-- <ottc.ui.version>4.6.1</ottc.ui.version> -->
+        <ottc.drive.version>4.7.17</ottc.drive.version>
+        <ottc.generic-ui.version>4.7.17</ottc.generic-ui.version>
+        <!-- <ottc.checkin.version>4.6.1</ottc.checkin.version> -->
+
+        <ottc.procedure.version>4.9.1</ottc.procedure.version>
+
+        <!-- <ottc.news.version>4.6</ottc.news.version> -->
+
+        <ottc.jwt.version>4.7.17</ottc.jwt.version>
+        <ottc.onlyoffice.version>4.7.17</ottc.onlyoffice.version>
+        <ottc.quota.version>4.9</ottc.quota.version>
+
+        <ottc.monitoring.version>2.1</ottc.monitoring.version>
+
+        <!-- <webmode.version>4.7.1</webmode.version> -->
+
+    </properties>
+
+    <build>
+        <defaultGoal>package</defaultGoal>
+
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.2.1</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>2.4</version>
+                <executions>
+                    <execution>
+                        <id>unpack</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                        <configuration>
+                            <artifactItems>
+                                <artifactItem>
+                                    <groupId>org.nuxeo.ecm.distribution</groupId>
+                                    <artifactId>nuxeo-distribution-tomcat</artifactId>
+                                    <version>${nuxeo.version}</version>
+                                    <type>zip</type>
+                                    <classifier>nuxeo-cap</classifier>
+                                    <overWrite>true</overWrite>
+                                    <outputDirectory>${project.build.directory}/nuxeo-distrib</outputDirectory>
+                                </artifactItem>
+                            </artifactItems>
+                        </configuration>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <executions>
+
+                    <execution>
+                        <id>zip</id>
+                        <phase>process-resources</phase>
+                        <configuration>
+                            <descriptors>
+                                <descriptor>src/main/assembly/assembly.xml</descriptor>
+                            </descriptors>
+                            <finalName>${project.artifactId}-${project.version}</finalName>
+                            <appendAssemblyId>false</appendAssemblyId>
+                            <attach>true</attach>
+                        </configuration>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+
+            </plugin>
+
+            <!-- Release -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.2.1</version>
+                <configuration>
+                    <releaseProfiles>unpack,pack</releaseProfiles>
+                    <preparationGoals>clean install</preparationGoals>
+                    <goals>deploy</goals>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
+    <dependencies>
+        <!-- OpenToutatice -->
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-ecm-platform-attached-files</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-ecm-platform-automation</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-ecm-platform-core</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-ecm-platform-services</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-ecm-platform-web</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-ecm-platform-reporting</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.platform</groupId>
+            <artifactId>opentoutatice-core-type-enricher</artifactId>
+            <version>${opentoutatice.version}</version>
+        </dependency>
+
+        <!-- Addons -->
+        <dependency>
+            <groupId>opentoutatice-ecm.elasticsearch</groupId>
+            <artifactId>opentoutatice-addon-elasticsearch-ecm</artifactId>
+            <version>${ottc.es.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.file-based-naming</groupId>
+            <artifactId>opentoutatice-addon-file-based-naming-ecm</artifactId>
+            <version>${ottc.filenaming.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.file-versioning</groupId>
+            <artifactId>opentoutatice-addon-file-versioning-ecm</artifactId>
+            <version>${ottc.file.versioning.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.portal-notifications</groupId>
+            <artifactId>opentoutatice-addon-portal-notifications-ecm</artifactId>
+            <version>${ottc.notif.version}</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>opentoutatice-ecm.ui</groupId>
+            <artifactId>opentoutatice-addon-simple-ui-ecm</artifactId>
+            <version>${ottc.ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.workflows-integration</groupId>
+            <artifactId>opentoutatice-addon-workflows-integration-ecm</artifactId>
+            <version>${ottc.wf.version}</version>
+        </dependency> -->
+        <dependency>
+            <groupId>opentoutatice-ecm.collab-tools</groupId>
+            <artifactId>opentoutatice-collab-tools-ecm</artifactId>
+            <version>${ottc.collab.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.drive</groupId>
+            <artifactId>opentoutatice-drive</artifactId>
+            <version>${ottc.drive.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.generic-ui-service</groupId>
+            <artifactId>opentoutatice-generic-ui-service-ecm</artifactId>
+            <version>${ottc.generic-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.elasticsearch-customizer</groupId>
+            <artifactId>opentoutatice-addon-elasticsearch-customizer-ecm</artifactId>
+            <version>${ottc.es.custom.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.procedures</groupId>
+            <artifactId>opentoutatice-addon-procedures-ecm</artifactId>
+            <version>${ottc.procedure.version}</version>
+        </dependency>
+        <!--
+        <dependency>
+            <groupId>opentoutatice-ecm.checkin</groupId>
+            <artifactId>opentoutatice-addon-checkin-ecm</artifactId>
+            <version>${ottc.checkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.news</groupId>
+            <artifactId>opentoutatice-addon-news-ecm</artifactId>
+            <version>${ottc.news.version}</version>
+        </dependency>
+        
+        -->
+        <dependency>
+            <groupId>opentoutatice-ecm.jwt</groupId>
+            <artifactId>opentoutatice-addon-jwt-ecm</artifactId>
+            <version>${ottc.jwt.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.onlyoffice</groupId>
+            <artifactId>opentoutatice-addon-onlyoffice-ecm</artifactId>
+            <version>${ottc.onlyoffice.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>opentoutatice-ecm.quota</groupId>
+            <artifactId>opentoutatice-addon-quota</artifactId>
+            <version>${ottc.quota.version}</version>
+        </dependency>
+
+        <!--
+        <dependency>
+            <groupId>opentoutatice-ecm.web-mode</groupId>
+            <artifactId>opentoutatice-web-mode-ecm</artifactId>
+            <version>${webmode.version}</version>
+        </dependency>        
+         -->
+        <dependency>
+            <groupId>opentoutatice-ecm.monitoring</groupId>
+            <artifactId>opentoutatice-monitoring-ecm</artifactId>
+            <version>${ottc.monitoring.version}</version>
+        </dependency>
+
+        <!-- custom index -->
+        <dependency>
+            <groupId>fr.index.cloud.ens.nuxeo</groupId>
+            <artifactId>index-cloud-ens-nuxeo-custom</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+
+
+        <!-- Agenda -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-agenda</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+        <!-- Imaging -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-imaging-api</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-imaging-convert</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-imaging-core</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-imaging-dm</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-imaging-jsf</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-imaging-preview</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+        <!-- Audio -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-audio-core</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-audio-jsf</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+        <!-- Video -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-video-api</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-video-core</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-video-convert</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-video-jsf</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+        <!-- Webengine -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-blogs</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-blogs-api</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-blogs-core</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-sites</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-sites-api</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-sites-core-contrib</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+        <!-- Login & SSO -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-login-cas2</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-platform-login-portal-sso</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+
+        <!-- Nuxeo Drive -->
+        <dependency>
+            <groupId>org.nuxeo.ecm</groupId>
+            <artifactId>nuxeo-drive-core</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm</groupId>
+            <artifactId>nuxeo-drive-jsf</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm</groupId>
+            <artifactId>nuxeo-drive-operations</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.lib.core</groupId>
+            <artifactId>nuxeo-core-storage-sql-extensions</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.lib.wss</groupId>
+            <artifactId>nuxeo-wss-front</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+
+        <!-- Platform explorer -->
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-apidoc-core</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.platform</groupId>
+            <artifactId>nuxeo-apidoc-webengine</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.nuxeo.ecm.webengine</groupId>
+            <artifactId>nuxeo-webengine-ui</artifactId>
+            <version>${nuxeo.version}</version>
+        </dependency>
+
+
+        <!-- Dependencies for imaging -->
+        <dependency>
+            <groupId>net.java.dev.mistral</groupId>
+            <artifactId>EditableImage</artifactId>
+            <version>0.9.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.google.gwt</groupId>
+            <artifactId>gwt-servlet</artifactId>
+            <version>2.5.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org</groupId>
+            <artifactId>jaudiotagger</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.drewnoakes</groupId>
+            <artifactId>metadata-extractor</artifactId>
+            <version>2.3.1</version>
+        </dependency>
+        <dependency>
+            <groupId>net.java.dev.mistral</groupId>
+            <artifactId>Operations</artifactId>
+            <version>0.9.5</version>
+        </dependency>
+
+        <!-- HTML conversion -->
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+
+        <!-- Monitoring -->
+        <dependency>
+            <groupId>net.bull.javamelody</groupId>
+            <artifactId>javamelody-core</artifactId>
+            <version>1.62.0</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jrobin</groupId>
+            <artifactId>jrobin</artifactId>
+            <version>1.5.9</version>
+        </dependency>
+
+        <!-- JWT lib -->
+        <dependency>
+            <groupId>com.auth0</groupId>
+            <artifactId>java-jwt</artifactId>
+            <version>3.3.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>2.9.2</version>
+        </dependency>
+        
+        <!-- Missing deps in nuxeo distrib -->  
+        <dependency>
+            <groupId>com.phloc</groupId>
+            <artifactId>phloc-commons</artifactId>
+            <version>4.3.2</version>
+        </dependency>        
+
+    </dependencies>
+
+
+    <organization>
+        <name>OSIVIA</name>
+        <url>http://www.osivia.org/</url>
+    </organization>
+
+
+
+</project>

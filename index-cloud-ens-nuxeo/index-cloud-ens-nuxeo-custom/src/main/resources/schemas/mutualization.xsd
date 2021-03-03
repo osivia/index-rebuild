@@ -1,0 +1,16 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:nxs="http://www.nuxeo.org/ecm/schemas/index/mutualization/"
+           targetNamespace="http://www.nuxeo.org/ecm/schemas/index/mutualization/">
+
+    <xs:include schemaLocation="base.xsd"/>
+
+    <xs:element name="enable" type="xs:boolean"/>
+    <xs:element name="title" type="xs:string"/>
+    <xs:element name="keywords" type="nxs:stringList"/>
+    <xs:element name="sourceWebId" type="xs:string"/>
+    <xs:element name="sourceDigest" type="xs:string"/>    
+    <xs:element name="sourceVersion" type="xs:string"/>
+    <xs:element name="views" type="xs:int" default="0"/>
+    <xs:element name="downloads" type="xs:int" default="0"/>
+
+</xs:schema>

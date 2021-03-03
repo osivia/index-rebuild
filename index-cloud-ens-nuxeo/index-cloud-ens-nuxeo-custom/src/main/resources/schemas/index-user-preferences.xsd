@@ -1,0 +1,32 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:nxs="http://www.nuxeo.org/ecm/schemas/index/classifiers/"
+           targetNamespace="http://www.nuxeo.org/ecm/schemas/index/classifiers/">
+
+    <xs:include schemaLocation="base.xsd"/>
+
+    <xs:element name="fileBrowserPreferences" type="nxs:fileBrowserPreferences"/>
+    <xs:complexType name="fileBrowserPreferences">
+        <xs:sequence>
+            <xs:element name="fileBrowserPreference" type="nxs:fileBrowserPreference" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="fileBrowserPreference">
+        <xs:sequence>
+            <xs:element name="fileBrowserId" type="xs:string"/>
+            <xs:element name="fileBrowserColumns" type="nxs:fileBrowserColumns"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="fileBrowserColumns">
+        <xs:sequence>
+            <xs:element name="fileBrowserColumn" type="nxs:fileBrowserColumn" minOccurs="0" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="fileBrowserColumn">
+        <xs:sequence>
+            <xs:element name="columnId" type="xs:string"/>
+            <xs:element name="order" type="xs:integer"/>
+            <xs:element name="visible" type="xs:boolean"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>

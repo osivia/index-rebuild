@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<component name="fr.index.cloud.ens.elasticsearch">
+
+    <require>fr.toutatice.ecm.es.customizer.registry.ESCustomizersServiceRegistry</require>
+
+    <extension target="fr.toutatice.ecm.es.customizer.registry.ESCustomizersServiceRegistry" point="writers">
+        <writer class="fr.index.cloud.ens.elasticsearch.CustomizedJsonESDocumentWriter" />
+    </extension>
+    
+</component>

@@ -1,0 +1,49 @@
+<xs:schema targetNamespace="http://www.nuxeo.org/ecm/schemas/Discussion/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:nxs="http://www.nuxeo.org/ecm/schemas/Discussion/">
+
+
+
+    <xs:include schemaLocation="base.xsd"/>
+
+  
+    <xs:element name="type" type="xs:string" />
+    <xs:element name="target" type="xs:string" />
+
+    <xs:element name="participants" type="nxs:stringList"/>
+
+
+
+    <xs:element name="messages" type="nxs:messagesList" />
+
+    <xs:complexType name="messagesList">
+        <xs:sequence>
+            <xs:element name="item" type="nxs:message" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="message">
+        <xs:sequence>
+            <xs:element name="content" type="xs:string" />
+            <xs:element name="author" type="xs:string" />
+            <xs:element name="date" type="xs:date" />
+       </xs:sequence>
+    </xs:complexType>
+    
+    
+    <xs:element name="removedMessages" type="nxs:removedMessagesList" />
+
+    <xs:complexType name="removedMessagesList">
+        <xs:sequence>
+            <xs:element name="item" type="nxs:removedMessage" minOccurs="0" maxOccurs="unbounded" />
+        </xs:sequence>
+    </xs:complexType>
+    
+     <xs:complexType name="removedMessage">
+        <xs:sequence>
+            <xs:element name="messageId" type="xs:string" />
+            <xs:element name="date" type="xs:date" />
+       </xs:sequence>
+    </xs:complexType>
+    
+
+
+</xs:schema>

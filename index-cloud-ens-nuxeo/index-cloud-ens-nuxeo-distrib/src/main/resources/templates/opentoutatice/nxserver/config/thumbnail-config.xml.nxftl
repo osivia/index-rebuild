@@ -1,0 +1,12 @@
+<component name="org.opentoutatice.ecm.platform.thumbnail.listener.disable">
+
+	<require>org.nuxeo.ecm.platform.thumbnail.listener</require>
+
+  <extension target="org.nuxeo.ecm.core.event.EventServiceComponent"
+    point="listener">
+
+    <listener name="checkBlobUpdate" class="org.nuxeo.ecm.platform.thumbnail.listener.CheckBlobUpdateListener" enabled="${nuxeo.thumbnail.generation.enabled}" />
+
+  </extension>
+
+</component>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<component name="demo.userworkspace">
+
+	<require>fr.toutatice.ecm.platform.core.userworkspace</require>
+
+	<extension target="org.nuxeo.ecm.platform.userworkspace.UserWorkspaceService"
+		point="userWorkspace">
+		
+		<userWorkspace class="org.osivia.demo.userworkspaces.UserWorkspaceService" />
+			
+	</extension>
+
+</component>

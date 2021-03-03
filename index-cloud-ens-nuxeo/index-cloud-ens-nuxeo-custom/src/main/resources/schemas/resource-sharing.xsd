@@ -1,0 +1,33 @@
+<xs:schema
+    targetNamespace="http://www.nuxeo.org/ecm/schemas/resourceSharing/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:nxs="http://www.nuxeo.org/ecm/schemas/resourceSharing/">
+    
+    <xs:include schemaLocation="base.xsd"/>    
+ 
+    <xs:element name="linkId" type="xs:string" />
+    <xs:element name="format" type="xs:string" />    
+    <xs:element name="enabledLink" type="xs:boolean" />
+    <xs:element name="publicLink" type="xs:boolean" />    
+    <xs:element name="targets" type="nxs:shareTargetList" />
+
+
+	<xs:complexType name="shareTargetList">
+		<xs:sequence>
+			<xs:element name="item" type="nxs:shareTarget"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="shareTarget">
+		<xs:sequence>
+			<xs:element name="pubId" type="xs:string" />
+            <xs:element name="pubGroups" type="nxs:stringList"/>            
+			<xs:element name="pubContext" type="xs:string" />
+			<xs:element name="pubSchoolYear" type="xs:string" />		
+			<xs:element name="pubOrganization" type="xs:string" />
+			<xs:element name="pubDate" type="xs:date" />
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

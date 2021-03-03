@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<component name="fr.index.cloud.ens.automation.contrib" version="1.0">
+
+    <extension target="org.nuxeo.ecm.core.operation.OperationServiceComponent" point="operations">
+        <operation class="fr.index.cloud.ens.metadata.UpdateMetadata"/>
+        <operation class="fr.index.cloud.ens.virusscan.VirusScanOperation"/>
+        <operation class="fr.index.cloud.ens.statistics.operation.UpdateDocumentStatisticsOperation"/>
+    </extension>
+
+</component>

@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<component name="fr.index.vocabularies">
+    <require>org.nuxeo.ecm.platform.forms.layouts.webapp</require>
+    <require>org.nuxeo.ecm.directory.sql.SQLDirectoryFactory</require>
+    <require>org.nuxeo.ecm.directory.ui.DirectoryUIManager</require>
+
+
+    <extension target="org.nuxeo.ecm.directory.sql.SQLDirectoryFactory" point="directories">
+
+        <!--Document types-->
+        <directory name="idx_document_type">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_index_document_type</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/document-type.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+
+        <!--Levels-->
+        <directory name="idx_level">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_index_level</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/level.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+
+        <!--Subjects-->
+        <directory name="idx_subject">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_index_subject</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/subject.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+        
+        <!--Publication-->
+        <directory name="idx_pub_context">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_index_pub_context</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/pub-context.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+        
+         <!--File format-->
+        <directory name="idx_file_format">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_file_format</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/file-format.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+        
+        
+        <!--Mime type format format-->
+        <directory name="idx_mime_type_format">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_mime_type_format</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/mime-type-format.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+        
+        <!--File format-->
+        <directory name="idx_shared">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_shared</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/shared.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
+
+    </extension>
+
+
+</component>

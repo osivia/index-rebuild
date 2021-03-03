@@ -1,0 +1,25 @@
+<xs:schema
+    targetNamespace="http://www.nuxeo.org/ecm/schemas/OAuth2tokens/"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:nxs="http://www.nuxeo.org/ecm/schemas/OAuth2tokens/">
+ 
+
+    <xs:element name="tokens" type="nxs:tokensList" />
+
+	<xs:complexType name="tokensList">
+		<xs:sequence>
+			<xs:element name="item" type="nxs:token"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+
+
+	<xs:complexType name="token">
+		<xs:sequence>
+			<xs:element name="value" type="xs:string" />
+ 			<xs:element name="expiration" type="xs:date" />			
+			<xs:element name="authentication" type="xs:string" />		
+		</xs:sequence>
+	</xs:complexType>
+
+</xs:schema>

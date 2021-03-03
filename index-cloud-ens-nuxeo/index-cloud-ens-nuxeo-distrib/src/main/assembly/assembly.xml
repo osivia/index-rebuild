@@ -1,0 +1,219 @@
+<assembly
+	xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+	<id>bin</id>
+	<formats>
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+
+	<dependencySets>
+	
+		<dependencySet>
+			<outputDirectory>/${artifactId}-${project.version}/nxserver/plugins
+			</outputDirectory>
+			<unpack>false</unpack>
+			<scope>runtime</scope>
+			<includes>
+				<!-- OpenToutatice -->
+				<include>opentoutatice-ecm.platform:opentoutatice-ecm-platform-attached-files:jar:${opentoutatice.version}
+				</include>
+				<include>opentoutatice-ecm.platform:opentoutatice-ecm-platform-automation:jar:${opentoutatice.version}
+				</include>
+				<include>opentoutatice-ecm.platform:opentoutatice-ecm-platform-core:jar:${opentoutatice.version}
+				</include>
+				<include>opentoutatice-ecm.platform:opentoutatice-ecm-platform-services:jar:${opentoutatice.version}
+				</include>
+				<include>opentoutatice-ecm.platform:opentoutatice-ecm-platform-web:jar:${opentoutatice.version}
+				</include>
+				<include>opentoutatice-ecm.platform:opentoutatice-ecm-platform-reporting:jar:${opentoutatice.version}
+                </include>
+				<include>opentoutatice-ecm.platform:opentoutatice-core-type-enricher:jar:${opentoutatice.version}
+                </include>                
+
+				<!-- Add ons -->				
+				<include>opentoutatice-ecm.elasticsearch:opentoutatice-addon-elasticsearch-ecm:jar:${ottc.es.version}
+				</include>
+				<include>opentoutatice-ecm.file-based-naming:opentoutatice-addon-file-based-naming-ecm:jar:${ottc.filenaming.version}
+				</include>
+				<include>opentoutatice-ecm.file-versioning:opentoutatice-addon-file-versioning-ecm:jar:${ottc.file.versioning.version}
+				</include>
+				<include>opentoutatice-ecm.portal-notifications:opentoutatice-addon-portal-notifications-ecm:jar:${ottc.notif.version}
+				</include>
+				<!-- 
+				<include>opentoutatice-ecm.ui:opentoutatice-addon-simple-ui-ecm:jar:${ottc.ui.version}
+				</include>
+				<include>opentoutatice-ecm.workflows-integration:opentoutatice-addon-workflows-integration-ecm:jar:${ottc.wf.version}
+				</include>
+				 -->
+				<include>opentoutatice-ecm.collab-tools:opentoutatice-collab-tools-ecm:jar:${ottc.collab.version}
+				</include>
+				<include>opentoutatice-ecm.drive:opentoutatice-drive:jar:${ottc.drive.version}
+				</include>
+
+				<include>opentoutatice-ecm.generic-ui-service:opentoutatice-generic-ui-service-ecm:jar:${ottc.generic-ui.version}
+				</include>
+				<include>opentoutatice-ecm.elasticsearch-customizer:opentoutatice-addon-elasticsearch-customizer-ecm:jar:${ottc.es.custom.version}
+				</include>
+				<include>opentoutatice-ecm.procedures:opentoutatice-addon-procedures-ecm:jar:${ottc.procedure.version}
+				</include>
+				<!-- 
+				<include>opentoutatice-ecm.checkin:opentoutatice-addon-checkin-ecm:jar:${ottc.checkin.version}
+				</include>
+				 -->
+				<include>opentoutatice-ecm.monitoring:opentoutatice-monitoring-ecm:jar:${ottc.monitoring.version}
+                </include>
+                <!-- 
+				<include>opentoutatice-ecm.web-mode:opentoutatice-web-mode-ecm:jar:${webmode.version}
+                </include>  
+                <include>opentoutatice-ecm.news:opentoutatice-addon-news-ecm:jar:${ottc.news.version}
+                </include>				 -->
+				<include>opentoutatice-ecm.jwt:opentoutatice-addon-jwt-ecm:jar:${ottc.jwt.version}
+                </include>     
+                <include>opentoutatice-ecm.onlyoffice:opentoutatice-addon-onlyoffice-ecm:jar:${ottc.onlyoffice.version}
+				</include>
+                <include>opentoutatice-ecm.quota:opentoutatice-addon-quota:jar:${ottc.quota.version}
+                </include>
+
+				<!-- Login & SSO -->
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-login-portal-sso:jar:${nuxeo.version}
+				</include>
+
+				<include>fr.index.cloud.ens.nuxeo:index-cloud-ens-nuxeo-custom:jar:${project.version}
+				</include>
+			</includes>
+		</dependencySet>
+	
+		<dependencySet>
+			<outputDirectory>/${artifactId}-${project.version}/nxserver/bundles
+			</outputDirectory>
+			<unpack>false</unpack>
+			<scope>runtime</scope>
+			<includes>
+				<!-- Nuxeo Agenda -->
+				<include>org.nuxeo.ecm.platform:nuxeo-agenda:jar:${nuxeo.version}
+				</include>
+				<!-- Nuxeo Imaging -->
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-imaging-convert:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-imaging-core:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-imaging-dm:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-imaging-jsf:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-imaging-preview:jar:${nuxeo.version}
+				</include>
+				<!-- Audio -->
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-audio-core:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-audio-jsf:jar:${nuxeo.version}
+				</include>
+				<!-- Video -->
+                <include>org.nuxeo.ecm.platform:nuxeo-platform-video-api:jar:${nuxeo.version}
+                </include>
+                <include>org.nuxeo.ecm.platform:nuxeo-platform-video-core:jar:${nuxeo.version}
+                </include>
+                 <include>org.nuxeo.ecm.platform:nuxeo-platform-video-convert:jar:${nuxeo.version}
+                </include>
+                 <include>org.nuxeo.ecm.platform:nuxeo-platform-video-jsf:jar:${nuxeo.version}
+                </include>
+				<!-- Webengine -->
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-blogs:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-blogs-api:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-blogs-core:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-sites:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-sites-api:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-sites-core-contrib:jar:${nuxeo.version}
+				</include>
+				<!-- Login & SSO -->
+				<include>org.nuxeo.ecm.platform:nuxeo-platform-login-cas2:jar:${nuxeo.version}
+				</include>
+				<!-- Nuxeo Drive -->
+				<include>org.nuxeo.ecm:nuxeo-drive-core:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm:nuxeo-drive-jsf:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm:nuxeo-drive-operations:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.lib.core:nuxeo-core-storage-sql-extensions:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.lib.wss:nuxeo-wss-front:jar:${nuxeo.version}
+				</include>
+				<!-- Platform explorer -->
+				<include>org.nuxeo.ecm.platform:nuxeo-apidoc-core:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.platform:nuxeo-apidoc-webengine:jar:${nuxeo.version}
+				</include>
+				<include>org.nuxeo.ecm.webengine:nuxeo-webengine-ui:jar:${nuxeo.version}
+				</include>
+			</includes>
+		</dependencySet>
+
+
+		<dependencySet>
+			<outputDirectory>/${artifactId}-${project.version}/nxserver/lib
+			</outputDirectory>
+			<unpack>false</unpack>
+			<scope>runtime</scope>
+			<includes>
+				<!-- Dependencies for imaging -->
+				<include>net.java.dev.mistral:EditableImage:jar:0.9.5
+				</include>
+				<include>com.google.gwt:gwt-servlet:jar:2.5.1
+				</include>
+				<include>org:jaudiotagger:jar:2.0.3
+				</include>
+				<include>com.drewnoakes:metadata-extractor:jar:2.3.1
+				</include>
+				<include>net.java.dev.mistral:Operations:jar:0.9.5
+				</include>
+				<include>org.jsoup:jsoup:jar:1.6.3
+				</include>
+				<!-- Dependencies for Java Melody monitoring -->
+				<include>net.bull.javamelody:javamelody-core:jar:1.62.0
+                </include>
+                <include>org.jrobin:jrobin:jar:1.5.9
+                </include>
+                <!--  Dependencides for jwt/onlyoffice -->
+                <include>com.auth0:java-jwt:jar:3.3.0</include>
+                <include>com.fasterxml.jackson.core:jackson-core:jar:2.9.2</include>
+                <include>com.fasterxml.jackson.core:jackson-databind:jar:2.9.2</include>
+				<include>com.fasterxml.jackson.core:jackson-annotations:jar:2.9.2</include> 
+                <include>com.phloc:phloc-commons:jar:4.3.2</include>      
+   
+			</includes>
+		</dependencySet>
+	</dependencySets>
+
+
+	<fileSets>
+		<!-- Socle -->
+		<fileSet>
+			<outputDirectory>/${artifactId}-${project.version}
+			</outputDirectory>
+			<directory>target/nuxeo-distrib/nuxeo-cap-${nuxeo.version}-tomcat</directory>
+			<includes>
+				<include>**</include>
+			</includes>
+			<!-- Surcharges -->
+			<excludes>
+				<exclude>lib/log4j.xml</exclude>
+				<exclude>templates/common/config/blacklist.nxftl</exclude>
+			</excludes>
+		</fileSet>
+
+		<!-- Templates -->
+        <fileSet>
+            <outputDirectory>/${artifactId}-${project.version}</outputDirectory>
+            <directory>src/main/resources</directory>
+        </fileSet>
+	</fileSets>
+
+</assembly>

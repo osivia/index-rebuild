@@ -1,0 +1,100 @@
+<?xml version="1.0"?>
+
+<component name="fr.index.cloud.ens.core-types">
+    <require>org.nuxeo.ecm.core.schema.TypeService</require>
+
+    <extension target="org.nuxeo.ecm.core.schema.TypeService" point="doctype">
+
+        <doctype name="File" append="true">
+            <schema name="indexClassifiers"/>
+            <schema name="mutualization"/>
+            <schema name="resourceSharing"/>
+            <schema name="virusScan"/>
+        </doctype>
+
+        <doctype name="Picture" append="true">
+            <schema name="indexClassifiers"/>
+            <schema name="mutualization"/>
+            <schema name="resourceSharing"/>
+            <schema name="virusScan"/>
+        </doctype>
+
+        <doctype name="Video" append="true">
+            <schema name="indexClassifiers"/>
+            <schema name="mutualization"/>
+            <schema name="resourceSharing"/>
+            <schema name="virusScan"/>
+        </doctype>
+
+        <doctype name="Audio" append="true">
+            <schema name="indexClassifiers"/>
+            <schema name="mutualization"/>
+            <schema name="resourceSharing"/>
+            <schema name="virusScan"/>
+        </doctype>
+
+        <doctype name="UserProfile" append="true">
+            <schema name="oauth2Tokens"/>
+	    <schema name="indexUserPreferences"/>
+        </doctype>
+
+        <doctype name="OAuth2Application" extends="Document">
+            <schema name="common"/>
+            <schema name="dublincore"/>
+        </doctype>
+
+        <doctype name="OAuth2ApplicationFolder" extends="Document">
+            <schema name="common"/>
+            <schema name="dublincore"/>
+            <facet name="Folderish"/>
+        </doctype>
+        
+        <doctype name="Discussion" extends="Document">
+            <schema name="common"/>
+            <schema name="dublincore"/>
+            <schema name="discussion"/>
+        </doctype>
+        
+
+    </extension>
+
+    <extension target="org.nuxeo.ecm.platform.types.TypeService" point="types">
+
+
+        <type id="Discussion">
+            <label>Discussion</label>
+        </type>
+
+        <type id="OAuth2Application">
+            <label>OAuth2Application</label>
+        </type>
+
+        <type id="OAuth2ApplicationFolder">
+            <label>OAuth2ApplicationFolder</label>
+
+            <subtypes>
+                <type>OAuth2Application</type>
+            </subtypes>
+        </type>
+
+        <type id="Workspace">
+            <subtypes>
+                <type>OAuth2ApplicationFolder</type>
+            </subtypes>
+        </type>
+        
+        
+
+    </extension>
+    
+        <extension target="org.nuxeo.ecm.platform.types.TypeService"
+                point="types">
+                <type id="ProceduresInstancesContainer">
+                        <subtypes>
+                                <type>Discussion</type>
+                        </subtypes>
+                </type>
+        </extension>
+    
+
+</component>

@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<component name="fr.index.cloud.ens.metadata.listener.contrib" version="1.0">
+
+    <require>org.nuxeo.ecm.core.event.EventServiceComponent</require>
+
+    <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+        <listener name="indexDuplicationListener" async="false" postCommit="false" enabled="true" class="fr.index.cloud.ens.metadata.DuplicationListener" priority="11">
+            <event>documentCreatedByCopy</event>
+        </listener>
+
+    </extension>
+
+    <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+        <listener name="virusCanListener" async="false" postCommit="false" enabled="true" class="fr.index.cloud.ens.virusscan.ScanListener" priority="10">
+            <event>aboutToCreate</event>
+            <event>aboutToImport</event>
+            <event>beforeDocumentModification</event>
+        </listener>
+
+    </extension>
+
+    <extension target="org.nuxeo.ecm.core.event.EventServiceComponent" point="listener">
+
+        <listener name="mimeTypeListener" async="false" postCommit="false" enabled="true" class="fr.index.cloud.ens.mimetypes.MimeTypeListener" priority="11">
+            <event>aboutToCreate</event>
+            <event>aboutToImport</event>
+            <event>beforeDocumentModification</event>
+        </listener>
+
+    </extension>
+
+</component>
