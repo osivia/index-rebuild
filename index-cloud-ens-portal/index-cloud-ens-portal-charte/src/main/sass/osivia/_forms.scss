@@ -1,0 +1,17 @@
+@import "variables";
+
+
+.form-group {
+  &.required {
+    label {
+      &:not(.custom-file-label) {
+        &::after {
+          content: " *";
+
+          color: $danger;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+}

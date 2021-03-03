@@ -1,0 +1,15 @@
+.breadcrumb-item {
+  &, .dropdown {
+    display: flex;
+
+    &, > a {
+      flex-shrink: 1;
+      min-width: 0;
+    }
+
+    > a {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+  }
+}

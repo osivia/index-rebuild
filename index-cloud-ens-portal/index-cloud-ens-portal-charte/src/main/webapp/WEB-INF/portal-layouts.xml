@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layouts>
+
+    <layout>
+        <name>cloud-ens-with-nav</name>
+        <uri>/layouts/with-nav/index.jsp</uri>
+        <uri state="maximized">/layouts/with-nav/maximized.jsp</uri>
+        <regions>
+            <region name="nav" />
+            <region name="nav-bottom" />
+            <region name="top" />
+            <region name="col-1" />
+            <region name="col-2" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>cloud-ens-without-nav</name>
+        <uri>/layouts/without-nav/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="top" />
+            <region name="col-1" />
+            <region name="col-2" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>cloud-ens-anonymous-home</name>
+        <uri>/layouts/anonymous-home/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="top" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>cloud-ens-home</name>
+        <uri>/layouts/home/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="col-1-top" />
+            <region name="col-1-1" />
+            <region name="col-1-2" />
+            <region name="col-1-3" />
+            <region name="col-2-aux"/>
+            <region name="col-2" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>cloud-ens-mutualization</name>
+        <uri>/layouts/mutualization/index.jsp</uri>
+        <uri state="maximized">/layouts/mutualization/maximized.jsp</uri>
+        <regions>
+            <region name="nav-1" />
+            <region name="nav-2" />
+            <region name="top" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>cloud-ens-rgpd</name>
+        <uri>/layouts/rgpd/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="top" />
+            <region name="col-1" />
+            <region name="col-2" />
+        </regions>
+    </layout>
+    
+    <layout>
+        <name>cloud-ens-one-column</name>
+        <uri>/layouts/one-column/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="top" />
+            <region name="col-1" />
+            <region name="col-2" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>cloud-ens-uncluttered</name>
+        <uri>/layouts/uncluttered/index.jsp</uri>
+        <uri state="maximized">/layouts/uncluttered/maximized.jsp</uri>
+        <regions>
+            <region name="col-1" />
+        </regions>
+    </layout>
+
+    <layout>
+        <name>logout</name>
+        <uri>/layouts/logout/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="col-1" />        
+        </regions>
+    </layout>
+
+</layouts>

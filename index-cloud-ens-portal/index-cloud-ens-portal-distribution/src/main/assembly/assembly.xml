@@ -1,0 +1,40 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.2 http://maven.apache.org/xsd/assembly-1.1.2.xsd">
+
+    <id>bin</id>
+    <formats>
+        <format>zip</format>
+    </formats>
+    <includeBaseDirectory>false</includeBaseDirectory>
+
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>webapps</outputDirectory>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <includes>
+                <!-- index education -->
+                <include>${project.groupId}:index-cloud-ens-portal-charte:war:${project.version}</include>                
+            </includes>
+            <useProjectArtifact>false</useProjectArtifact>
+        </dependencySet>
+    </dependencySets>
+
+
+    <fileSets>
+        <!-- Socle -->
+        <fileSet>
+            <outputDirectory>/</outputDirectory>
+            <directory>target/osivia-portal-distribution</directory>
+            <includes>
+                <include>/**</include>
+            </includes>
+         </fileSet>
+
+      </fileSets>
+
+   
+
+</assembly>

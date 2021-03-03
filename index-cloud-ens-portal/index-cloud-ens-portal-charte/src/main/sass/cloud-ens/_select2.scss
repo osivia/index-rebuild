@@ -1,0 +1,135 @@
+.select2-container--bootstrap4 {
+  .select2-selection {
+    &.select2-selection--single {
+      display: flex;
+      align-items: center;
+
+      color: $body-color;
+      font-weight: $font-weight-bold;
+    }
+
+    &.select2-selection--multiple {
+      .select2-search__field {
+        &:not([placeholder=""]) {
+          width: auto !important;
+        }
+      }
+    }
+  }
+
+  .select2-search__field {
+    margin: {
+      top: .25rem !important;
+      bottom: .25rem !important;
+    }
+
+    &::placeholder {
+      font-size: $small-font-size;
+    }
+  }
+
+  .select2-selection__placeholder {
+    font-size: $small-font-size;
+  }
+
+  .select2-selection__choice {
+    display: flex;
+    align-items: center;
+
+    height: 2rem;
+    min-width: 0;
+
+    margin-bottom: .25rem;
+    margin-right: .5rem;
+    padding: 0 .5rem;
+
+    color: $body-color;
+    background-color: $primary-light;
+    border: {
+      style: none;
+      radius: 50rem;
+    }
+    font-size: .8125rem; // 13px
+    font-weight: $font-weight-bold;
+
+    &:hover {
+      background-color: darken($primary-light, $emphasized-link-hover-darken-percentage);
+    }
+
+    .select2-selection__choice__remove {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+      order: 2;
+
+      margin-right: -.25rem;
+      padding: .25rem;
+
+      color: $body-color;
+      font-size: 0; // Hide default cross symbol
+
+      @include glyphicons-mask(glyphicons-url("basic", 599, "menu-close"));
+
+      &::before {
+        content: "";
+
+        height: $glyphicons-size;
+        width: $glyphicons-size;
+
+        mask-position: center;
+        -webkit-mask-position: center;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        mask-size: contain;
+        -webkit-mask-size: contain;
+
+        background-color: currentColor;
+        font-size: .65rem;
+      }
+    }
+  }
+
+
+  &, &.select2-container--open, &.select2-container--focus {
+    .select2-inline-edition-container, .select2-search__field {
+      background-color: transparent;
+    }
+  }
+
+
+  .select2-results__option {
+    &, &[aria-selected=true] {
+      &.select2-results__option--highlighted {
+        color: $body-color;
+        background-color: $primary-light;
+      }
+    }
+  }
+  
+  .person   {
+    display: flex;
+  
+    .person-avatar {
+        align-self: center;
+        img {
+            height: 2.5rem; // 40px
+            width: 2.5rem; // 40px
+            vertical-align: middle;
+        
+            margin-right: map_get($spacers, 1);
+        
+            border-radius: 50%;
+            object-fit: cover;
+        
+            &[src$=".svg"] {
+              background-color: currentColor;
+            }   
+        }
+    }
+    
+    .person-title {
+        align-self: center;
+    }
+  
+  }
+}

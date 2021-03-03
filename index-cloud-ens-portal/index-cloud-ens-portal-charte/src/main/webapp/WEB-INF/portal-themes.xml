@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<themes>
+    <theme>
+        <name>cloud-ens-charte</name>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/img/favicon.ico"/>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/cloud-ens.css"/>
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="/js/cloud-ens.js"/>
+    </theme>
+
+
+    <theme>
+        <name>cloud-ens-charte-mutualized</name>
+
+        <!-- Favicon -->
+        <link rel="icon" type="image/png" href="/img/favicon.ico"/>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/css/cloud-ens-mutualized.css"/>
+
+        <!-- JavaScript -->
+        <script type="text/javascript" src="/js/cloud-ens.js"/>
+    </theme>
+</themes>

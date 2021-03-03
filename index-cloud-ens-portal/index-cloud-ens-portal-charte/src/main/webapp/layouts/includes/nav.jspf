@@ -1,0 +1,19 @@
+<op:resizable cssClass="col-auto d-md-flex flex-column" minWidth="290">
+    <div class="row flex-grow-1 flex-nowrap">
+        <div id="drawer" class="col d-flex flex-column overflow-auto bg-light shadow">
+            <div class="row flex-grow-1 flex-nowrap">
+                <div class="col overflow-auto pt-4 py-md-5">
+                    <p:region regionName="nav"/>
+                </div>
+            </div>
+
+            <div class="flex-shrink-0">
+                <hr>
+
+                <div>
+                    <p:region regionName="nav-bottom"/>
+                </div>
+            </div>
+        </div>
+    </div>
+</op:resizable>

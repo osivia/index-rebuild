@@ -1,0 +1,27 @@
+.pdf-preview-iframe {
+// Minimum display in in mobile mode
+  @media (max-width: map_get($grid-breakpoints, "md") - 1) {
+    min-height: 300px;
+  }
+}
+
+.overflow-md {
+// to avoid double scroll bars in mobile mode
+  @media (min-width: map_get($grid-breakpoints, "md") ) {
+    overflow: auto;
+  }
+}
+
+
+.document-qcm {
+  // Hide in small and medium
+  @media (max-width: map_get($grid-breakpoints, "md") - 1) {
+    display: none !important;
+  }
+  
+  @media (min-width: map_get($grid-breakpoints, "md") ) {
+    display: flex !important;
+  }
+}
+
+

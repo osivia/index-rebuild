@@ -1,0 +1,7 @@
+<%@ taglib uri="portal-layout" prefix="p" %>
+
+
+<header>
+    <%--Toolbar--%>
+    <p:region regionName="toolbar" />
+</header>

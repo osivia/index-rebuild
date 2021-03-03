@@ -1,0 +1,17 @@
+@import "../variables";
+
+
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .flex#{$infix}-shrink-1 {
+      min-width: 0;
+    }
+  }
+}
+
+
+.flex-column, .row {
+  min-height: 0;
+}

@@ -1,0 +1,131 @@
+.card-custom {
+  border-style: none;
+  line-height: $headings-line-height;
+
+  &.card-custom-border-bottom {
+    > :last-child {
+      border-bottom: {
+        style: solid;
+        width: 17px;
+      }
+
+      @include border-bottom-radius($radius: $border-radius);
+    }
+  }
+
+  &.card-custom-border-left {
+    > * {
+      border-left: {
+        style: solid;
+        width: 10px;
+      }
+
+      @include border-left-radius($radius: $border-radius);
+    }
+  }
+
+
+  &.card-custom-green {
+    &.card-custom-hover {
+      &:hover {
+        background-color: $green-200;
+      }
+    }
+
+    > * {
+      border-color: $green-500;
+    }
+  }
+
+  &.card-custom-orange {
+    &.card-custom-hover {
+      &:hover {
+        background-color: $orange-200;
+      }
+    }
+
+    > * {
+      border-color: $orange-500;
+    }
+  }
+
+  &.card-custom-gray {
+    &.card-custom-hover {
+      &:hover {
+        background-color: $gray-100;
+      }
+    }
+  }
+
+
+  .card-title {
+    font-size: 1rem; // 16px
+  }
+}
+
+
+.card-custom-badges, .card-custom-informations {
+  position: absolute;
+  left: map-get($spacers, 2);
+  right: map-get($spacers, 2);
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.card-custom-badges {
+  top: map-get($spacers, 1);
+
+  font-size: .6875rem; // 11px
+
+  > * {
+    &[title] {
+      z-index: 2;
+    }
+
+    &:not(:first-child) {
+      margin-left: map-get($spacers, 1);
+    }
+  }
+}
+
+.card-custom-informations {
+  bottom: map-get($spacers, 1);
+
+  font-size: .5625rem; // 9px
+}
+
+
+.card-custom-icon {
+  $icon-size: 48px;
+
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+
+  height: $icon-size;
+  width: $icon-size;
+
+  color: $purple;
+  border-radius: 50%;
+  font-size: 1rem;
+
+  .bg-green-light & {
+    background-color: $green-100;
+  }
+
+  .bg-orange-light & {
+    background-color: $orange-100;
+  }
+
+  &.card-custom-icon-lg {
+    $icon-size: 88px;
+
+    height: $icon-size;
+    width: $icon-size;
+
+    font-size: 2rem;
+  }
+}

@@ -1,0 +1,74 @@
+@function vh($quantity) {
+  @return calc(var(--vh, 1vh) * #{$quantity});
+}
+
+.fullheight {
+  height: 100%;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+}
+
+
+#maximized {
+  > .page-header {
+    display: none !important;
+  }
+}
+
+
+.drawer-toggle-button {
+  body:not([data-drawer="true"]) & {
+    > li {
+      display: none !important;
+    }
+  }
+}
+
+
+#drawer {
+  @media (min-width: map_get($grid-breakpoints, "md")) {
+    z-index: 1;
+
+    .modal-open & {
+      z-index: unset; // Fix drawer modal background
+    }
+  }
+}
+
+
+.background-clouds {
+  background: {
+    image: url("/index-cloud-ens-charte/img/background-clouds.png");
+    position: bottom;
+    repeat: no-repeat;
+    size: contain;
+  }
+}
+
+
+.portlet-container {
+  margin-bottom: map-get($spacers, 5);
+
+  #maximized & {
+    margin-bottom: 0;
+  }
+
+  @media (min-width: map_get($grid-breakpoints, "md")) {
+    margin-bottom: map-get($spacers, 3);
+  }
+}
+
+
+.portlet-titlebar-title {
+  margin-bottom: map-get($spacers, 3);
+
+  font-size: 0.875rem; // 14px;
+
+  .bg-green-light & {
+    color: $green-700;
+  }
+
+  .bg-orange-light & {
+    color: $orange-700;
+  }
+}

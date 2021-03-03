@@ -17,6 +17,7 @@
 
     <modules>
        <module>index-cloud-ens-nuxeo</module>
+	   <module>index-cloud-ens-portal</module>
    </modules>
 
 

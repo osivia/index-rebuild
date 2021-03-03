@@ -1,0 +1,75 @@
+.selector {
+  .form-control {
+    height: 3rem;
+
+    padding: {
+      top: .75rem;
+      bottom: .75rem;
+    }
+
+    color: $body-color;
+    border-style: none;
+    font-weight: $font-weight-bold;
+
+    &::placeholder {
+      font-size: $small-font-size;
+      font-weight: $font-weight-normal;
+    }
+  }
+
+  .input-group-text {
+    background-color: $white;
+    border-style: none;
+  }
+
+  .select2-container--bootstrap4 {
+    .select2-selection {
+      position: relative;
+      min-height: 3rem;
+
+      padding-top: .5rem;
+      padding-right: 1.75rem;
+
+      border-style: none;
+
+      &::after {
+        $glyphicons-url: glyphicons-url("basic", 796, "set-down");
+
+        content: "";
+        position: absolute;
+        top: 0;
+        right: .5rem;
+
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        width: 1em;
+
+        margin: {
+          top: auto;
+          bottom: auto;
+        }
+
+        color: $gray-500;
+        background-color: currentColor;
+        font-size: $small-font-size;
+
+        mask-position: center;
+        -webkit-mask-position: center;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        mask-size: contain;
+        -webkit-mask-size: contain;
+        mask-image: url("#{$glyphicons-url}");
+        -webkit-mask-image: url("#{$glyphicons-url}");
+      }
+    }
+
+    .select2-selection__rendered {
+      align-items: center;
+      height: 2rem;
+
+      font-weight: $font-weight-bold;
+    }
+  }
+}

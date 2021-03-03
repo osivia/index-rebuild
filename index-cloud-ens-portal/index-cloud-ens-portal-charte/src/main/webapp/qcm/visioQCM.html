@@ -1,0 +1,278 @@
+<html lang="fr" xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <script type="text/javascript" src="visioQCM.js"></script>
+  <link rel="stylesheet" type="text/css" href="visioQCM.css">
+
+  <script type="text/javascript">
+    var GTraductions = require('ObjetTraduction.js');
+    var ObjetVisuEleve = require('ObjetVisuEleveQCM.js');
+    var ObjetElement = require('ObjetElement.js');
+    var ObjetListeElements = require('ObjetListeElements.js');
+    var ObjetJSON = require('ObjetJSON.js');
+    var TypeModeCorrectionQCM = require('TypeModeCorrectionQCM.js').TypeModeCorrectionQCM;
+    var TypeGenreExerciceDeQuestionnaire = require('TypeGenreExerciceDeQuestionnaire.js').TypeGenreExerciceDeQuestionnaire;
+
+    var jsonQuestion = '', jsonQCM = null;
+
+    function parseQCMXML(aXml) {
+      var lQcm =  new ObjetElement();
+      var lXmlTemp = null;
+      var lEle = null, lEleAns = null;
+
+      lXmlTemp = $.parseXML($(aXml).find('question[type="category"] > category > text').text().trim());
+      lQcm.Libelle = $(lXmlTemp).find('name').text().trim();
+      lQcm.matiere = new ObjetElement($(lXmlTemp).find('matiere').text().trim());
+      lQcm.niveau = new ObjetElement($(lXmlTemp).find('niveau').text().trim());
+      lQcm.typeNumerotation = 0;
+      lQcm.nbQuestion = $(aXml).find('question[type!="category"]').length;
+      lQcm.listeQuestions = new ObjetListeElements();
+      $(aXml).find('question[type!="category"]').each(function(index, ele) {
+        lEle = new ObjetElement($(ele).find('name > text').text().trim());
+        lEle.Position = index;
+        switch ($(ele).attr('type')) {
+          case 'multichoice':
+            lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_MultiChoice;
+            if($(ele).find('single').text().trim() === 'true') lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_SingleChoice;
+            break;
+          case 'numerical':
+            lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_NumericalAnswer;
+            break;
+          case 'shortanswer':
+            lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_ShortAnswer;
+            break;
+          case 'spellanswer':
+            lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_SpellAnswer;
+            break;
+          case 'matching':
+            lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_Matching;
+            break;
+          case 'cloze':
+            switch ($(ele).attr('desc')) {
+              case 'fixed':
+                lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_ClozeFixed;
+                break;
+              case 'variable':
+                lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_ClozeVariable;
+                break;
+              default:
+                lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_ClozeField;
+                break;
+            }
+            break;
+          default:
+            lEle.Genre = TypeGenreExerciceDeQuestionnaire.GEQ_Inconnu;
+            break;
+        }
+        lEle.enonce = $(ele).find('questiontext > text').text().trim();
+        lEle.note = parseInt($(ele).find('defaultgrade').text().trim());
+        lEle.editeur = new ObjetElement(null, 0);
+        lEle.casesensitive = parseInt($(ele).find('usecase').text().trim());
+        lEle.image = $(ele).find('image_base64 > text').text().trim();
+        lEle.mp3name = $(ele).find('mp3_base64 > text').text().trim();
+        lEle.url = $(ele).find('externallink > text').text().trim();
+        lEle.listeReponses = new ObjetListeElements();
+        $(ele).find('question > answer').each(function(ansindex, answ){
+          lEleAns = new ObjetElement($(answ).children('text').text().trim());
+          lEleAns.Position = ansindex;
+          lEleAns.libelleHtml = $(answ).children('text').text().trim();
+          lEleAns.editionAvancee = $(answ).is('[format="html"]');
+          lEleAns.image = $(answ).find('image_base64 > text').text().trim() || undefined;
+          lEleAns.feedback = $(answ).find('feedback > text').text().trim() || '';
+          lEleAns.association = '';
+          if(lEle.GetGenre() === TypeGenreExerciceDeQuestionnaire.GEQ_MultiChoice
+          || lEle.GetGenre() === TypeGenreExerciceDeQuestionnaire.GEQ_SingleChoice
+          || lEle.GetGenre() === TypeGenreExerciceDeQuestionnaire.GEQ_ShortAnswer){
+            lEleAns.bonneReponse = $(answ).attr('fraction') > 0;
+          }
+          lEle.listeReponses.AddElement(lEleAns);
+        });
+        $(ele).find('question > subquestion').each(function(ansindex, answ){
+          lEleAns = new ObjetElement($(answ).children('text').text().trim());
+          lEleAns.Position = ansindex;
+          lEleAns.libelleHtml = $(answ).children('text').text().trim();
+          lEleAns.editionAvancee = $(answ).is('[format="html"]');
+          lEleAns.feedback = $(answ).find('feedback > text').text().trim() || '';
+          lEleAns.association = $(answ).find('answer > text').text().trim() || '';
+          lEleAns.bonneReponse = lEleAns.GetLibelle();
+          lEle.listeReponses.AddElement(lEleAns);
+        });
+        if(lEle.Genre === TypeGenreExerciceDeQuestionnaire.GEQ_ClozeFixed
+        || lEle.Genre === TypeGenreExerciceDeQuestionnaire.GEQ_ClozeVariable
+        || lEle.Genre === TypeGenreExerciceDeQuestionnaire.GEQ_ClozeField) {
+          lEle.enonceOriginel = ''+lEle.enonce;
+          lEle.enonce = lEle.enonce.replace(/{[0-9]*:(ShortAnswer|MultiChoice):(~*(%[0-9]{1,3}%|=)?[^~%#{}]+#?[^~%#{}]*)+}/gi, function (ele) {
+            lEleAns = new ObjetElement('');
+            lEleAns.Position = x;
+            lEleAns.libelleHtml = '';
+            lEleAns.editionAvancee = false;
+            lEleAns.feedback = '';
+            lEleAns.association = '';
+            lEleAns.listeChoix = [];
+            if (ele.search(/:multichoice:/gi) > -1) {
+              var lResponses = ele.match(/((multichoice:|shortanswer:|~)(%[0-9]{1,3}%|=)?[^~%#{}]+#?[^~%#{}]*)/gi);
+              for (var x in lResponses) {
+                if (!$.isNumeric(x)) {
+                  continue;
+                }
+                lResponses[x] = lResponses[x].replace(/^(multichoice:|shortanswer:)/i, '');
+                lResponses[x] = lResponses[x].replace(/^(:|~)?=/, '%100%');
+                lResponses[x] = lResponses[x].replace(/^(:|~)?([^~%#{}])/, '%0%$2');
+                lResponse = lResponses[x].split('%');
+                lResponse.splice(2, 1, lResponse[2].split('#')[0], lResponse[2].split('#')[1]);
+                lEleAns.listeChoix.push(lResponse[2]);
+              }
+            } else {
+              lResponse = ele.match(/(?:multichoice:|shortanswer:|~)(?:%100%|=)([^~%#{}]+)#?[^~%#{}]*/i);
+                lEleAns.listeChoix.push(lResponse[1]);
+            }
+            lEle.listeReponses.AddElement(lEleAns);
+            return '{#}';
+          });
+        }
+        lQcm.listeQuestions.AddElement(lEle);
+      });
+      if(lQcm.listeQuestions.GetNbrElements() === 0){
+        return 'Aucune question';
+      } else {
+        var qcmValide = true;
+        lQcm.listeQuestions.parcourir(function(quest){
+          return qcmValide = (quest.listeReponses.GetNbrElements() > 0);
+        });
+        if(!qcmValide) return 'Question sans réponse';
+      }
+      return lQcm;
+    }
+
+    function substituerContenu() {
+      var ObjetVisuEleve_Espace = require('ObjetVisuEleveQCM_Espace.js');
+      var lSearchParam = location.search.substring(1).split('&').reduce(function(result, value) {
+        var parts = value.split('=');
+        if (parts[0]) result[decodeURIComponent(parts[0])] = decodeURIComponent(parts[1]);
+        return result;
+      }, {});
+      if(!lSearchParam.url){
+        document.body.innerText = GTraductions.getValeur('requete.erreur');
+        return;
+      }
+      $.get(lSearchParam.url).then(function(data){
+        jsonQCM = parseQCMXML(data);
+
+        if(jsonQCM === ''+jsonQCM){
+          document.body.innerHTML = GTraductions.getValeur('requete.validationEchec') + '<br />' + jsonQCM;
+          return;
+        }
+
+        var lModalites = new ObjetElement();
+        lModalites.Genre = 55;
+        lModalites.matiere = jsonQCM.matiere;
+        lModalites.niveau = jsonQCM.niveau;
+        lModalites.proprietaire = new ObjetElement('', 1);
+        lModalites.nbQuestionsTotal = jsonQCM.listeQuestions.GetNbrElements();
+        lModalites.nombreDePoints = 0;
+        jsonQCM.listeQuestions.parcourir(function(ele){
+          lModalites.nombreDePoints += ele.note
+        });
+        lModalites.nombreDePointsTotal = lModalites.nombreDePoints;
+        $.extend(lModalites, {
+          "autoriserLaNavigation": true,
+          "modeDiffusionCorrige": $.isNumeric(parseInt(lSearchParam.corrige) % 3) ? (parseInt(lSearchParam.corrige) % 3) : TypeModeCorrectionQCM.FBQ_CorrigeALaFin,
+          "nombreQuestionsSoumises": !!lSearchParam.correction ? lModalites.nbQuestionsTotal : 0,
+          "avecQuestionsSoumises": !!lSearchParam.correction,
+          "nbCompetencesTotal": 0,
+          "melangerLesQuestions": false,
+          "melangerLesReponses": false,
+          "dureeMaxQCM": 0,
+          "statutPrive": true,
+          "ressentiRepondant": false,
+          "tolererFausses": false,
+          "acceptIncomplet": false,
+          "estVerrouille": false
+        });
+        lModalites.QCM = jsonQCM;
+        retourDonnees(lModalites, !!lSearchParam.correction);
+      }, function(){
+        document.body.innerText = GTraductions.getValeur('connexion.EchecChargement');
+      });
+
+      window.GVisuEleve = new ObjetVisuEleve_Espace("GVisuEleve", null, window, window.evenementVisuEleve);
+      window.GVisuEleve.setParametres({
+        idContenu: "zoneDeTexte",
+        numeroExecution: 1,
+        modeProf: true
+      });
+    }
+
+    function evenementVisuEleve(aParam) {
+      if (aParam.action === 'close') {
+        if(!!window.top.onFinish) window.top.onFinish();
+        return;
+      }
+      if (aParam.action === 'get') retourDonnees(jsonQCM);
+    }
+
+    function retourDonnees(aObjet, aPourCorrige) {
+
+      function _ajouterReponse(aJSON, aElement) {
+        aElement.copieJSON(aJSON);
+      }
+
+      function _ajouterQuestion(aJSON, aElement) {
+        aElement.copieJSON(aJSON);
+        if (aJSON.listeReponses) aElement.listeReponses = new ObjetListeElements().fromJSON(aJSON.listeReponses,
+          _ajouterReponse);
+      }
+      if (!aObjet) return;
+      var lElementExecution = aObjet;
+      // récupération de l'execution
+      lElementExecution.QCM = aObjet;
+      if (jsonQuestion !== '' && aObjet.listeQuestions) {
+        var lQuestionJSON = ObjetJSON.parse(jsonQuestion);
+        var lEltQuestion = new ObjetElement().fromJSON(lQuestionJSON);
+        _ajouterQuestion(lQuestionJSON, lEltQuestion);
+        lElementExecution.modeVisuQuestion = true;
+        lElementExecution.questionEnVisu = lEltQuestion.GetPosition();
+        lElementExecution.QCM.listeQuestions.AddElement(lEltQuestion, lEltQuestion.GetPosition());
+        lElementExecution.QCM.nbQuestion = lElementExecution.QCM.listeQuestions.GetNbrElements();
+        lElementExecution.modeDiffusionCorrige = TypeModeCorrectionQCM.FBQ_CorrigeApresQuestion;
+      } else if (jsonQuestion !== '' && !aObjet.listeQuestions) {
+        evenementVisuEleve({
+          indiceQuestion: 0,
+          numeroExecution: 1
+        });
+        return;
+      }
+
+      if(aPourCorrige) {
+        lElementExecution.publierCorrige = true;
+        lElementExecution.estDemarre = true;
+        lElementExecution.etatCloture = 2;
+        lElementExecution.modeDiffusionCorrige = TypeModeCorrectionQCM.FBQ_CorrigeALaFin;
+        lElementExecution.nbQuestBonnes = 0;
+        lElementExecution.nbQuestRepondues = 0;
+      }
+
+      window.GVisuEleve.setDonnees(lElementExecution);
+    }
+  </script>
+
+  <title></title>
+  <style>
+    html {
+      overflow: auto;
+    }
+
+    body {
+      margin: 0px;
+      background-color: white;
+      font-family: Arial, Verdana, Geneva, Helvetica, sans-serif;
+    }
+  </style>
+</head>
+
+<body onload="substituerContenu();">
+  <div id="zoneDeTexte" style="position:relative;width:100%;height:100%;"></div>
+</body>
+
+</html>

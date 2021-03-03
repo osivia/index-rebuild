@@ -1,0 +1,19 @@
+@import "variables-base";
+
+
+$primary-lighter: $green-100;
+$primary-light: $green-500;
+$primary: $green-700;
+
+$theme-colors: map-merge(
+                (
+                        "primary-lighter": $primary-lighter,
+                        "primary-light": $primary-light
+                ),
+                $theme-colors
+);
+
+
+@import "../bootstrap/functions";
+@import "../bootstrap/variables";
+@import "../bootstrap/mixins";

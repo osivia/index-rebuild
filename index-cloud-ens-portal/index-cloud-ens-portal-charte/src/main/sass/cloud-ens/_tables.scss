@@ -1,0 +1,109 @@
+.portal-table {
+  border-bottom-style: none;
+}
+
+
+.portal-table-header-group {
+  padding-left: 10px;
+
+  border-bottom-style: none;
+  font-size: .6875rem; // 11px;
+
+  &, a {
+    &, i {
+      color: $gray-500;
+    }
+  }
+
+  a {
+    &:hover, &:focus {
+      &, i {
+        color: darken($gray-500, $emphasized-link-hover-darken-percentage);
+      }
+    }
+  }
+}
+
+.portal-table-row {
+  margin: {
+    top: .1rem;
+    bottom: .1rem;
+  }
+
+  background-color: $white;
+  border: {
+    left: {
+      style: solid;
+      width: 10px;
+    }
+    radius: $border-radius;
+  }
+
+  &:hover, &.ui-selecting, &.ui-selected {
+    background-color: $green-200;
+  }
+
+  &, &.ui-selecting, &.ui-selected {
+    border-color: $green-500;
+  }
+
+  .portal-table-cell {
+    border-bottom-style: none;
+  }
+
+  &, &.ui-selecting, &.ui-selected {
+    .portal-table-cell {
+      font-size: .6875rem; // 11px;
+
+      &, a {
+        color: $gray-600;
+      }
+
+      a {
+        &:hover, &:focus {
+          color: darken($gray-600, $emphasized-link-hover-darken-percentage);
+        }
+      }
+    }
+  }
+}
+
+
+.portal-table-cell {
+  .avatar {
+    height: 2.5rem; // 40px
+    width: 2.5rem; // 40px
+    vertical-align: middle;
+
+    margin-right: map_get($spacers, 1);
+
+    border-radius: 50%;
+    object-fit: cover;
+
+    &[src$=".svg"] {
+      background-color: currentColor;
+    }
+  }
+}
+
+
+.portal-table-checkbox {
+  margin-bottom: -.1rem;
+
+  font-size: $font-size-base;
+
+  .ui-selecting &, .ui-selected &, .checked {
+    .glyphicons-basic-square-empty {
+      @include glyphicons-mask(glyphicons-url("basic", 153, "square-checkbox"));
+    }
+  }
+}
+
+
+.portal-table-toolbar {
+  justify-content: flex-start;
+
+  .btn-link {
+    font-weight: $font-weight-bold;
+  }
+}

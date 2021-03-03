@@ -1,0 +1,19 @@
+@each $breakpoint in map-keys($grid-breakpoints) {
+  @include media-breakpoint-up($breakpoint) {
+    $infix: breakpoint-infix($breakpoint, $grid-breakpoints);
+
+    .embed-responsive#{$infix}-0 {
+      &::before {
+        display: none;
+      }
+
+      .embed-responsive-item,
+      iframe,
+      embed,
+      object,
+      video {
+        position: static;
+      }
+    }
+  }
+}

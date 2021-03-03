@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    
+	<parent>
+    	<groupId>fr.index.cloud.ens.portal</groupId>
+    	<artifactId>index-cloud-ens-portal-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
+    </parent>
+
+    
+    <artifactId>index-cloud-ens-portal-distribution</artifactId>
+
+    <name>Cloud enseignant - Distribution portail</name>
+    
+    
+    
+    <dependencies>
+         <!-- index -->
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>index-cloud-ens-portal-charte</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>       
+        </dependency> 
+        <!-- Directory -->
+        <dependency>
+            <groupId>org.osivia.services.directory.socle</groupId>
+            <artifactId>osivia-services-directory-socle-interfaces</artifactId>
+            <scope>compile</scope>
+        </dependency>
+        
+             
+    </dependencies>
+   
+    
+    <profiles>
+     
+        <!-- Unpack -->
+        <profile>
+            <id>unpack</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>            
+            <dependencies>
+                <dependency>
+					<groupId>org.osivia.portal</groupId>
+					<artifactId>osivia-portal-distribution</artifactId>
+					<version>${osivia.portal.version}</version>
+                    <type>zip</type>
+                </dependency>
+            </dependencies>
+            <build>
+                <defaultGoal>package</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-dependency-plugin</artifactId>
+                        <executions>
+                    
+                            <execution>
+                                <id>unpack</id>
+                                <phase>generate-resources</phase>
+                                <goals>
+                                    <goal>unpack</goal>
+                                </goals>
+                                <configuration>
+                                    <artifactItems>
+                                        <artifactItem>
+											<groupId>org.osivia.portal</groupId>
+											<artifactId>osivia-portal-distribution</artifactId>
+											<version>${osivia.portal.version}</version>
+                                            <type>zip</type>
+                                            <overWrite>true</overWrite>
+                                            <outputDirectory>${project.build.directory}/osivia-portal-distribution</outputDirectory>
+                                        </artifactItem>
+                                    </artifactItems>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+        <!-- Pack -->
+        <profile>
+            <id>pack</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>            
+            <build>
+                <defaultGoal>package</defaultGoal>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>zip</id>
+                                <phase>process-resources</phase>
+                                <configuration>
+                                    <descriptors>
+                                        <descriptor>src/main/assembly/assembly.xml</descriptor>
+                                    </descriptors>
+                                    <finalName>${project.artifactId}-${project.version}</finalName>
+                                    <appendAssemblyId>false</appendAssemblyId>
+                                    <attach>true</attach>
+                                </configuration>
+                                <goals>
+                                    <goal>single</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        
+    </profiles>
+    
+</project>

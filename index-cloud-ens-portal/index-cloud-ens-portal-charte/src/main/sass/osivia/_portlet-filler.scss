@@ -1,0 +1,17 @@
+//.portlet-filler {
+//  overflow-x: hidden;
+//  overflow-y: auto;
+//}
+
+.portlet-filler-parent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  //flex-shrink: 1;
+  min-height: 0;
+  //min-width: 0;
+
+  //&[class~=col] {
+  //  max-height: 100%;
+  //}
+}

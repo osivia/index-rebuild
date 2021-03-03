@@ -1,0 +1,125 @@
+#toolbar {
+  .navbar {
+    font-size: 0.9375rem; // 15px;
+
+    .avatar {
+      height: 3rem; // 48px
+      width: 3rem; // 48px
+
+      margin-right: map_get($spacers, 2);
+
+      border: {
+        style: solid;
+        width: .1rem;
+        color: $white;
+        radius: 50%;
+      }
+      object-fit: cover;
+
+      &[src$=".svg"] {
+        border-style: none;
+      }
+    }
+
+    @media (min-width: map_get($grid-breakpoints, "md")) {
+      min-height: 70px;
+
+      .text-user {
+        max-width: 0; // Hide
+
+        @include text-truncate();
+      }
+    }
+
+    @media (min-width: map_get($grid-breakpoints, "lg")) {
+      .text-user {
+        max-width: 8em;
+      }
+    }
+
+    @media (min-width: map_get($grid-breakpoints, "xl")) {
+      .text-user {
+        max-width: 20em;
+      }
+    }
+  }
+
+  .navbar-collapse, .navbar-nav, .nav-item {
+    min-width: 0;
+  }
+
+  .nav-link {
+    @include text-truncate();
+  }
+
+
+  .index-tabs {
+    @media (min-width: map_get($grid-breakpoints, "lg")) {
+      &::before {
+        content: "";
+        flex-grow: 1;
+      }
+
+      &::after {
+        content: "";
+        flex-grow: 3;
+      }
+    }
+  }
+
+  .index-tab {
+    display: flex;
+    align-items: center;
+
+    font-size: 1.0625rem; // 17px
+    font-weight: $font-weight-bold;
+
+    &:hover, &:focus {
+      text-decoration: none;
+    }
+
+    > i {
+      margin-right: map_get($spacers, 2);
+    }
+
+    > span {
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    > * {
+      margin-top: map_get($spacers, 1);
+      padding: map_get($spacers, 1) 0;
+
+      border-bottom: {
+        style: solid;
+        width: map_get($spacers, 1);
+        color: transparent;
+      }
+    }
+
+    &.active {
+      > span {
+        border-bottom: {
+          color: inherit;
+        }
+      }
+    }
+
+    @media (min-width: map_get($grid-breakpoints, "md")) {
+      &.index-tab-home {
+        > i {
+          margin-right: 0;
+        }
+
+        &.active {
+          > i {
+            border-bottom: {
+              color: inherit;
+            }
+          }
+        }
+      }
+    }
+  }
+}

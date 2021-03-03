@@ -1,0 +1,11 @@
+@each $color, $value in $theme-colors {
+  .btn-link {
+    &.btn-link-hover-#{$color} {
+      &.active, &:hover, &:focus {
+        color: $white !important;
+        background-color: $value !important;
+        text-decoration: none;
+      }
+    }
+  }
+}

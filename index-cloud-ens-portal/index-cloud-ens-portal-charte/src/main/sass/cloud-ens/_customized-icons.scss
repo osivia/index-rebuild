@@ -1,0 +1,31 @@
+.customized-icon {
+  @extend .glyphicons;
+}
+
+
+@mixin customized-icon-mask($url) {
+  &::before {
+    mask-image: url("#{$url}");
+    -webkit-mask-image: url("#{$url}");
+  }
+}
+
+
+.customized-icon-user {
+  @include customized-icon-mask("/index-cloud-ens-charte/img/icons/user.svg");
+}
+
+.customized-icon-butterfly {
+  @include customized-icon-mask("/index-cloud-ens-charte/img/icons/butterfly.svg");
+}
+
+.customized-icon-shared {
+    color:#72b8db !important;
+}
+
+.customized-icon-shared-small {
+    color:#72b8db !important;
+    font-size: 0.85rem;
+}
+
+

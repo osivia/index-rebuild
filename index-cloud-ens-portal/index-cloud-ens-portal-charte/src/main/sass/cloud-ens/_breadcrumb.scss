@@ -1,0 +1,23 @@
+.breadcrumb-item {
+  &, &.active, a {
+    .bg-green-light & {
+      color: $green-700
+    }
+
+    .bg-orange-light & {
+      color: $orange-700;
+    }
+  }
+
+  a {
+    &:hover, &:focus {
+      .bg-green-light & {
+        color: darken($green-700, $emphasized-link-hover-darken-percentage);
+      }
+
+      .bg-orange-light & {
+        color: darken($orange-700, $emphasized-link-hover-darken-percentage);
+      }
+    }
+  }
+}
