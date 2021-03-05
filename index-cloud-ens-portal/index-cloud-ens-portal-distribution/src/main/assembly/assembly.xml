@@ -20,6 +20,16 @@
             </includes>
             <useProjectArtifact>false</useProjectArtifact>
         </dependencySet>
+
+        <dependencySet>
+            <outputDirectory>/lib</outputDirectory>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <includes>
+                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-api</include>   
+            </includes> 
+        </dependencySet>
+                            
     </dependencySets>
 
 
@@ -34,7 +44,5 @@
          </fileSet>
 
       </fileSets>
-
-   
 
 </assembly>

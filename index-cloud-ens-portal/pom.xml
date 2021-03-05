@@ -19,6 +19,8 @@
     <properties>
         <!-- Toutatice -->
         <osivia.portal.version>5.0-SNAPSHOT</osivia.portal.version>
+        <!-- Toutatice -->
+        <toutatice.cms.version>5.0-SNAPSHOT</toutatice.cms.version>		
 
         <!-- Directory -->
         <directory.version>4.9.7</directory.version>
@@ -45,6 +47,14 @@
                 <version>${springframework-ldap.version}</version>
                 <scope>provided</scope>
             </dependency>
+            
+	        <dependency>
+	            <groupId>toutatice-portail.cms</groupId>
+	            <artifactId>toutatice-portail-cms-nuxeo-api</artifactId>
+	            <version>${toutatice.cms.version}</version>
+	            <type>jar</type>
+                <scope>provided</scope>	            
+	        </dependency>		            
 
         </dependencies>
     </dependencyManagement>
@@ -64,6 +74,7 @@
             <version>${osivia.portal.version}</version>
             <type>jar</type>
         </dependency>
+		
         
         <dependency>
             <groupId>org.osivia.portal.api</groupId>
@@ -71,6 +82,11 @@
             <version>${osivia.portal.version}</version>
             <type>jar</type>
         </dependency>
+		
+        <dependency>
+            <groupId>toutatice-portail.cms</groupId>
+            <artifactId>toutatice-portail-cms-nuxeo-api</artifactId>
+        </dependency>		
 
     </dependencies>
 
