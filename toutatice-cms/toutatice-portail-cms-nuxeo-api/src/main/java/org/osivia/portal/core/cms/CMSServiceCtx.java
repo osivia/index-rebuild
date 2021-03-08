@@ -19,10 +19,8 @@ import javax.portlet.PortletContext;
 import javax.portlet.PortletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import org.jboss.portal.core.controller.ControllerContext;
-import org.jboss.portal.server.ServerInvocation;
+
 import org.osivia.portal.api.context.PortalControllerContext;
-import org.osivia.portal.core.context.ControllerContextAdapter;
 
 /**
  * CMS service context.
@@ -30,8 +28,7 @@ import org.osivia.portal.core.context.ControllerContextAdapter;
 public class CMSServiceCtx {
 
 
-	private ControllerContext controllerContext;
-	private ServerInvocation serverInvocation;
+
 	private String scope;
 	/**
 	 * Variable indiquant si le résultat de la commande
@@ -256,10 +253,7 @@ public class CMSServiceCtx {
      * @param portalControllerContext portal controller context
      */
     public void setPortalControllerContext(PortalControllerContext portalControllerContext) {
-        // Controller context
-        ControllerContext controllerContext = ControllerContextAdapter.getControllerContext(portalControllerContext);
-        this.setControllerContext(controllerContext);
-        // Request
+         // Request
         this.setRequest(portalControllerContext.getRequest());
         // Response
         if (portalControllerContext.getResponse() instanceof MimeResponse) {
@@ -271,30 +265,10 @@ public class CMSServiceCtx {
     }
 
 
-	public ControllerContext getControllerContext() {
-		return this.controllerContext;
-	}
-
-
-	public void setControllerContext(ControllerContext controllerContext) {
-		this.controllerContext = controllerContext;
-		if(controllerContext != null) {
-			this.serverInvocation = controllerContext.getServerInvocation();
-			if (this.serverInvocation != null) {
-				this.servletRequest = this.serverInvocation.getServerContext().getClientRequest();
-			}
-		}
-	}
 
 
 
-	public ServerInvocation getServerInvocation() {
-		return this.serverInvocation;
-	}
 
-	public void setServerInvocation(ServerInvocation invocation) {
-		this.serverInvocation = invocation;
-	}
 
 	public String getContextualizationBasePath() {
 		return this.contextualizationBasePath;

@@ -1,122 +1,172 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-    
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
-    	<groupId>fr.index.cloud.ens.portal</groupId>
-    	<artifactId>index-cloud-ens-portal-parent</artifactId>
-        <version>5.0-SNAPSHOT</version>
-    </parent>
+		<groupId>fr.index.cloud.ens.portal</groupId>
+		<artifactId>index-cloud-ens-portal-parent</artifactId>
+		<version>5.0-SNAPSHOT</version>
+	</parent>
 
-    
-    <artifactId>index-cloud-ens-portal-distribution</artifactId>
 
-    <name>Cloud enseignant - Distribution portail</name>
-    
-    
-    
-    <dependencies>
-         <!-- index -->
+	<artifactId>index-cloud-ens-portal-distribution</artifactId>
+
+	<name>Cloud enseignant - Distribution portail</name>
+
+
+
+	<dependencies>
+		<!-- index -->
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>index-cloud-ens-portal-charte</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+
+		<dependency>
+			<groupId>${project.groupId}</groupId>
+			<artifactId>index-cloud-ens-portal-test</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		</dependency>
+		<dependency>
+			<groupId>toutatice-portail.cms</groupId>
+			<artifactId>toutatice-portail-cms-nuxeo-api</artifactId>
+			<version>${toutatice.cms.version}</version>
+			<type>jar</type>
+		</dependency>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.3</version>
+			<type>jar</type>
+		</dependency>
+		<!-- Nuxeo automation -->
+		<dependency>
+			<groupId>toutatice-portail.cms</groupId>
+			<artifactId>toutatice-portail-cms-nuxeo-automation-client</artifactId>
+			<version>${toutatice.cms.version}</version>
+			<type>jar</type>
+		</dependency>		
         <dependency>
-            <groupId>${project.groupId}</groupId>
-            <artifactId>index-cloud-ens-portal-charte</artifactId>
-            <version>${project.version}</version>
-            <type>war</type>       
-        </dependency> 
-        <!-- Directory -->
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.1</version>
+            <type>jar</type>
+        </dependency>		
         <dependency>
-            <groupId>org.osivia.services.directory.socle</groupId>
-            <artifactId>osivia-services-directory-socle-interfaces</artifactId>
-            <scope>compile</scope>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpcore</artifactId>
+            <version>4.1</version>
         </dependency>
-        
-             
-    </dependencies>
-   
-    
-    <profiles>
-     
-        <!-- Unpack -->
-        <profile>
-            <id>unpack</id>
+         <dependency>
+             <groupId>org.codehaus.jackson</groupId>
+             <artifactId>jackson-core-asl</artifactId>
+             <version>1.8.1</version> 
+         </dependency>
+         <dependency>
+             <groupId>org.codehaus.jackson</groupId>
+             <artifactId>jackson-mapper-asl</artifactId>
+             <version>1.8.1</version>
+         </dependency>        
+         <dependency>
+            <groupId>net.sf.json-lib</groupId>
+            <artifactId>json-lib</artifactId>
+            <version>2.4</version>
+	     </dependency>
+		 <dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4</version>
+		 </dependency>	
+	</dependencies>
+
+
+	<profiles>
+
+		<!-- Unpack -->
+		<profile>
+			<id>unpack</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-			</activation>            
-            <dependencies>
-                <dependency>
+			</activation>
+			<dependencies>
+				<dependency>
 					<groupId>org.osivia.portal</groupId>
 					<artifactId>osivia-portal-distribution</artifactId>
 					<version>${osivia.portal.version}</version>
-                    <type>zip</type>
-                </dependency>
-            </dependencies>
-            <build>
-                <defaultGoal>package</defaultGoal>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-dependency-plugin</artifactId>
-                        <executions>
-                    
-                            <execution>
-                                <id>unpack</id>
-                                <phase>generate-resources</phase>
-                                <goals>
-                                    <goal>unpack</goal>
-                                </goals>
-                                <configuration>
-                                    <artifactItems>
-                                        <artifactItem>
+					<type>zip</type>
+				</dependency>
+			</dependencies>
+			<build>
+				<defaultGoal>package</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-dependency-plugin</artifactId>
+						<executions>
+
+							<execution>
+								<id>unpack</id>
+								<phase>generate-resources</phase>
+								<goals>
+									<goal>unpack</goal>
+								</goals>
+								<configuration>
+									<artifactItems>
+										<artifactItem>
 											<groupId>org.osivia.portal</groupId>
 											<artifactId>osivia-portal-distribution</artifactId>
 											<version>${osivia.portal.version}</version>
-                                            <type>zip</type>
-                                            <overWrite>true</overWrite>
-                                            <outputDirectory>${project.build.directory}/osivia-portal-distribution</outputDirectory>
-                                        </artifactItem>
-                                    </artifactItems>
-                                </configuration>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        
-        <!-- Pack -->
-        <profile>
-            <id>pack</id>
+											<type>zip</type>
+											<overWrite>true</overWrite>
+											<outputDirectory>${project.build.directory}/osivia-portal-distribution</outputDirectory>
+										</artifactItem>
+									</artifactItems>
+								</configuration>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+		<!-- Pack -->
+		<profile>
+			<id>pack</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
-			</activation>            
-            <build>
-                <defaultGoal>package</defaultGoal>
-                <plugins>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-assembly-plugin</artifactId>
-                        <executions>
-                            <execution>
-                                <id>zip</id>
-                                <phase>process-resources</phase>
-                                <configuration>
-                                    <descriptors>
-                                        <descriptor>src/main/assembly/assembly.xml</descriptor>
-                                    </descriptors>
-                                    <finalName>${project.artifactId}-${project.version}</finalName>
-                                    <appendAssemblyId>false</appendAssemblyId>
-                                    <attach>true</attach>
-                                </configuration>
-                                <goals>
-                                    <goal>single</goal>
-                                </goals>
-                            </execution>
-                        </executions>
-                    </plugin>
-                </plugins>
-            </build>
-        </profile>
-        
-    </profiles>
-    
+			</activation>
+			<build>
+				<defaultGoal>package</defaultGoal>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-assembly-plugin</artifactId>
+						<executions>
+							<execution>
+								<id>zip</id>
+								<phase>process-resources</phase>
+								<configuration>
+									<descriptors>
+										<descriptor>src/main/assembly/assembly.xml</descriptor>
+									</descriptors>
+									<finalName>${project.artifactId}-${project.version}</finalName>
+									<appendAssemblyId>false</appendAssemblyId>
+									<attach>true</attach>
+								</configuration>
+								<goals>
+									<goal>single</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+
+	</profiles>
+
 </project>

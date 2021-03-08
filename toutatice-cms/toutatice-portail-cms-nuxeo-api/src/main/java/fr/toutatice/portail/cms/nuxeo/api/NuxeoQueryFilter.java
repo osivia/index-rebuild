@@ -17,10 +17,9 @@
 package fr.toutatice.portail.cms.nuxeo.api;
 
 import org.apache.commons.lang.StringUtils;
-import org.jboss.portal.server.ServerInvocation;
 import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.core.cms.CMSServiceCtx;
-import org.osivia.portal.core.tracker.RequestContextUtil;
+
 
 import fr.toutatice.portail.cms.nuxeo.api.services.INuxeoService;
 
@@ -47,9 +46,6 @@ public class NuxeoQueryFilter {
 
 		CMSServiceCtx cmsCtx = new  CMSServiceCtx();
 		
-		ServerInvocation invocation = RequestContextUtil.getServerInvocation();
-		
-		cmsCtx.setServerInvocation(invocation);
 	
 		return cmsCtx;
 	}

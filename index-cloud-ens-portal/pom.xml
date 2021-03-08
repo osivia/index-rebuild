@@ -21,25 +21,15 @@
         <osivia.portal.version>5.0-SNAPSHOT</osivia.portal.version>
         <!-- Toutatice -->
         <toutatice.cms.version>5.0-SNAPSHOT</toutatice.cms.version>		
-
-        <!-- Directory -->
-        <directory.version>4.9.7</directory.version>
          <!-- Spring framework LDAP -->
         <springframework-ldap.version>2.1.0.RELEASE</springframework-ldap.version>
     </properties>
 
 
-    <dependencyManagement>
+
         <dependencies>
 
-            <!-- Directory -->
-            <dependency>
-                <groupId>org.osivia.services.directory.socle</groupId>
-                <artifactId>osivia-services-directory-socle-interfaces</artifactId>
-                <version>${directory.version}</version>
-                <scope>provided</scope>
-            </dependency>
-
+  
             <!-- Spring framework LDAP -->
             <dependency>
                 <groupId>org.springframework.ldap</groupId>
@@ -56,39 +46,32 @@
                 <scope>provided</scope>	            
 	        </dependency>		            
 
+            <!-- OSIVIA portal -->
+		
+            <dependency>
+                <groupId>org.osivia.portal</groupId>
+                <artifactId>osivia-portal-dependencies</artifactId>
+                <version>${osivia.portal.version}</version>
+                <scope>provided</scope>
+            </dependency>
+			
+            <dependency>
+                <groupId>org.osivia.portal</groupId>
+                <artifactId>osivia-portal-dependencies-test</artifactId>
+                <version>${osivia.portal.version}</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
-    </dependencyManagement>
+
 
 
     <modules>
         <module>index-cloud-ens-portal-distribution</module>
         <module>index-cloud-ens-portal-charte</module>
+		<module>index-cloud-ens-portal-test</module>
     </modules>
 
 
-    <dependencies>
-
-        <dependency>
-            <groupId>org.osivia.portal.api</groupId>
-            <artifactId>osivia-portal-api-common</artifactId>
-            <version>${osivia.portal.version}</version>
-            <type>jar</type>
-        </dependency>
-		
-        
-        <dependency>
-            <groupId>org.osivia.portal.api</groupId>
-            <artifactId>osivia-portal-api-cms</artifactId>
-            <version>${osivia.portal.version}</version>
-            <type>jar</type>
-        </dependency>
-		
-        <dependency>
-            <groupId>toutatice-portail.cms</groupId>
-            <artifactId>toutatice-portail-cms-nuxeo-api</artifactId>
-        </dependency>		
-
-    </dependencies>
 
 
     <build>
@@ -96,13 +79,16 @@
             <plugins>
 
                 <!-- Compiler -->
-                <plugin>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>1.8</source>
-                        <target>1.8</target>
-                    </configuration>
-                </plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-compiler-plugin</artifactId>
+					<version>3.3</version>
+					<configuration>
+						<encoding>UTF-8</encoding>
+						<source>1.7</source>
+						<target>1.7</target>
+					</configuration>
+				</plugin>
 
                 <!-- WAR -->
                 <plugin>

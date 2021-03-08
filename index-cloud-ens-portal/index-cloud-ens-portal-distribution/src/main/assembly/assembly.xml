@@ -16,7 +16,8 @@
             <scope>runtime</scope>
             <includes>
                 <!-- index education -->
-                <include>${project.groupId}:index-cloud-ens-portal-charte:war:${project.version}</include>                
+                <include>${project.groupId}:index-cloud-ens-portal-charte:war:${project.version}</include> 
+                <include>${project.groupId}:index-cloud-ens-portal-test:war:${project.version}</include>                
             </includes>
             <useProjectArtifact>false</useProjectArtifact>
         </dependencySet>
@@ -26,7 +27,15 @@
             <unpack>false</unpack>
             <scope>runtime</scope>
             <includes>
-                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-api</include>   
+                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-api</include>
+                <include>commons-lang:commons-lang</include>  
+                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-automation-client</include>
+                <include>org.apache.httpcomponents:httpclient</include>
+                <include>org.apache.httpcomponents:httpcore</include>
+                <include>org.codehaus.jackson:jackson-core-asl</include>
+                <include>org.codehaus.jackson:jackson-mapper-asl</include>
+                <include>net.sf.json-lib:json-lib</include>
+                <include>javax.mail:mail</include>
             </includes> 
         </dependencySet>
                             
