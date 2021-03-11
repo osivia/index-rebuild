@@ -3,6 +3,7 @@ package fr.index.cloud.ens.test.portlets.content.controller;
 import java.net.URI;
 import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Iterator;
 import java.util.Map;
 
 import javax.portlet.ActionRequest;
@@ -54,8 +55,8 @@ public class ContentController implements PortletContextAware {
     private PortletContext portletContext;
 
 
-
-
+    @Autowired
+    private CMSService cmsService;
 
 
     /**
@@ -73,13 +74,13 @@ public class ContentController implements PortletContextAware {
      * @param response render response
      * @param count count request parameter.
      * @return render view path
-     * @throws Exception 
+     * @throws Exception
      */
     @RenderMapping
     public String view(RenderRequest request, RenderResponse response) throws Exception {
         PortalControllerContext portalControllerContext = new PortalControllerContext(portletContext, request, response);
         NuxeoController ctx = new NuxeoController(portalControllerContext);
-        
+
 
         String secretKey = System.getProperty("nuxeo.secretKey");
 
@@ -92,20 +93,42 @@ public class ContentController implements PortletContextAware {
         if (request.getRemoteUser() != null) {
             client.setRequestInterceptor(new PortalSSOAuthInterceptor(secretKey, request.getRemoteUser()));
         }
+        // Move to command pattern
         Session session = client.getSession();
-        
+
         OperationRequest query = session.newRequest("Document.Query");
         query.set("query", "SELECT * FROM Document ");
 
-        query.setHeader(org.nuxeo.ecm.automation.client.Constants.HEADER_NX_SCHEMAS, "*");        
-    
+        query.setHeader(org.nuxeo.ecm.automation.client.Constants.HEADER_NX_SCHEMAS, "*");
+
         Documents results = (Documents) query.execute();
 
-        
+        // TODO : move to nuxeocontroller
+        CMSController ctrl = new CMSController(portalControllerContext);
+
+
+        Iterator<org.nuxeo.ecm.automation.client.model.Document> nxIter = results.iterator();
+        int readDocs=0;
+        while (nxIter.hasNext() && readDocs < 10) {
+            org.nuxeo.ecm.automation.client.model.Document doc = nxIter.next();
+            if (doc.getProperties().getString("ttc:webid") != null) {
+                
+                try {
+                UniversalID id = new UniversalID("nx", doc.getProperties().getString("ttc:webid"));
+
+                readDocs++;
+                Document connectDoc = cmsService.getCMSSession(ctrl.getCMSContext()).getDocument(id);
+                
+                System.out.println(connectDoc.getTitle());
+                } catch( Exception e)   {
+                   System.out.println("*** "+ e.getMessage());
+                }
+            }
+        }
+
+
         return "view";
     }
-
-
 
 
     @Override

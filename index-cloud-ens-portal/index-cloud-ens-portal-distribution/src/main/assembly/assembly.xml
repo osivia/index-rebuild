@@ -28,6 +28,7 @@
             <scope>runtime</scope>
             <includes>
                 <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-api</include>
+                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-repository</include>                
                 <include>commons-lang:commons-lang</include>  
                 <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-automation-client</include>
                 <include>org.apache.httpcomponents:httpclient</include>

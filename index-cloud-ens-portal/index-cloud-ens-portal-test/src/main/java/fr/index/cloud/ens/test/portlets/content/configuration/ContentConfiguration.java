@@ -42,6 +42,9 @@ public class ContentConfiguration {
         return viewResolver;
     }
 
-
+    @Bean
+    public CMSService getCMSService() {
+        return Locator.getService(CMSService.class);
+    }
 
 }
