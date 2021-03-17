@@ -15,8 +15,12 @@
 package org.osivia.portal.core.cms;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+
+import org.codehaus.jackson.map.ser.ArraySerializers;
+import org.osivia.portal.api.cms.repository.UserData;
 
 /**
  * Service optimisé pour renvoyer toutes les informations de contenu liées à la
@@ -28,7 +32,7 @@ import java.util.Map;
 /**
  * @author David Chevrier
  */
-public class CMSPublicationInfos {
+public class CMSPublicationInfos implements UserData {
 
 	public static final int ERROR_CONTENT_NOT_FOUND = 1;
 	public static final int ERROR_CONTENT_FORBIDDEN = 2;
@@ -320,9 +324,9 @@ public class CMSPublicationInfos {
 		this.parentSpaceID = parentSpaceID;
 	}
 	
-	public Map<String, String> getSubTypes() {
-		return subTypes;
-	}
+//	public Map<String, String> getSubTypes() {
+//		return subTypes;
+//	}
 
 	public void setSubTypes(Map<String, String> subTypes) {
 		this.subTypes = subTypes;
@@ -461,11 +465,20 @@ public class CMSPublicationInfos {
 		return satellite;
 	}
 
-	/**
-	 * @param satellite the satellite to set
-	 */
-	public void setSatellite(Satellite satellite) {
-		this.satellite = satellite;
-	}
+
+    @Override
+    public boolean isManageable() {
+        return isManageableByUser();
+    }
+
+    @Override
+    public boolean isModifiable() {
+        return isEditableByUser();
+    }
+
+    @Override
+    public List<String> getSubTypes() {
+        return new ArrayList<>(subTypes.values());
+    }
 
 }

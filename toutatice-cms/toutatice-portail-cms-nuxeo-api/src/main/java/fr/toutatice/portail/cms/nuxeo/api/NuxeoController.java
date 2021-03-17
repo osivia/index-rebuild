@@ -16,6 +16,7 @@ package fr.toutatice.portail.cms.nuxeo.api;
 import fr.toutatice.portail.cms.nuxeo.api.cms.NuxeoDocumentContext;
 import fr.toutatice.portail.cms.nuxeo.api.cms.NuxeoPublicationInfos;
 import fr.toutatice.portail.cms.nuxeo.api.services.*;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.CharEncoding;
@@ -26,7 +27,11 @@ import org.nuxeo.ecm.automation.client.model.Document;
 import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.cache.services.CacheInfo;
+import org.osivia.portal.api.cms.CMSContext;
+import org.osivia.portal.api.cms.CMSController;
 import org.osivia.portal.api.cms.DocumentType;
+import org.osivia.portal.api.cms.service.CMSService;
+import org.osivia.portal.api.cms.service.CMSSession;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.contribution.IContributionService.EditionState;
 import org.osivia.portal.api.directory.IDirectoryService;
@@ -40,6 +45,9 @@ import org.osivia.portal.api.urls.Link;
 import org.osivia.portal.api.windows.PortalWindow;
 import org.osivia.portal.api.windows.WindowFactory;
 import org.osivia.portal.core.cms.*;
+import org.osivia.portal.core.cms.spi.NuxeoRepository;
+import org.osivia.portal.core.cms.spi.NuxeoRequest;
+import org.osivia.portal.core.cms.spi.NuxeoResult;
 import org.osivia.portal.core.constants.InternalConstants;
 import org.osivia.portal.core.profils.IProfilManager;
 import org.osivia.portal.core.profils.ProfilBean;
@@ -1600,6 +1608,7 @@ public class NuxeoController {
      * @throws Exception the exception
      */
     public Object executeNuxeoCommand(final INuxeoCommand command) {
+        /*
         // Nuxeo command context
         NuxeoCommandContext commandContext;
         if (this.request != null) {
@@ -1635,7 +1644,28 @@ public class NuxeoController {
         } catch (Exception e) {
             throw this.wrapNuxeoException(e);
         }
+        */
+        
+        try {
+             CMSSession cmsSession =  Locator.getService(CMSService.class).getCMSSession(getCMSContext());
+             return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx", command))).getResult();
+        } catch (Exception e) {
+            throw this.wrapNuxeoException(e);
+        }     
+        
     }
+    
+    public CMSContext getCMSContext() {
+
+        PortalControllerContext ctx = new PortalControllerContext(portletCtx, request, response);
+        CMSController ctrl = new CMSController(ctx);
+        
+        return ctrl.getCMSContext();
+    }
+    
+
+    
+    
 
     /**
      * Start nuxeo service.

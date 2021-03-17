@@ -21,6 +21,8 @@
             <artifactId>toutatice-portail-cms-nuxeo-automation-client</artifactId>
             <version>${project.version}</version>
         </dependency>
+        
+
 
     </dependencies>
 

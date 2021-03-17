@@ -16,9 +16,13 @@
  */
 package fr.toutatice.portail.cms.nuxeo.api;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.apache.commons.lang.StringUtils;
 import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.core.cms.CMSServiceCtx;
+
 
 
 import fr.toutatice.portail.cms.nuxeo.api.services.INuxeoService;
@@ -50,6 +54,12 @@ public class NuxeoQueryFilter {
 		return cmsCtx;
 	}
 	
+	
+    /**
+     * Query filter pattern.
+     */
+    private static final Pattern QUERY_FILTER_PATTERN = Pattern.compile("(.*)ORDER([ ]*)BY(.*)");
+    
 	/**
 	 * Adds the publication filter.
 	 *
@@ -60,7 +70,8 @@ public class NuxeoQueryFilter {
 	 */
 	public static String addPublicationFilter(NuxeoQueryFilterContext queryCtx,String nuxeoRequest, boolean ignoreNavigationElement) {
 
-		// adapt thanks to CMSCustomizer
+/*
+	    // adapt thanks to CMSCustomizer
 		
 		INuxeoService nuxeoService = Locator.findMBean(INuxeoService.class, "osivia:service=NuxeoService");
 		
@@ -74,8 +85,49 @@ public class NuxeoQueryFilter {
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
+*/
+        String requestFilter = StringUtils.EMPTY;
 
+        String hiddenInNavigation = "";
+        if (ignoreNavigationElement) {
+            hiddenInNavigation = "ecm:mixinType != 'HiddenInNavigation' AND ";
+        }
+        requestFilter =  hiddenInNavigation + "ecm:isProxy = 0  AND ecm:currentLifeCycleState <> 'deleted'  AND ecm:isCheckedInVersion = 0 ";
+        
+        // Insertion du filtre avant le order
+        String beforeOrderBy = "";
+        String orderBy = "";
+
+        String editedNuxeoRequest = nuxeoRequest;
+        try {
+            Pattern ressourceExp = QUERY_FILTER_PATTERN;
+
+            Matcher m = ressourceExp.matcher(editedNuxeoRequest.toUpperCase());
+            m.matches();
+
+            if (m.groupCount() == 3) {
+                beforeOrderBy = editedNuxeoRequest.substring(0, m.group(1).length());
+                orderBy = editedNuxeoRequest.substring(m.group(1).length());
+            }
+        } catch (IllegalStateException e) {
+            beforeOrderBy = editedNuxeoRequest;
+        }
+
+        String finalRequest = beforeOrderBy;
+
+        if (finalRequest.length() > 0) {
+            finalRequest = "(" + finalRequest + ") AND ";
+        }
+        finalRequest += "(" + requestFilter + ") ";
+
+        finalRequest += " " + orderBy;
+
+        return finalRequest;
+
+	    
 	}
+	
+	
 	
 	
 	   /**

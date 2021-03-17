@@ -16,19 +16,26 @@ import org.nuxeo.ecm.automation.client.OperationRequest;
 import org.nuxeo.ecm.automation.client.Session;
 import org.nuxeo.ecm.automation.client.jaxrs.impl.HttpAutomationClient;
 import org.nuxeo.ecm.automation.client.jaxrs.spi.auth.PortalSSOAuthInterceptor;
+import org.nuxeo.ecm.automation.client.model.DocRef;
 import org.nuxeo.ecm.automation.client.model.Documents;
 import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.cms.CMSContext;
 import org.osivia.portal.api.cms.CMSController;
+import org.osivia.portal.api.cms.PublicationInfos;
 import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.cms.exception.CMSException;
 import org.osivia.portal.api.cms.model.Document;
+import org.osivia.portal.api.cms.model.Personnalization;
+import org.osivia.portal.api.cms.repository.UserData;
 import org.osivia.portal.api.cms.service.CMSService;
+import org.osivia.portal.api.cms.service.CMSSession;
+import org.osivia.portal.api.cms.service.GetChildrenRequest;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.dynamic.IDynamicService;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.windows.WindowFactory;
+import org.osivia.portal.core.cms.spi.NuxeoResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Controller;
@@ -82,48 +89,45 @@ public class ContentController implements PortletContextAware {
         NuxeoController ctx = new NuxeoController(portalControllerContext);
 
 
-        String secretKey = System.getProperty("nuxeo.secretKey");
-
-        URI uri = NuxeoSatelliteConnectionProperties.getConnectionProperties(null).getPrivateBaseUri();
-
-        String url = uri.toString() + "/site/automation";
-
-        HttpAutomationClient client = new HttpAutomationClient(url, null);
 
         if (request.getRemoteUser() != null) {
-            client.setRequestInterceptor(new PortalSSOAuthInterceptor(secretKey, request.getRemoteUser()));
-        }
-        // Move to command pattern
-        Session session = client.getSession();
 
-        OperationRequest query = session.newRequest("Document.Query");
-        query.set("query", "SELECT * FROM Document ");
+            org.nuxeo.ecm.automation.client.model.Document documentRoot = (org.nuxeo.ecm.automation.client.model.Document) ctx.executeNuxeoCommand(new GetRootCommand(request.getRemoteUser()));
+            
+            CMSController ctrl = new CMSController(portalControllerContext);
+            CMSSession session = cmsService.getCMSSession(ctrl.getCMSContext());
 
-        query.setHeader(org.nuxeo.ecm.automation.client.Constants.HEADER_NX_SCHEMAS, "*");
+            UniversalID parentId = new UniversalID("nx",documentRoot.getProperties().getString("ttc:webid"));
+            
+            Documents results = (Documents) ((NuxeoResult) session.executeRequest(new GetChildrenRequest(parentId))).getResult();
 
-        Documents results = (Documents) query.execute();
+            Iterator<org.nuxeo.ecm.automation.client.model.Document> nxIter = results.iterator();
 
-        // TODO : move to nuxeocontroller
-        CMSController ctrl = new CMSController(portalControllerContext);
+            while (nxIter.hasNext()) {
+                org.nuxeo.ecm.automation.client.model.Document doc = nxIter.next();
+                if (doc.getProperties().getString("ttc:webid") != null) {
 
+                    try {
 
-        Iterator<org.nuxeo.ecm.automation.client.model.Document> nxIter = results.iterator();
-        int readDocs=0;
-        while (nxIter.hasNext() && readDocs < 10) {
-            org.nuxeo.ecm.automation.client.model.Document doc = nxIter.next();
-            if (doc.getProperties().getString("ttc:webid") != null) {
-                
-                try {
-                UniversalID id = new UniversalID("nx", doc.getProperties().getString("ttc:webid"));
+                        System.out.println("get " + doc.getPath());
+                        UniversalID id = new UniversalID("nx", doc.getProperties().getString("ttc:webid"));
 
-                readDocs++;
-                Document connectDoc = cmsService.getCMSSession(ctrl.getCMSContext()).getDocument(id);
-                
-                System.out.println(connectDoc.getTitle());
-                } catch( Exception e)   {
-                   System.out.println("*** "+ e.getMessage());
+                        Document connectDoc = session.getDocument(id);
+
+                        System.out.println("get pubInfos" + doc.getPath());
+                        Personnalization pubInfos = session.getPersonnalization(id);
+
+                        System.out.println("ok " + connectDoc.getTitle());
+
+                        if (doc.getTitle().equals("test")) {
+                            System.out.println("test");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("*** " + e.getMessage());
+                    }
                 }
             }
+
         }
 
 
