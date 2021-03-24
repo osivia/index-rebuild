@@ -48,10 +48,7 @@ import org.apache.commons.lang.math.NumberUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.jboss.portal.common.invocation.Scope;
-import org.jboss.portal.core.controller.ControllerContext;
 import org.jboss.portal.core.model.portal.*;
-import org.jboss.portal.server.ServerInvocation;
-import org.jboss.portal.server.ServerInvocationContext;
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.Documents;
 import org.nuxeo.ecm.automation.client.model.PropertyList;
@@ -79,9 +76,9 @@ import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.urls.Link;
 import org.osivia.portal.core.cms.*;
 import org.osivia.portal.core.constants.InternalConstants;
-import org.osivia.portal.core.context.ControllerContextAdapter;
 import org.osivia.portal.core.customization.ICustomizationService;
 import org.osivia.portal.core.page.PageProperties;
+import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 import org.osivia.portal.core.web.IWebIdService;
 import org.osivia.portal.core.web.IWebUrlService;
 import org.xml.sax.InputSource;
@@ -985,24 +982,21 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
     protected String addExtraNxQueryFilters(CMSServiceCtx ctx, String nuxeoRequest, String requestFilteringPolicy, String requestFilter) throws Exception {
         String policyFilter = null;
 
-        ServerInvocation invocation = ctx.getServerInvocation();
-
         String portalName = null;
 
 
         // Cas des chargement asynchrones : pas de contexte
-        if (invocation != null) {
+        if (ctx.getPortalControllerContext() != null) {
             portalName = PageProperties.getProperties().getPagePropertiesMap().get(Constants.PORTAL_NAME);
         }
 
         // Dans certaines cas, le nom du portail n'est pas connu
         // cas des stacks server (par exemple, le pre-cahrgement des pages)
         if (portalName != null) {
-            PortalObjectContainer portalObjectContainer = (PortalObjectContainer) invocation.getAttribute(Scope.REQUEST_SCOPE, "osivia.portalObjectContainer");
-
+  
             // Pour prévenir des window en Timeout.
-            if (portalObjectContainer != null) {
-                PortalObject po = portalObjectContainer.getObject(PortalObjectId.parse("", "/" + portalName, PortalObjectPath.CANONICAL_FORMAT));
+
+                PortalObject po = PortalObjectUtils.getObject(ctx.getPortalControllerContext(), PortalObjectId.parse("", "/" + portalName, PortalObjectPath.CANONICAL_FORMAT));
 
                 if (requestFilteringPolicy != null) {
                     policyFilter = requestFilteringPolicy;
@@ -1023,7 +1017,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
 
                 if (InternalConstants.PORTAL_CMS_REQUEST_FILTERING_POLICY_LOCAL.equals(policyFilter)) {
                     // User domains
-                    List<?> domains = (List<?>) invocation.getAttribute(Scope.SESSION_SCOPE, InternalConstants.USER_DOMAINS_ATTRIBUTE);
+                    List<?> domains = PortalObjectUtils.getDomains(ctx.getPortalControllerContext());
 
                     // CMS paths
                     List<String> paths;
@@ -1076,7 +1070,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
                 if (extraFilter != null) {
                     requestFilter += " OR (" + extraFilter + ")";
                 }
-            }
+            
         }
 
         // Insertion du filtre avant le order
@@ -1222,7 +1216,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
         Link link;
 
         // Portal controller context
-        PortalControllerContext portalControllerContext = new PortalControllerContext(cmsContext.getControllerContext());
+        PortalControllerContext portalControllerContext = cmsContext.getPortalControllerContext();
 
         // Current page path
         String currentPagePath = null;
@@ -1259,18 +1253,17 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
             // Anchor
             String anchor = StringUtils.substringAfter(url, "#");
 
-            // Controller context
-            ControllerContext controllerContext = ControllerContextAdapter.getControllerContext(portalControllerContext);
-            // Server context
-            ServerInvocationContext serverContext = controllerContext.getServerInvocation().getServerContext();
+
+
+            
             // Context path
-            String contextPath = serverContext.getPortalContextPath();
+            String contextPath = PortalObjectUtils.getPortalContextPath(portalControllerContext);
 
             if (StringUtils.startsWith(relativeUrl, StringUtils.removeEnd(contextPath, "/auth") + "/")) {
                 // Portal relative URL
 
                 // Portal URL
-                String portalUrl = this.portalUrlFactory.adaptPortalUrlToNavigation(portalControllerContext, relativeUrl);
+                String portalUrl =  relativeUrl;
                 if (StringUtils.isNotBlank(anchor)) {
                     portalUrl += "#" + anchor;
                 }
@@ -1750,12 +1743,12 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
 
         try {
             String portalName = null;
-            ServerInvocation invocation = cmsCtx.getServerInvocation();
+
             Boolean isAdmin = false;
 
-            if (invocation != null) {
-                portalName = PageProperties.getProperties().getPagePropertiesMap().get(Constants.PORTAL_NAME);
-                isAdmin = (Boolean) invocation.getAttribute(Scope.PRINCIPAL_SCOPE, "osivia.isAdmin");
+            if (cmsCtx.getPortalControllerContext() != null) {
+                portalName = PortalObjectUtils.getPortalName(cmsCtx.getPortalControllerContext());
+                isAdmin = PortalObjectUtils.isAdmin(cmsCtx.getPortalControllerContext());
             }
 
 

@@ -16,7 +16,7 @@
  */
 package fr.toutatice.portail.cms.nuxeo.service.commands;
 
-import org.jboss.portal.core.controller.ControllerContext;
+
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.ecm.EcmCommand;
 import org.osivia.portal.api.ecm.EcmCommonCommands;
@@ -52,10 +52,10 @@ public class LockCommand extends EcmCommand {
 	 * @see org.osivia.portal.core.ecm.GenericEcmCommand#notifyAfterCommand()
 	 */
 	@Override
-	public void notifyAfterCommand(ControllerContext ctx) {
-		String success = itlzService.getString("SUCCESS_MESSAGE_LOCK", ctx.getServerInvocation().getRequest().getLocale());
+	public void notifyAfterCommand(PortalControllerContext pcc) {
+		String success = itlzService.getString("SUCCESS_MESSAGE_LOCK", pcc.getHttpServletRequest().getLocale());
 		
-		PortalControllerContext pcc = new PortalControllerContext(ctx);
+
 		notifService.addSimpleNotification(pcc, success, NotificationsType.SUCCESS);
 	}
 

@@ -20,6 +20,8 @@
 
         <json.version>2.4</json.version>
         <jackson.version>1.8.1</jackson.version>
+        
+        <commons-lang.version>2.6</commons-lang.version>        
 
         <apache.httpcomponents.version>4.1</apache.httpcomponents.version>
     </properties>
@@ -69,7 +71,17 @@
                 <groupId>javax.mail</groupId>
                 <artifactId>mail</artifactId>
                 <version>1.4</version>
-            </dependency>			
+            </dependency>		
+            <dependency>
+                <groupId>commons-lang</groupId>
+                <artifactId>commons-lang</artifactId>
+                <version>${commons-lang.version}</version>
+            </dependency>
+	        <dependency>
+	            <groupId>org.apache.commons</groupId>
+	            <artifactId>commons-csv</artifactId>
+                <version>1.6</version>
+	        </dependency>                
  
         </dependencies>
     </dependencyManagement>
@@ -89,6 +101,15 @@
             <artifactId>osivia-portal-dependencies-test</artifactId>
         </dependency>
         
+        <dependency>
+            <groupId>commons-lang</groupId>
+            <artifactId>commons-lang</artifactId>
+        </dependency>        
+        
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-csv</artifactId>
+        </dependency>        
   
     </dependencies>
 
@@ -97,6 +118,7 @@
         <module>toutatice-portail-cms-nuxeo-api</module>
 		<module>toutatice-portail-cms-nuxeo-automation-client</module>
 		<module>toutatice-portail-cms-nuxeo-repository</module>
+		<module>toutatice-portail-cms-nuxeo-web</module>
 <!--
         <module>toutatice-portail-cms-nuxeo-taglib</module>
         <module>toutatice-portail-cms-nuxeo-web</module>

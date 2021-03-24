@@ -126,6 +126,7 @@
 			</dependencies>
 			<build>
 				<defaultGoal>package</defaultGoal>
+				
 				<plugins>
 					<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
@@ -165,29 +166,31 @@
 			</activation>
 			<build>
 				<defaultGoal>package</defaultGoal>
-				<plugins>
-					<plugin>
-						<groupId>org.apache.maven.plugins</groupId>
-						<artifactId>maven-assembly-plugin</artifactId>
-						<executions>
-							<execution>
-								<id>zip</id>
-								<phase>process-resources</phase>
-								<configuration>
-									<descriptors>
-										<descriptor>src/main/assembly/assembly.xml</descriptor>
-									</descriptors>
-									<finalName>${project.artifactId}-${project.version}</finalName>
-									<appendAssemblyId>false</appendAssemblyId>
-									<attach>true</attach>
-								</configuration>
-								<goals>
-									<goal>single</goal>
-								</goals>
-							</execution>
-						</executions>
-					</plugin>
-				</plugins>
+
+					<plugins>
+						<plugin>
+							<groupId>org.apache.maven.plugins</groupId>
+							<artifactId>maven-assembly-plugin</artifactId>
+							<executions>
+								<execution>
+									<id>zip</id>
+									<phase>process-resources</phase>
+									<configuration>
+										<descriptors>
+											<descriptor>src/main/assembly/assembly.xml</descriptor>
+										</descriptors>
+										<finalName>${project.artifactId}-${project.version}</finalName>
+										<appendAssemblyId>false</appendAssemblyId>
+										<attach>true</attach>
+									</configuration>
+									<goals>
+										<goal>single</goal>
+									</goals>
+								</execution>
+							</executions>
+						</plugin>
+					</plugins>
+
 			</build>
 		</profile>
 

@@ -465,6 +465,13 @@ public class CMSPublicationInfos implements UserData {
 		return satellite;
 	}
 
+    /**
+     * @param satellite the satellite to set
+     */
+    public void setSatellite(Satellite satellite) {
+        this.satellite = satellite;
+    }
+
 
     @Override
     public boolean isManageable() {

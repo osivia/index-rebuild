@@ -40,7 +40,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.lang.math.NumberUtils;
-import org.jboss.portal.core.controller.ControllerContext;
+
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.cms.DocumentType;
@@ -57,8 +57,7 @@ import org.osivia.portal.core.cms.CMSException;
 import org.osivia.portal.core.cms.CMSItem;
 import org.osivia.portal.core.cms.CMSServiceCtx;
 import org.osivia.portal.core.cms.ICMSService;
-import org.osivia.portal.core.context.ControllerContextAdapter;
-import org.osivia.portal.core.security.CmsPermissionHelper;
+
 
 import fr.toutatice.portail.cms.nuxeo.api.CMSPortlet;
 import fr.toutatice.portail.cms.nuxeo.api.INuxeoCommand;
@@ -714,21 +713,17 @@ public class MenuPortlet extends CMSPortlet {
      * @return CMS context
      */
     private CMSServiceCtx getMenuCMSContext(NuxeoController nuxeoController) {
-        // Portal controller context
-        PortalControllerContext portalControllerContext = nuxeoController.getPortalCtx();
-        // Controller context
-        ControllerContext controllerContext = ControllerContextAdapter.getControllerContext(portalControllerContext);
-
+ 
         // CMS version
-        String cmsVersion = CmsPermissionHelper.getCurrentCmsVersion(controllerContext);
+//        String cmsVersion = CmsPermissionHelper.getCurrentCmsVersion(controllerContext);
 
         // CMS context
         CMSServiceCtx cmsContext = new CMSServiceCtx();
         cmsContext.setPortalControllerContext(nuxeoController.getPortalCtx());
         cmsContext.setScope(nuxeoController.getNavigationScope());
-        if (CmsPermissionHelper.CMS_VERSION_PREVIEW.equals(cmsVersion)) {
-            cmsContext.setDisplayLiveVersion("1");
-        }
+//        if (CmsPermissionHelper.CMS_VERSION_PREVIEW.equals(cmsVersion)) {
+//            cmsContext.setDisplayLiveVersion("1");
+//        }
         return cmsContext;
     }
 

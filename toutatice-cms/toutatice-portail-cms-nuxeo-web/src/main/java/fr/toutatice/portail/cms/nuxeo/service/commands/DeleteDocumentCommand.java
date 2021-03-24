@@ -5,7 +5,7 @@ package fr.toutatice.portail.cms.nuxeo.service.commands;
 
 import java.util.HashMap;
 
-import org.jboss.portal.core.controller.ControllerContext;
+
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.ecm.EcmCommand;
 import org.osivia.portal.api.ecm.EcmCommonCommands;
@@ -42,10 +42,10 @@ public class DeleteDocumentCommand extends EcmCommand {
      * {@inheritDoc}
      */
     @Override
-    public void notifyAfterCommand(ControllerContext controllerContext) {
-        String success = itlzService.getString("SUCCESS_MESSAGE_DRAFT_DELETED", controllerContext.getServerInvocation().getRequest().getLocale());
+    public void notifyAfterCommand(PortalControllerContext pcc) {
+        String success = itlzService.getString("SUCCESS_MESSAGE_DRAFT_DELETED", pcc.getHttpServletRequest().getLocale());
 
-        PortalControllerContext pcc = new PortalControllerContext(controllerContext);
+
         notifService.addSimpleNotification(pcc, success, NotificationsType.SUCCESS);
     }
 

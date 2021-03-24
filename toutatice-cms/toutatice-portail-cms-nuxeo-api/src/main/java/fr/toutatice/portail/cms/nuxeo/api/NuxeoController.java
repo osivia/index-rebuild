@@ -21,7 +21,9 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.CharEncoding;
 import org.apache.commons.lang.StringUtils;
-
+import org.jboss.portal.core.model.portal.Page;
+import org.jboss.portal.core.model.portal.PortalObjectPath;
+import org.jboss.portal.core.model.portal.Window;
 import org.nuxeo.ecm.automation.client.Session;
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.osivia.portal.api.Constants;
@@ -49,6 +51,7 @@ import org.osivia.portal.core.cms.spi.NuxeoRepository;
 import org.osivia.portal.core.cms.spi.NuxeoRequest;
 import org.osivia.portal.core.cms.spi.NuxeoResult;
 import org.osivia.portal.core.constants.InternalConstants;
+import org.osivia.portal.core.formatters.IFormatter;
 import org.osivia.portal.core.profils.IProfilManager;
 import org.osivia.portal.core.profils.ProfilBean;
 import org.osivia.portal.core.web.IWebIdService;
@@ -128,6 +131,12 @@ public class NuxeoController {
      * The nuxeo connection.
      */
     NuxeoConnectionProperties nuxeoConnection;
+    
+    /**
+     * The formatter.
+     */
+    IFormatter formatter;
+    
     /**
      * The profil manager.
      */
@@ -1020,7 +1029,35 @@ public class NuxeoController {
         this.docTypeToCreate = property;
     }
 
-  
+    /**
+     * Gets the navigation item.
+     *
+     * @return the navigation item
+     * @throws Exception the exception
+     * @deprecated use DocumentContext
+     */
+    @Deprecated
+    public CMSItem getNavigationItem() {
+        try {
+            if (this.navItem == null) {
+                if (this.getNavigationPath() != null) {
+                    // Navigation context
+                    CMSServiceCtx cmsReadNavContext = new CMSServiceCtx();
+                    cmsReadNavContext.setPortalControllerContext(this.getPortalCtx());
+                    cmsReadNavContext.setScope(this.getNavigationScope());
+
+                    // TODO : factoriser dans NuxeoController
+
+                    this.navItem = getCMSService().getPortalNavigationItem(cmsReadNavContext, this.getSpacePath(), this.getNavigationPath());
+                }
+
+            }
+
+            return this.navItem;
+        } catch (Exception e) {
+            throw this.wrapNuxeoException(e);
+        }
+    }
 
     /**
      * Gets the navigation scope.
@@ -1076,6 +1113,21 @@ public class NuxeoController {
         return this.profilManager;
     }
 
+    
+    /**
+     * Gets the formatter.
+     *
+     * @return the formatter
+     * @throws Exception the exception
+     */
+    public IFormatter getFormatter() {
+        if (this.formatter == null) {
+            this.formatter = (IFormatter) this.portletCtx.getAttribute("FormatterService");
+        }
+
+
+        return this.formatter;
+    }
 
     /**
      * Get Nuxeo CMS service instance.
@@ -1311,7 +1363,64 @@ public class NuxeoController {
         }
     }
 
- 
+    /**
+     * Format scope list (for user interface)
+     *
+     * @param selectedScope the selected scope
+     * @return the string
+     * @throws Exception the exception
+     */
+    public String formatScopeList(String selectedScope) {
+        try {
+
+            Window window = (Window) this.request.getAttribute("osivia.window");
+
+            return this.getFormatter().formatScopeList(window, "scope", selectedScope);
+        } catch (Exception e) {
+            throw this.wrapNuxeoException(e);
+        }
+
+    }
+    
+
+    /**
+     * Format request filtering policy list.
+     *
+     * @param selectedRequestFilteringPolicy the selected request filtering policy
+     * @return the string
+     * @throws Exception the exception
+     */
+    public String formatRequestFilteringPolicyList(String selectedRequestFilteringPolicy) {
+        try {
+
+            Window window = (Window) this.request.getAttribute("osivia.window");
+
+            return this.getFormatter().formatRequestFilteringPolicyList(window, "requestFilteringPolicy", selectedRequestFilteringPolicy);
+
+        } catch (Exception e) {
+            throw this.wrapNuxeoException(e);
+        }
+
+    }
+    
+    /**
+     * Format display live version list.
+     *
+     * @param selectedVersion the selected version
+     * @return the string
+     * @throws Exception the exception
+     */
+    public String formatDisplayLiveVersionList(String selectedVersion) {
+        try {
+
+            Window window = (Window) this.request.getAttribute("osivia.window");
+
+            return this.getFormatter().formatDisplayLiveVersionList(this.getCMSCtx(), window, "displayLiveVersion", selectedVersion);
+        } catch (Exception e) {
+            throw this.wrapNuxeoException(e);
+        }
+
+    }
    
 
     /**
@@ -1739,6 +1848,33 @@ public class NuxeoController {
         return nuxeoCustomizer.getLinkFromNuxeoURL(this.getCMSCtx(), url, displayContext);
     }
 
+    /**
+     * Generates a link to the target path.
+     *
+     * @param path           location of the target document
+     * @param displayContext associates specific behaviour to the link
+     * @return the CMS link by path
+     * @throws Exception the exception
+     */
+    public Link getCMSLinkByPath(String path, String displayContext) {
+
+
+        Window window = (Window) this.getPortalCtx().getRequest().getAttribute("osivia.window");
+        Page page = window.getPage();
+
+        Map<String, String> parameters = new HashMap<String, String>(0);
+
+        String url = this.getPortalUrlFactory().getCMSUrl(this.portalCtx, page.getId().toString(PortalObjectPath.CANONICAL_FORMAT), path, parameters, null,
+                displayContext, null, null, null, null);
+
+        if (url != null) {
+
+            Link link = new Link(url, false);
+            return link;
+        }
+
+        return null;
+    }
    
 
     /**

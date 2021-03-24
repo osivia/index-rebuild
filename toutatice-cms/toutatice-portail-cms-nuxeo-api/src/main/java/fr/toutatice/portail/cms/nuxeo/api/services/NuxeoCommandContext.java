@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 import org.osivia.portal.api.cache.services.CacheInfo;
+import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.core.cms.Satellite;
 import org.osivia.portal.core.profils.ProfilBean;
 
@@ -285,42 +286,14 @@ public class NuxeoCommandContext {
 	 * @param ctx the ctx
 	 * @param request the request
 	 */
-	public NuxeoCommandContext(PortletContext ctx, PortletRequest request) {
+	public NuxeoCommandContext(PortletContext ctx, PortalControllerContext portalCtx) {
 		super();
 		this.ctx = ctx;
-		this.request = request;
-/*
-		if( request instanceof PortletRequest)	{
-			this.controllerCtx =  (ControllerContext) ((PortletRequest) this.getRequest()).getAttribute("osivia.controller");
-            this.administrator = Boolean.TRUE.equals(     (((PortletRequest) this.getRequest()).getAttribute("osivia.isAdministrator")))        ;
-		}
-*/		
+		if( portalCtx.getRequest() != null)
+		    this.request = portalCtx.getRequest();
+		else if( portalCtx.getHttpServletRequest() != null)
+		    this.request = portalCtx.getHttpServletRequest();
 	}
-
-
-
-	
-
-
-	   /**
-     * Instantiates a new nuxeo command context.
-     *
-     * @param ctx the ctx
-     * @param serverInvocation the server invocation
-     */
-    public NuxeoCommandContext(PortletContext ctx, HttpServletRequest servletRequest) {
-        super();
-        this.ctx = ctx;
-        this.request = servletRequest;
-
-        Boolean isAdmin = (Boolean) servletRequest.getAttribute("osivia.isAdmin");
-
-        if( Boolean.TRUE.equals(isAdmin)) {
-            this.administrator = true;
-        }
-    }
-
-
 
 
 
