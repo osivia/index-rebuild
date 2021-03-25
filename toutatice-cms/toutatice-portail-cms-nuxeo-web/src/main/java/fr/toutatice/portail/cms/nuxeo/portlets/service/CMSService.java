@@ -141,15 +141,15 @@ public class CMSService implements ICMSService {
     /**
      * Forms service.
      */
-    private final IFormsService formsService;
+    private  IFormsService formsService;
     /**
      * Person service.
      */
-    private final PersonService personService;
+    private  PersonService personService;
     /**
      * Directory group service.
      */
-    private final GroupService groupService;
+    private  GroupService groupService;
     /**
      * Documents discovery service.
      */
@@ -179,9 +179,11 @@ public class CMSService implements ICMSService {
         this.portletCtx = portletCtx;
 
         this.taskbarService = Locator.findMBean(ITaskbarService.class, ITaskbarService.MBEAN_NAME);
-        this.formsService = NuxeoServiceFactory.getFormsService();
-        this.personService = DirServiceFactory.getService(PersonService.class);
-        this.groupService = DirServiceFactory.getService(GroupService.class);
+
+//TODO refonte
+//        this.formsService = NuxeoServiceFactory.getFormsService();
+//        this.personService = DirServiceFactory.getService(PersonService.class);
+//        this.groupService = DirServiceFactory.getService(GroupService.class);
         this.documentsDiscoveryService = DocumentsDiscoveryService.getInstance(this);
         this.statisticsServiceDelegation = new StatisticsCmsServiceDelegation();
     }

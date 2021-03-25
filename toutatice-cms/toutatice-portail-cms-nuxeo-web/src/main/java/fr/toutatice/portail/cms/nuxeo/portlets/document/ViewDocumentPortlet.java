@@ -134,7 +134,7 @@ public class ViewDocumentPortlet extends CMSPortlet {
     /**
      * Document comment DAO.
      */
-    private final CommentDAO commentDao;
+    private  CommentDAO commentDao;
     /**
      * Document published documents DAO.
      */
@@ -164,7 +164,9 @@ public class ViewDocumentPortlet extends CMSPortlet {
 
         // DAO
         this.documentDao = DocumentDAO.getInstance();
-        this.commentDao = CommentDAO.getInstance();
+        
+        // TODO refonte
+        //this.commentDao = CommentDAO.getInstance();
         this.publishedDocumentsDao = RemotePublishedDocumentDAO.getInstance();
     }
 
@@ -180,12 +182,13 @@ public class ViewDocumentPortlet extends CMSPortlet {
         PortletContext portletContext = this.getPortletContext();
 
         try {
+/*            
             // Nuxeo service
             this.nuxeoService = (INuxeoService) portletContext.getAttribute("NuxeoService");
             if (this.nuxeoService == null) {
                 throw new PortletException("Cannot start ViewDocumentPortlet portlet due to service unavailability");
             }
-
+*/
             // CMS service
             this.cmsService = new CMSService(portletContext);
             ICMSServiceLocator cmsLocator = Locator.findMBean(ICMSServiceLocator.class, "osivia:service=CmsServiceLocator");
@@ -204,22 +207,14 @@ public class ViewDocumentPortlet extends CMSPortlet {
             FormsServiceImpl formsService = new FormsServiceImpl(customizer);
             this.registerService(this.nuxeoService.getFormsService(), formsService);
 
-            // ECM command services
-            IEcmCommandervice ecmCmdService = Locator.findMBean(IEcmCommandervice.class, IEcmCommandervice.MBEAN_NAME);
-
-            for (EcmCommand command : customizer.getEcmCommands().values()) {
-                ecmCmdService.registerCommand(command.getCommandName(), command);
-            }
-
 
             // v1.0.16
             ThumbnailServlet.setPortletContext(portletContext);
             SitePictureServlet.setPortletContext(portletContext);
             AvatarServlet.setPortletContext(portletContext);
             BinaryServlet.setPortletContext(portletContext);
-        } catch (PortletException e) {
-            throw e;
-        } catch (Exception e) {
+        }
+         catch (Exception e) {
             throw new PortletException(e);
         }
     }
