@@ -182,13 +182,18 @@ public class ViewDocumentPortlet extends CMSPortlet {
         PortletContext portletContext = this.getPortletContext();
 
         try {
-/*            
+          
             // Nuxeo service
             this.nuxeoService = (INuxeoService) portletContext.getAttribute("NuxeoService");
             if (this.nuxeoService == null) {
+                
+                this.nuxeoService = Locator.findMBean(INuxeoService.class, "osivia:service=NuxeoService");
+                if (this.nuxeoService == null) {
+                
                 throw new PortletException("Cannot start ViewDocumentPortlet portlet due to service unavailability");
+                }
             }
-*/
+
             // CMS service
             this.cmsService = new CMSService(portletContext);
             ICMSServiceLocator cmsLocator = Locator.findMBean(ICMSServiceLocator.class, "osivia:service=CmsServiceLocator");
@@ -200,18 +205,21 @@ public class ViewDocumentPortlet extends CMSPortlet {
             this.nuxeoService.registerCMSCustomizer(customizer);
 
             // Nuxeo tag service
-            INuxeoTagService tagService = new NuxeoTagService();
-            this.registerService(this.nuxeoService.getTagService(), tagService);
+            //TODO refonte
+//            INuxeoTagService tagService = new NuxeoTagService();
+//            this.registerService(this.nuxeoService.getTagService(), tagService);
 
             // Forms service
-            FormsServiceImpl formsService = new FormsServiceImpl(customizer);
-            this.registerService(this.nuxeoService.getFormsService(), formsService);
+          //TODO refonte
+//            FormsServiceImpl formsService = new FormsServiceImpl(customizer);
+//            this.registerService(this.nuxeoService.getFormsService(), formsService);
 
 
             // v1.0.16
             ThumbnailServlet.setPortletContext(portletContext);
             SitePictureServlet.setPortletContext(portletContext);
-            AvatarServlet.setPortletContext(portletContext);
+// TODO integration Idirectory
+//            AvatarServlet.setPortletContext(portletContext);
             BinaryServlet.setPortletContext(portletContext);
         }
          catch (Exception e) {

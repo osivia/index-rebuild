@@ -226,7 +226,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
     /**
      * Nuxeo comments service.
      */
-    private final INuxeoCommentsService nuxeoCommentsService;
+    private  INuxeoCommentsService nuxeoCommentsService;
     /**
      * Internationalization service
      */
@@ -303,7 +303,8 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
         // Customization Service
         this.customizationService = Locator.findMBean(ICustomizationService.class, ICustomizationService.MBEAN_NAME);
         // Nuxeo comments service
-        this.nuxeoCommentsService = new NuxeoCommentsServiceImpl(this.cmsService);
+        //TODO Refonte
+        //this.nuxeoCommentsService = new NuxeoCommentsServiceImpl(this.cmsService);
         // Internationalization service
         this.internationalizationService = Locator.findMBean(IInternationalizationService.class, IInternationalizationService.MBEAN_NAME);
         // Internationalization bundle factory
