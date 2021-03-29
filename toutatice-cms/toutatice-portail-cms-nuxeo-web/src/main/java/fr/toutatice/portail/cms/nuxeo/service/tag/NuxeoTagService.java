@@ -53,7 +53,7 @@ public class NuxeoTagService implements INuxeoTagService {
     /** WebId service. */
     private final IWebIdService webIdService;
     /** Person service */
-    private final PersonService personService;
+    private PersonService personService;
     /** Internationalization bundle factory. */
     private final IBundleFactory bundleFactory;
 
@@ -67,7 +67,8 @@ public class NuxeoTagService implements INuxeoTagService {
         // WebId service
         this.webIdService = Locator.findMBean(IWebIdService.class, IWebIdService.MBEAN_NAME);
         // Person service
-        this.personService = DirServiceFactory.getService(PersonService.class);
+        // TODO REFONTE
+        //this.personService = DirServiceFactory.getService(PersonService.class);
         // Internationalization bundle factory
         IInternationalizationService internationalizationService = Locator.findMBean(IInternationalizationService.class,
                 IInternationalizationService.MBEAN_NAME);

@@ -205,9 +205,9 @@ public class ViewDocumentPortlet extends CMSPortlet {
             this.nuxeoService.registerCMSCustomizer(customizer);
 
             // Nuxeo tag service
-            //TODO refonte
-//            INuxeoTagService tagService = new NuxeoTagService();
-//            this.registerService(this.nuxeoService.getTagService(), tagService);
+
+            INuxeoTagService tagService = new NuxeoTagService();
+            this.registerService(this.nuxeoService.getTagService(), tagService);
 
             // Forms service
           //TODO refonte

@@ -1767,8 +1767,9 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
                 path = binary.getPath();
             }
 
-            Subject subject = (Subject) PolicyContext.getContext("javax.security.auth.Subject.container");
-            delegation.setSubject(subject);
+            // Subject not valued in tomcat8
+//            Subject subject = (Subject) PolicyContext.getContext("javax.security.auth.Subject.container");
+//            delegation.setSubject(subject);
 
             delegation.setAdmin(isAdmin);
 

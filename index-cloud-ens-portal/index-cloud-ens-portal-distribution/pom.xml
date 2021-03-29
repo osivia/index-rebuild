@@ -39,10 +39,22 @@
 		</dependency>
 		<dependency>
 			<groupId>toutatice-portail.cms</groupId>
-			<artifactId>toutatice-portail-cms-nuxeo-repository</artifactId>
+			<artifactId>toutatice-portail-cms-nuxeo-taglib</artifactId>
 			<version>${toutatice.cms.version}</version>
 			<type>jar</type>
 		</dependency>		
+		<dependency>
+			<groupId>toutatice-portail.cms</groupId>
+			<artifactId>toutatice-portail-cms-nuxeo-repository</artifactId>
+			<version>${toutatice.cms.version}</version>
+			<type>jar</type>
+		</dependency>	
+		<dependency>
+			<groupId>toutatice-portail.cms</groupId>
+			<artifactId>toutatice-portail-cms-nuxeo-web</artifactId>
+			<version>${toutatice.cms.version}</version>
+			<type>war</type>
+		</dependency>
 		<dependency>
 			<groupId>commons-lang</groupId>
 			<artifactId>commons-lang</artifactId>

@@ -54,6 +54,17 @@ public class UserTag extends ToutaticeSimpleTag {
     @Override
     protected void doTag(NuxeoController nuxeoController, DocumentDTO document) throws JspException, IOException {
         if (StringUtils.isNotBlank(this.name)) {
+            
+            
+            if( true)   {
+                
+
+                // HTML writer
+                HTMLWriter htmlWriter = new HTMLWriter(this.getJspContext().getOut());
+                htmlWriter.setEscapeText(false);
+                htmlWriter.write("user "+name);
+                return;
+            }
             // Container
             Element container = DOM4JUtils.generateElement(HTMLConstants.SPAN, null, null);
 

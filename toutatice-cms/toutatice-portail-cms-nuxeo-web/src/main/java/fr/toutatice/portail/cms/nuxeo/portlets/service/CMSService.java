@@ -64,6 +64,8 @@ import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.cache.services.CacheInfo;
 import org.osivia.portal.api.cache.services.ICacheService;
 import org.osivia.portal.api.cms.*;
+
+import org.osivia.portal.api.cms.service.CMSSession;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.directory.v2.model.Group;
@@ -87,6 +89,8 @@ import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.urls.Link;
 import org.osivia.portal.api.urls.PortalUrlType;
 import org.osivia.portal.core.cms.*;
+import org.osivia.portal.core.cms.spi.NuxeoRequest;
+import org.osivia.portal.core.cms.spi.NuxeoResult;
 import org.osivia.portal.core.constants.InternalConstants;
 
 import org.osivia.portal.core.page.PageProperties;
@@ -420,7 +424,14 @@ public class CMSService implements ICMSService {
         commandCtx.setSatellite(cmsCtx.getSatellite());
 
 
-        return this.getNuxeoCommandService().executeCommand(commandCtx, new INuxeoServiceCommand() {
+
+        PortalControllerContext ctx = new PortalControllerContext(portletCtx, cmsCtx.getRequest(), cmsCtx.getResponse());
+        CMSController ctrl = new CMSController(ctx);
+        
+        CMSSession cmsSession =  Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
+        return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx", command))).getResult();
+        
+/*        return this.getNuxeoCommandService().executeCommand(commandCtx, new INuxeoServiceCommand() {
 
             @Override
             public String getId() {
@@ -432,7 +443,9 @@ public class CMSService implements ICMSService {
                 return command.execute(nuxeoSession);
             }
         });
+*/         
     }
+   
 
 
     /**

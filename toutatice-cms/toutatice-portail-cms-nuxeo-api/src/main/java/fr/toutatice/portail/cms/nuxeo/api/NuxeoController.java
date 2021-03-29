@@ -2388,19 +2388,9 @@ public class NuxeoController {
         try {
 
             this.cmsCtx = new CMSServiceCtx();
+            
+            this.cmsCtx.setPortalControllerContext(getPortalCtx());
 
-            if (this.getRequest() != null) {
-                this.cmsCtx.setRequest(this.getRequest());
- //               this.cmsCtx.setControllerContext(ControllerContextAdapter.getControllerContext(new PortalControllerContext(this.getPortletCtx(), this.getRequest(), this.getResponse())));
-            } else      if (this.getServletRequest() != null) {
-                this.cmsCtx.setServletRequest(this.servletRequest);
-            } else {
-                if (this.getRequest() != null) {
-                    this.cmsCtx.setServletRequest((HttpServletRequest) this.getRequest().getAttribute(Constants.PORTLET_ATTR_HTTP_REQUEST));
-                }
-            }
-
-            this.cmsCtx.setPortletCtx(this.getPortletCtx());
 
             if (this.response instanceof MimeResponse) {
                 this.cmsCtx.setResponse((MimeResponse) this.response);

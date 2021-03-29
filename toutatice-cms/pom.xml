@@ -119,11 +119,8 @@
 		<module>toutatice-portail-cms-nuxeo-automation-client</module>
 		<module>toutatice-portail-cms-nuxeo-repository</module>
 		<module>toutatice-portail-cms-nuxeo-web</module>
-<!--
         <module>toutatice-portail-cms-nuxeo-taglib</module>
-        <module>toutatice-portail-cms-nuxeo-web</module>
-        <module>toutatice-portail-cms-nuxeo-sar</module>
-        <module>toutatice-portail-cms-nuxeo-automation-client</module>
+<!--        
         <module>toutatice-portail-cms-nuxeo-dependencies</module>
         <module>toutatice-portail-cms-nuxeo-dependencies-test</module>
         <module>toutatice-portail-cms-nuxeo-test-portlets</module>
