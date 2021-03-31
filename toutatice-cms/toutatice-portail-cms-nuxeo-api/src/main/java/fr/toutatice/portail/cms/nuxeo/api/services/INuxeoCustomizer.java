@@ -381,5 +381,14 @@ public interface INuxeoCustomizer extends HttpSessionListener {
      * @return document modules
      */
     List<IPortletModule> getDocumentModules(String type);
+    
+    
+    /**
+     * Gets the resource context path (cms-nuxeo-web)
+     *
+     * @return the resource context path
+     */
+    public String getResourceContextPath() ;
+    
 
 }

@@ -425,9 +425,16 @@ public class CMSService implements ICMSService {
 
 
 
-        PortalControllerContext ctx = new PortalControllerContext(portletCtx, cmsCtx.getRequest(), cmsCtx.getResponse());
-        CMSController ctrl = new CMSController(ctx);
         
+
+        CMSController ctrl = new CMSController(cmsCtx.getPortalControllerContext());
+
+        
+        if ("superuser_context".equals(scope)) {
+            ctrl.setSuperUserMode(true);
+
+        }
+
         CMSSession cmsSession =  Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
         return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx", command))).getResult();
         

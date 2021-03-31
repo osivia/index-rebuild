@@ -17,6 +17,7 @@ import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.Documents;
 import org.osivia.portal.api.cms.exception.CMSException;
 import org.osivia.portal.api.cms.exception.DocumentNotFoundException;
+import org.osivia.portal.api.cms.repository.BaseUserRepository;
 import org.osivia.portal.api.cms.repository.BaseUserStorage;
 import org.osivia.portal.api.cms.repository.UserData;
 import org.osivia.portal.api.cms.repository.model.shared.RepositoryDocument;
@@ -40,9 +41,9 @@ public class NuxeoUserStorage extends BaseUserStorage {
      * @param userName the user name
      * @return the user session
      */
-    public Session getUserSession(String userName) {
+    public Session getUserSession() {
 
-        List<Session> userSessions = getUserSessions(userName);
+        List<Session> userSessions = getUserSessions();
 
         Session session;
         if (userSessions.size() > 0) {
@@ -74,9 +75,17 @@ public class NuxeoUserStorage extends BaseUserStorage {
      * @param userName the user name
      * @return the user sessions
      */
-    protected List<Session> getUserSessions(String userName) {
+    protected List<Session> getUserSessions() {
+        String userName;
+
+        userName = getUserRepository().getUserName();
+      
         if (StringUtils.isEmpty(userName)) {
             userName = "_anonymous";
+        }   else    {
+            userName = getUserRepository().getUserName();
+            if( BaseUserRepository.SUPERUSER_NAME.equals(userName))
+                userName = System.getProperty("nuxeo.superUserId");
         }
 
 
@@ -94,8 +103,8 @@ public class NuxeoUserStorage extends BaseUserStorage {
      * @param userName the user name
      * @param session the session
      */
-    public void recycleSession(String userName, Session session) {
-        getUserSessions(userName).add(session);
+    public void recycleSession( Session session) {
+        getUserSessions().add(session);
     }
 
 
@@ -103,8 +112,8 @@ public class NuxeoUserStorage extends BaseUserStorage {
     public RepositoryDocument reloadDocument(String internalID) throws CMSException {
 
 
-        String userName = getUserRepository().getUserName();
-        Session session = getUserSession(userName);
+       
+        Session session = getUserSession();
 
         try {
             // RepositoryDocument doc = getDocuments().get(internalID);
@@ -132,9 +141,11 @@ public class NuxeoUserStorage extends BaseUserStorage {
         } catch (Exception e) {
             throw new CMSException(e);
         } finally {
-            recycleSession(userName, session);
+            recycleSession( session);
         }
     }
+
+
 
     @Override
     public UserData getUserData(String internalID) throws CMSException {
@@ -159,8 +170,8 @@ public class NuxeoUserStorage extends BaseUserStorage {
      */
     public NuxeoResult executeCommand(INuxeoCommand command) throws CMSException {
         
-        String userName = getUserRepository().getUserName();
-        Session session = getUserSession(userName);
+
+        Session session = getUserSession();
 
         try {
             Object result = command.execute(session);
@@ -168,7 +179,7 @@ public class NuxeoUserStorage extends BaseUserStorage {
         } catch (Exception e) {
             throw new CMSException(e);
         } finally {
-            recycleSession(userName, session);
+            recycleSession( session);
         }
     }
 

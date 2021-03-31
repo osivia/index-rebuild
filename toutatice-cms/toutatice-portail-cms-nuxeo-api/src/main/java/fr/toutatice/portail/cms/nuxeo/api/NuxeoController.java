@@ -240,8 +240,7 @@ public class NuxeoController {
      */
     INuxeoCommandService nuxeoCommandService;
     
-    /** The default cms nuxeo context name. */
-    private static final String  CMS_NUXEO_DEFAULT_CONTEXT_NAME = "toutatice-portail-cms-nuxeo";
+
     
     /** The cms context name. */
     private static String cmsContextName = null;
@@ -962,7 +961,11 @@ public class NuxeoController {
     public PortalControllerContext getPortalCtx() {
 
         if (this.portalCtx == null) {
-            this.portalCtx = new PortalControllerContext(this.getPortletCtx(), this.request, this.response);
+            if( this.request != null)
+                this.portalCtx = new PortalControllerContext(this.getPortletCtx(), this.request, this.response);
+            else if( getServletRequest() != null) {
+                this.portalCtx = new PortalControllerContext(getServletRequest());
+            }
         }
 
         return this.portalCtx;
@@ -1887,17 +1890,16 @@ public class NuxeoController {
      * @throws Exception the exception
      */
     public Link getLink(Document doc, String displayContext, String linkContextualization) {
-/*
+
         try {
             String localContextualization = linkContextualization;
 
             INuxeoService nuxeoService = this.getNuxeoCMSService();
 
             CMSServiceCtx handlerCtx = new CMSServiceCtx();
-            handlerCtx.setControllerContext(ControllerContextAdapter.getControllerContext(new PortalControllerContext(this.getPortletCtx(), this.getRequest(),
-                    this.getResponse())));
-            handlerCtx.setPortletCtx(this.getPortletCtx());
-            handlerCtx.setRequest(this.getRequest());
+            handlerCtx.setPortalControllerContext(new PortalControllerContext(this.getPortletCtx(), this.getRequest(),
+                    this.getResponse()));
+
             if (this.response instanceof MimeResponse) {
                 handlerCtx.setResponse((MimeResponse) this.response);
             }
@@ -1918,7 +1920,7 @@ public class NuxeoController {
 
 
             // Sinon on passe par le gestionnaire de cms pour recontextualiser
-
+            /*
             Window window = (Window) this.getPortalCtx().getRequest().getAttribute("osivia.window");
             Page page = window.getPage();
 
@@ -1958,11 +1960,12 @@ public class NuxeoController {
             }
 
             return null;
+            */
 
         } catch (Exception e) {
             throw this.wrapNuxeoException(e);
         }
-*/
+
         
         return null;
     }
@@ -2608,11 +2611,8 @@ public class NuxeoController {
      */
     public static String getCMSNuxeoWebContextName() {
         if (cmsContextName == null) {
-            String customName = System.getProperty("cms.nuxeo.context");
-            if (customName != null)
-                cmsContextName = customName;
-            else
-                cmsContextName = CMS_NUXEO_DEFAULT_CONTEXT_NAME;
+            INuxeoService nuxeoService = Locator.findMBean(INuxeoService.class, "osivia:service=NuxeoService");
+            return nuxeoService.getCMSCustomizer().getResourceContextPath();
         }
         return cmsContextName;
     }

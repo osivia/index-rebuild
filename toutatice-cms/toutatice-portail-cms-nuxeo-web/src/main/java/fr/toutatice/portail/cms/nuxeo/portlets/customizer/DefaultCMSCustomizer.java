@@ -110,6 +110,7 @@ import java.util.regex.Pattern;
  */
 public class DefaultCMSCustomizer implements INuxeoCustomizer {
 
+
     /**
      * Default schemas.
      */
@@ -126,11 +127,12 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
     /**
      * Servlet URL for avatars
      */
-    private static final String AVATAR_SERVLET = "/"+NuxeoController.getCMSNuxeoWebContextName()+"/avatar?username=";
-    /**
-     * Binary servlet URL.
+    private static final String AVATAR_SERVLET = "/avatar?username=";
+
+    /** 
+     * Sevlet URL for binary resources
      */
-    private static final String BINARY_SERVLET = "/"+NuxeoController.getCMSNuxeoWebContextName()+"/binary";
+    private static final String BINARY_SERVLET = "/binary";
 
     private static final String TABS_PROPERTY = "osivia.navigationInSpaceTabs";
 
@@ -1631,7 +1633,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
         }
 
         if (url.length() == 0) {
-            url.append(AVATAR_SERVLET);
+            url.append(getResourceContextPath()+AVATAR_SERVLET);
             try {
                 url.append(URLEncoder.encode(username, CharEncoding.UTF_8));
             } catch (UnsupportedEncodingException e) {
@@ -1807,7 +1809,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
 
             // URL builder
             StringBuilder sb = new StringBuilder();
-            sb.append(BINARY_SERVLET);
+            sb.append(getBinaryServlet());
 
             if (StringUtils.isNotBlank(fileName)) {
                 sb.append("/").append(URLEncoder.encode(fileName, "UTF-8"));
@@ -1925,6 +1927,23 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
         return new Link(src, false);
     }
 
+    
+    /**
+     * Binary servlet URL.
+     */
+    public String getBinaryServlet()   {
+        return getResourceContextPath()+BINARY_SERVLET;
+    }
+    
+    
+    /**
+     * Binary servlet URL.
+     */
+    @Override
+    public String getResourceContextPath()   {
+        return "/toutatice-portail-cms-nuxeo-web-5.0-SNAPSHOT";
+    }
+    
 
     /**
      * Gets the user delegation.

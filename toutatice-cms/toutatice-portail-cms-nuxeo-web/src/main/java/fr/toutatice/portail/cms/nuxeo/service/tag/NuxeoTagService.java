@@ -210,6 +210,15 @@ public class NuxeoTagService implements INuxeoTagService {
     }
 
 
+    
+    /**
+     * {@Override}
+     */
+    @Override
+    public String getResourceContext() {
+        return NuxeoController.getCMSNuxeoWebContextName();
+    }
+    
     /**
      * {@inheritDoc}
      */

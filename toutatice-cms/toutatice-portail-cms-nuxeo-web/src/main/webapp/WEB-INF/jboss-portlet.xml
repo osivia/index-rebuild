@@ -13,6 +13,7 @@
         
         <header-content>
             <link rel="stylesheet" href="/css/document.min.css" />
+			<script type="text/javascript" src="/components/PDFViewer/preview.js"></script>            
         </header-content>
         
         <portlet-info>
