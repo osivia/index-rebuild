@@ -26,11 +26,13 @@ import fr.toutatice.portail.cms.nuxeo.api.portlet.ViewList;
 import fr.toutatice.portail.cms.nuxeo.api.services.INuxeoCommentsService;
 import fr.toutatice.portail.cms.nuxeo.api.services.INuxeoCustomizer;
 import fr.toutatice.portail.cms.nuxeo.api.services.NuxeoConnectionProperties;
+import fr.toutatice.portail.cms.nuxeo.portlets.binaries.BinaryServlet;
 import fr.toutatice.portail.cms.nuxeo.portlets.cms.ExtendedDocumentInfos;
 import fr.toutatice.portail.cms.nuxeo.portlets.comments.CommentsFormatter;
 import fr.toutatice.portail.cms.nuxeo.portlets.comments.NuxeoCommentsServiceImpl;
 import fr.toutatice.portail.cms.nuxeo.portlets.customizer.helpers.*;
 import fr.toutatice.portail.cms.nuxeo.portlets.customizer.helpers.WebConfigurationQueryCommand.WebConfigurationType;
+import fr.toutatice.portail.cms.nuxeo.portlets.document.ViewDocumentPortlet;
 import fr.toutatice.portail.cms.nuxeo.portlets.document.helpers.ContextDocumentsHelper;
 import fr.toutatice.portail.cms.nuxeo.portlets.document.helpers.DocumentHelper;
 import fr.toutatice.portail.cms.nuxeo.portlets.forms.ProcedureTemplateModule;
@@ -1941,7 +1943,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
      */
     @Override
     public String getResourceContextPath()   {
-        return "/toutatice-portail-cms-nuxeo-web-5.0-SNAPSHOT";
+        return BinaryServlet.contextPath;
     }
     
 

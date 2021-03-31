@@ -38,6 +38,7 @@
    	<servlet>
 		<servlet-name>BinaryServlet</servlet-name>
 		<servlet-class>fr.toutatice.portail.cms.nuxeo.portlets.binaries.BinaryServlet</servlet-class>
+		<load-on-startup>1</load-on-startup>
 	</servlet>
 
 	<servlet-mapping>
