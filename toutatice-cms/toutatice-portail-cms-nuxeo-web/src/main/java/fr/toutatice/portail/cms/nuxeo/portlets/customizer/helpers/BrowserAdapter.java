@@ -7,11 +7,11 @@ import org.apache.commons.lang.StringUtils;
 import org.jboss.portal.common.invocation.Scope;
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.Documents;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.core.cms.CMSException;
 import org.osivia.portal.core.cms.CMSItem;
 import org.osivia.portal.core.cms.CMSServiceCtx;
 import org.osivia.portal.core.constants.InternalConstants;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 
 import fr.toutatice.portail.cms.nuxeo.api.INuxeoCommand;
 import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;

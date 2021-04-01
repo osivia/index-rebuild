@@ -42,11 +42,11 @@ import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.urls.PortalUrlType;
 import org.osivia.portal.api.windows.PortalWindow;
 import org.osivia.portal.api.windows.WindowFactory;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 
 import fr.toutatice.portail.cms.nuxeo.api.CMSPortlet;
 import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;

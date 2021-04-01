@@ -38,7 +38,7 @@ import fr.toutatice.portail.cms.nuxeo.portlets.document.helpers.DocumentHelper;
 import fr.toutatice.portail.cms.nuxeo.portlets.forms.ProcedureTemplateModule;
 import fr.toutatice.portail.cms.nuxeo.portlets.fragment.*;
 import fr.toutatice.portail.cms.nuxeo.portlets.service.CMSService;
-import fr.toutatice.portail.cms.nuxeo.service.commands.*;
+
 import fr.toutatice.portail.cms.nuxeo.service.editablewindow.*;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.csv.CSVFormat;
@@ -59,8 +59,7 @@ import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.cms.DocumentType;
 import org.osivia.portal.api.cms.FileMimeType;
 import org.osivia.portal.api.context.PortalControllerContext;
-import org.osivia.portal.api.ecm.EcmCommand;
-import org.osivia.portal.api.ecm.EcmCommonCommands;
+
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
@@ -69,6 +68,7 @@ import org.osivia.portal.api.notifications.INotificationsService;
 import org.osivia.portal.api.panels.PanelPlayer;
 import org.osivia.portal.api.player.IPlayerModule;
 import org.osivia.portal.api.player.Player;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.set.SetType;
 import org.osivia.portal.api.taskbar.ITaskbarService;
 import org.osivia.portal.api.taskbar.TaskbarFactory;
@@ -80,7 +80,6 @@ import org.osivia.portal.core.cms.*;
 import org.osivia.portal.core.constants.InternalConstants;
 import org.osivia.portal.core.customization.ICustomizationService;
 import org.osivia.portal.core.page.PageProperties;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 import org.osivia.portal.core.web.IWebIdService;
 import org.osivia.portal.core.web.IWebUrlService;
 import org.xml.sax.InputSource;
@@ -1998,31 +1997,6 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public Map<String, EcmCommand> getEcmCommands() {
-        Map<String, EcmCommand> commands = new ConcurrentHashMap<>();
-
-        commands.put(EcmCommonCommands.lock.name(), new LockCommand(this.notificationsService, this.internationalizationService));
-        commands.put(EcmCommonCommands.unlock.name(), new UnlockCommand(this.notificationsService, this.internationalizationService));
-
-        commands.put(EcmCommonCommands.subscribe.name(), new SubscribeCommand(this.notificationsService, this.internationalizationService));
-        commands.put(EcmCommonCommands.unsubscribe.name(), new UnsubscribeCommand(this.notificationsService, this.internationalizationService));
-
-        commands.put(EcmCommonCommands.addToQuickAccess.name(), new AddToQuickAccessCommand(this.notificationsService, this.internationalizationService));
-        commands.put(EcmCommonCommands.removeFromQuickAccess.name(), new RemoveFromQuickAccessCommand(this.notificationsService, this.internationalizationService));
-
-        commands.put(EcmCommonCommands.synchronizeFolder.name(), new SynchronizeCommand(this.notificationsService, this.internationalizationService));
-        commands.put(EcmCommonCommands.unsynchronizeFolder.name(), new UnsynchronizeCommand(this.notificationsService, this.internationalizationService));
-
-        commands.put(EcmCommonCommands.eraseModifications.name(), new EraseModificationsCommand(this.notificationsService, this.internationalizationService));
-
-        commands.put(EcmCommonCommands.deleteDocument.name(), new DeleteDocumentCommand(this.notificationsService, this.internationalizationService));
-
-        return commands;
-    }
 
 
     /**

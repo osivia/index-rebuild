@@ -18,9 +18,9 @@ package fr.toutatice.portail.cms.nuxeo.portlets.customizer.helpers;
 
 import org.jboss.portal.core.model.portal.Portal;
 import org.nuxeo.ecm.automation.client.model.Documents;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.core.cms.CMSServiceCtx;
 import org.osivia.portal.core.constants.InternalConstants;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 
 import fr.toutatice.portail.cms.nuxeo.portlets.service.CMSService;
 

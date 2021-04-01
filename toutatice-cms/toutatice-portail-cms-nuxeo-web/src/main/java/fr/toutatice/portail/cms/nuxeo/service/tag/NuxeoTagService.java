@@ -22,13 +22,13 @@ import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
 import org.osivia.portal.api.locator.Locator;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.urls.Link;
 import org.osivia.portal.core.cms.CMSException;
 import org.osivia.portal.core.cms.CMSItem;
 import org.osivia.portal.core.cms.CMSServiceCtx;
 import org.osivia.portal.core.cms.ICMSService;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 import org.osivia.portal.core.web.IWebIdService;
 
 import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;

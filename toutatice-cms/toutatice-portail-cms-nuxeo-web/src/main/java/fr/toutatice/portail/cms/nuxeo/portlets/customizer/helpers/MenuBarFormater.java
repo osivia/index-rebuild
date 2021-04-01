@@ -45,8 +45,6 @@ import org.osivia.portal.api.contribution.IContributionService.EditionState;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.directory.v2.model.Person;
 import org.osivia.portal.api.directory.v2.service.PersonService;
-import org.osivia.portal.api.ecm.EcmCommonCommands;
-import org.osivia.portal.api.ecm.EcmViews;
 import org.osivia.portal.api.html.AccessibilityRoles;
 import org.osivia.portal.api.html.DOM4JUtils;
 import org.osivia.portal.api.html.HTMLConstants;
@@ -60,6 +58,7 @@ import org.osivia.portal.api.menubar.MenubarDropdown;
 import org.osivia.portal.api.menubar.MenubarGroup;
 import org.osivia.portal.api.menubar.MenubarItem;
 import org.osivia.portal.api.menubar.MenubarModule;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.taskbar.ITaskbarService;
 import org.osivia.portal.api.taskbar.TaskbarItem;
 import org.osivia.portal.api.taskbar.TaskbarItems;
@@ -73,7 +72,6 @@ import org.osivia.portal.core.cms.CMSServiceCtx;
 import org.osivia.portal.core.cms.ICMSService;
 import org.osivia.portal.core.cms.ICMSServiceLocator;
 import org.osivia.portal.core.constants.InternalConstants;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 import org.osivia.portal.core.web.IWebIdService;
 
 import fr.toutatice.portail.cms.nuxeo.api.ContextualizationHelper;
@@ -768,13 +766,7 @@ public class MenuBarFormater {
                                     // Online workflow validation items
                                     this.addValidatePublishingItems(portalControllerContext, cmsContext, pubInfos, menubar, parent, bundle);
                                 } else {
-                                    final Map<String, String> requestParameters = new HashMap<>();
-                                    final String validateURL = cmsService.getEcmUrl(cmsContext, EcmViews.validateRemotePublishing, pubInfos.getDocumentPath(),
-                                            requestParameters);
-                                    final MenubarItem validateItem = new MenubarItem("REMOTE_ONLINE_WF_VALIDATE", bundle.getString("REMOTE_ONLINE_WF_VALIDATE"),
-                                            null, parent, 14, validateURL, null, null, null);
-                                    validateItem.setAjaxDisabled(true);
-                                    menubar.add(validateItem);
+
                                 }
 
                             } else if (extendedInfos.isUserOnlineTaskInitiator()) {
@@ -1027,16 +1019,12 @@ public class MenuBarFormater {
 
         String command = null;
         String icon = null;
-        EcmCommonCommands ecmAction = null;
+
 
         if (extendedInfos.isCanSynchronize()) {
-            command = "SYNCHRONIZE_ACTION";
-            icon = "glyphicons glyphicons-synchronization";
-            ecmAction = EcmCommonCommands.synchronizeFolder;
+
         } else if (extendedInfos.isCanUnsynchronize()) {
-            command = "UNSYNCHRONIZE_ACTION";
-            icon = "glyphicons glyphicons-synchronization-ban";
-            ecmAction = EcmCommonCommands.unsynchronizeFolder;
+
 
             // Synchronized indicator menubar item
             final MenubarItem synchronizedIndicator = new MenubarItem("SYNCHRONIZED", null, MenubarGroup.CMS, -2, "badge badge-success");
@@ -1277,20 +1265,10 @@ public class MenuBarFormater {
 
                 if (BooleanUtils.isTrue(isValidationWfRunning)) {
                     // Access to current validation workflow task
-                    Map<String, String> parameters = new HashMap<>();
-                    String url = cmsService.getEcmUrl(cmsContext, EcmViews.followWfValidation, pubInfos.getDocumentPath(), parameters);
 
-                    item.setUrl(url);
-                    item.setTitle(bundle.getString("FOLLOW_VALIDATION_WF"));
-                    menubar.add(item);
                 } else if (!DocumentConstants.APPROVED_DOC_STATE.equals(document.getState()) && pubInfos.isEditableByUser()) {
                     // We can start a validation workflow
-                    Map<String, String> parameters = new HashMap<>();
-                    String url = cmsService.getEcmUrl(cmsContext, EcmViews.startValidationWf, pubInfos.getDocumentPath(), parameters);
 
-                    item.setUrl(url);
-                    item.setTitle(bundle.getString("START_VALIDATION_WF"));
-                    menubar.add(item);
                 }
             }
         }
@@ -1355,13 +1333,7 @@ public class MenuBarFormater {
 
                     if (BooleanUtils.isFalse(isValidationWfRunning)) {
                         // We can publish remotly
-                        final Map<String, String> requestParameters = new HashMap<>();
-                        final String remotePublishingURL = cmsService.getEcmUrl(cmsContext, EcmViews.remotePublishing, pubInfos.getDocumentPath(),
-                                requestParameters);
-
-                        remotePubItem.setUrl(remotePublishingURL);
-                        remotePubItem.setHtmlClasses("fancyframe_refresh");
-                        menubar.add(remotePubItem);
+  
                     } else {
                         remotePubItem.setDisabled(true);
                         menubar.add(remotePubItem);
@@ -1448,51 +1420,10 @@ public class MenuBarFormater {
             DocumentType type = this.customizer.getCMSItemTypes().get(document.getType());
 
             // Menubar item
-            MenubarItem item;
+            MenubarItem item = null;
 
             if ((type != null) && type.isEditable()) {
-                // Callback URL
-                String callbackURL = this.portalUrlFactory.getCMSUrl(portalControllerContext, null, "_NEWID_", null, null, "_LIVE_", null, null, null, null);
-                // ECM base URL
-                String ecmBaseURL = cmsService.getEcmDomain(cmsContext);
-
-                Map<String, String> requestParameters = new HashMap<String, String>();
-                String docPathToEdit = pubInfos.getDocumentPath();
-                if (pubInfos.hasDraft()) {
-                    docPathToEdit = pubInfos.getDraftPath();
-                }
-                String url = cmsService.getEcmUrl(cmsContext, EcmViews.editDocument, docPathToEdit, requestParameters);
-
-                // Onclick action
-                StringBuilder onClick = new StringBuilder();
-                onClick.append("javascript:setCallbackFromEcmParams('");
-                onClick.append(callbackURL);
-                onClick.append("', '");
-                onClick.append(ecmBaseURL);
-                onClick.append("');");
-
-                String editLabel = null;
-                if (StringUtils.isNotBlank(pubInfos.getPublishSpacePath())) {
-                    if (!pubInfos.isLiveSpace() && !DocumentHelper.isInLiveMode(cmsContext, pubInfos) && pubInfos.isBeingModified()) {
-                        // Live version edition
-                        editLabel = bundle.getString("EDIT_LIVE_VERSION");
-                    } else if (pubInfos.isLiveSpace() && (pubInfos.isDraft() || pubInfos.hasDraft())) {
-                        // Draft edition
-                        editLabel = bundle.getString("EDIT_DRAFT");
-                    } else {
-                        // Default edition
-                        editLabel = bundle.getString("EDIT");
-                    }
-                } else {
-                    // si contextualisé mais non rattaché à un espace, on considère qu'il n'y a pas de cycle de vie
-                    // cas greta où les stages sont contextualisés mais non rattachés au portalsite
-                    editLabel = bundle.getString("EDIT");
-                }
-
-
-                // Menubar item
-                item = new MenubarItem(id, editLabel, icon, parent, 1, url, null, onClick.toString(), "fancyframe_refresh");
-                item.setAjaxDisabled(true);
+             
             } else {
                 item = null;
             }

@@ -44,6 +44,7 @@ import net.sf.json.JSONObject;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.StringUtils;
+import org.jboss.portal.core.model.portal.Portal;
 import org.jboss.portal.theme.ThemeConstants;
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.PropertyList;
@@ -55,14 +56,13 @@ import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.directory.v2.model.Person;
 import org.osivia.portal.api.directory.v2.service.PersonService;
-import org.osivia.portal.api.ecm.EcmCommand;
-import org.osivia.portal.api.ecm.IEcmCommandervice;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
 import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.api.notifications.INotificationsService;
 import org.osivia.portal.api.notifications.NotificationsType;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.windows.PortalWindow;
 import org.osivia.portal.api.windows.WindowFactory;
 import org.osivia.portal.core.cms.*;
@@ -75,6 +75,7 @@ import java.io.IOException;
 import java.lang.reflect.Proxy;
 import java.security.Principal;
 import java.util.*;
+
 
 /**
  * View Nuxeo document portlet.
@@ -149,6 +150,8 @@ public class ViewDocumentPortlet extends CMSPortlet {
     private INuxeoService nuxeoService;
 
 
+
+    
     /**
      * Constructor.
      */
@@ -578,6 +581,10 @@ public class ViewDocumentPortlet extends CMSPortlet {
         try {
             // Portal controller context
             PortalControllerContext portalControllerContext = new PortalControllerContext(this.getPortletContext(), request, response);
+            
+            
+            Portal portal = PortalObjectUtils.getPortal(portalControllerContext);
+            
             // Nuxeo controller
             NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
             // CMS context

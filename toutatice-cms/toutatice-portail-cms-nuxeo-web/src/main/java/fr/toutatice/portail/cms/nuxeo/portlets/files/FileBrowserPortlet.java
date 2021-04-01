@@ -52,7 +52,6 @@ import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.cms.DocumentType;
 import org.osivia.portal.api.cms.EcmDocument;
 import org.osivia.portal.api.context.PortalControllerContext;
-import org.osivia.portal.api.ecm.EcmViews;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
@@ -66,6 +65,7 @@ import org.osivia.portal.api.notifications.Notifications;
 import org.osivia.portal.api.notifications.NotificationsType;
 import org.osivia.portal.api.panels.IPanelsService;
 import org.osivia.portal.api.panels.Panel;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.portlet.IPortletStatusService;
 import org.osivia.portal.api.taskbar.ITaskbarService;
 import org.osivia.portal.api.urls.PortalUrlType;
@@ -77,8 +77,6 @@ import org.osivia.portal.core.cms.CMSPublicationInfos;
 import org.osivia.portal.core.cms.CMSServiceCtx;
 import org.osivia.portal.core.cms.ICMSService;
 import org.osivia.portal.core.constants.InternalConstants;
-
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 
 import fr.toutatice.portail.cms.nuxeo.api.CMSPortlet;
 import fr.toutatice.portail.cms.nuxeo.api.FileBrowserView;
@@ -898,19 +896,7 @@ public class FileBrowserPortlet extends CMSPortlet {
         // CMS context
         CMSServiceCtx cmsContext = nuxeoController.getCMSCtx();
 
-
-        // Callback URL
-        String callbackUrl = this.getPortalUrlFactory().getCMSUrl(portalControllerContext, null, currentDocument.getPath(), null, null, "_LIVE_", null, null,
-                null, null);
-        request.setAttribute("callbackUrl", callbackUrl);
-
-        // ECM base URL
-        String ecmBaseUrl = this.getCMSService().getEcmDomain(cmsContext);
-        request.setAttribute("ecmBaseUrl", ecmBaseUrl);
-
-        // Edit URL
-        String editUrl = this.getCMSService().getEcmUrl(cmsContext, EcmViews.editDocument, "_PATH_", new HashMap<String, String>(0));
-        request.setAttribute("editUrl", editUrl);
+    
 
         // Move URL
         Map<String, String> moveProperties = new HashMap<>();

@@ -24,7 +24,6 @@ import fr.toutatice.portail.cms.nuxeo.portlets.binaries.FetchByShareLinkCommand;
 import fr.toutatice.portail.cms.nuxeo.portlets.cms.ExtendedDocumentInfos;
 import fr.toutatice.portail.cms.nuxeo.portlets.cms.NuxeoDocumentContextImpl;
 import fr.toutatice.portail.cms.nuxeo.portlets.commands.DocumentFetchPublishedCommand;
-import fr.toutatice.portail.cms.nuxeo.portlets.commands.NuxeoCommandDelegate;
 import fr.toutatice.portail.cms.nuxeo.portlets.customizer.CustomizationPluginMgr;
 import fr.toutatice.portail.cms.nuxeo.portlets.customizer.DefaultCMSCustomizer;
 import fr.toutatice.portail.cms.nuxeo.portlets.customizer.helpers.BrowserAdapter;
@@ -71,8 +70,7 @@ import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.directory.v2.model.Group;
 import org.osivia.portal.api.directory.v2.service.GroupService;
 import org.osivia.portal.api.directory.v2.service.PersonService;
-import org.osivia.portal.api.ecm.EcmCommand;
-import org.osivia.portal.api.ecm.EcmViews;
+
 import org.osivia.portal.api.editor.EditorModule;
 import org.osivia.portal.api.editor.EditorService;
 import org.osivia.portal.api.locator.Locator;
@@ -80,6 +78,7 @@ import org.osivia.portal.api.menubar.MenubarModule;
 import org.osivia.portal.api.page.PageParametersEncoder;
 import org.osivia.portal.api.panels.PanelPlayer;
 import org.osivia.portal.api.player.Player;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.statistics.SpaceStatistics;
 import org.osivia.portal.api.taskbar.*;
 import org.osivia.portal.api.tasks.TaskModule;
@@ -94,7 +93,6 @@ import org.osivia.portal.core.cms.spi.NuxeoResult;
 import org.osivia.portal.core.constants.InternalConstants;
 
 import org.osivia.portal.core.page.PageProperties;
-import org.osivia.portal.core.portalobjects.PortalObjectUtils;
 import org.osivia.portal.core.profils.IProfilManager;
 import org.osivia.portal.core.utils.URLUtils;
 import org.osivia.portal.core.web.IWebIdService;
@@ -2256,108 +2254,6 @@ public class CMSService implements ICMSService {
 
 
     @Override
-    public String getEcmUrl(CMSServiceCtx cmsCtx, EcmViews command, String path, Map<String, String> requestParameters) throws CMSException {
-        // Satellite
-        Satellite satellite = cmsCtx.getSatellite();
-        if (satellite == null) {
-            satellite = Satellite.MAIN;
-        }
-
-        NuxeoSatelliteConnectionProperties connectionProperties = NuxeoSatelliteConnectionProperties.getConnectionProperties(satellite);
-
-        // get the default domain and app name
-        String uri = connectionProperties.getPublicBaseUri().toString();
-
-        if (requestParameters == null) {
-            requestParameters = new HashMap<String, String>();
-        }
-
-        String url = "";
-
-        if (command == EcmViews.createPage) {
-            url = uri.toString() + "/nxpath/default" + path + "@osivia_create_document?";
-            requestParameters.put("type", "PortalPage");
-        } else if (command == EcmViews.createDocument) {
-            url = uri.toString() + "/nxpath/default" + path + "@toutatice_create?";
-        } else if (command == EcmViews.editDocument) {
-            url = uri.toString() + "/nxpath/default" + path + "@toutatice_edit?";
-        } else if (command == EcmViews.editPage) {
-            url = uri.toString() + "/nxpath/default" + path + "@osivia_edit_document?";
-        } else if (command == EcmViews.editAttachments) {
-            url = uri.toString() + "/nxpath/default" + path + "@osivia_edit_attachments?";
-        } else if (command == EcmViews.createFgtInRegion) {
-            url = uri.toString() + "/nxpath/default" + path + "@osivia_create_fragment?";
-        } else if (command == EcmViews.createFgtBelowWindow) {
-            url = uri.toString() + "/nxpath/default" + path + "@osivia_create_fragment?";
-        } else if (command == EcmViews.editFgt) {
-            url = uri.toString() + "/nxpath/default" + path + "@osivia_edit_fragment?";
-        } else if (command == EcmViews.viewSummary) {
-            url = uri.toString() + "/nxpath/default" + path + "@view_documents?";
-        } else if (command == EcmViews.shareDocument) {
-            url = uri.toString() + "/nxpath/default" + path + "@send_notification_email?";
-        } else if (command == EcmViews.startValidationWf) {
-            url = uri.toString() + "/nxpath/default" + path + "@choose_wf?";
-        } else if (command == EcmViews.followWfValidation) {
-            url = uri.toString() + "/nxpath/default" + path + "@current_task?";
-        } else if (command == EcmViews.remotePublishing) {
-            url = uri.toString() + "/nxpath/default" + path + "@remote_publishing?";
-        } else if (command == EcmViews.validateRemotePublishing) {
-            url = uri.toString() + "/nxpath/default" + path + "@validate_remote_publishing?";
-        } else if (command == EcmViews.globalAdministration) {
-            url = uri.toString() + "/nxadmin/default@view_admin?";
-        } else if (command == EcmViews.gotoMediaLibrary) {
-            Document mediaLibrary;
-            try {
-                String baseDomainPath = "/".concat(path.split("/")[1]);
-                mediaLibrary = (Document) this.executeNuxeoCommand(cmsCtx, (new DocumentGetMediaLibraryCommand(baseDomainPath)));
-            } catch (Exception e) {
-                throw new CMSException(e);
-            }
-            if (mediaLibrary != null) {
-                url = uri.toString() + "/nxpath/default" + mediaLibrary.getPath() + "@view_documents?";
-            } else {
-                url = "";
-            }
-        } else if (EcmViews.RELOAD.equals(command)) {
-            url = uri.toString() + "/nxpath/default@refresh_principal";
-        }
-
-        // params are used with fancyboxes
-        if (!EcmViews.gotoMediaLibrary.equals(command) && !EcmViews.RELOAD.equals(command)) {
-            PortalControllerContext portalControllerContext =  cmsCtx.getPortalControllerContext();
-            String portalUrl = this.getPortalUrlFactory().getBasePortalUrl(portalControllerContext);
-            requestParameters.put("fromUrl", portalUrl);
-
-            if ((command == EcmViews.editPage) || (command == EcmViews.editDocument)) {
-                // If in web mode, we pass portal web URL to to editPage
-                Portal portal = PortalObjectUtils.getPortal(portalControllerContext);
-                if (PortalObjectUtils.isSpaceSite(portal)) {
-
-                    Document currentDoc = (Document) cmsCtx.getDoc();
-                    if (currentDoc != null) {
-                        String webId = (String) currentDoc.getProperties().get(DocumentsMetadataImpl.WEB_ID_PROPERTY);
-
-                        String webPath = this.getPortalUrlFactory().getCMSUrl(portalControllerContext, null,
-                                IWebIdService.CMS_PATH_PREFIX.concat("/").concat(webId), null, null, cmsCtx.getDisplayContext(), cmsCtx.getHideMetaDatas(),
-                                null, cmsCtx.getDisplayLiveVersion(), null);
-                        if (StringUtils.isNotBlank(webPath)) {
-                            webPath = StringUtils.substringBeforeLast(webPath, "/").concat("/");
-                        }
-
-                        requestParameters.put("portalWebPath", webPath);
-                    }
-                }
-            }
-
-            for (Map.Entry<String, String> param : requestParameters.entrySet()) {
-                url = url.concat(param.getKey()).concat("=").concat(param.getValue()).concat("&");
-            }
-        }
-
-        return url;
-    }
-
-    @Override
     public void moveFragment(CMSServiceCtx cmsCtx, String pagePath, String fromRegion, Integer fromPos, String toRegion, Integer toPos, String refUri)
             throws CMSException {
 
@@ -2648,32 +2544,6 @@ public class CMSService implements ICMSService {
     }
 
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void executeEcmCommand(CMSServiceCtx cmsCtx, EcmCommand command, String cmsPath) throws CMSException {
-
-        cmsCtx.setDisplayLiveVersion("1");
-
-        CMSItem cmsItem = this.getContent(cmsCtx, cmsPath);
-        Document doc = (Document) cmsItem.getNativeItem();
-
-        try {
-
-            this.executeNuxeoCommand(cmsCtx, new NuxeoCommandDelegate(command, doc));
-
-            // On force le rechargement du cache de la page
-            String refreshCmsPath = PortalObjectUtils.getRedirectionPath(cmsCtx.getPortalControllerContext());
-            cmsCtx.setDisplayLiveVersion("0");
-            cmsCtx.setForceReload(true);
-            this.getContent(cmsCtx, refreshCmsPath);
-            cmsCtx.setForceReload(false);
-
-        } catch (Exception e) {
-            throw new CMSException(e);
-        }
-    }
 
     /**
      * {@inheritDoc}
