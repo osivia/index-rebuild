@@ -39,6 +39,7 @@ import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.cache.services.CacheInfo;
 import org.osivia.portal.api.cache.services.ICacheService;
 import org.osivia.portal.api.cache.services.IServiceInvoker;
+import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.api.status.IStatusService;
 import org.osivia.portal.api.status.UnavailableServer;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
@@ -70,6 +71,11 @@ public class NuxeoCommandService implements INuxeoCommandService {
 
 	// Thread
 	ExecutorService executor;
+	
+	IStatusService serviceStatut = null;
+	IProfilManager profilManager = null;
+	IPortalUrlFactory portalUrlFactory = null;
+	ICacheService serviceCache = null;
 
 	private final Set<AsyncCommandBean> asyncCommands = Collections.synchronizedSet(new HashSet<AsyncCommandBean>());
 
@@ -86,26 +92,28 @@ public class NuxeoCommandService implements INuxeoCommandService {
 
 	@Override
     public IPortalUrlFactory getPortalUrlFactory(NuxeoCommandContext ctx ) throws Exception {
-		IPortalUrlFactory portalUrlFactory = (IPortalUrlFactory) ctx.getPortletContext().getAttribute("UrlService");
+	    if( portalUrlFactory == null)
+		 portalUrlFactory =  Locator.getService(IPortalUrlFactory.class);
 		return portalUrlFactory;
 	}
 
 
 	@Override
     public IProfilManager getProfilManager( NuxeoCommandContext ctx ) throws Exception {
-
-        IProfilManager profilManager = (IProfilManager) ctx.getPortletContext().getAttribute(Constants.PROFILE_SERVICE_NAME);
+	    if( profilManager == null)
+	        profilManager =  Locator.getService(IProfilManager.class);
 		return profilManager;
 	}
 
 	public IStatusService getServiceStatut(NuxeoCommandContext ctx ) throws Exception {
-		IStatusService serviceStatut = (IStatusService) ctx.getPortletContext().getAttribute("StatusService");
+	    if( serviceStatut == null)
+	         serviceStatut = Locator.getService(IStatusService.class);
 		return serviceStatut;
 	}
 
 	public ICacheService getServiceCache(NuxeoCommandContext ctx ) throws Exception {
-
-		ICacheService serviceCache = (ICacheService) ctx.getPortletContext().getAttribute("CacheService");
+	    if( serviceCache == null)
+	        serviceCache = Locator.getService(ICacheService.class);
 		return serviceCache;
 	}
 

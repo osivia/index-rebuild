@@ -383,6 +383,13 @@ public interface INuxeoCustomizer extends HttpSessionListener {
      * @return the resource context path
      */
     public String getResourceContextPath() ;
+
+    /**
+     * Gets the CMS portlet context.
+     *
+     * @return the portlet context
+     */
+    PortletContext getPortletContext();
     
 
 }

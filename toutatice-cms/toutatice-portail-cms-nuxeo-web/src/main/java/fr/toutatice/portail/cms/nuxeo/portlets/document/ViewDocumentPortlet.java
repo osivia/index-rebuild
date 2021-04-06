@@ -583,8 +583,6 @@ public class ViewDocumentPortlet extends CMSPortlet {
             PortalControllerContext portalControllerContext = new PortalControllerContext(this.getPortletContext(), request, response);
             
             
-            Portal portal = PortalObjectUtils.getPortal(portalControllerContext);
-            
             // Nuxeo controller
             NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
             // CMS context

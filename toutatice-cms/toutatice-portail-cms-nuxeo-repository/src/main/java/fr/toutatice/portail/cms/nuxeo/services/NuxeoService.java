@@ -19,6 +19,7 @@ import java.net.URI;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.portlet.PortletContext;
 import javax.servlet.http.HttpSessionEvent;
 
@@ -112,6 +113,7 @@ public class NuxeoService  implements NuxeoServiceMBean, Serializable {
      * {@inheritDoc}
      */
     @Override
+    @PreDestroy
     public void stopService() throws Exception {
         logger.info("Gestionnaire nuxeo arrete");
     }

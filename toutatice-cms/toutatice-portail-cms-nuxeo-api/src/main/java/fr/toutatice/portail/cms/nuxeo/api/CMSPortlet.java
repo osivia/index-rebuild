@@ -166,13 +166,13 @@ public abstract class CMSPortlet extends PortalGenericPortlet {
     public void init(PortletConfig config) throws PortletException {
         super.init(config);
 
-        /*
+
         try {
             new NuxeoController(this.getPortletContext()).startNuxeoService();
         } catch (Exception e) {
             throw new PortletException(e);
         }
-        */
+
     }
 
 
@@ -183,14 +183,14 @@ public abstract class CMSPortlet extends PortalGenericPortlet {
      */
     @Override
     public void destroy() {
-        /*
+
         try {
             // Destruction des threads éventuels
             new NuxeoController(this.getPortletContext()).stopNuxeoService();
         } catch (Exception e) {
             this.logger.error(e);
         }
-*/
+
         super.destroy();
     }
 

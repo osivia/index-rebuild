@@ -1720,14 +1720,20 @@ public class NuxeoController {
      * @throws Exception the exception
      */
     public Object executeNuxeoCommand(final INuxeoCommand command) {
-        /*
+
         // Nuxeo command context
         NuxeoCommandContext commandContext;
+        PortalControllerContext portalCtx;
         if (this.request != null) {
-            commandContext = new NuxeoCommandContext(this.portletCtx, this.request);
+            portalCtx = new PortalControllerContext(this.portletCtx, this.request, this.response);
         } else if (this.servletRequest != null) {
-            commandContext = new NuxeoCommandContext(this.portletCtx, this.servletRequest);
-        } else {
+            portalCtx = new PortalControllerContext(servletRequest);
+        } else
+            portalCtx = null;
+        
+        if( portalCtx != null)
+            commandContext = new NuxeoCommandContext(this.portletCtx, portalCtx);
+        else {
             commandContext = new NuxeoCommandContext(this.portletCtx);
         }
 
@@ -1740,27 +1746,10 @@ public class NuxeoController {
         commandContext.setSatellite(this.satellite);
 
 
-        try {
-            return this.getNuxeoCommandService().executeCommand(commandContext, new INuxeoServiceCommand() {
-
-                @Override
-                public String getId() {
-                    return command.getId();
-                }
-
-                @Override
-                public Object execute(Session nuxeoSession) throws Exception {
-                    return command.execute(nuxeoSession);
-                }
-            });
-        } catch (Exception e) {
-            throw this.wrapNuxeoException(e);
-        }
-        */
         
         try {
              CMSSession cmsSession =  Locator.getService(CMSService.class).getCMSSession(getCMSContext());
-             return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx", command))).getResult();
+             return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx",commandContext, command))).getResult();
         } catch (Exception e) {
             throw this.wrapNuxeoException(e);
         }     

@@ -88,6 +88,7 @@ import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.urls.Link;
 import org.osivia.portal.api.urls.PortalUrlType;
 import org.osivia.portal.core.cms.*;
+import org.osivia.portal.core.cms.spi.NuxeoRepository;
 import org.osivia.portal.core.cms.spi.NuxeoRequest;
 import org.osivia.portal.core.cms.spi.NuxeoResult;
 import org.osivia.portal.core.constants.InternalConstants;
@@ -354,6 +355,11 @@ public class CMSService implements ICMSService {
     }
 
 
+    
+    
+    
+    
+    
     public Object executeNuxeoCommand(CMSServiceCtx cmsCtx, final INuxeoCommand command) throws Exception {
 
         NuxeoCommandContext commandCtx = null;
@@ -421,23 +427,9 @@ public class CMSService implements ICMSService {
 
         commandCtx.setSatellite(cmsCtx.getSatellite());
 
-
-
-        
-
-        CMSController ctrl = new CMSController(cmsCtx.getPortalControllerContext());
-
-        
-        if ("superuser_context".equals(scope)) {
-            ctrl.setSuperUserMode(true);
-
-        }
-
-        CMSSession cmsSession =  Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
-        return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx", command))).getResult();
-        
-/*        return this.getNuxeoCommandService().executeCommand(commandCtx, new INuxeoServiceCommand() {
-
+     
+        return this.getNuxeoCommandService().executeCommand(commandCtx, new INuxeoServiceCommand() {
+            
             @Override
             public String getId() {
                 return command.getId();
@@ -448,7 +440,14 @@ public class CMSService implements ICMSService {
                 return command.execute(nuxeoSession);
             }
         });
-*/         
+        
+        
+
+        
+   
+        
+        
+   
     }
    
 
@@ -503,23 +502,29 @@ public class CMSService implements ICMSService {
                     haveToGetLive = true;
                 }
 
-                cmsContext.setScope("superuser_context");
-
-                // Nuxeo command
-                INuxeoCommand nuxeoCommand;
-                if (haveToGetLive) {
-                    nuxeoCommand = new DocumentFetchLiveCommand(path, "Read");
+                
+                Document document;
+                
+                if (haveToGetLive && Satellite.MAIN.equals(satellite)) {
+                    document = fetchContentByConnect(cmsContext, path);
                 } else {
-                    nuxeoCommand = new DocumentFetchPublishedCommand(path);
-                }
 
-                // Document
-                Document document = (Document) this.executeNuxeoCommand(cmsContext, nuxeoCommand);
+                    cmsContext.setScope("superuser_context");
+
+
+                    // Nuxeo command
+                    INuxeoCommand nuxeoCommand;
+                    if (haveToGetLive) {
+                        nuxeoCommand = new DocumentFetchLiveCommand(path, "Read");
+                    } else {
+                        nuxeoCommand = new DocumentFetchPublishedCommand(path);
+                    }
+
+                    // Document
+                    document = (Document) this.executeNuxeoCommand(cmsContext, nuxeoCommand);
+                }
                 // CMS item
                 cmsItem = this.createItem(cmsContext, path, document.getTitle(), document, publicationInfos);
-                
- 
-           
                 
                 
             } finally {
@@ -531,6 +536,31 @@ public class CMSService implements ICMSService {
 
         return cmsItem;
     }
+    
+    
+    /**
+     * Fetch document by osivia connect connect.
+     *
+     * @param cmsContext the cms context
+     * @param path the path
+     * @return the document
+     * @throws Exception the exception
+     */
+    private Document fetchContentByConnect(CMSServiceCtx cmsContext, String path)  throws Exception  {
+        
+        CMSController ctrl = new CMSController(cmsContext.getPortalControllerContext());
+        
+        // Get Id
+        NuxeoRepository nuxeoRepository = (NuxeoRepository) (Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getUserRepository(ctrl.getCMSContext(), "nx"));
+         String internalId = nuxeoRepository.getInternalId(path);
+         
+         // Fetch document
+        CMSSession session = Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
+         org.osivia.portal.api.cms.model.Document document = session.getDocument(new UniversalID("nx", internalId));
+        return (Document) document.getNativeItem();
+     }
+    
+    
 
 
     /**
@@ -1206,7 +1236,11 @@ public class CMSService implements ICMSService {
                         }
                 }
 
-                pubInfos = (CMSPublicationInfos) this.executeNuxeoCommand(ctx, (new PublishInfosCommand(ctx.getSatellite(), path)));
+                if( Satellite.MAIN.equals(ctx.getSatellite()))   {
+                    pubInfos = getPublicationInfosByConnect(ctx, path);
+                }   else    {
+                     pubInfos = (CMSPublicationInfos) this.executeNuxeoCommand(ctx, (new PublishInfosCommand(ctx.getSatellite(), path)));
+                }
 
                 if (pubInfos != null) {
                     List<Integer> errors = pubInfos.getErrorCodes();
@@ -1222,6 +1256,7 @@ public class CMSService implements ICMSService {
                     }
 
                 }
+                
             } finally {
                 ctx.setScope(savedScope);
                 ctx.setSatellite(savedSatellite);
@@ -1236,6 +1271,29 @@ public class CMSService implements ICMSService {
 
         return pubInfos;
     }
+    
+    
+    /**
+     * Fetch document by osivia connect connect.
+     *
+     * @param cmsContext the cms context
+     * @param path the path
+     * @return the document
+     * @throws Exception the exception
+     */
+    private CMSPublicationInfos getPublicationInfosByConnect(CMSServiceCtx cmsContext, String path)  throws Exception  {
+
+        CMSController ctrl = new CMSController(cmsContext.getPortalControllerContext());
+        
+        // Get content ID
+        NuxeoRepository nuxeoRepository = (NuxeoRepository) (Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getUserRepository(ctrl.getCMSContext(), "nx"));
+        String internalId = nuxeoRepository.getInternalId(path);
+         
+         // Fetch user datas
+        CMSSession session = Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
+        CMSPublicationInfos pubInfos = (CMSPublicationInfos) session.getPersonnalization(new UniversalID("nx", internalId));
+        return pubInfos;
+     }
 
 
     /**

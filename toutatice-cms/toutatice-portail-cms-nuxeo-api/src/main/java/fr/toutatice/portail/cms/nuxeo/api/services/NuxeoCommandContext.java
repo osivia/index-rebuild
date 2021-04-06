@@ -289,9 +289,7 @@ public class NuxeoCommandContext {
 	public NuxeoCommandContext(PortletContext ctx, PortalControllerContext portalCtx) {
 		super();
 		this.ctx = ctx;
-		if( portalCtx.getRequest() != null)
-		    this.request = portalCtx.getRequest();
-		else if( portalCtx.getHttpServletRequest() != null)
+        if( portalCtx.getHttpServletRequest() != null)
 		    this.request = portalCtx.getHttpServletRequest();
 	}
 

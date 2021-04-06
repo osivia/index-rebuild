@@ -2102,6 +2102,7 @@ public class DefaultCMSCustomizer implements INuxeoCustomizer {
      *
      * @return the portletContext
      */
+    @Override
     public PortletContext getPortletContext() {
         return portletContext;
     }
