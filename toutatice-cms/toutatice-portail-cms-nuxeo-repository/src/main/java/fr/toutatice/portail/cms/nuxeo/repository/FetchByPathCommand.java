@@ -31,7 +31,7 @@ public class FetchByPathCommand implements INuxeoCommand {
         clause.append("'");
 
         // Nuxeo query filter context
-        NuxeoQueryFilterContext filterContext = new NuxeoQueryFilterContext(NuxeoQueryFilterContext.STATE_DEFAULT);
+        NuxeoQueryFilterContext filterContext = new NuxeoQueryFilterContext(NuxeoQueryFilterContext.STATE_LIVE_N_PUBLISHED);
 
         // Filtered clause
         String filteredClause = NuxeoQueryFilter.addPublicationFilter(filterContext, clause.toString());

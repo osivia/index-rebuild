@@ -12,9 +12,12 @@ import org.osivia.portal.api.cms.service.GetChildrenRequest;
 import org.osivia.portal.api.cms.service.Request;
 import org.osivia.portal.api.cms.service.Result;
 import org.osivia.portal.api.locator.Locator;
+import org.osivia.portal.core.cms.CMSPublicationInfos;
+import org.osivia.portal.core.cms.Satellite;
 import org.osivia.portal.core.cms.spi.NuxeoRepository;
 import org.osivia.portal.core.cms.spi.NuxeoRequest;
-
+import org.osivia.portal.core.cms.spi.NuxeoResult;
+import org.osivia.portal.core.web.IWebIdService;
 
 import fr.toutatice.portail.cms.nuxeo.api.services.INuxeoService;
 import fr.toutatice.portail.cms.nuxeo.api.services.NuxeoCommandContext;
@@ -90,7 +93,6 @@ public class NuxeoRepositoryImpl extends BaseUserRepository implements NuxeoRepo
         // Get result by cache pattern
         // TODO : update if the document is modified        
         org.nuxeo.ecm.automation.client.model.Document document =  (org.nuxeo.ecm.automation.client.model.Document) ((NuxeoUserStorage)super.getUserStorage()).executeCommand(createCommandContext(), new FetchByPathCommand(path)).getResult();
-      
         return (String) document.getString("ttc:webid");
     }
 
@@ -99,9 +101,16 @@ public class NuxeoRepositoryImpl extends BaseUserRepository implements NuxeoRepo
 
         // Get result by cache pattern
         // TODO : update if the document is modified
+              
+        CMSPublicationInfos res = (CMSPublicationInfos) ((NuxeoResult) ((NuxeoUserStorage)super.getUserStorage()).executeCommand(createCommandContext(), new PublishInfosCommand(IWebIdService.FETCH_PATH_PREFIX + internalId))).getResult();
+        res.setSatellite(Satellite.MAIN);
+
+        // TODO : dans le cas d'un remote proxy coté Nuxeo le fetch combiné [WEB_ID_DOC]_c_[WEB_ID_SECTION]ne donne rien
+        // le ecm:mixinType = 'isRemoteProxy' du CMSPublicationInfos ne renvoie rien
         
-        org.nuxeo.ecm.automation.client.model.Document document =  (org.nuxeo.ecm.automation.client.model.Document) ((NuxeoUserStorage)super.getUserStorage()).executeCommand(createCommandContext(), new FetchByWebIdCommand(internalId)).getResult();
-        return  document.getPath();
+        return res.getDocumentPath();
+
+        
     }
     
 

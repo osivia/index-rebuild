@@ -32,6 +32,7 @@ import org.osivia.portal.api.cache.services.CacheInfo;
 import org.osivia.portal.api.cms.CMSContext;
 import org.osivia.portal.api.cms.CMSController;
 import org.osivia.portal.api.cms.DocumentType;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.cms.service.CMSService;
 import org.osivia.portal.api.cms.service.CMSSession;
 import org.osivia.portal.api.context.PortalControllerContext;
@@ -1184,6 +1185,16 @@ public class NuxeoController {
             computedPath = "";
         } else {
             computedPath = portletPath;
+            
+            if( computedPath.contains(":")) {
+                try {
+                    UniversalID id = new UniversalID(portletPath);
+                    NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                    computedPath = repository.getPath(id.getInternalID());
+               } catch (Exception e) {
+                   throw this.wrapNuxeoException(e);
+               }  
+            }
 
             if (computedPath.contains("${basePath}")) {
                 String path = this.getBasePath();

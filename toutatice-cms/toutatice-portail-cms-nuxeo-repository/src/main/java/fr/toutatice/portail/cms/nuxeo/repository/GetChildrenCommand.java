@@ -31,7 +31,7 @@ public class GetChildrenCommand implements INuxeoCommand {
         clause.append("' ORDER BY ecm:pos ASC");
 
         // Nuxeo query filter context
-        NuxeoQueryFilterContext filterContext = new NuxeoQueryFilterContext(NuxeoQueryFilterContext.STATE_DEFAULT);
+        NuxeoQueryFilterContext filterContext = new NuxeoQueryFilterContext(NuxeoQueryFilterContext.STATE_LIVE);
 
         // Filtered clause
         String filteredClause = NuxeoQueryFilter.addPublicationFilter(filterContext, clause.toString());

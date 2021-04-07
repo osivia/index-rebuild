@@ -28,7 +28,7 @@ services:
       - NUXEO_ES_NODES=es:9300
     ports:
       - 8081:8081
-      - 8788:8000
+      - 8788:8788
     volumes:
       - nuxeo-data:/data
     depends_on:
