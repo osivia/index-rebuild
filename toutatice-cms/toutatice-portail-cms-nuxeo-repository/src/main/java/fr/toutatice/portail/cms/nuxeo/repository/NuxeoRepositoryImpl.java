@@ -2,6 +2,7 @@ package fr.toutatice.portail.cms.nuxeo.repository;
 
 import javax.portlet.PortletContext;
 
+import org.apache.commons.lang3.StringUtils;
 import org.nuxeo.ecm.automation.client.model.Documents;
 import org.osivia.portal.api.cache.services.CacheInfo;
 import org.osivia.portal.api.cms.exception.CMSException;
@@ -26,6 +27,9 @@ public class NuxeoRepositoryImpl extends BaseUserRepository implements NuxeoRepo
 
     
     private  INuxeoService nuxeoService;
+    
+    /** Remote proxy webid marker. */
+    public static final String RPXY_WID_MARKER = "_c_";
     
     
     private INuxeoService getNuxeoService()   {
@@ -101,14 +105,27 @@ public class NuxeoRepositoryImpl extends BaseUserRepository implements NuxeoRepo
 
         // Get result by cache pattern
         // TODO : update if the document is modified
-              
-        CMSPublicationInfos res = (CMSPublicationInfos) ((NuxeoResult) ((NuxeoUserStorage)super.getUserStorage()).executeCommand(createCommandContext(), new PublishInfosCommand(IWebIdService.FETCH_PATH_PREFIX + internalId))).getResult();
-        res.setSatellite(Satellite.MAIN);
-
-        // TODO : dans le cas d'un remote proxy coté Nuxeo le fetch combiné [WEB_ID_DOC]_c_[WEB_ID_SECTION]ne donne rien
-        // le ecm:mixinType = 'isRemoteProxy' du CMSPublicationInfos ne renvoie rien
         
-        return res.getDocumentPath();
+        if( !internalId.contains(RPXY_WID_MARKER))  {
+            CMSPublicationInfos res = (CMSPublicationInfos) ((NuxeoResult) ((NuxeoUserStorage)super.getUserStorage()).executeCommand(createCommandContext(), new PublishInfosCommand(IWebIdService.FETCH_PATH_PREFIX + internalId))).getResult();
+            return res.getDocumentPath();
+        }   else    {
+            // TODO : dans le cas d'un remote proxy coté Nuxeo le fetch combiné [WEB_ID_DOC]_c_[WEB_ID_SECTION]ne donne rien
+            // coté nuxeo le : le ecm:mixinType = 'isRemoteProxy' du CMSPublicationInfos ne renvoie rien
+            // Apparemment, il est uniquement mis à jour sur ToutaticeCoreProxyWithWorkflowFactory (publication par workflow)
+            
+            String[] webIds = StringUtils.splitByWholeSeparator(internalId, RPXY_WID_MARKER);
+            // Remote proxy webid is same as live
+            String liveWId = webIds[0];
+            // Webid of section where live is published (section is parent of remote proxy)
+            String sectionWId = webIds[1];            
+            org.nuxeo.ecm.automation.client.model.Document document =  (org.nuxeo.ecm.automation.client.model.Document) ((NuxeoUserStorage)super.getUserStorage()).executeCommand(createCommandContext(), new FetchByWebIdCommand(liveWId)).getResult();
+            return document.getPath();
+        }
+
+
+        
+
 
         
     }

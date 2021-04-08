@@ -32,7 +32,7 @@ public class FetchByWebIdCommand implements INuxeoCommand {
         clause.append("'");
 
         // Nuxeo query filter context
-        NuxeoQueryFilterContext filterContext = new NuxeoQueryFilterContext(NuxeoQueryFilterContext.STATE_LIVE);
+        NuxeoQueryFilterContext filterContext = new NuxeoQueryFilterContext(NuxeoQueryFilterContext.STATE_DEFAULT);
 
         // Filtered clause
         String filteredClause = NuxeoQueryFilter.addPublicationFilter(filterContext, clause.toString());
