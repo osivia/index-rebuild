@@ -93,9 +93,15 @@ public class NuxeoUserStorage extends BaseUserStorage {
     public RepositoryDocument reloadDocument(String internalID) throws CMSException {
        try {
               
-            String path = ((NuxeoRepository)(getUserRepository())).getPath(internalID);
-            
-            Document nxDocument =  (Document) ((NuxeoResult)executeCommand(createCommandContext(true), new DocumentFetchLiveCommand(path,"Read"))).getResult();
+           CMSPublicationInfos res = null;
+           
+           res = (CMSPublicationInfos) ((NuxeoResult)executeCommand(createCommandContext( true), new PublishInfosCommand(IWebIdService.FETCH_PATH_PREFIX + internalID))).getResult();
+
+           Document nxDocument;
+           if( !res.isPublished())
+               nxDocument =  (Document) ((NuxeoResult)executeCommand(createCommandContext(true), new DocumentFetchLiveCommand(res.getDocumentPath(),"Read"))).getResult();
+           else
+               nxDocument =  (Document) ((NuxeoResult)executeCommand(createCommandContext(true), new DocumentFetchPublishedCommand(res.getDocumentPath()))).getResult();
             
             Map<String, Object> properties = new HashMap<String, Object>();
             for (String key : nxDocument.getProperties().getKeys()) {
