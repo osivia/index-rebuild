@@ -15,7 +15,9 @@
             <unpack>false</unpack>
             <scope>runtime</scope>
             <includes>
-                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-web</include>              
+                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-web</include>
+                <!-- directory -->
+         		<include>fr.index.cloud.ens.portal.directory:index-cloud-ens-portal-directory-packaging</include>                              
                 <!-- index education -->
                 <include>${project.groupId}:index-cloud-ens-portal-charte:war:${project.version}</include> 
                 <include>${project.groupId}:index-cloud-ens-portal-test:war:${project.version}</include>                
@@ -39,6 +41,8 @@
                 <include>net.sf.ezmorph:ezmorph</include>
                 <include>net.sf.json-lib:json-lib</include>
                 <include>commons-beanutils:commons-beanutils</include>
+                <include>org.osivia.services.directory.socle:osivia-services-directory-socle-interfaces</include>
+                
  
             </includes> 
         </dependencySet>

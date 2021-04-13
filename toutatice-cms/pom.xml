@@ -57,7 +57,22 @@
                 <artifactId>jackson-mapper-asl</artifactId>
                 <version>${jackson.version}</version>
             </dependency>
-             <dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpclient</artifactId>
+                <version>${apache.httpcomponents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.httpcomponents</groupId>
+                <artifactId>httpcore</artifactId>
+                <version>${apache.httpcomponents.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>javax.mail</groupId>
+                <artifactId>mail</artifactId>
+                <version>1.4</version>
+            </dependency>		
+            <dependency>
                 <groupId>commons-lang</groupId>
                 <artifactId>commons-lang</artifactId>
                 <version>${commons-lang.version}</version>
@@ -104,8 +119,14 @@
 		<module>toutatice-portail-cms-nuxeo-automation-client</module>
 		<module>toutatice-portail-cms-nuxeo-repository</module>
 		<module>toutatice-portail-cms-nuxeo-web</module>
+		<module>toutatice-portail-cms-nuxeo-taglib</module>
+		<module>toutatice-portail-cms-nuxeo-dependencies</module>
+        <module>toutatice-portail-cms-nuxeo-dependencies-test</module>
+<!--
         <module>toutatice-portail-cms-nuxeo-taglib</module>
-<!--        
+        <module>toutatice-portail-cms-nuxeo-web</module>
+        <module>toutatice-portail-cms-nuxeo-sar</module>
+        <module>toutatice-portail-cms-nuxeo-automation-client</module>
         <module>toutatice-portail-cms-nuxeo-dependencies</module>
         <module>toutatice-portail-cms-nuxeo-dependencies-test</module>
         <module>toutatice-portail-cms-nuxeo-test-portlets</module>

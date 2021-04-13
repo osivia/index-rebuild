@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+	<parent>
+    	<groupId>fr.index.cloud.ens.portal.directory</groupId>
+    	<artifactId>index-cloud-ens-portal-directory-socle-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>index-cloud-ens-portal-directory-implementations</artifactId>
+    <packaging>jar</packaging>
+    
+    <name>Cloud enseignant - Directory implementations</name>
+    
+    
+    <dependencies>
+    
+
+        <dependency>
+            <groupId>org.osivia.services.directory.socle</groupId>
+            <artifactId>osivia-services-directory-socle-implementations</artifactId>
+        </dependency>
+
+    </dependencies>
+
+</project> 

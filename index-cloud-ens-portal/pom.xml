@@ -23,6 +23,9 @@
         <toutatice.cms.version>5.0-SNAPSHOT</toutatice.cms.version>		
          <!-- Spring framework LDAP -->
         <springframework-ldap.version>2.1.0.RELEASE</springframework-ldap.version>
+         <!--Directory -->
+        <directory.version>5.0-SNAPSHOT</directory.version>
+
     </properties>
 
 
@@ -68,6 +71,7 @@
     <modules>
         <module>index-cloud-ens-portal-distribution</module>
         <module>index-cloud-ens-portal-charte</module>
+        <module>index-cloud-ens-portal-directory</module>
 		<module>index-cloud-ens-portal-test</module>
     </modules>
 

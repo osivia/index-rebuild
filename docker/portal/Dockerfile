@@ -37,6 +37,8 @@ RUN cd / \
 #Logs
 COPY catalina.properties /usr/local/tomcat/conf
 COPY portal.properties /
+COPY environnement_portail.properties /
+COPY ldap-portlets.properties /
 # Entrypoint
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh

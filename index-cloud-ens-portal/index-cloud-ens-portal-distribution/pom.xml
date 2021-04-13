@@ -67,7 +67,7 @@
             <version>2.2</version>
 			<type>jar</type>
         </dependency>
-		
+	
 		
 		<!-- Nuxeo automation -->
 		<dependency>
@@ -100,8 +100,24 @@
             <groupId>commons-beanutils</groupId>
             <artifactId>commons-beanutils</artifactId>
             <version>1.9.2</version>
-        </dependency>		 
+        </dependency>		
+		<!--  Directory -->
+	     <dependency>
+	         <groupId>fr.index.cloud.ens.portal.directory</groupId>
+	         <artifactId>index-cloud-ens-portal-directory-packaging</artifactId>
+	         <version>${project.version}</version>
+	         <type>war</type>
+	     </dependency>  
+	     <dependency>
+	         <groupId>org.osivia.services.directory.socle</groupId>
+	         <artifactId>osivia-services-directory-socle-interfaces</artifactId>
+	         <version>${directory.version}</version>
+	     </dependency>     	        
+   
 	</dependencies>
+	
+
+     
 
 
 	<profiles>
