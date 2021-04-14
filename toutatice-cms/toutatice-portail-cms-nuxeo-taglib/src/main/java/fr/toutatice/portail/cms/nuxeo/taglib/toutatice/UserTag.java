@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import javax.servlet.jsp.JspException;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.dom4j.Element;
 import org.dom4j.io.HTMLWriter;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;

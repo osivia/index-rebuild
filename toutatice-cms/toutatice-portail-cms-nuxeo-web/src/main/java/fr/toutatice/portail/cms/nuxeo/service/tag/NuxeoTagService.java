@@ -67,8 +67,8 @@ public class NuxeoTagService implements INuxeoTagService {
         // WebId service
         this.webIdService = Locator.findMBean(IWebIdService.class, IWebIdService.MBEAN_NAME);
         // Person service
-        // TODO REFONTE
-        //this.personService = DirServiceFactory.getService(PersonService.class);
+
+        this.personService = DirServiceFactory.getService(PersonService.class);
         // Internationalization bundle factory
         IInternationalizationService internationalizationService = Locator.findMBean(IInternationalizationService.class,
                 IInternationalizationService.MBEAN_NAME);

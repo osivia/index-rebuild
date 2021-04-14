@@ -87,19 +87,17 @@ public class ContentController implements PortletContextAware {
 
                     try {
 
-                        System.out.println("get " + doc.getPath());
+                        logger.debug("get " + doc.getPath());
                         UniversalID id = new UniversalID("nx", doc.getProperties().getString("ttc:webid"));
 
                         Document connectDoc = session.getDocument(id);
 
-                        System.out.println("get pubInfos" + doc.getPath());
+                        logger.debug("get pubInfos" + doc.getPath());
                         Personnalization pubInfos = session.getPersonnalization(id);
 
-                        System.out.println("ok " + connectDoc.getTitle());
+                        logger.debug("ok " + connectDoc.getTitle());
 
-                        if (doc.getTitle().equals("test")) {
-                            System.out.println("test");
-                        }
+
                     } catch (Exception e) {
                         System.out.println("*** " + e.getMessage());
                     }
