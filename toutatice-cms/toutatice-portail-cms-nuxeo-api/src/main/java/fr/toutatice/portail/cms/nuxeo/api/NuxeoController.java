@@ -322,7 +322,19 @@ public class NuxeoController {
             this.navigationScope = window.getPageProperty("osivia.cms.navigationScope");
 
 
-            this.spacePath = window.getPageProperty("osivia.cms.basePath");
+            
+            String spaceId = window.getPageProperty("osivia.spaceId");
+            if( spaceId != null)
+            try {
+                UniversalID id = new UniversalID(spaceId);
+                NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                this.basePath = repository.getPath(id.getInternalID());
+                this.spacePath = repository.getPath(id.getInternalID());
+           } catch (Exception e) {
+               throw this.wrapNuxeoException(e);
+           }  
+            
+
             CMSItem publishSpaceConfig = null;
             if (this.spacePath != null) {
                 publishSpaceConfig = getCMSService().getSpaceConfig(this.getCMSCtx(), this.spacePath);
@@ -368,16 +380,7 @@ public class NuxeoController {
 
 
             /* computes root path */
-/*
-            Window jbpWindow = (Window) request.getAttribute("osivia.window");
-            Page page = (Page) jbpWindow.getParent();
-            Portal portal = page.getPortal();
-            if (InternalConstants.PORTAL_TYPE_SPACE.equals(portal.getDeclaredProperty("osivia.portal.portalType"))) {
-                this.menuRootPath = portal.getDefaultPage().getDeclaredProperty("osivia.cms.basePath");
-            }
-*/
 
-            this.basePath = window.getPageProperty("osivia.cms.basePath");
 
             if (this.basePath != null) {
                 String[] parts = this.basePath.split("/");
@@ -386,14 +389,27 @@ public class NuxeoController {
                 }
             }
 
+            String navigationId = window.getPageProperty("osivia.navigationId");
+            if( navigationId != null)
+            try {
+                UniversalID id = new UniversalID(navigationId);
+                NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                this.navigationPath = repository.getPath(id.getInternalID());
+                this.itemNavigationPath = this.navigationPath;
+           } catch (Exception e) {
+               throw this.wrapNuxeoException(e);
+           }  
 
-            this.navigationPath = request.getParameter("osivia.cms.path");
 
-            if ((this.spacePath != null) && (request.getParameter("osivia.cms.itemRelPath") != null)) {
-                this.itemNavigationPath = this.spacePath + request.getParameter("osivia.cms.itemRelPath");
-            }
-
-            this.contentPath = request.getParameter("osivia.cms.contentPath");
+            String contentId = window.getPageProperty("osivia.contentId");
+            if( contentId != null)
+            try {
+                UniversalID id = new UniversalID(contentId);
+                NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                this.contentPath = repository.getPath(id.getInternalID());
+           } catch (Exception e) {
+               throw this.wrapNuxeoException(e);
+           }  
 
 
             if (request instanceof ResourceRequest) {
@@ -1079,7 +1095,7 @@ public class NuxeoController {
      */
     public IPortalUrlFactory getPortalUrlFactory() {
         if (this.urlFactory == null) {
-            this.urlFactory = (IPortalUrlFactory) this.portletCtx.getAttribute("UrlService");
+            this.urlFactory = (IPortalUrlFactory) Locator.getService(IPortalUrlFactory.class);
         }
 
         return this.urlFactory;
@@ -1918,6 +1934,17 @@ public class NuxeoController {
                 return portletLink;
             }
 
+            
+            
+            
+            String url = this.getPortalUrlFactory().getViewContentUrl(getPortalCtx(), getCMSContext(), new UniversalID("nx",doc.getProperties().getString("ttc:webid")));
+
+
+            if (url != null) {
+
+                Link link = new Link(url, false);
+                return link;
+            }
 
             // Sinon on passe par le gestionnaire de cms pour recontextualiser
             /*

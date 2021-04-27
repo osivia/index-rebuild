@@ -165,7 +165,7 @@
         </portlet-info>
     </portlet>
 
-
+-->
     <portlet>
         <description>Portlet Nuxeo menu publication PIA</description>
         <portlet-name>toutatice-portail-cms-nuxeo-publishMenuPortlet</portlet-name>
@@ -193,7 +193,7 @@
         <supported-public-render-parameter>selectors</supported-public-render-parameter>
         <supported-public-render-parameter>dnd-update</supported-public-render-parameter>
     </portlet>
-
+<!-- 
 
     <portlet>
         <description>Portlet Nuxeo Files</description>

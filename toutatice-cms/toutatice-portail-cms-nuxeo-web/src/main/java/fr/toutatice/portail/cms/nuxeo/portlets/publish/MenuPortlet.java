@@ -48,6 +48,7 @@ import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
+import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.api.notifications.INotificationsService;
 import org.osivia.portal.api.notifications.NotificationsType;
 import org.osivia.portal.api.urls.Link;
@@ -126,12 +127,11 @@ public class MenuPortlet extends CMSPortlet {
         PortletContext portletContext = this.getPortletContext();
 
         // Bundle factory
-        IInternationalizationService internationalizationService = (IInternationalizationService) portletContext
-                .getAttribute(Constants.INTERNATIONALIZATION_SERVICE_NAME);
+        IInternationalizationService internationalizationService = (IInternationalizationService) Locator.getService(IInternationalizationService.class);
         this.bundleFactory = internationalizationService.getBundleFactory(this.getClass().getClassLoader());
 
         // Notification service
-        this.notificationsService = (INotificationsService) portletContext.getAttribute(Constants.NOTIFICATIONS_SERVICE_NAME);
+        this.notificationsService = (INotificationsService) Locator.getService(INotificationsService.class);
     }
 
 
