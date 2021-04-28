@@ -62,7 +62,7 @@
                      
     </portlet>
 
-
+-->
     <portlet>
         <description>Portlet Nuxeo list</description>
         <portlet-name>toutatice-portail-cms-nuxeo-viewListPortlet</portlet-name>
@@ -90,7 +90,7 @@
         <supported-public-render-parameter>selectors</supported-public-render-parameter>
         <supported-public-render-parameter>lastSelectors</supported-public-render-parameter>           
     </portlet>
-    
+ <!--    
     <portlet>
         <description>Portlet Nuxeo drafts list</description>
         <portlet-name>toutatice-portail-cms-nuxeo-viewDraftsListPortlet</portlet-name>

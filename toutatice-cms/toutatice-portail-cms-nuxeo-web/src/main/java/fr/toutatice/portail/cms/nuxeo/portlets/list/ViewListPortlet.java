@@ -151,15 +151,14 @@ public class ViewListPortlet extends ViewList {
         super.init(config);
 
         // Bundle factory
-        IInternationalizationService internationalizationService = Locator.findMBean(IInternationalizationService.class,
-                IInternationalizationService.MBEAN_NAME);
+        IInternationalizationService internationalizationService = Locator.getService(IInternationalizationService.class);
         this.bundleFactory = internationalizationService.getBundleFactory(this.getClass().getClassLoader());
 
         // Document DAO
         this.documentDAO = DocumentDAO.getInstance();
 
         // Portlet sequencing service
-        this.portletSequencingService = Locator.findMBean(IPortletSequencingService.class, IPortletSequencingService.MBEAN_NAME);
+        this.portletSequencingService = Locator.getService(IPortletSequencingService.class);
     }
 
 

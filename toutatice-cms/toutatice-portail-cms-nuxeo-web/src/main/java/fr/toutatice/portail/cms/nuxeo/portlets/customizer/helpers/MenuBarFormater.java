@@ -145,10 +145,9 @@ public class MenuBarFormater {
         // Contribution service
         this.contributionService = Locator.findMBean(IContributionService.class, IContributionService.MBEAN_NAME);
         // Taskbar service
-        this.taskbarService = Locator.findMBean(ITaskbarService.class, ITaskbarService.MBEAN_NAME);
+        this.taskbarService = Locator.getService(ITaskbarService.class);
         // Internationalization bundle factory
-        IInternationalizationService internationalizationService = Locator.findMBean(IInternationalizationService.class,
-                IInternationalizationService.MBEAN_NAME);
+        IInternationalizationService internationalizationService = Locator.getService(IInternationalizationService.class);
         this.bundleFactory = internationalizationService.getBundleFactory(this.getClass().getClassLoader());
     }
 
