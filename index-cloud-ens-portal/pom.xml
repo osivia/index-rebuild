@@ -69,6 +69,7 @@
 
 
     <modules>
+        <module>index-cloud-ens-portal-customizer</module>	
         <module>index-cloud-ens-portal-distribution</module>
         <module>index-cloud-ens-portal-charte</module>
         <module>index-cloud-ens-portal-directory</module>

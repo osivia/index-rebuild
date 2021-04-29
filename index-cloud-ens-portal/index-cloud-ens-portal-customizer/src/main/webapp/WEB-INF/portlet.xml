@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<portlet-app
+    xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    version="2.0">
+
+    <!-- Plugin -->
+    <portlet>
+        <portlet-name>cloud-ens-plugin</portlet-name>
+        <portlet-class>fr.index.cloud.ens.customizer.plugin.CloudEnsPlugin</portlet-class>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>Plugin</title>
+        </portlet-info>
+    </portlet>
+    
+
+ 
+    
+    
+    <!-- Internationalization customizer -->
+    <portlet>
+        <portlet-name>cloud-ens-internationalization-customizer</portlet-name>
+        <portlet-class>fr.index.cloud.ens.customizer.internationalization.InternationalizationCustomizer</portlet-class>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>Internationalization customizer</title>
+        </portlet-info>
+    </portlet>
+    
+    
+  
+
+
+</portlet-app>

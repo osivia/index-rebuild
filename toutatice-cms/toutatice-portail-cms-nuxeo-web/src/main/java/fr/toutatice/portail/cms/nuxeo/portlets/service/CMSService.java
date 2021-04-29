@@ -554,8 +554,11 @@ public class CMSService implements ICMSService {
         NuxeoRepository nuxeoRepository = (NuxeoRepository) (Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getUserRepository(ctrl.getCMSContext(), "nx"));
          String internalId = nuxeoRepository.getInternalId(path);
          
-         // Fetch document
-        CMSSession session = Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
+         CMSSession session = Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getCMSSession(ctrl.getCMSContext());
+         
+         if( cmsContext.isForceReload())
+             session.updateDocument(new UniversalID("nx", internalId));
+         
          org.osivia.portal.api.cms.model.Document document = session.getDocument(new UniversalID("nx", internalId));
         return (Document) document.getNativeItem();
      }

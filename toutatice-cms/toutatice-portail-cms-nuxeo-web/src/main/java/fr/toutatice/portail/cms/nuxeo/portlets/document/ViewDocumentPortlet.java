@@ -159,11 +159,10 @@ public class ViewDocumentPortlet extends CMSPortlet {
         super();
 
         // Internationalization bundle factory
-        IInternationalizationService internationalizationService = Locator.findMBean(IInternationalizationService.class,
-                IInternationalizationService.MBEAN_NAME);
+        IInternationalizationService internationalizationService = Locator.getService(IInternationalizationService.class);
         this.bundleFactory = internationalizationService.getBundleFactory(this.getClass().getClassLoader());
         // Notifications service
-        this.notificationsService = Locator.findMBean(INotificationsService.class, INotificationsService.MBEAN_NAME);
+        this.notificationsService = Locator.getService(INotificationsService.class);
 
         // DAO
         this.documentDao = DocumentDAO.getInstance();

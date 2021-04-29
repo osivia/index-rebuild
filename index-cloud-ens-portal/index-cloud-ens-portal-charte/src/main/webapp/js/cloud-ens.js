@@ -27,7 +27,8 @@ $JQry(function() {
 
             if (url !== undefined) {
                 options["ajax"] = {
-                    url : adaptAjaxRedirection(url),
+                    //url : adaptAjaxRedirection(url),
+                    url : url,                    
                     dataType : "json",
                     delay : 250,
                     data : function(params) {

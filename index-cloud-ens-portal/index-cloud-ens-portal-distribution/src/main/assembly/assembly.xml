@@ -19,8 +19,9 @@
                 <!-- directory -->
          		<include>fr.index.cloud.ens.portal.directory:index-cloud-ens-portal-directory-packaging</include>                              
                 <!-- index education -->
-                <include>${project.groupId}:index-cloud-ens-portal-charte:war:${project.version}</include> 
-                <include>${project.groupId}:index-cloud-ens-portal-test:war:${project.version}</include>                
+                <include>${project.groupId}:index-cloud-ens-portal-charte</include> 
+                <include>${project.groupId}:index-cloud-ens-portal-customizer</include>                 
+                <include>${project.groupId}:index-cloud-ens-portal-test</include>                
             </includes>
             <useProjectArtifact>false</useProjectArtifact>
         </dependencySet>
