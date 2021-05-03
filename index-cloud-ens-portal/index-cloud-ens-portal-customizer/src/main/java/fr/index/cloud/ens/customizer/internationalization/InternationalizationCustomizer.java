@@ -97,7 +97,7 @@ public class InternationalizationCustomizer extends GenericPortlet implements IC
     @Override
     public void init() throws PortletException {
         super.init();
-        this.repository = Locator.getService(ICustomizationModulesRepository.class);
+        this.repository = (ICustomizationModulesRepository) this.getPortletContext().getAttribute(ATTRIBUTE_CUSTOMIZATION_MODULES_REPOSITORY);
         this.repository.register(this.metadatas);
 
         String bundleDirectory = System.getProperty("index.cloud.i18n.bundle.directory");

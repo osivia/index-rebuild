@@ -23,9 +23,8 @@ ENV PORTAL_DISTRIBUTION ${PORTAL_DISTRIBUTION_NAME}-${PORTAL_VERSION}
 ENV PORTAL_DISTRIBUTION_ZIP ${PORTAL_DISTRIBUTION_NAME}-${PORTAL_VERSION}.zip
 
 RUN mkdir -p "$CATALINA_HOME"
+RUN mkdir -p "/home/portal"
 WORKDIR $CATALINA_HOME
-
-# Distribution
 
 # Distribution
 COPY ${PORTAL_DISTRIBUTION}.zip /usr/local/tomcat
@@ -39,6 +38,7 @@ COPY catalina.properties /usr/local/tomcat/conf
 COPY portal.properties /
 COPY environnement_portail.properties /
 COPY ldap-portlets.properties /
+COPY cloud_fr.properties /home/portal
 # Entrypoint
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
