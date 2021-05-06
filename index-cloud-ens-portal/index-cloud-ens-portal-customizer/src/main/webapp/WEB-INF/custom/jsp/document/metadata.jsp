@@ -211,8 +211,15 @@
 
 
 	<c:if test="${not readOnly and ((not empty targets) or (enabled)) }">
-        <div class="card card-custom mb-3">
-            <div class="card-body p-3">
+        <div class="card mb-3 bg-light">
+			<div class="card-title m-1">
+        		<h5>
+	               Partage
+	            </h5>
+        	</div>
+        
+            <div class="card-body p-1">
+            
                 <c:set var="share" value="${document.properties['rshr:linkId']}"/>
 
                 <c:if test="${not empty targets}">
@@ -297,11 +304,9 @@
                     <c:when test="${enabled}">
                         <div class="d-flex flex-wrap flex-column my-1">
                             <div>
-	                            <a href="/s/${share}"
-	                               class="btn btn-link btn-link-hover-green btn-sm text-secondary text-truncate">
-	                                <i class="glyphicons glyphicons-basic-paired"></i>
-	                                <span><op:translate key="SHARED_LINK"/></span>
-	                            </a>
+	                                    <p class="mb-2">
+	                                        <strong><op:translate key="SHARED_LINK"/></strong>
+	                                    </p>                            
                             </div>
                             
 		                    

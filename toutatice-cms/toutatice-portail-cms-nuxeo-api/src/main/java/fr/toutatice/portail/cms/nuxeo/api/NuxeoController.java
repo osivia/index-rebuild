@@ -327,9 +327,11 @@ public class NuxeoController {
             if( spaceId != null)
             try {
                 UniversalID id = new UniversalID(spaceId);
-                NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
-                this.basePath = repository.getPath(id.getInternalID());
-                this.spacePath = repository.getPath(id.getInternalID());
+                if( id.getRepositoryName().equals("nx")){
+                    NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                    this.basePath = repository.getPath(id.getInternalID());
+                    this.spacePath = repository.getPath(id.getInternalID());
+                }
            } catch (Exception e) {
                throw this.wrapNuxeoException(e);
            }  
