@@ -1,3 +1,5 @@
+
+
 $JQry(function() {
 
     $JQry("select.select2.select2-inline-edition").each(function(index, element) {
@@ -27,8 +29,7 @@ $JQry(function() {
 
             if (url !== undefined) {
                 options["ajax"] = {
-                    //url : adaptAjaxRedirection(url),
-                    url : url,                    
+                    url : adaptAjaxRedirection(url),
                     dataType : "json",
                     delay : 250,
                     data : function(params) {
@@ -401,4 +402,9 @@ addEventListener(eventName, function (event) {
 		}	
 	}	
 });
+
+
+
+
+
 
