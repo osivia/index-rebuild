@@ -211,11 +211,11 @@
 
 
 	<c:if test="${not readOnly and ((not empty targets) or (enabled)) }">
-        <div class="card mb-3 bg-light">
-			<div class="card-title m-1">
-        		<h5>
+        <div class="card mb-3" >
+			<div class="card-title m-1 bg-info  align-middle text-white rounded p-2">
+        		<strong>
 	               Partage
-	            </h5>
+	            </strong>
         	</div>
         
             <div class="card-body p-1">

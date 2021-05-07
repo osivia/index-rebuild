@@ -119,8 +119,15 @@
 	         <groupId>org.osivia.services.directory.socle</groupId>
 	         <artifactId>osivia-services-directory-socle-interfaces</artifactId>
 	         <version>${directory.version}</version>
-	     </dependency>     	        
-   
+	     </dependency>     
+	     <!--  Services -->
+	     <dependency>
+	         <groupId>org.osivia.services</groupId>
+	         <artifactId>osivia-services-widgets</artifactId>
+	         <version>${collaboration.version}</version>
+	         <type>war</type>
+	     </dependency>    	     
+  
 	</dependencies>
 	
 

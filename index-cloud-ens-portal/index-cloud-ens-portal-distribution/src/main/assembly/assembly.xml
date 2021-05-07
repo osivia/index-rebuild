@@ -21,7 +21,9 @@
                 <!-- index education -->
                 <include>${project.groupId}:index-cloud-ens-portal-charte</include> 
                 <include>${project.groupId}:index-cloud-ens-portal-customizer</include>                 
-                <include>${project.groupId}:index-cloud-ens-portal-test</include>                
+                <include>${project.groupId}:index-cloud-ens-portal-test</include>      
+                <!-- services -->
+                <include>org.osivia.services:osivia-services-widgets</include>
             </includes>
             <useProjectArtifact>false</useProjectArtifact>
         </dependencySet>

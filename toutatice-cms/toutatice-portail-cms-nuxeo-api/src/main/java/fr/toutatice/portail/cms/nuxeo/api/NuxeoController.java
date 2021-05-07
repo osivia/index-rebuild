@@ -72,6 +72,7 @@ import java.util.Map.Entry;
  */
 public class NuxeoController {
 
+    public static final String NUXEO_REPOSITORY_NAME = "nx";
     /**
      * Slash separator.
      */
@@ -327,7 +328,7 @@ public class NuxeoController {
             if( spaceId != null)
             try {
                 UniversalID id = new UniversalID(spaceId);
-                if( id.getRepositoryName().equals("nx")){
+                if( id.getRepositoryName().equals(NUXEO_REPOSITORY_NAME)){
                     NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
                     this.basePath = repository.getPath(id.getInternalID());
                     this.spacePath = repository.getPath(id.getInternalID());
@@ -395,9 +396,11 @@ public class NuxeoController {
             if( navigationId != null)
             try {
                 UniversalID id = new UniversalID(navigationId);
-                NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
-                this.navigationPath = repository.getPath(id.getInternalID());
-                this.itemNavigationPath = this.navigationPath;
+                if( id.getRepositoryName().equals(NUXEO_REPOSITORY_NAME)){
+                    NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                    this.navigationPath = repository.getPath(id.getInternalID());
+                    this.itemNavigationPath = this.navigationPath;
+                }
            } catch (Exception e) {
                throw this.wrapNuxeoException(e);
            }  
@@ -407,8 +410,10 @@ public class NuxeoController {
             if( contentId != null)
             try {
                 UniversalID id = new UniversalID(contentId);
-                NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
-                this.contentPath = repository.getPath(id.getInternalID());
+                if( id.getRepositoryName().equals(NUXEO_REPOSITORY_NAME)){
+                    NuxeoRepository repository =  (NuxeoRepository) (Locator.getService(CMSService.class).getUserRepository(getCMSContext(), id.getRepositoryName()));
+                    this.contentPath = repository.getPath(id.getInternalID());
+                }
            } catch (Exception e) {
                throw this.wrapNuxeoException(e);
            }  
@@ -555,6 +560,20 @@ public class NuxeoController {
         path.append(SLASH);
         path.append(webId);
         return path.toString();
+    }
+    
+    /**
+     * Gets the universal ID from path.
+     *
+     * @param path the path
+     * @return the universal ID from path
+     */
+    public UniversalID getUniversalIDFromPath(String path) {
+        try {
+            return getCMSService().getUniversalIDFromPath(getCMSCtx(), path);
+        } catch (Exception e) {
+            throw this.wrapNuxeoException(e);
+        }
     }
 
     /**
@@ -1778,7 +1797,7 @@ public class NuxeoController {
         
         try {
              CMSSession cmsSession =  Locator.getService(CMSService.class).getCMSSession(getCMSContext());
-             return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest("nx",commandContext, command))).getResult();
+             return ((NuxeoResult) cmsSession.executeRequest(new NuxeoRequest(NUXEO_REPOSITORY_NAME,commandContext, command))).getResult();
         } catch (Exception e) {
             throw this.wrapNuxeoException(e);
         }     
@@ -1939,7 +1958,7 @@ public class NuxeoController {
             
             
             
-            String url = this.getPortalUrlFactory().getViewContentUrl(getPortalCtx(), getCMSContext(), new UniversalID("nx",doc.getProperties().getString("ttc:webid")));
+            String url = this.getPortalUrlFactory().getViewContentUrl(getPortalCtx(), getCMSContext(), new UniversalID(NUXEO_REPOSITORY_NAME,doc.getProperties().getString("ttc:webid")));
 
 
             if (url != null) {

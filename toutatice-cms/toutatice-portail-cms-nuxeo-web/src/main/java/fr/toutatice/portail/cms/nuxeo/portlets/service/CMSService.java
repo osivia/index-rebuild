@@ -63,7 +63,6 @@ import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.cache.services.CacheInfo;
 import org.osivia.portal.api.cache.services.ICacheService;
 import org.osivia.portal.api.cms.*;
-
 import org.osivia.portal.api.cms.service.CMSSession;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
@@ -121,7 +120,9 @@ public class CMSService implements ICMSService {
      */
     private static final String EXTENDED_DOCUMENT_INFOS_ATTRIBUTE_PREFIX = "osivia.cms.extendedDocumentInfos.";
 
-
+    /** The Nuxeo Repository name */
+    public static final String NUXEO_REPOSITORY_NAME = "nx";
+    
     /**
      * Logger.
      */
@@ -3709,5 +3710,35 @@ public class CMSService implements ICMSService {
 
         return properties;
     }
+
+
+    @Override
+    public UniversalID getUniversalIDFromPath(CMSServiceCtx cmsContext, String path) throws CMSException {
+        try {
+            CMSController ctrl = new CMSController(cmsContext.getPortalControllerContext());            
+            
+            // Get Id
+            NuxeoRepository nuxeoRepository = (NuxeoRepository) (Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getUserRepository(ctrl.getCMSContext(), NUXEO_REPOSITORY_NAME));            
+            return new UniversalID(NUXEO_REPOSITORY_NAME, nuxeoRepository.getInternalId(path));
+        } catch (Exception e) {
+            throw new CMSException(e);
+        }
+    }
+    
+    
+
+    @Override
+    public String getPathFromUniversalID(CMSServiceCtx cmsContext, UniversalID id) throws CMSException {
+        try {
+            CMSController ctrl = new CMSController(cmsContext.getPortalControllerContext());            
+            
+            // Get Id
+            NuxeoRepository nuxeoRepository = (NuxeoRepository) (Locator.getService(org.osivia.portal.api.cms.service.CMSService.class).getUserRepository(ctrl.getCMSContext(), id.getRepositoryName()));            
+            return nuxeoRepository.getPath(id.getInternalID());
+        } catch (Exception e) {
+            throw new CMSException(e);
+        }
+    }
+    
 
 }

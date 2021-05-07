@@ -25,6 +25,9 @@
         <springframework-ldap.version>2.1.0.RELEASE</springframework-ldap.version>
          <!--Directory -->
         <directory.version>5.0-SNAPSHOT</directory.version>
+        <!--Services -->
+        <collaboration.version>5.0-SNAPSHOT</collaboration.version>
+
 
     </properties>
 
