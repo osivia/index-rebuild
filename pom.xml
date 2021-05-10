@@ -18,7 +18,6 @@
     <modules>
        <module>index-cloud-ens-nuxeo</module>
 	   <module>index-cloud-ens-portal</module>
-	   <module>toutatice-cms</module>
    </modules>
 
 
