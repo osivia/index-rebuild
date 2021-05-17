@@ -1,0 +1,82 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="op" uri="http://www.osivia.org/jsp/taglib/osivia-portal" %>
+<%@ taglib prefix="ttc" uri="http://www.toutatice.fr/jsp/taglib/toutatice" %>
+
+
+<c:set var="checkboxTitle"><op:translate key="TABLE_CHECKBOX_TITLE"/></c:set>
+
+
+<%--@elvariable id="form" type="fr.index.cloud.ens.filebrowser.portlet.model.CustomizedFileBrowserForm"--%>
+<c:choose>
+    <c:when test="${empty form.items}">
+        <div class="text-center">
+            <span class="text-muted"><op:translate key="FILE_BROWSER_EMPTY"/></span>
+        </div>
+    </c:when>
+
+    <c:otherwise>
+        <div class="portal-table-row-group portal-table-selectable">
+            <c:forEach var="item" items="${form.items}">
+                <div class="portal-table-row portal-table-selectable-filter ${item.folderish ? 'file-browser-droppable' : ''}"
+                     data-id="${item.document.id}"
+                     data-type="${item.document.type.name}"
+                     data-text="${item.title}"
+                     data-accepted-types="${item.acceptedTypes}"
+                     data-double-click-target=".file-browser-draggable a"
+                     data-pronote="${item.pronote}" data-mutualized="${item.mutualized}">
+                    <%--Checkbox--%>
+                    <%@ include file="table-body-checkbox.jspf" %>
+
+                    <%--Title--%>
+                    <%@ include file="table-body-title.jspf" %>
+
+                    <c:forEach var="column" items="${form.columns}">
+                        <c:choose>
+                            <c:when test="${column.id eq 'document-type'}">
+                                <%--Document type--%>
+                                <%@ include file="table-body-document-type.jspf"%>
+                            </c:when>
+
+                            <c:when test="${column.id eq 'level'}">
+                                <%--Level--%>
+                                <%@ include file="table-body-level.jspf"%>
+                            </c:when>
+
+                            <c:when test="${column.id eq 'subject'}">
+                                <%--Subject--%>
+                                <%@ include file="table-body-subject.jspf"%>
+                            </c:when>
+                            
+                            <c:when test="${column.id eq 'format'}">
+                                <%--Format--%>
+                                <%@ include file="table-body-format.jspf"%>
+                            </c:when>
+
+                            <c:when test="${column.id eq 'last-modification'}">
+                                <%--Last modification--%>
+                                <%@ include file="table-body-last-modification.jspf" %>
+                            </c:when>
+
+                            <c:when test="${column.id eq 'file-size'}">
+                                <%--File size--%>
+                                <%@ include file="table-body-file-size.jspf" %>
+                            </c:when>
+
+                            <c:when test="${column.id eq 'location' and form.listMode}">
+                                <%--Location--%>
+                                <%@ include file="table-body-location.jspf"%>
+                            </c:when>
+                        </c:choose>
+                    </c:forEach>
+
+                    <%--Draggable--%>
+                    <c:if test="${item.document.type.editable}">
+                        <div class="file-browser-draggable file-browser-draggable-shadowbox"></div>
+                    </c:if>
+                </div>
+            </c:forEach>
+        </div>
+    </c:otherwise>
+</c:choose>

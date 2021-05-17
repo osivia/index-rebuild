@@ -1,0 +1,38 @@
+<c:set var="contextPath" value="${pageContext.request.contextPath}"/>
+
+
+<div class="portal-table-cell" data-column="title">
+    <div class="card-custom-icon mr-3 ${item.folderish ? 'text-black' : ''}">
+        <ttc:icon document="${item.document}" />
+    </div>
+
+    <div class="file-browser-draggable text-truncate mr-auto">
+        <strong><ttc:title document="${item.document}"/></strong>
+    </div>
+
+    <%--PRONOTE indicator--%>
+    <c:if test="${item.pronote}">
+        <c:set var="title"><op:translate key="TOOLTIP_PRONOTE"/></c:set>
+        <div class="ml-2">
+            <img src="/index-cloud-ens-charte/img/pronote-indicator.svg" alt="${title}" title="${title}" height="21">
+        </div>
+    </c:if>
+    
+        <%--PRONOTE indicator--%>
+    <c:if test="${item.shared and (not item.pronote)}">
+        <c:set var="title"><op:translate key="TOOLTIP_SHARED"/></c:set>
+        <div class="ml-2">
+            <i class="glyphicons glyphicons-basic-paired customized-icon-shared" title="${title}"></i>
+        </div>
+    </c:if>
+
+    <%--Mutualized indicator--%>
+    <c:if test="${item.mutualized}">
+        <c:set var="title"><op:translate key="TOOLTIP_MUTUALIZED"/></c:set>
+        <div class="ml-2">
+            <span class="text-orange" title="${title}">
+                <i class="glyphicons glyphicons-basic-share"></i>
+            </span>
+        </div>
+    </c:if>
+</div>

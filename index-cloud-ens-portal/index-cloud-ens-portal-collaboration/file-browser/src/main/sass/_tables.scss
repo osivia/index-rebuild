@@ -1,0 +1,90 @@
+@import "../../../../../index-cloud-ens-portal-charte/src/main/sass/cloud-ens/variables";
+@import "../../../../../index-cloud-ens-portal-charte/src/main/sass/osivia/glyphicons/mixins";
+
+
+[data-column] {
+  &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10) {
+    @include media-breakpoint-down("md") {
+      display: none;
+    }
+  }
+
+  &:nth-child(5), &:nth-child(6), &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10) {
+    @include media-breakpoint-down("lg") {
+      display: none;
+    }
+  }
+}
+
+
+[data-column="title"] {
+  min-width: 200px;
+}
+
+
+[data-column="document-type"] {
+  width: 120px;
+
+  @include media-breakpoint-up("xl") {
+    width: 150px;
+  }
+}
+
+[data-column="level"] {
+  width: 120px;
+
+  @include media-breakpoint-up("xl") {
+    width: 150px;
+  }
+}
+
+[data-column="subject"] {
+  width: 150px;
+
+  @include media-breakpoint-up("xl") {
+    width: 200px;
+  }
+}
+
+[data-column="format"] {
+  width: 100px;
+
+  @include media-breakpoint-up("xl") {
+    width: 120px;
+  }
+}
+
+.portal-table-header-group {
+  .portal-table-cell {
+    &[data-column="title"] {
+      a {
+        margin-left: calc(48px + 1rem);
+      }
+    }
+  }
+}
+
+
+.portal-table-row {
+  &[data-mutualized="true"] {
+    &:hover, &.ui-selecting, &.ui-selected {
+      background-color: $orange-200;
+    }
+
+    &, &.ui-selecting, &.ui-selected {
+      border-color: $orange-500;
+    }
+  }
+
+  &, &.ui-selecting, &.ui-selected {
+    .portal-table-cell {
+      &[data-column="title"] {
+        font-size: $font-size-base;
+
+        a {
+          color: $black !important;
+        }
+      }
+    }
+  }
+}

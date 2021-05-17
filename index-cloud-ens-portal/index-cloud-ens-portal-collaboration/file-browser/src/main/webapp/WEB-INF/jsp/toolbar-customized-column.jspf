@@ -1,0 +1,9 @@
+<c:set var="title"><op:translate key="FILE_BROWSER_COLUMNS_CONFIGURATION_TITLE"/></c:set>
+
+<div class="d-none d-lg-block ml-2">
+    <button type="button" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary bg-white"
+            data-target="#osivia-modal" data-load-url="${columnsConfigurationUrl}" data-title="${title}">
+        <i class="glyphicons glyphicons-basic-cogwheel"></i>
+        <span class="sr-only">${title}</span>
+    </button>
+</div>

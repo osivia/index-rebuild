@@ -1,0 +1,7 @@
+<div class="portal-table-row hover-0">
+    <div class="portal-table-cell">
+        <div class="spinner-border text-secondary" data-more data-save-position-url="${savePositionUrl}" data-load-page-url="${loadPageUrl}" role="status">
+            <span class="sr-only">Loading...</span>
+        </div>
+    </div>
+</div>

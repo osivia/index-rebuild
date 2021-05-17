@@ -1,0 +1,5 @@
+<div class="portal-table-cell" data-column="author">
+    <div class="d-flex flex-wrap overflow-hidden">
+        <span class="text-truncate"><ttc:user name="${item.lastContributor}" linkable="false"/></span>
+    </div>
+</div>

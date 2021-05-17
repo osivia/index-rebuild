@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.index.cloud.ens.portal.collaboration</groupId>
+        <artifactId>index-cloud-ens-portal-collaboration-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>index-cloud-ens-portal-file-browser</artifactId>
+    <packaging>war</packaging>
+
+    <name>Cloud enseignant - File browser</name>
+
+
+    <dependencies>
+
+        <!--File browser-->
+        <dependency>
+            <groupId>org.osivia.services.workspace</groupId>
+            <artifactId>osivia-services-workspace-file-browser</artifactId>
+            <version>${collaboration.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.osivia.services.workspace</groupId>
+            <artifactId>osivia-services-workspace-file-browser</artifactId>
+            <version>${collaboration.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+
+        <!--Directory-->
+        <dependency>
+            <groupId>org.osivia.services.directory.socle</groupId>
+            <artifactId>osivia-services-directory-socle-interfaces</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>fr.index.cloud.ens.portal.directory</groupId>
+            <artifactId>index-cloud-ens-portal-directory-interfaces</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <build>
+        <plugins>
+
+            <!-- SASS -->
+            <plugin>
+                <groupId>com.github.warmuuh</groupId>
+                <artifactId>libsass-maven-plugin</artifactId>
+            </plugin>
+
+            <!--WAR-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.osivia.services.workspace</groupId>
+                            <artifactId>osivia-services-workspace-file-browser</artifactId>
+                            <type>war</type>
+                        </overlay>
+                    </overlays>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>

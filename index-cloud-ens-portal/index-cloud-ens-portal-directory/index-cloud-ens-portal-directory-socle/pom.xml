@@ -15,6 +15,7 @@
 
 
     <modules>
+        <module>index-cloud-ens-portal-directory-interfaces</module>	
         <module>index-cloud-ens-portal-directory-implementations</module>
         <module>index-cloud-ens-portal-directory-packaging</module>
     </modules>
@@ -45,12 +46,12 @@
     <dependencies>
     
         <!-- Spring framework LDAP -->
-<!-- 
+
         <dependency>
             <groupId>org.springframework.ldap</groupId>
             <artifactId>spring-ldap-core</artifactId>
         </dependency>
--->
+
     </dependencies>
 
 </project> 

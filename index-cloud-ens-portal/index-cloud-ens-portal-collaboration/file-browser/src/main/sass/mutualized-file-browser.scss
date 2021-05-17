@@ -1,0 +1,44 @@
+@import "../../../../../index-cloud-ens-portal-charte/src/main/sass/cloud-ens/variables";
+
+
+[data-column] {
+  &:nth-child(2), &:nth-child(3), &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10) {
+    @include media-breakpoint-down("md") {
+      display: none;
+    }
+  }
+
+  &:nth-child(4), &:nth-child(5), &:nth-child(6), &:nth-child(7), &:nth-child(8), &:nth-child(9), &:nth-child(10) {
+    @include media-breakpoint-down("lg") {
+      display: none;
+    }
+  }
+}
+
+
+[data-column="author"] {
+  width: 150px;
+
+  @include media-breakpoint-up("xl") {
+    width: 200px;
+  }
+}
+
+[data-column="views"] {
+  width: 100px;
+}
+
+[data-column="downloads"] {
+  width: 120px;
+}
+
+
+.portal-table-row {
+  &:hover, &.ui-selecting, &.ui-selected {
+    background-color: $orange-200;
+  }
+
+  &, &.ui-selecting, &.ui-selected {
+    border-color: $orange-500;
+  }
+}

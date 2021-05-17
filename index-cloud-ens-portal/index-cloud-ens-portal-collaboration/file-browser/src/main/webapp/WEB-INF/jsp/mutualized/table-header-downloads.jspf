@@ -1,0 +1,17 @@
+<portlet:actionURL name="sort" copyCurrentRenderParameters="true" var="url">
+    <portlet:param name="field" value="downloads"/>
+    <portlet:param name="alt" value="${form.criteria.field.id eq 'downloads' and not form.criteria.alt}"/>
+</portlet:actionURL>
+
+
+<div class="portal-table-cell" data-column="downloads">
+    <a href="${url}">
+        <span><op:translate key="FILE_BROWSER_SORT_FIELD_DOWNLOADS"/></span>
+
+        <c:if test="${form.criteria.field.id eq 'downloads'}">
+            <small class="d-inline-block align-text-bottom">
+                <i class="glyphicons glyphicons-basic-arrow-${form.criteria.alt ? 'up' : 'down'}"></i>
+            </small>
+        </c:if>
+    </a>
+</div>

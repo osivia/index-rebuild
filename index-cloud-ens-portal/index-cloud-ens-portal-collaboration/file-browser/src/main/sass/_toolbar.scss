@@ -1,0 +1,22 @@
+@import "../../../../../index-cloud-ens-portal-charte/src/main/sass/cloud-ens/variables";
+
+
+.portal-table-toolbar-container {
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+
+  margin-bottom: 0;
+
+
+  .portal-table-toolbar {
+    justify-content: flex-start;
+
+    min-height: add($input-height-sm, map-get($spacers, 1));
+  }
+}
+
+
+
+
+

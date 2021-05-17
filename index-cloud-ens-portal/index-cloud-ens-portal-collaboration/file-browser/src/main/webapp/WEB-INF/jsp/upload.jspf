@@ -1,0 +1,44 @@
+<portlet:actionURL name="upload" copyCurrentRenderParameters="true" var="uploadUrl"/>
+<portlet:actionURL name="endUpload" copyCurrentRenderParameters="true" var="callbackUrl"/>
+
+
+<c:set var="replaceWarning"><op:translate key="FILE_BROWSER_UPLOAD_WARNING_REPLACE"/></c:set>
+<c:set var="replacePronoteWarning"><op:translate key="FILE_BROWSER_UPLOAD_WARNING_REPLACE_PRONOTE"/></c:set>
+<c:set var="sizeError"><op:translate key="FILE_BROWSER_UPLOAD_ERROR_SIZE"/></c:set>
+<c:set var="start"><op:translate key="FILE_BROWSER_UPLOAD_LABEL_START"/></c:set>
+<c:set var="cancel"><op:translate key="FILE_BROWSER_UPLOAD_LABEL_CANCEL"/></c:set>
+
+<form:form action="${uploadUrl}" method="post" enctype="multipart/form-data" modelAttribute="form"
+           cssClass="file-browser-upload d-none" data-callback-url="${callbackUrl}"
+           data-max-file-size="${form.maxFileSize}" data-warning-replace="${replaceWarning}"
+           data-warning-replace-pronote="${replacePronoteWarning}" data-error-size="${sizeError}"
+           data-label-start="${start}" data-label-cancel="${cancel}">
+    <form:input type="file" path="upload" multiple="multiple" cssClass="d-none"/>
+
+    <div class="card">
+            <%--Title--%>
+        <div class="card-body">
+            <h3 class="card-title h5 mb-0"><op:translate key="FILE_BROWSER_UPLOAD_CARD_TITLE"/></h3>
+        </div>
+
+            <%--Files--%>
+        <ul class="list-group list-group-flush file-browser-upload-files"></ul>
+
+            <%--Buttons--%>
+        <div class="card-body">
+            <div class="text-right fileupload-buttonbar">
+                <button type="button" class="btn btn-secondary btn-sm cancel">
+                    <span><op:translate key="FILE_BROWSER_UPLOAD_CANCEL"/></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</form:form>
+
+
+<div class="file-browser-upload-shadowbox bg-secondary text-white rounded">
+    <div>
+        <p><op:translate key="FILE_BROWSER_DROP_ZONE_MESSAGE"/></p>
+        <p><i class="glyphicons glyphicons-basic-drop-plus"></i></p>
+    </div>
+</div>

@@ -40,6 +40,15 @@
 		</dependency>
 		
 		
+
+		
+        <!-- File upload -->
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <scope>compile</scope>
+        </dependency>		
+		
 		<!--  Directory -->
 	     <dependency>
 	         <groupId>fr.index.cloud.ens.portal.directory</groupId>
@@ -48,9 +57,14 @@
 	         <type>war</type>
 	     </dependency>  
 	     <dependency>
+	         <groupId>fr.index.cloud.ens.portal.directory</groupId>
+	         <artifactId>index-cloud-ens-portal-directory-interfaces</artifactId>
+	         <version>${project.version}</version>
+	     </dependency>  	     
+	     <dependency>
 	         <groupId>org.osivia.services.directory.socle</groupId>
 	         <artifactId>osivia-services-directory-socle-interfaces</artifactId>
-	         <version>${directory.version}</version>
+	         <scope>compile</scope>
 	     </dependency>     
 	     <!--  Services -->
 	     <dependency>
@@ -58,7 +72,13 @@
 	         <artifactId>osivia-services-widgets</artifactId>
 	         <version>${collaboration.version}</version>
 	         <type>war</type>
-	     </dependency>    	     
+	     </dependency>    	    
+		 <dependency>
+			<groupId>fr.index.cloud.ens.portal.collaboration</groupId>
+			<artifactId>index-cloud-ens-portal-file-browser</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		 </dependency>	      
   
 	</dependencies>
 	

@@ -1,0 +1,22 @@
+<div class="portal-table-cell" data-column="level">
+    <ul class="list-unstyled mb-0 overflow-hidden">
+        <c:choose>
+            <c:when test="${empty item.levels}">
+                <li>&ndash;</li>
+            </c:when>
+
+            <c:when test="${fn:length(item.levels) gt 3}">
+                <c:forEach var="i" begin="0" end="1">
+                    <li class="text-truncate"><ttc:vocabularyLabel name="idx_level" key="${item.levels[i]}"/></li>
+                </c:forEach>
+                <li class="text-truncate text-muted"><op:translate key="FILE_BROWSER_VALUES_MORE" args="${fn:length(item.levels) - 2}"/></li>
+            </c:when>
+
+            <c:otherwise>
+                <c:forEach var="value" items="${item.levels}">
+                    <li class="text-truncate"><ttc:vocabularyLabel name="idx_level" key="${value}"/></li>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</div>

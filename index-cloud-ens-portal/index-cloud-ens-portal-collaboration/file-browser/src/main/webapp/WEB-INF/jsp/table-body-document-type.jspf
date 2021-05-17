@@ -1,0 +1,22 @@
+<div class="portal-table-cell" data-column="document-type">
+    <ul class="list-unstyled mb-0 overflow-hidden">
+        <c:choose>
+            <c:when test="${empty item.documentTypes}">
+                <li>&ndash;</li>
+            </c:when>
+
+            <c:when test="${fn:length(item.documentTypes) gt 3}">
+                <c:forEach var="i" begin="0" end="1">
+                    <li class="text-truncate"><ttc:vocabularyLabel name="idx_document_type" key="${item.documentTypes[i]}"/></li>
+                </c:forEach>
+                <li class="text-truncate text-muted"><op:translate key="FILE_BROWSER_VALUES_MORE" args="${fn:length(item.documentTypes) - 2}"/></li>
+            </c:when>
+
+            <c:otherwise>
+                <c:forEach var="value" items="${item.documentTypes}">
+                    <li class="text-truncate"><ttc:vocabularyLabel name="idx_document_type" key="${value}"/></li>
+                </c:forEach>
+            </c:otherwise>
+        </c:choose>
+    </ul>
+</div>

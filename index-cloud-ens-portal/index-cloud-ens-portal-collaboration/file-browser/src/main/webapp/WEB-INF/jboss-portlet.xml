@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE portlet-app PUBLIC "-//JBoss Portal//DTD JBoss Portlet 2.6//EN" "http://www.jboss.org/portal/dtd/jboss-portlet_2_6.dtd">
+
+<portlet-app>
+
+    <portlet>
+        <portlet-name>osivia-services-workspace-file-browser</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+
+        <header-content>
+            <link rel="stylesheet" href="/css/file-browser.min.css" />
+            <link rel="stylesheet" href="/css/customized-file-browser.css" />
+            <script type="text/javascript" src="/js/file-browser.js"/>
+            <script type="text/javascript" src="/js/file-browser-upload.js"/>
+            <script type="text/javascript" src="/js/columns-configuration.js"/>
+
+            <!-- jQuery File Upload -->
+            <link rel="stylesheet" type="text/css" href="/components/jquery-file-upload-9.28.0/css/jquery.fileupload.css" />
+            <script type="text/javascript" src="/components/jquery-file-upload-9.28.0/js/jquery.fileupload.js" />
+            <script type="text/javascript" src="/components/jquery-file-upload-9.28.0/js/jquery.fileupload-process.js" />
+            <script type="text/javascript" src="/components/jquery-file-upload-9.28.0/js/jquery.fileupload-validate.js" />
+            <script type="text/javascript" src="/components/jquery-file-upload-9.28.0/js/jquery.fileupload-ui.js" />
+        </header-content>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-mutualized-file-browser</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+
+        <header-content>
+            <link rel="stylesheet" href="/css/file-browser.min.css" />
+            <link rel="stylesheet" href="/css/customized-file-browser.css" />
+            <link rel="stylesheet" href="/css/mutualized-file-browser.css" />
+            <script type="text/javascript" src="/js/mutualized-file-browser.js"/>
+            <script type="text/javascript" src="/js/columns-configuration.js"/>
+        </header-content>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-file-browser-columns-configuration</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+    </portlet>
+
+
+    <service>
+        <service-name>CustomizationModulesRepository</service-name>
+        <service-class>org.osivia.portal.api.customization.ICustomizationModulesRepository</service-class>
+        <service-ref>osivia:service=CustomizationService</service-ref>
+    </service>
+
+</portlet-app>

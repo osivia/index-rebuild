@@ -1,0 +1,14 @@
+<div class="portal-table-cell" data-column="format">
+	<div class="d-flex flex-wrap overflow-hidden">
+		<c:choose>
+			<c:when test="${empty item.format}">
+				<li>&ndash;</li>
+			</c:when>
+			<c:otherwise>
+				<div class="text-truncate">
+                    <span>${item.format}</span>
+                </div>
+			</c:otherwise>
+		</c:choose>
+	</div>
+</div>

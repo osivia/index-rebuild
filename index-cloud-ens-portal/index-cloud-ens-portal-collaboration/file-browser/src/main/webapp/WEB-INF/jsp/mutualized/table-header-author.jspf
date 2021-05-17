@@ -1,0 +1,17 @@
+<portlet:actionURL name="sort" copyCurrentRenderParameters="true" var="url">
+    <portlet:param name="field" value="author"/>
+    <portlet:param name="alt" value="${form.criteria.field.id eq 'author' and not form.criteria.alt}"/>
+</portlet:actionURL>
+
+
+<div class="portal-table-cell" data-column="author">
+    <a href="${url}">
+        <span><op:translate key="FILE_BROWSER_SORT_FIELD_AUTHOR"/></span>
+
+        <c:if test="${form.criteria.field.id eq 'author'}">
+            <small class="d-inline-block align-text-bottom">
+                <i class="glyphicons glyphicons-basic-arrow-${form.criteria.alt ? 'up' : 'down'}"></i>
+            </small>
+        </c:if>
+    </a>
+</div>

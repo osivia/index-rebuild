@@ -1,0 +1,26 @@
+<c:choose>
+    <c:when test="${empty form.items}">
+        <div class="text-center">
+            <span class="text-muted"><op:translate key="FILE_BROWSER_EMPTY"/></span>
+        </div>
+    </c:when>
+
+    <c:otherwise>
+        <div class="portal-table-row-group">
+            <c:forEach var="item" items="${form.items}">
+                <%@ include file="table-row.jspf" %>
+            </c:forEach>
+
+            <c:if test="${form.nextPageIndex gt 0}">
+                <portlet:actionURL name="save-position" var="savePositionUrl">
+                    <portlet:param name="pageIndex" value="${form.nextPageIndex}"/>
+                </portlet:actionURL>
+                <portlet:resourceURL id="load-page" var="loadPageUrl">
+                    <portlet:param name="pageIndex" value="${form.nextPageIndex}"/>
+                </portlet:resourceURL>
+
+                <%@ include file="more.jspf" %>
+            </c:if>
+        </div>
+    </c:otherwise>
+</c:choose>

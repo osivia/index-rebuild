@@ -1,0 +1,12 @@
+<div class="btn-group btn-group-sm align-self-start">
+    <c:forEach var="item" items="${views}">
+        <portlet:actionURL name="change-view" var="url">
+            <portlet:param name="view" value="${item.id}"/>
+        </portlet:actionURL>
+        <c:set var="title"><op:translate key="${item.key}"/></c:set>
+
+        <a href="${url}" class="btn btn-link btn-link-hover-primary-light text-secondary bg-white ${item.id eq view ? 'active' : ''}" title="${title}">
+            <i class="${item.icon}"></i>
+        </a>
+    </c:forEach>
+</div>

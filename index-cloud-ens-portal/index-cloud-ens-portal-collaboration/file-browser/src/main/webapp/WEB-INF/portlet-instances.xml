@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE deployments PUBLIC "-//JBoss Portal//DTD Portlet Instances 2.6//EN" "http://www.jboss.org/portal/dtd/portlet-instances_2_6.dtd">
+
+<deployments>
+
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">OSIVIA - File browser</display-name>
+            <display-name xml:lang="fr">OSIVIA - Explorateur de fichiers</display-name>
+            <instance-id>osivia-services-workspace-file-browser-instance</instance-id>
+            <portlet-ref>osivia-services-workspace-file-browser</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+                <policy-permission>
+                    <action-name>admin</action-name>
+                    <role-name>Administrators</role-name>
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>
+
+
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud Ens - Mutualized file browser</display-name>
+            <display-name xml:lang="fr">Cloud Ens - Explorateur de fichiers mutualisés</display-name>
+            <instance-id>index-cloud-ens-mutualized-file-browser-instance</instance-id>
+            <portlet-ref>index-cloud-ens-mutualized-file-browser</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+                <policy-permission>
+                    <action-name>admin</action-name>
+                    <role-name>Administrators</role-name>
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>
+
+
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud Ens - File browser columns configuration</display-name>
+            <display-name xml:lang="fr">Cloud Ens - Configuration des colonnes de l'explorateur de fichiers</display-name>
+            <instance-id>index-cloud-ens-file-browser-columns-configuration-instance</instance-id>
+            <portlet-ref>index-cloud-ens-file-browser-columns-configuration</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+            </security-constraint>
+            <preferences>
+                <preference>
+                    <name>hide</name>
+                    <value>true</value>
+                </preference>
+            </preferences>
+        </instance>
+    </deployment>
+    
+</deployments>

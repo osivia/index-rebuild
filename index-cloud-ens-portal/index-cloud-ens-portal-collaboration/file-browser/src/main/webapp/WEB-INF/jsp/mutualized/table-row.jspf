@@ -1,0 +1,53 @@
+<div class="portal-table-row position-relative">
+    <%--Title--%>
+    <%@ include file="table-body-title.jspf" %>
+
+    <c:forEach var="column" items="${form.columns}">
+        <c:choose>
+            <c:when test="${column.id eq 'document-type'}">
+                <%--Document type--%>
+                <%@ include file="../table-body-document-type.jspf"%>
+            </c:when>
+
+            <c:when test="${column.id eq 'level'}">
+                <%--Level--%>
+                <%@ include file="../table-body-level.jspf"%>
+            </c:when>
+
+            <c:when test="${column.id eq 'subject'}">
+                <%--Subject--%>
+                <%@ include file="../table-body-subject.jspf"%>
+            </c:when>
+
+            <c:when test="${column.id eq 'last-modification'}">
+                <%--Last modification--%>
+                <%@ include file="../table-body-last-modification.jspf" %>
+            </c:when>
+
+            <c:when test="${column.id eq 'format'}">
+                <%--Document type--%>
+                <%@ include file="../table-body-format.jspf"%>
+            </c:when>
+
+            <c:when test="${column.id eq 'author'}">
+                <%--Author--%>
+                <%@ include file="table-body-author.jspf" %>
+            </c:when>
+
+            <c:when test="${column.id eq 'file-size'}">
+                <%--File size--%>
+                <%@ include file="../table-body-file-size.jspf" %>
+            </c:when>
+
+            <c:when test="${column.id eq 'views'}">
+                <%--Views--%>
+                <%@ include file="table-body-views.jspf" %>
+            </c:when>
+
+            <c:when test="${column.id eq 'downloads'}">
+                <%--Downloads--%>
+                <%@ include file="table-body-downloads.jspf" %>
+            </c:when>
+        </c:choose>
+    </c:forEach>
+</div>

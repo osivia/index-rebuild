@@ -1,0 +1,74 @@
+<%--@elvariable id="form" type="fr.index.cloud.ens.filebrowser.mutualized.portlet.model.MutualizedFileBrowserForm"--%>
+<div class="d-flex align-items-center">
+    <c:choose>
+        <c:when test="${form.total eq 0}"><c:set var="text"><op:translate
+                key="FILE_BROWSER_TOOLBAR_STATE_NO_ITEM"/></c:set></c:when>
+        <c:when test="${form.total eq 1}"><c:set var="text"><op:translate
+                key="FILE_BROWSER_TOOLBAR_STATE_ONE_ITEM"/></c:set></c:when>
+        <c:otherwise><c:set var="text"><op:translate key="FILE_BROWSER_TOOLBAR_STATE_N_ITEMS"
+                                                     args="${form.total}"/></c:set></c:otherwise>
+    </c:choose>
+
+    <div class="d-flex align-items-center flex-wrap text-secondary-light">
+        <div class="mb-1 mr-2">
+            <c:choose>
+                <c:when test="${not empty form.searchFilterTitle}">
+                    <span class="mr-2 text-primary-light">
+                        <i class="glyphicons glyphicons-basic-search"></i>
+                    </span>
+                    <strong class="text-primary">${form.searchFilterTitle}</strong>
+                </c:when>
+                <c:otherwise>
+                    <span class="mr-2 text-primary-light">
+                        <i class="glyphicons glyphicons-basic-search"></i>
+                    </span>
+                    <strong class="text-primary"><op:translate key="FILE_BROWSER_TOOLBAR_TITLE_SEARCH"/></strong>
+                </c:otherwise>
+            </c:choose>
+        </div>
+
+        <c:if test="${form.searchFiltersCounter gt 0}">
+            <div class="mr-2">
+                <portlet:actionURL name="reset-search" var="url"/>
+                <c:set var="title"><op:translate key="FILE_BROWSER_TOOLBAR_RESET_SEARCH_TITLE"/></c:set>
+                <a href="${url}" class="btn btn-primary-light btn-sm rounded-pill" title="${title}">
+                    <strong>
+                        <c:choose>
+                            <c:when test="${form.searchFiltersCounter eq 1}"><op:translate key="FILE_BROWSER_TOOLBAR_ONE_FILTER"/></c:when>
+                            <c:otherwise><op:translate key="FILE_BROWSER_TOOLBAR_N_FILTERS" args="${form.searchFiltersCounter}"/></c:otherwise>
+                        </c:choose>
+                    </strong>
+                    <i class="glyphicons glyphicons-basic-menu-close"></i>
+                </a>
+            </div>
+        </c:if>
+
+        <div class="mb-1 mr-2">${text}</div>
+    </div>
+
+    <div class="dropdown">
+        <a href="javascript:" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary-light bg-white mr-2 dropdown-toggle no-ajax-link" data-toggle="dropdown">
+                <span>
+                    <c:choose>
+                        <c:when test="${empty form.items or fn:length(form.items) eq 1}"><op:translate
+                                key="FILE_BROWSER_TOOLBAR_STATE_SORTED_BY"/></c:when>
+                        <c:otherwise><op:translate key="FILE_BROWSER_TOOLBAR_STATE_SORTED_BY_N_ITEMS"/></c:otherwise>
+                    </c:choose>
+                </span>
+            <span class="text-lowercase"><op:translate key="${form.criteria.field.key}"/></span>
+        </a>
+
+        <div class="dropdown-menu dropdown-menu-right">
+            <c:forEach var="field" items="${sortFields}">
+                <portlet:actionURL name="sort" copyCurrentRenderParameters="true" var="url">
+                    <portlet:param name="field" value="${field.id}"/>
+                    <portlet:param name="alt" value="false"/>
+                </portlet:actionURL>
+
+                <a href="${url}" class="dropdown-item ${form.criteria.field eq field ? 'active text-black bg-primary-light' : ''}">
+                    <span><op:translate key="${field.key}"/></span>
+                </a>
+            </c:forEach>
+        </div>
+    </div>
+</div>

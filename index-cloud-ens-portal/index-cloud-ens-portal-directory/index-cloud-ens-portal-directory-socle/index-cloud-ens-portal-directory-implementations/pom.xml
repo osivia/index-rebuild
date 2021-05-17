@@ -18,6 +18,15 @@
     
 
         <dependency>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>index-cloud-ens-portal-directory-interfaces</artifactId>
+            <version>${project.version}</version>
+            <scope>provided</scope>
+	    </dependency>
+    
+
+
+        <dependency>
             <groupId>org.osivia.services.directory.socle</groupId>
             <artifactId>osivia-services-directory-socle-implementations</artifactId>
         </dependency>

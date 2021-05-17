@@ -1,0 +1,5 @@
+<div class="portal-table-cell" data-column="views">
+    <div class="d-flex flex-wrap overflow-hidden">
+        <span class="text-truncate">${item.views}</span>
+    </div>
+</div>

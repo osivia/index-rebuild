@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<portlet-app
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+        xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+        version="2.0">
+
+    <portlet>
+        <portlet-name>osivia-services-workspace-file-browser</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.filebrowser.portlet.configuration.CustomizedFileBrowserConfiguration</value>
+        </init-param>
+
+        <expiration-cache>0</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>admin</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>File browser</title>
+        </portlet-info>
+
+        <supported-public-render-parameter>dnd-update</supported-public-render-parameter>
+        <supported-public-render-parameter>selectors</supported-public-render-parameter>
+        <supported-public-render-parameter>search-filter</supported-public-render-parameter>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>osivia-services-workspace-file-browser-plugin</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>org.osivia.services.workspace.filebrowser.plugin.configuration.FileBrowserPluginConfiguration</value>
+        </init-param>
+
+        <expiration-cache>180</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>File browser plugin</title>
+        </portlet-info>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-mutualized-file-browser</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.filebrowser.mutualized.portlet.configuration.MutualizedFileBrowserConfiguration</value>
+        </init-param>
+
+        <expiration-cache>0</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>admin</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>File browser (mutualization)</title>
+        </portlet-info>
+
+        <supported-public-render-parameter>selectors</supported-public-render-parameter>
+        <supported-public-render-parameter>search-filter</supported-public-render-parameter>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-file-browser-columns-configuration</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.filebrowser.columns.configuration.portlet.configuration.FileBrowserColumnsConfiguration</value>
+        </init-param>
+
+        <expiration-cache>0</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>File browser columns configuration</title>
+        </portlet-info>
+    </portlet>
+
+
+    <public-render-parameter>
+        <identifier>dnd-update</identifier>
+        <name>dnd-update</name>
+    </public-render-parameter>
+
+    <public-render-parameter>
+        <identifier>selectors</identifier>
+        <name>selectors</name>
+    </public-render-parameter>
+
+    <public-render-parameter>
+        <identifier>search-filter</identifier>
+        <name>search-filter</name>
+    </public-render-parameter>
+
+</portlet-app>

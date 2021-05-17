@@ -1,0 +1,14 @@
+<div class="portal-table-toolbar-container">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <%--State--%>
+        <%@ include file="toolbar-state.jspf" %>
+
+        <div class="d-flex">
+            <%--View--%>
+            <%--<%@ include file="toolbar-view.jspf" %>--%>
+
+            <%--Customized column--%>
+            <%@ include file="../toolbar-customized-column.jspf" %>
+        </div>
+    </div>
+</div>

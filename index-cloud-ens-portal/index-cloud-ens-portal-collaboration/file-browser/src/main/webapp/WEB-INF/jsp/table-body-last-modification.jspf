@@ -1,0 +1,8 @@
+<div class="portal-table-cell" data-column="last-modification">
+    <div class="d-flex flex-wrap overflow-hidden">
+        <div class="text-truncate">
+            <span><op:translate key="FILE_BROWSER_MODIFIED_ON"/></span>
+            <span><op:formatRelativeDate value="${item.lastModification}" tooltip="false"/></span>
+        </div>
+    </div>
+</div>
