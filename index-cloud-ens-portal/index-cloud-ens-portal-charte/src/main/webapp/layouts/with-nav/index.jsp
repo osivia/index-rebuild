@@ -1,6 +1,9 @@
 <!DOCTYPE html>
-<%@ taglib prefix="p" uri="portal-layout" %>
+
+
+
 <%@ taglib prefix="op" uri="http://www.osivia.org/jsp/taglib/osivia-portal" %>
+<%@ taglib prefix="p" uri="portal-layout" %>
 
 <%@ page contentType="text/html" isELIgnored="false" %>
 
@@ -12,10 +15,12 @@
 </head>
 
 
-<body class="fullheight overflow-hidden d-flex flex-column" data-drawer="true">
+<body id="body" class="" data-drawer="true">
 
 <%@include file="../includes/header.jspf" %>
 
+<div class="layout">
+<div class="fullheight overflow-hidden d-flex flex-column">
 <main class="d-flex flex-column flex-grow-1 overflow-auto">
     <div class="container-fluid d-flex flex-column flex-grow-1">
         <div class="row flex-grow-1 flex-nowrap">
@@ -37,6 +42,8 @@
         </div>
     </div>
 </main>
+</div>
+</div>
 
 <%@include file="../includes/footer.jspf" %>
 

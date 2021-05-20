@@ -12,7 +12,7 @@
 </head>
 
 
-<body class="fullheight overflow-hidden d-flex flex-column" data-drawer="true">
+<body id="body" data-drawer="true">
 
 <%@include file="../includes/header.jspf" %>
 

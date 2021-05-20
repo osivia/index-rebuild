@@ -1,3 +1,4 @@
+<%--  
 <op:resizable cssClass="col-auto d-md-flex flex-column" minWidth="290">
     <div class="row flex-grow-1 flex-nowrap">
         <div id="drawer" class="col d-flex flex-column overflow-auto bg-light shadow">
@@ -17,3 +18,4 @@
         </div>
     </div>
 </op:resizable>
+--%>

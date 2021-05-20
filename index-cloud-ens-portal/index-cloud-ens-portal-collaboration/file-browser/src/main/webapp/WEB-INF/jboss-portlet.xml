@@ -11,8 +11,8 @@
         </transaction>
 
         <header-content>
-            <link rel="stylesheet" href="/css/file-browser.min.css" />
-            <link rel="stylesheet" href="/css/customized-file-browser.css" />
+            <link rel="stylesheet" type="text/css" href="/css/file-browser.min.css" />
+            <link rel="stylesheet" type="text/css" href="/css/customized-file-browser.css" />
             <script type="text/javascript" src="/js/file-browser.js"/>
             <script type="text/javascript" src="/js/file-browser-upload.js"/>
             <script type="text/javascript" src="/js/columns-configuration.js"/>
