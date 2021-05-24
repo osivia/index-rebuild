@@ -1,7 +1,8 @@
 <%@ taglib uri="portal-layout" prefix="p" %>
 
-
+<!-- 
 <p:region regionName="header-metadata" />
+-->
 
 <%--<meta http-equiv="default-style" content="Cloud-ens">--%>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
