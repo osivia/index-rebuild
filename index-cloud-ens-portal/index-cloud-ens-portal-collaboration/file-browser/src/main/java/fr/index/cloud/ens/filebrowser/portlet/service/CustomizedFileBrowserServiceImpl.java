@@ -229,7 +229,7 @@ public class CustomizedFileBrowserServiceImpl extends AbstractFileBrowserService
                 target = null;
             }
 
-            item = DOM4JUtils.generateLinkElement(url, target, null, baseHtmlClasses + " no-ajax-link", null, icon);
+            item = DOM4JUtils.generateLinkElement(url, target, null, baseHtmlClasses , null, icon);
 
             // Title
             DOM4JUtils.addAttribute(item, "title", title);
