@@ -6,13 +6,11 @@
 
 <%--<meta http-equiv="default-style" content="Cloud-ens">--%>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<%--  
-<p:theme themeName="cloud-ens-charte" resourceType="link"/>
 
+<p:theme themeName="cloud-ens-charte" resourceType="link"/>
 <p:headerContent />
 <p:theme themeName="cloud-ens-charte" resourceType="script"/>
---%>
 
-<p:headerContent />
-<p:theme themeName="cloud-ens-charte"/>
+
+
 
