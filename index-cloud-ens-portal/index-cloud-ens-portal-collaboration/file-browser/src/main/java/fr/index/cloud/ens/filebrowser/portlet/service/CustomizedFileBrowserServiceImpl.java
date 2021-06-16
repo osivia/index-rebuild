@@ -204,9 +204,12 @@ public class CustomizedFileBrowserServiceImpl extends AbstractFileBrowserService
 
 
     @Override
-    protected void addToolbarItem(Element toolbar, String url, String target, String title, String icon) {
+    protected void addToolbarItem(Element toolbar, String url, String target, String title, String icon, boolean noAjaxLink) {
         // Base HTML classes
         String baseHtmlClasses = "btn btn-link btn-link-hover-green text-green-dark btn-sm mr-1";
+        
+        if(noAjaxLink)
+            baseHtmlClasses += " no-ajax-link";
 
         // Item
         Element item;
