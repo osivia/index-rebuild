@@ -29,7 +29,7 @@
                                 <div class="file-browser-thumbnail-title">
                                     <div class="text-truncate file-browser-draggable">
                                         <span class="mr-1"><ttc:icon document="${item.document}" /></span>
-                                        <a href="${url}" title="${item.document.title}" class="text-black no-ajax-link">
+                                        <a href="${url}" title="${item.document.title}" class="text-black">
                                             <strong>${item.document.title}</strong>
                                         </a>
                                     </div>
@@ -91,7 +91,7 @@
                                 <%--Title--%>
                                 <div class="file-browser-thumbnail-title">
                                     <div class="text-truncate file-browser-draggable">
-                                        <a href="${url}" title="${item.document.title}" class="text-black no-ajax-link">
+                                        <a href="${url}" title="${item.document.title}" class="text-black">
                                             <strong>${item.document.title}</strong>
                                         </a>
                                     </div>
