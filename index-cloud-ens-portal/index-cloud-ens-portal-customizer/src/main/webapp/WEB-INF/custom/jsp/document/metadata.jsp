@@ -325,7 +325,7 @@
 	                            <c:set var="targets" value="${document.properties['rshr:targets']}"/>    
 					            <c:choose>
 					                <c:when test="${not empty targets}">       
-					                    <a title="${title}" class="btn btn-link btn-link-hover-green btn-sm text-secondary text-truncate  no-ajax-link" href="#deactivateShareLinkModalId" data-toggle="modal">
+					                    <a title="${title}" class="btn btn-link btn-link-hover-green btn-sm text-secondary text-truncate " href="#deactivateShareLinkModalId" data-toggle="modal">
 					                        <i class="glyphicons glyphicons-basic-paired-off"></i>
 					                        <span><op:translate key="SHARED_LINK_DEACTIVATE"/></span>
 					                    </a>
@@ -474,7 +474,7 @@
                         <c:if test="${document.properties['mtz:downloads'] ge 1}">
 	                        <div>
 	                            <c:set var="discussionUrl"><ttc:discussion publicationId="${document.properties['ttc:webid']}"/></c:set>
-	                            <a href="${discussionUrl}" class="btn btn-link btn-link-hover-orange btn-sm text-orange-dark no-ajax-link">
+	                            <a href="${discussionUrl}" class="btn btn-link btn-link-hover-orange btn-sm text-orange-dark">
 	                                <i class="glyphicons glyphicons-basic-refresh"></i>
 	                                <span><op:translate key="DOCUMENT_MUTUALIZATION_CONTACT_READERS"/></span>
 	                            </a>
@@ -517,7 +517,7 @@
 
                         <ttc:documentLink document="${source}" var="sourceLink" permalink="true"/>
                         <p class="card-text">
-                            <a href="${sourceLink.url}" class="btn btn-link btn-link-hover-orange btn-sm text-orange-dark no-ajax-link">
+                            <a href="${sourceLink.url}" class="btn btn-link btn-link-hover-orange btn-sm text-orange-dark">
                                 <span><op:translate key="DOCUMENT_COPIED_VIEW_SOURCE"/></span>
                             </a>
                         </p>

@@ -17,8 +17,8 @@
 
     <modules>
         <module>file-browser</module>
-<!-- 
- <module>mutualization</module>
+		<module>mutualization</module>
+<!--  
         <module>trash</module>
 -->
     </modules>

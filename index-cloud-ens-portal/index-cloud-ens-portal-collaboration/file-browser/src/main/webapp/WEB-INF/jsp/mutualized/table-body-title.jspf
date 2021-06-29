@@ -6,7 +6,7 @@
     <div class="text-truncate mr-auto">
         <ttc:documentLink document="${item.document}" var="link"/>
         <strong>
-            <a href="${link.url}" class="stretched-link no-ajax-link">
+            <a href="${link.url}" class="stretched-link">
                 ${item.title}
             </a>
         </strong>

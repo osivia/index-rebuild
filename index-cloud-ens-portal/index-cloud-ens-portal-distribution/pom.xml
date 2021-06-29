@@ -84,7 +84,15 @@
 			<artifactId>index-cloud-ens-portal-file-browser</artifactId>
 			<version>${project.version}</version>
 			<type>war</type>
-		 </dependency>	      
+		 </dependency>	    
+		 <dependency>
+			<groupId>fr.index.cloud.ens.portal.collaboration</groupId>
+			<artifactId>index-cloud-ens-portal-mutualization</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		 </dependency>	 		 
+
+			   
   
 	</dependencies>
 	
