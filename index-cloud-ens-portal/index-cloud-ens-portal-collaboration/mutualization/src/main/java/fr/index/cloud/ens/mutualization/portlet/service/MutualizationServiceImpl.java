@@ -363,7 +363,10 @@ public class MutualizationServiceImpl implements MutualizationService {
         // Notify CMS change
         NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
         String spacePath = nuxeoController.getSpacePath(documentPath);
-        nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_CONTENT, false);
+        
+        //TODO : integrate publication to connect
+        nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_SPACE, false);
+        //nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_CONTENT, false);
         
         // Reset cache used for discussions
         DiscussionHelper.resetLocalPublications(portalControllerContext);
@@ -394,7 +397,9 @@ public class MutualizationServiceImpl implements MutualizationService {
         // Notify CMS change
         NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
         String spacePath = nuxeoController.getSpacePath(documentPath);
-        nuxeoController.notifyUpdate(documentPath, spacePath,  UpdateScope.SCOPE_CONTENT, false);        
+        //TODO : integrate publication to connect
+        nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_SPACE, false);
+        //nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_CONTENT, false);
         
         // Reset cache used for discussions
         DiscussionHelper.resetLocalPublications(portalControllerContext);
