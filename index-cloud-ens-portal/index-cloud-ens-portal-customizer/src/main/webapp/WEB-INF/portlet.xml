@@ -19,9 +19,34 @@
         </portlet-info>
     </portlet>
     
+    <!-- Regions customizer -->
+    <portlet>
+        <portlet-name>cloud-ens-regions-customizer</portlet-name>
+        <portlet-class>fr.index.cloud.ens.customizer.regions.RegionsCustomizer</portlet-class>
 
- 
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>Regions customizer</title>
+        </portlet-info>
+    </portlet>
     
+ 
+     <!-- Attributes bundle customizer -->
+    <portlet>
+        <portlet-name>cloud-ens-attributes-customizer</portlet-name>
+        <portlet-class>fr.index.cloud.ens.customizer.attributes.AttributesCustomizer</portlet-class>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>Attributes customizer</title>
+        </portlet-info>
+    </portlet>
     
     <!-- Internationalization customizer -->
     <portlet>

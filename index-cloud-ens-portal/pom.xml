@@ -104,7 +104,8 @@
         <module>index-cloud-ens-portal-distribution</module>
         <module>index-cloud-ens-portal-charte</module>
         <module>index-cloud-ens-portal-directory</module>
-        <module>index-cloud-ens-portal-collaboration</module>		
+        <module>index-cloud-ens-portal-collaboration</module>
+		<module>index-cloud-ens-portal-search</module>		
 		<module>index-cloud-ens-portal-test</module>
     </modules>
 

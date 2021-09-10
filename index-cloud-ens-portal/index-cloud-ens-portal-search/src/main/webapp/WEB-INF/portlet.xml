@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<portlet-app
+    xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    version="2.0">
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.search.portlet.configuration.SearchConfiguration</value>
+        </init-param>
+
+        <expiration-cache>180</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>admin</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>Search</title>
+        </portlet-info>
+
+        <supported-public-render-parameter>selectors</supported-public-render-parameter>
+        <supported-public-render-parameter>search-filter</supported-public-render-parameter>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-filters</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.search.filters.portlet.configuration.SearchFiltersConfiguration</value>
+        </init-param>
+
+        <expiration-cache>180</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>Search filters</title>
+        </portlet-info>
+
+        <supported-public-render-parameter>selectors</supported-public-render-parameter>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-filters-location</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.search.filters.location.portlet.configuration.SearchFiltersLocationConfiguration</value>
+        </init-param>
+
+        <expiration-cache>180</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>Search filters location</title>
+        </portlet-info>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-saved-searches</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.search.saved.portlet.configuration.SavedSearchesConfiguration</value>
+        </init-param>
+
+        <expiration-cache>0</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+            <portlet-mode>admin</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>Saved searches</title>
+        </portlet-info>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-eraser</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.search.eraser.portlet.configuration.SearchEraserConfiguration</value>
+        </init-param>
+
+        <expiration-cache>0</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>Search eraser</title>
+        </portlet-info>
+
+        <supported-public-render-parameter>selectors</supported-public-render-parameter>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-filters-home-settings</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.search.filters.home.settings.portlet.configuration.SearchFiltersHomeSettingsConfiguration</value>
+        </init-param>
+
+        <expiration-cache>180</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+
+        <portlet-info>
+            <title>Search filters home settings</title>
+        </portlet-info>
+
+        <supported-public-render-parameter>selectors</supported-public-render-parameter>
+    </portlet>
+
+
+    <public-render-parameter>
+        <identifier>selectors</identifier>
+        <name>selectors</name>
+    </public-render-parameter>
+
+    <public-render-parameter>
+        <identifier>search-filter</identifier>
+        <name>search-filter</name>
+    </public-render-parameter>
+
+</portlet-app>

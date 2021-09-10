@@ -41,7 +41,7 @@
             <c:when test="${empty requestScope['osivia.toolbar.principal']}">
                 <%--Login--%>
                 <div class="navbar-nav ml-md-auto">
-                    <a href="${requestScope['osivia.toolbar.loginURL']}" class="nav-link text-light">
+                    <a href="${requestScope['osivia.home.url']}/auth" class="nav-link text-light">
                         <i class="customized-icon customized-icon-user h4 mb-0 align-middle"></i>
                         <span><op:translate key="TOOLBAR_LOGIN"/></span>
                     </a>
@@ -59,7 +59,7 @@
                 <%--Navigation--%>
                 <ul class="index-tabs navbar-nav align-items-md-center flex-grow-1 mr-md-3">
                     <li class="nav-item mb-1 mb-md-0 flex-shrink-0">
-                        <a href="${requestScope['osivia.default.memberPageUrl']}" class="index-tab index-tab-home text-light ${requestScope['osivia.default.memberPage'] ? 'active' : ''}">
+                        <a href="${requestScope['osivia.home.url']}" class="index-tab index-tab-home text-light ${requestScope['osivia.default.memberPage'] ? 'active' : ''}">
                             <i class="glyphicons glyphicons-basic-home"></i>
                             <span class="d-md-none"><op:translate key="HOME"/></span>
                         </a>

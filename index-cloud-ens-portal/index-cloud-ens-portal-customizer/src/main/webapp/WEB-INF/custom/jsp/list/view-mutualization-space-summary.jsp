@@ -34,7 +34,7 @@
                         <%--Title--%>
                         <h3 class="card-title mb-0 text-truncate">
                             <c:set var="url"><ttc:documentLink document="${document}" /></c:set>
-                            <a href="${url}" title="${document.displayTitle}" class="stretched-link text-black text-decoration-none no-ajax-link">
+                            <a href="${url}" title="${document.displayTitle}" class="stretched-link text-black text-decoration-none">
                                 <span>${document.displayTitle}</span>
                             </a>
                         </h3>

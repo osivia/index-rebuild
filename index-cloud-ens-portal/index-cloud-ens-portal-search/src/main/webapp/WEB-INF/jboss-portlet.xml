@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE portlet-app PUBLIC "-//JBoss Portal//DTD JBoss Portlet 2.6//EN" "http://www.jboss.org/portal/dtd/jboss-portlet_2_6.dtd">
+
+<portlet-app>
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+
+        <header-content>
+            <script type="text/javascript" src="/js/search.js"/>
+        </header-content>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-filters</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+
+        <header-content>
+            <link rel="stylesheet" href="/css/search-filters.css" />
+            <script type="text/javascript" src="/js/search.js"/>
+        </header-content>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-filters-location</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-saved-searches</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+
+        <header-content>
+            <link rel="stylesheet" href="/css/saved-searches.css" />
+        </header-content>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-eraser</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+    </portlet>
+
+
+    <portlet>
+        <portlet-name>index-cloud-ens-search-filters-home-settings</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+    </portlet>
+
+</portlet-app>
