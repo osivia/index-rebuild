@@ -6,6 +6,7 @@ import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.collections.MapUtils;
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -16,9 +17,11 @@ import org.osivia.directory.v2.model.preferences.UserPreferences;
 import org.osivia.directory.v2.model.preferences.UserSavedSearch;
 import org.osivia.directory.v2.service.preferences.UserPreferencesService;
 import org.osivia.portal.api.PortalException;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.locator.Locator;
+import org.osivia.portal.api.portalobject.bridge.PortalObjectUtils;
 import org.osivia.portal.api.theming.IAttributesBundle;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.core.cms.*;
@@ -26,6 +29,7 @@ import org.osivia.portal.core.profils.IProfilManager;
 import org.osivia.portal.core.profils.ProfilBean;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.xml.XMLConstants;
 import javax.xml.namespace.QName;
 import java.util.*;
@@ -172,6 +176,8 @@ public class CustomizedAttributesBundle implements IAttributesBundle {
     }
 
 
+
+    
     /**
      * Get singleton instance.
      *
@@ -195,12 +201,23 @@ public class CustomizedAttributesBundle implements IAttributesBundle {
         // CMS context
         CMSServiceCtx cmsContext = new CMSServiceCtx();
         cmsContext.setPortalControllerContext(portalControllerContext);
+        
+   
+        
+        // Current CMS ID
+        UniversalID spaceId;
+        String space = PortalObjectUtils.getPage(portalControllerContext).getProperty("osivia.spaceId");
+        if( space != null)
+            spaceId = new UniversalID(space);
+        else
+            spaceId = null;
 
 
         // SSO applications
         attributes.put(APPLICATIONS, this.applications);
 
-
+      
+        
         // My account URL
         /*
         Page myAccountPage = portal.getChild("mon-compte", Page.class);
@@ -216,82 +233,71 @@ public class CustomizedAttributesBundle implements IAttributesBundle {
 
         // User workspace
         CMSItem userWorkspace;
-        /*
+        String userWorkspaceUrl;
+        UniversalID userWorkspaceSpaceId;        
+        
         try {
-            userWorkspace = cmsService.getUserWorkspace(cmsContext);
+             userWorkspace = cmsService.getUserWorkspace(cmsContext);
         } catch (CMSException e) {
             userWorkspace = null;
             this.log.error("Unable to get user workspaces.", e.fillInStackTrace());
         }
-        // User workspace URL
-        String userWorkspaceUrl;
+        
+
+
 
         // User workspace URL
         try {
-            userWorkspaceUrl = this.portalUrlFactory.getMyWorkspaceUrl(portalControllerContext);
-        } catch (PortalException e) {
+            if( userWorkspace != null)  {
+                userWorkspaceSpaceId = cmsService.getUniversalIDFromPath(cmsContext, userWorkspace.getCmsPath());
+                UniversalID userWorkspaceDocumentId = cmsService.getUniversalIDFromPath(cmsContext, userWorkspace.getCmsPath() + "/documents");
+                userWorkspaceUrl = this.portalUrlFactory.getViewContentUrl(portalControllerContext, userWorkspaceDocumentId);
+            }   else    {
+                userWorkspaceUrl = null;
+                userWorkspaceSpaceId = null;               
+            }
+        } catch (Exception e) {
             userWorkspaceUrl = null;
+            userWorkspaceSpaceId = null;
             this.log.error("Unable to get user workspace url.", e.fillInStackTrace());
         }
 
         attributes.put(USER_WORKSPACE_URL, userWorkspaceUrl);
-*/
         
-        // User profile
-        /*
-        ProfilBean profile = this.profileManager.getProfilPrincipalUtilisateur();
-        if( profile != null && profile.getDefaultPageName() != null)    {
-            if( page.getName().equals(profile.getDefaultPageName()))  {
-                attributes.put( DEFAULT_MEMBER_PAGE, true);
-            }
-        }
-        */
+        
+        attributes.put( DEFAULT_MEMBER_PAGE, PortalObjectUtils.isDefaultMemberPage(portalControllerContext));
+
         
         attributes.put(DEFAULT_MEMBER_PAGE_URL, "/portal/auth");
 
-        
-        // Portal default page
-        /*
-        Page portalDefaultPage = portal.getDefaultPage();
-
-        // Mutualized space
-        String mutualizedSpacePath = System.getProperty(MUTUALIZED_SPACE_PATH_PROPERTY);
-        String mutualizedSpaceUrl;
-        if (StringUtils.isEmpty(mutualizedSpacePath)) {
-            mutualizedSpaceUrl = null;
-        } else {
-            mutualizedSpaceUrl = this.portalUrlFactory.getCMSUrl(portalControllerContext, null, mutualizedSpacePath, null, null, null, null, null, null, null);
-        }
-        attributes.put(MUTUALIZED_SPACE_URL, mutualizedSpaceUrl);
-        */
-
-/*
-        // RGPD URL
-        String rgpdUrl;
+         // Mutualized space
+        UniversalID mutualizedSpaceId ;
+        String mutualizedSpaceUrl ;
         try {
-            Map<String, String> properties = new HashMap<>(0);
-            rgpdUrl = this.portalUrlFactory.getStartPageUrl(portalControllerContext, "rgpd", "/default/templates/rgpd", properties, properties);
-        } catch (PortalException e) {
-            rgpdUrl = null;
-            this.log.error("Unable to compute RGPD URL.", e.fillInStackTrace());
+            mutualizedSpaceId = cmsService.getUniversalIDFromPath(cmsContext, System.getProperty(MUTUALIZED_SPACE_PATH_PROPERTY));
+            mutualizedSpaceUrl = this.portalUrlFactory.getViewContentUrl(portalControllerContext, mutualizedSpaceId);
+            attributes.put(MUTUALIZED_SPACE_URL, mutualizedSpaceUrl);            
+        } catch (CMSException e) {
+            mutualizedSpaceId = null;
+            mutualizedSpaceUrl = null;            
+            this.log.error("Unable to get user mutualized space id .", e.fillInStackTrace());
         }
-        if (StringUtils.isNotEmpty(rgpdUrl)) {
-            attributes.put(RGPD_URL, rgpdUrl);
-        }
-*/
+
+
 
         // Nav items
-        /*
+
         List<NavItem> navItems = new ArrayList<>();
         attributes.put(NAV_ITEMS, navItems);
 
+        
         // User workspace nav item
         NavItem userWorkspaceNavItem = new NavItem();
         userWorkspaceNavItem.setUrl(userWorkspaceUrl);
         userWorkspaceNavItem.setIcon("customized-icon customized-icon-user");
         userWorkspaceNavItem.setKey("TOOLBAR_USER_WORKSPACE");
         userWorkspaceNavItem.setColor("green");
-        userWorkspaceNavItem.setActive((userWorkspace != null) && StringUtils.equals(basePath, userWorkspace.getCmsPath()));
+        userWorkspaceNavItem.setActive(Objects.equals(userWorkspaceSpaceId, spaceId));
         navItems.add(userWorkspaceNavItem);
 
         // Mutualized space nav item
@@ -300,9 +306,9 @@ public class CustomizedAttributesBundle implements IAttributesBundle {
         mutualizedSpaceNavItem.setIcon("glyphicons glyphicons-basic-share");
         mutualizedSpaceNavItem.setKey("TOOLBAR_COMMUNITY_WORKSPACE");
         mutualizedSpaceNavItem.setColor("orange");
-        mutualizedSpaceNavItem.setActive(StringUtils.equals(basePath, mutualizedSpacePath));
+        mutualizedSpaceNavItem.setActive(Objects.equals(mutualizedSpaceId, spaceId));
         navItems.add(mutualizedSpaceNavItem);
-*/
+
 
         // Index Éducation URL
         attributes.put(INDEX_EDUCATION_URL_KEY, INDEX_EDUCATION_URL_VALUE);

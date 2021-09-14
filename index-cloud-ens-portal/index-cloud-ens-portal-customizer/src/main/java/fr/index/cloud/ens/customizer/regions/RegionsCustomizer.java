@@ -89,7 +89,7 @@ public class RegionsCustomizer extends GenericPortlet implements ICustomizationM
 
         // Context path
         String contextPath = (String) attributes.get(IRenderedRegions.CUSTOMIZER_ATTRIBUTE_THEME_CONTEXT_PATH);
-        if( contextPath.startsWith("/index-cloud-ens-portal-charte"))   {
+        if( contextPath.startsWith("/index-cloud-ens-charte"))   {
 
             // Toolbar
             renderedRegion.customizeRenderedRegion("toolbar", "/regions/toolbar.jsp");

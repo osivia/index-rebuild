@@ -8,7 +8,7 @@
 <c:set var="start"><op:translate key="FILE_BROWSER_UPLOAD_LABEL_START"/></c:set>
 <c:set var="cancel"><op:translate key="FILE_BROWSER_UPLOAD_LABEL_CANCEL"/></c:set>
 
-<form:form action="${uploadUrl}" method="post" enctype="multipart/form-data" modelAttribute="form"
+<form:form data-action="${uploadUrl}" method="post" enctype="multipart/form-data" modelAttribute="form"
            cssClass="file-browser-upload d-none" data-callback-url="${callbackUrl}"
            data-max-file-size="${form.maxFileSize}" data-warning-replace="${replaceWarning}"
            data-warning-replace-pronote="${replacePronoteWarning}" data-error-size="${sizeError}"

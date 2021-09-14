@@ -1,6 +1,15 @@
 $JQry(function () {
     var $upload = $JQry(".file-browser-upload");
+    
+    //Preserve conversation
+    var url = $upload.attr("data-action");
+    if( url != undefined)	{ 
+    	url = url.replace("/auth/", "/nr/session/"+session_check+"/vs/"+view_state+"/");
+    	$upload.attr('action', url);
+    }
 
+
+    
     if (!$upload.data("loaded")) {
         // File upload
         $upload.fileupload({

@@ -34,6 +34,7 @@ RUN cd / \
     && rm -f ${PORTAL_DISTRIBUTION_ZIP}
 
 #Logs
+COPY logging.properties /usr/local/tomcat/conf
 COPY catalina.properties /usr/local/tomcat/conf
 COPY portal.properties /
 COPY environnement_portail.properties /

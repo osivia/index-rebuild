@@ -18,7 +18,6 @@
                 <!-- directory -->
          		<include>fr.index.cloud.ens.portal.directory:index-cloud-ens-portal-directory-packaging</include>                              
                 <!-- index education -->
-                <include>${project.groupId}:index-cloud-ens-portal-charte</include> 
                 <include>${project.groupId}:index-cloud-ens-portal-customizer</include>                 
                 <include>${project.groupId}:index-cloud-ens-portal-test</include>
                 <include>${project.groupId}:index-cloud-ens-portal-search</include> 
@@ -43,6 +42,16 @@
  
              </includes> 
         </dependencySet>
+        
+        <dependencySet>
+            <outputDirectory>/webapps</outputDirectory>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+ 			<includes>
+                <include>${project.groupId}:index-cloud-ens-portal-charte</include>
+             </includes>
+             <outputFileNameMapping>index-cloud-ens-charte.war</outputFileNameMapping>       
+        </dependencySet>          
                             
     </dependencySets>
 
