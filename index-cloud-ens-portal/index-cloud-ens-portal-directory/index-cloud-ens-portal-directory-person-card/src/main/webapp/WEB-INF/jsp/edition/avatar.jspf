@@ -1,0 +1,71 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+
+<c:set var="namespace"><portlet:namespace/></c:set>
+
+
+<div class="form-group row">
+    <form:label path="avatar.upload" cssClass="col-sm-5 col-md-4 col-lg-3 col-form-label"><op:translate
+            key="PERSON_CARD_AVATAR"/></form:label>
+    <div class="col">
+        <c:choose>
+            <c:when test="${editionForm.avatar.updated}">
+                <%--Preview--%>
+                <jsp:useBean id="currentDate" class="java.util.Date"/>
+                <portlet:resourceURL id="avatarPreview" var="previewUrl">
+                    <portlet:param name="view" value="edit"/>
+                    <portlet:param name="ts" value="${currentDate.time}"/>
+                </portlet:resourceURL>
+                <p class="form-control-plaintext">
+                    <img src="${previewUrl}" alt="" class="avatar h1 mb-0">
+                </p>
+            </c:when>
+
+            <c:when test="${editionForm.avatar.deleted}">
+                <%--Deleted avatar--%>
+                <p class="form-control-plaintext text-muted">
+                    <span><op:translate key="PERSON_CARD_DELETED_AVATAR"/></span>
+                </p>
+            </c:when>
+
+            <c:when test="${empty editionForm.avatar.url}">
+                <%--No avatar--%>
+                <p class="form-control-plaintext text-muted">
+                    <span><op:translate key="PERSON_CARD_EMPTY_AVATAR"/></span>
+                </p>
+            </c:when>
+
+            <c:otherwise>
+                <%--Visual--%>
+                <p class="form-control-plaintext">
+                    <img src="${editionForm.avatar.url}" alt="" class="avatar h1 mb-0">
+                </p>
+            </c:otherwise>
+        </c:choose>
+
+        <div class="form-row">
+            <%--Upload--%>
+            <div class="col">
+                <div class="custom-file">
+                    <c:set var="browse"><op:translate key="FILE_INPUT_BROWSE"/></c:set>
+                    <form:input type="file" path="avatar.upload" cssClass="custom-file-input"
+                                data-change-submit="${namespace}-avatar"/>
+                    <form:label path="avatar.upload" cssClass="custom-file-label" data-browse="${browse}"><op:translate
+                            key="FILE_INPUT_LABEL"/></form:label>
+                </div>
+                <input id="${namespace}-avatar" type="submit" name="upload-avatar" class="d-none">
+            </div>
+
+            <%--Delete--%>
+            <div class="col-auto">
+                <button type="submit" name="delete-avatar" class="btn btn-secondary">
+                    <i class="glyphicons glyphicons-basic-bin"></i>
+                    <span class="sr-only"><op:translate key="DELETE"/></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

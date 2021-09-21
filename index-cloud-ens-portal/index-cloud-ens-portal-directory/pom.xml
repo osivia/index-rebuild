@@ -20,6 +20,7 @@
 
     <modules>
         <module>index-cloud-ens-portal-directory-socle</module>
+		<module>index-cloud-ens-portal-directory-person-card</module>
     </modules>
 
 

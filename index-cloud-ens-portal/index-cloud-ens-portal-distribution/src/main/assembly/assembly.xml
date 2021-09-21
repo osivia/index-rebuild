@@ -17,6 +17,7 @@
             <includes>
                 <!-- directory -->
          		<include>fr.index.cloud.ens.portal.directory:index-cloud-ens-portal-directory-packaging</include>                              
+         		<include>fr.index.cloud.ens.portal.directory:index-cloud-ens-portal-directory-person-card</include>   
                 <!-- index education -->
                 <include>${project.groupId}:index-cloud-ens-portal-customizer</include>                 
                 <include>${project.groupId}:index-cloud-ens-portal-test</include>

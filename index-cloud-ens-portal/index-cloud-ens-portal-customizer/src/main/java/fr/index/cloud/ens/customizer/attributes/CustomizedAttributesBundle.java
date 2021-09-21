@@ -219,17 +219,12 @@ public class CustomizedAttributesBundle implements IAttributesBundle {
       
         
         // My account URL
-        /*
-        Page myAccountPage = portal.getChild("mon-compte", Page.class);
         String myAccountUrl;
-        if (myAccountPage == null) {
-            myAccountUrl = null;
-        } else {
-            String myAccountPageId = myAccountPage.getId().toString(PortalObjectPath.SAFEST_FORMAT);
-            myAccountUrl = this.portalUrlFactory.getViewPageUrl(portalControllerContext, myAccountPageId);
-        }
+
+        UniversalID myAccountDocumentId = new UniversalID( "idx", "DEFAULT_MON-COMPTE");
+        myAccountUrl = this.portalUrlFactory.getViewContentUrl(portalControllerContext, myAccountDocumentId);
+
         attributes.put(MY_ACCOUNT_URL, myAccountUrl);
-*/
 
         // User workspace
         CMSItem userWorkspace;

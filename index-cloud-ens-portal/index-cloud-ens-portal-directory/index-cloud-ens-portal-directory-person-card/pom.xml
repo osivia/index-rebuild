@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.index.cloud.ens.portal.directory</groupId>
+        <artifactId>index-cloud-ens-portal-directory-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>index-cloud-ens-portal-directory-person-card</artifactId>
+    <packaging>war</packaging>
+
+    <name>Cloud enseignant - Fiche personne</name>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osivia.services.directory.person</groupId>
+            <artifactId>osivia-services-directory-person-card</artifactId>
+            <version>${directory.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>org.osivia.services.directory.person</groupId>
+            <artifactId>osivia-services-directory-person-card</artifactId>
+            <version>${directory.version}</version>
+            <classifier>classes</classifier>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <overlays>
+                        <overlay>
+                            <groupId>org.osivia.services.directory.person</groupId>
+                            <artifactId>osivia-services-directory-person-card</artifactId>
+                            <type>war</type>
+                        </overlay>
+                    </overlays>
+                    <failOnMissingWebXml>false</failOnMissingWebXml>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

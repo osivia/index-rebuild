@@ -1,0 +1,80 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+
+<portlet:renderURL var="editUrl">
+    <portlet:param name="view" value="edit" />
+</portlet:renderURL>
+
+<portlet:renderURL var="editPasswordUrl">
+    <portlet:param name="view" value="editPassword" />
+</portlet:renderURL>
+
+<portlet:actionURL name="delete" var="deleteUrl" />
+
+<c:set var="namespace"><portlet:namespace /></c:set>
+
+
+<c:if test="${options.editable}">
+    <%--Password edition--%>
+    <c:if test="${options.passwordEditionMode.editable}">
+        <div>
+            <a href="${editPasswordUrl}" class="btn btn-secondary">
+                <i class="glyphicons glyphicons-keys"></i>
+                <span><op:translate key="PERSON_CARD_PASSWORD_EDIT" /></span>
+            </a>
+        </div>
+
+        <hr>
+    </c:if>
+
+    <%--Edition--%>
+    <div class="text-right">
+        <a href="${editUrl}" class="btn btn-primary">
+            <i class="glyphicons glyphicons-pencil"></i>
+            <span><op:translate key="PERSON_CARD_EDIT" /></span>
+        </a>
+    </div>
+
+    <%--Deletion--%>
+    <c:if test="${options.deletable}">
+        <div class="text-right">
+            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#${namespace}-delete-modal">
+                <i class="glyphicons glyphicons-bin"></i>
+                <span><op:translate key="DELETE" /></span>
+            </button>
+        </div>
+
+        <%--Modal--%>
+        <div id="${namespace}-delete-modal" class="modal fade" role="dialog">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title"><op:translate key="PERSON_CARD_DELETE_MODAL_TITLE" /></h4>
+
+                        <button type="button" class="close" data-dismiss="modal">
+                            <i class="glyphicons glyphicons-remove"></i>
+                            <span class="sr-only"><op:translate key="CLOSE" /></span>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <p><op:translate key="PERSON_CARD_DELETE_MODAL_MESSAGE" /></p>
+                    </div>
+
+                    <div class="modal-footer">
+                        <a href="${deleteUrl}" class="btn btn-danger" data-dismiss="modal">
+                            <i class="glyphicons glyphicons-bin"></i>
+                            <span><op:translate key="DELETE" /></span>
+                        </a>
+
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <span><op:translate key="CANCEL" /></span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:if>
+</c:if>

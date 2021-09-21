@@ -71,6 +71,13 @@
 	         <artifactId>osivia-services-directory-socle-interfaces</artifactId>
 	         <scope>compile</scope>
 	     </dependency>     
+        <!-- Person card -->
+        <dependency>
+            <groupId>fr.index.cloud.ens.portal.directory</groupId>
+            <artifactId>index-cloud-ens-portal-directory-person-card</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>	     
 	     <!--  Services -->
 	     <dependency>
 	         <groupId>org.osivia.services</groupId>
