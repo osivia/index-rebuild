@@ -45,6 +45,13 @@
 			<version>${project.version}</version>
 			<type>war</type>
 		</dependency>			
+		
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>index-cloud-ens-portal-discussion</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>       		
 
 		
         <!-- File upload -->
@@ -79,6 +86,12 @@
             <type>war</type>
         </dependency>	     
 	     <!--  Services -->
+        <dependency>
+            <groupId>org.osivia.services</groupId>
+            <artifactId>osivia-services-tasks</artifactId>
+            <version>${tasks.version}</version>
+            <type>war</type>
+        </dependency>	     
 	     <dependency>
 	         <groupId>org.osivia.services</groupId>
 	         <artifactId>osivia-services-widgets</artifactId>

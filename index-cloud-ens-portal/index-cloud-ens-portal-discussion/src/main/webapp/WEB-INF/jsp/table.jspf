@@ -1,0 +1,13 @@
+<%--Table toolbar--%>
+<%@ include file="table-toolbar.jspf" %>
+
+<%--Table--%>
+<div class="portal-table">
+    <%--Header--%>
+    <%@ include file="table-header.jspf" %>
+
+    <div class="portlet-filler overflow-y-auto">
+        <%--Body--%>
+        <%@ include file="table-body.jspf" %>
+    </div>
+</div>

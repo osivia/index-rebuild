@@ -27,7 +27,7 @@
         <directory.version>5.0-SNAPSHOT</directory.version>
         <!--Services -->
         <collaboration.version>5.0-SNAPSHOT</collaboration.version>
-
+        <tasks.version>5.0-SNAPSHOT</tasks.version>
 
     </properties>
 
@@ -107,6 +107,7 @@
         <module>index-cloud-ens-portal-collaboration</module>
 		<module>index-cloud-ens-portal-search</module>		
 		<module>index-cloud-ens-portal-test</module>
+		<module>index-cloud-ens-portal-discussion</module>
     </modules>
 
 

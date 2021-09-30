@@ -1,0 +1,94 @@
+//
+// Discussions
+// --------------------------------------------------
+
+
+.discussions {
+    [data-column="document"] {
+        flex-grow: 1;
+        flex-shrink: 1;
+        overflow: hidden;    
+    }
+    
+    [data-column="date"] {
+        width: 200px;
+    }
+    
+    @media (max-width: 767px) {
+    
+        [data-column="date"] {
+            display: none;
+        }
+    
+    }    
+
+    .portal-table-row {
+        position: relative;
+    }
+
+    .discussions-shadowbox {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+        visibility: hidden;
+    }
+
+    .ui-selected {
+        .discussions-shadowbox {
+            visibility: visible;
+        }
+    }
+
+}
+
+.discussion {    
+    .form-rounded {
+        border-radius: 1rem;
+    }   
+    
+    .avatar {
+        height: 2.5rem; // 40px
+        width: 2.5rem; // 40px
+        vertical-align: middle;
+        margin-right: .25rem;
+        border-radius: 50%;
+        object-fit: cover;
+        
+
+        &[src$=".svg"] {
+              background-color: currentColor;
+            }  
+    }
+     
+}   
+
+.my-messages .triangle-left:after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    left: 50px;
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: #FFFFFF transparent;
+    display: block;
+    width: 0;
+}
+
+.my-messages .triangle-right:after {
+    content: "";
+    position: absolute;
+    bottom: -9px;
+    right: 50px;
+    border-width: 10px 10px 0 10px;
+    border-style: solid;
+    border-color: #FFFFFF transparent;
+    display: block;
+    width: 0;
+}
+
+.my-messages .card-custom-icon .avatar img {
+    max-width:100%;
+} 

@@ -1,0 +1,15 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+
+<portlet:resourceURL id="toolbar" var="toolbarUrl" />
+
+<c:set var="namespace"><portlet:namespace/></c:set>
+
+
+<div class="portal-table-toolbar-container" data-url="${toolbarUrl}">
+    <%--Toolbar--%>
+    <div class="portal-table-toolbar">
+        <div></div>
+    </div>
+</div>

@@ -1,0 +1,70 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="op" uri="http://www.osivia.org/jsp/taglib/osivia-portal" %>
+<%@ taglib prefix="ttc" uri="http://www.toutatice.fr/jsp/taglib/toutatice" %>
+
+
+<c:set var="checkboxTitle"><op:translate key="TABLE_CHECKBOX_TITLE"/></c:set>
+
+
+<c:choose>
+    <c:when test="${empty discussionsForm.documents}">
+        <div class="portal-table-row-group">
+            <div class="portal-table-row">
+                <div class="portal-table-cell">
+                    <span class="text-muted"><op:translate key="DISCUSSION_EMPTY_MESSAGE"/></span>
+                </div>
+            </div>
+        </div>
+    </c:when>
+
+    <c:otherwise>
+        <div class="portal-table-row-group portal-table-selectable">
+            <c:forEach var="document" items="${discussionsForm.documents}">
+                <div class="portal-table-row portal-table-selectable-filter" data-double-click-target=".portal-table-cell a">
+                    <%--Checkbox--%>
+                    <div class="portal-table-cell" data-column="checkbox">
+                        <div class="portal-table-checkbox">
+                            <a href="javascript:" class="no-ajax-link" title="${checkboxTitle}">
+                                <i class="glyphicons glyphicons-basic-square-empty"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <%--Document--%>
+                    <div class="portal-table-cell" data-column="document">
+                        <div class="text-truncate">
+                            <portlet:renderURL var="detailUrl">
+                                <portlet:param name="view" value="detail" />
+                                <portlet:param name="id" value="${document.webId}"/>
+                            </portlet:renderURL>
+                            <strong><a class="h6 text-dark" href="${detailUrl}">${document.title}</a></strong>
+                            <div class="text-truncate text-muted pl-3">${document.lastMessageExtract}</div>
+                        </div>
+                    </div>
+
+                    <%--Date--%>
+                    <div class="portal-table-cell"  data-column="date">
+                        <c:if test="${not empty document.lastModified}">
+                            <div class="d-flex flex-column overflow-hidden">
+                                <div class="text-truncate">
+                                    <span><op:formatRelativeDate
+                                            value="${document.lastModified}"/></span>
+                                </div>
+                                <div class="text-truncate">
+                                    <small><op:translate key="DISCUSSION_BY_LAST_CONTRIBUTOR"/></small>
+                                    <small><ttc:user
+                                            name="${document.lastContributor}"
+                                            linkable="false"/></small>
+                                </div>
+                            </div>
+                        </c:if>
+                    </div>
+
+                    <%--Draggable--%>
+                    <div class="discussions-shadowbox portal-table-selectable-cancel"></div>
+                </div>
+            </c:forEach>
+        </div>
+    </c:otherwise>
+</c:choose>
