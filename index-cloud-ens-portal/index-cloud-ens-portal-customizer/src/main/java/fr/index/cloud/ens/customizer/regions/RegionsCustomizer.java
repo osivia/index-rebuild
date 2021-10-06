@@ -99,7 +99,9 @@ public class RegionsCustomizer extends GenericPortlet implements ICustomizationM
             // Tabs
             renderedRegion.removeRenderedRegion("tabs");
             // Breadcrumb
+*/             
             renderedRegion.customizeRenderedRegion("breadcrumb", "/regions/breadcrumb.jsp");
+/*
             // Footer
             renderedRegion.removeRenderedRegion("footer");
     */        
