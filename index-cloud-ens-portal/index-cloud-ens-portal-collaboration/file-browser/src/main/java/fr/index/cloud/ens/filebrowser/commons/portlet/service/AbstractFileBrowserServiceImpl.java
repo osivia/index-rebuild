@@ -337,7 +337,7 @@ public abstract class AbstractFileBrowserServiceImpl extends FileBrowserServiceI
         response.removePublicRenderParameter(SEARCH_FILTER_PARAMETER);
 
         // Refresh other portlet model attributes
-        PageProperties.getProperties().setRefreshingPage(true);
+       // PageProperties.getProperties().setRefreshingPage(true);
     }
 
 }

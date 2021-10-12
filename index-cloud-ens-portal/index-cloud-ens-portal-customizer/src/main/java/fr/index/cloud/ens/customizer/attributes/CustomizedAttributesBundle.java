@@ -310,9 +310,8 @@ public class CustomizedAttributesBundle implements IAttributesBundle {
 
 
         // Hide first breadcrumb item indicator
-        /*
         attributes.put(HIDE_FIRST_BREADCRUMB_ITEM, userWorkspaceNavItem.isActive());
-        */
+
 
         // Active saved search
         /*

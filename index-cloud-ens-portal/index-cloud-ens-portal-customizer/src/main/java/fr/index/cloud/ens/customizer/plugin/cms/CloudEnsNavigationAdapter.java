@@ -80,6 +80,7 @@ public class CloudEnsNavigationAdapter implements INavigationAdapterModule {
 
     @Override
     public Symlinks getSymlinks(PortalControllerContext portalControllerContext) {
+        /*
         // Symlinks
         Symlinks symlinks = new Symlinks();
 
@@ -99,12 +100,15 @@ public class CloudEnsNavigationAdapter implements INavigationAdapterModule {
         symlinks.getPaths().add(CloudEnsConstants.ROOT_WORKSPACE_PATH);
 
         return symlinks;
+        */
+        return null;
     }
 
 
     @Override
     public void adaptNavigationItem(PortalControllerContext portalControllerContext, CMSItem navigationItem) {
-        if ((navigationItem.getType() != null) && "Workspace".equals(navigationItem.getType().getName())) {
+       
+        /*if ((navigationItem.getType() != null) && "Workspace".equals(navigationItem.getType().getName())) {
             // Virtual staples are not implemented in partial loading mode
             navigationItem.getProperties().put("partialLoading", "0");
 
@@ -113,13 +117,16 @@ public class CloudEnsNavigationAdapter implements INavigationAdapterModule {
             if ((userWorkspace != null) && StringUtils.equals(navigationItem.getCmsPath(), userWorkspace.getCmsPath())) {
                 this.renameDocument(portalControllerContext, navigationItem, "TOOLBAR_USER_WORKSPACE");
             }
-        } else if ((navigationItem.getType() != null) && "Folder".equals(navigationItem.getType().getName()) && StringUtils.endsWith(navigationItem.getCmsPath(), "/documents")) {
+        } 
+        else */if ((navigationItem.getType() != null) && "Folder".equals(navigationItem.getType().getName()) && StringUtils.endsWith(navigationItem.getCmsPath(), "/documents")) {
             // User workspace
             CMSItem userWorkspace = this.getUserWorkspace(portalControllerContext);
             if ((userWorkspace != null) && StringUtils.equals(navigationItem.getCmsPath(), userWorkspace.getCmsPath() + "/documents")) {
                 this.renameDocument(portalControllerContext, navigationItem, "TOOLBAR_USER_WORKSPACE");
             }
-        } else if ((navigationItem.getType() != null) && "PortalSite".equals(navigationItem.getType().getName()) && StringUtils.equals(MUTUALIZED_SPACE_PATH, StringUtils.removeEnd(navigationItem.getCmsPath(), ".proxy"))) {
+        } 
+
+        if ((navigationItem.getType() != null) && "PortalSite".equals(navigationItem.getType().getName()) && StringUtils.equals(MUTUALIZED_SPACE_PATH, StringUtils.removeEnd(navigationItem.getCmsPath(), ".proxy"))) {
             this.renameDocument(portalControllerContext, navigationItem, "TOOLBAR_COMMUNITY_WORKSPACE");
         }
     }

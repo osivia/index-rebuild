@@ -101,12 +101,28 @@ public class CloudEnsPlugin extends AbstractPluginPortlet {
         this.customizeListTemplates(customizationContext);
         // Template adapters
         this.customizeTemplateAdapters(customizationContext);
-
+        // Navigation adapters
+        this.customizeNavigationAdapters(customizationContext);
         // Document modules
         this.customizeDocumentModules(customizationContext);
     }
 
 
+    
+    /**
+     * Customize navigation adapters.
+     *
+     * @param customizationContext customization context
+     */
+    private void customizeNavigationAdapters(CustomizationContext customizationContext) {
+        // Navigation adapters
+        List<INavigationAdapterModule> navigationAdapters = this.getNavigationAdapters(customizationContext);
+
+        // Customized navigation adapter
+        INavigationAdapterModule navigationAdapter = new CloudEnsNavigationAdapter();
+        navigationAdapters.add(navigationAdapter);
+    }
+    
     /**
      * Customize menubar modules.
      *
