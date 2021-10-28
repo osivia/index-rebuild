@@ -12,6 +12,8 @@ import fr.toutatice.portail.cms.nuxeo.api.domain.AbstractPluginPortlet;
 import fr.toutatice.portail.cms.nuxeo.api.domain.INavigationAdapterModule;
 import fr.toutatice.portail.cms.nuxeo.api.domain.ListTemplate;
 import fr.toutatice.portail.cms.nuxeo.api.portlet.IPortletModule;
+
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.customization.CustomizationContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
@@ -101,6 +103,8 @@ public class CloudEnsPlugin extends AbstractPluginPortlet {
         this.customizeListTemplates(customizationContext);
         // Template adapters
         this.customizeTemplateAdapters(customizationContext);
+        // Taskbar items
+        this.customizeTaskbarItems(customizationContext);        
         // Navigation adapters
         this.customizeNavigationAdapters(customizationContext);
         // Document modules
@@ -108,6 +112,28 @@ public class CloudEnsPlugin extends AbstractPluginPortlet {
     }
 
 
+    /**
+     * Customize taskbar items.
+     *
+     * @param customizationContext customization context
+     */
+    private void customizeTaskbarItems(CustomizationContext customizationContext) {
+        // Taskbar items
+        TaskbarItems items = this.getTaskbarItems(customizationContext);
+        // Factory
+        TaskbarFactory factory = this.getTaskbarService().getFactory();
+
+        // Recent items
+        TaskbarItem recentItems = factory.createStapledTaskbarItem("RECENT_ITEMS", "RECENT_ITEMS_TASK", "glyphicons glyphicons-basic-history", new UniversalID( "idx", "DEFAULT_TEMPLATES_RECENT"));
+        items.add(recentItems);
+
+        // Search filters
+        TaskbarItem searchFilters = factory.createStapledTaskbarItem("SEARCH_FILTERS", "SEARCH_FILTERS_TASK", "glyphicons glyphicons-basic-search",new UniversalID( "idx", "DEFAULT_TEMPLATES_SEARCH-FILTERS") );
+        items.add(searchFilters);
+    }
+
+    
+    
     
     /**
      * Customize navigation adapters.

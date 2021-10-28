@@ -108,6 +108,7 @@
 		<module>index-cloud-ens-portal-search</module>		
 		<module>index-cloud-ens-portal-test</module>
 		<module>index-cloud-ens-portal-discussion</module>
+		<module>index-cloud-ens-portal-taskbar</module>		
     </modules>
 
 

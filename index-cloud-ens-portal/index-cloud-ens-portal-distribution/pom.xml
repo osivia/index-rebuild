@@ -51,7 +51,14 @@
             <artifactId>index-cloud-ens-portal-discussion</artifactId>
             <version>${project.version}</version>
             <type>war</type>
-        </dependency>       		
+        </dependency>     
+        
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>index-cloud-ens-portal-taskbar</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>             		
 
 		
         <!-- File upload -->

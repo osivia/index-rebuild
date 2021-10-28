@@ -1,0 +1,148 @@
+@import "../../../../index-cloud-ens-portal-charte/src/main/sass/cloud-ens/variables";
+@import "../../../../index-cloud-ens-portal-charte/src/main/sass/osivia/glyphicons/mixins";
+
+
+.taskbar {
+  .fancytree-node {
+    margin-bottom: map-get($spacers, 3);
+    padding: 0;
+
+    &, &.current {
+      color: $secondary;
+
+      &:hover {
+        color: darken($secondary, $emphasized-link-hover-darken-percentage);
+      }
+    }
+
+    .fancytree-expander, .fancytree-icon, .fancytree-custom-icon {
+      margin-right: 0;
+
+      &, &.glyphicons::before {
+        width: $glyphicons-size;
+        height: $glyphicons-size;
+      }
+    }
+
+    .fancytree-expander {
+      font-size: $small-font-size;
+    }
+
+    .fancytree-icon {
+      margin-left: map-get($spacers, 1);
+    }
+
+    &.current {
+      .fancytree-icon {
+        color: $green-500;
+      }
+
+      &:hover {
+        .fancytree-icon {
+          color: darken($green-500, $emphasized-link-hover-darken-percentage);
+        }
+      }
+    }
+
+    .fancytree-title {
+      margin-left: map-get($spacers, 2);
+
+      color: $black;
+      font-weight: $font-weight-bold;
+    }
+  }
+
+
+  .card-custom {
+    .card-body {
+      padding: .75rem;
+    }
+  }
+
+
+  .form-control {
+    height: 3rem;
+
+    padding: {
+      top: .75rem;
+      bottom: .75rem;
+    }
+
+    color: $body-color;
+    border-style: none;
+    font-weight: $font-weight-bold;
+
+    &::placeholder {
+      font-size: $small-font-size;
+      font-weight: $font-weight-normal;
+    }
+  }
+
+  .input-group-text {
+    background-color: $white;
+    border-style: none;
+  }
+
+  .select2-container--bootstrap4 {
+    .select2-selection {
+      position: relative;
+      min-height: 3rem;
+
+      padding-top: .5rem;
+      padding-right: 1.75rem;
+
+      border-style: none;
+
+      &::after {
+        $glyphicons-url: glyphicons-url("basic", 796, "set-down");
+
+        content: "";
+        position: absolute;
+        top: 0;
+        right: .5rem;
+
+        display: flex;
+        align-items: center;
+        height: 3rem;
+        width: 1em;
+
+        margin: {
+          top: auto;
+          bottom: auto;
+        }
+
+        color: $gray-500;
+        background-color: currentColor;
+        font-size: $small-font-size;
+
+        mask-position: center;
+        -webkit-mask-position: center;
+        mask-repeat: no-repeat;
+        -webkit-mask-repeat: no-repeat;
+        mask-size: contain;
+        -webkit-mask-size: contain;
+        mask-image: url("#{$glyphicons-url}");
+        -webkit-mask-image: url("#{$glyphicons-url}");
+      }
+    }
+  }
+
+
+  .btn {
+    &.position-absolute {
+      top: 0;
+      right: 0;
+
+      padding: {
+        left: map-get($spacers, 2);
+        right: map-get($spacers, 2);
+      }
+
+      color: $white;
+
+      &:hover, &:focus {
+        color: $secondary;
+      }
+    }
+  }
+}

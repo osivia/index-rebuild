@@ -25,8 +25,8 @@
                 <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-file-browser</include>                
                 <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-mutualization</include>   
                 <include>${project.groupId}:index-cloud-ens-portal-discussion</include>
-                             
-                 <!-- services -->
+                <include>${project.groupId}:index-cloud-ens-portal-taskbar</include>                
+                  <!-- services -->
                 <include>org.osivia.services:osivia-services-widgets</include>
                 <include>org.osivia.services:osivia-services-document-edition</include>
                 <include>org.osivia.services:osivia-services-tasks</include>                

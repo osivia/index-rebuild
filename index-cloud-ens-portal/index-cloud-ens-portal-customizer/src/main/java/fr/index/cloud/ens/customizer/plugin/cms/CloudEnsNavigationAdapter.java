@@ -80,7 +80,7 @@ public class CloudEnsNavigationAdapter implements INavigationAdapterModule {
 
     @Override
     public Symlinks getSymlinks(PortalControllerContext portalControllerContext) {
-        /*
+
         // Symlinks
         Symlinks symlinks = new Symlinks();
 
@@ -100,8 +100,7 @@ public class CloudEnsNavigationAdapter implements INavigationAdapterModule {
         symlinks.getPaths().add(CloudEnsConstants.ROOT_WORKSPACE_PATH);
 
         return symlinks;
-        */
-        return null;
+
     }
 
 
