@@ -24,7 +24,7 @@
         </transaction>
 
         <header-content>
-            <link rel="stylesheet" href="/css/search-filters.css" />
+            <link rel="stylesheet" type="text/css" href="/css/search-filters.css" />
             <script type="text/javascript" src="/js/search.js"/>
         </header-content>
     </portlet>
@@ -47,7 +47,7 @@
         </transaction>
 
         <header-content>
-            <link rel="stylesheet" href="/css/saved-searches.css" />
+            <link rel="stylesheet" type="text/css" href="/css/saved-searches.css" />
         </header-content>
     </portlet>
 

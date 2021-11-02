@@ -99,7 +99,7 @@
                                     <portlet:actionURL name="advanced-search-new-filter" var="url">
                                         <portlet:param name="titleKey" value="TASKBAR_SAVE_CURRENT_SEARCH"/>
                                     </portlet:actionURL>
-                                    <a href="${url}" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary text-truncate no-ajax-link">
+                                    <a href="${url}" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary text-truncate">
                                         <strong><op:translate key="TASKBAR_SAVE_CURRENT_SEARCH"/></strong>
                                     </a>
                                 </div>
@@ -173,7 +173,7 @@
 
                         <div class="mb-3">
                             <a href="#${namespace}-search"
-                               class="d-flex align-items-center text-secondary text-decoration-none no-ajax-link"
+                               class="d-flex align-items-center text-secondary text-decoration-none"
                                data-toggle="collapse">
                                 <small class="flex-shrink-0 mr-1">
                                     <i class="glyphicons glyphicons-basic-set-down"></i>
@@ -192,7 +192,7 @@
                                     <%--Advanced search--%>
                                     <div class="d-flex justify-content-end mb-2">
                                         <portlet:actionURL name="advanced-search" var="url"/>
-                                        <a href="${url}" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary text-truncate no-ajax-link">
+                                        <a href="${url}" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary text-truncate">
                                             <i class="glyphicons glyphicons-basic-plus"></i>
                                             <strong><op:translate key="TASKBAR_ADVANCED_SEARCH"/></strong>
                                         </a>

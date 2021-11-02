@@ -5,10 +5,13 @@ import fr.index.cloud.ens.search.saved.portlet.model.SavedSearchesForm;
 import fr.index.cloud.ens.search.saved.portlet.model.SavedSearchesWindowProperties;
 import fr.index.cloud.ens.search.saved.portlet.model.comparator.SavedSearchOrderComparator;
 import fr.index.cloud.ens.search.saved.portlet.repository.SavedSearchesRepository;
+import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;
 import fr.toutatice.portail.cms.nuxeo.api.PageSelectors;
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.osivia.directory.v2.model.preferences.UserSavedSearch;
+import org.osivia.portal.api.cms.CMSContext;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
@@ -204,9 +207,12 @@ public class SavedSearchesServiceImpl extends SearchCommonServiceImpl implements
                 path = location;
             }
 
-            // CMS URL
-            url = this.portalUrlFactory.getCMSUrl(portalControllerContext, null, path, parameters, null, null, null, null,
-                    null, null);
+            
+            NuxeoController nuxeoController = new NuxeoController(portalControllerContext);            
+            UniversalID redirectId = nuxeoController.getUniversalIDFromPath(path);            
+            url = this.portalUrlFactory.getViewContentUrl(portalControllerContext, new CMSContext(portalControllerContext), redirectId, false, parameters);
+
+
         }
 
         return url;

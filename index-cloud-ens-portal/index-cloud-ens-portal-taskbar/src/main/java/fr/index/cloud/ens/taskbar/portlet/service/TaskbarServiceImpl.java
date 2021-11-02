@@ -661,8 +661,10 @@ public class TaskbarServiceImpl implements TaskbarService {
             }
 
             // CMS URL
-            url = this.portalUrlFactory.getCMSUrl(portalControllerContext, null, path, parameters, null, null, null, null,
-                    null, null);
+            NuxeoController nuxeoController = new NuxeoController(portalControllerContext);            
+            UniversalID redirectId = nuxeoController.getUniversalIDFromPath(path);            
+            url = this.portalUrlFactory.getViewContentUrl(portalControllerContext, new CMSContext(portalControllerContext), redirectId, false, parameters);
+            
         }
 
         return url;

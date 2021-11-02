@@ -4,6 +4,7 @@ import fr.index.cloud.ens.search.common.portlet.service.SearchCommonServiceImpl;
 import fr.index.cloud.ens.search.filters.location.portlet.service.SearchFiltersLocationService;
 import fr.index.cloud.ens.search.filters.portlet.model.*;
 import fr.index.cloud.ens.search.filters.portlet.repository.SearchFiltersRepository;
+import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;
 import fr.toutatice.portail.cms.nuxeo.api.NuxeoException;
 import fr.toutatice.portail.cms.nuxeo.api.PageSelectors;
 import fr.toutatice.portail.cms.nuxeo.api.cms.NuxeoDocumentContext;
@@ -23,6 +24,8 @@ import org.osivia.directory.v2.model.preferences.UserPreferences;
 import org.osivia.directory.v2.model.preferences.UserSavedSearch;
 import org.osivia.directory.v2.service.preferences.UserPreferencesService;
 import org.osivia.portal.api.PortalException;
+import org.osivia.portal.api.cms.CMSContext;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.model.Person;
 import org.osivia.portal.api.internationalization.Bundle;
@@ -384,8 +387,11 @@ public class SearchFiltersServiceImpl extends SearchCommonServiceImpl implements
             parameters.put(SELECTORS_PARAMETER, this.buildSelectorsParameter(form));
 
             // CMS URL
-            url = this.portalUrlFactory.getCMSUrl(portalControllerContext, null, path, parameters, null, null, null, null,
-                    null, null);
+            // Redirection URL
+            NuxeoController nuxeoController = new NuxeoController(portalControllerContext);            
+            UniversalID redirectId = nuxeoController.getUniversalIDFromPath(path);            
+            url = this.portalUrlFactory.getViewContentUrl(portalControllerContext, new CMSContext(portalControllerContext), redirectId, false, parameters);
+            
         }
 
         return url;

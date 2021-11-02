@@ -12,7 +12,7 @@
 <div class="d-flex text-nowrap  mt-3 mb-2">
     <%--Advanced search--%>
     <div class="d-flex justify-content-end mb-2 mr-2">
-        <a href="${searchUrl}" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary text-truncate no-ajax-link">
+        <a href="${searchUrl}" class="btn btn-link btn-link-hover-primary-light btn-sm text-secondary text-truncate">
             <i class="glyphicons glyphicons-basic-plus"></i>
             <strong><op:translate key="SEARCH_BUTTONS_LABEL_1"/></strong>
         </a>

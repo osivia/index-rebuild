@@ -19,6 +19,8 @@ import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.PropertyList;
 import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.PortalException;
+import org.osivia.portal.api.cms.CMSContext;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
@@ -369,8 +371,10 @@ public class SearchServiceImpl extends SearchCommonServiceImpl implements Search
                 parameters.put("selectors", PageParametersEncoder.encodeProperties(selectors));
 
                 // CMS URL
-                url = this.portalUrlFactory.getCMSUrl(portalControllerContext, null, path, parameters, null, null, null, null, null, null);
-            }
+                NuxeoController nuxeoController = new NuxeoController(portalControllerContext);            
+                UniversalID redirectId = nuxeoController.getUniversalIDFromPath(path);            
+                url = this.portalUrlFactory.getViewContentUrl(portalControllerContext, new CMSContext(portalControllerContext), redirectId, false, parameters);
+             }
         } else if (SearchView.AUTOSUBMIT.equals(currentWindowProperties.getView())) {
             url = null;
 
