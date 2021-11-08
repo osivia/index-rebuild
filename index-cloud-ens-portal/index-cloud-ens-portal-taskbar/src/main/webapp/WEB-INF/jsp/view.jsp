@@ -173,7 +173,7 @@
 
                         <div class="mb-3">
                             <a href="#${namespace}-search"
-                               class="d-flex align-items-center text-secondary text-decoration-none"
+                               class="d-flex align-items-center text-secondary text-decoration-none  no-ajax-link"
                                data-toggle="collapse">
                                 <small class="flex-shrink-0 mr-1">
                                     <i class="glyphicons glyphicons-basic-set-down"></i>
