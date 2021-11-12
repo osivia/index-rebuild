@@ -2,6 +2,8 @@ FROM openjdk:8-jdk
 MAINTAINER Cédric Krommenhoek <ckrommenhoek@osivia.com>
 
 # Update
+#RUN printf "deb http://deb.debian.org/debian bullseye-backports main contrib non-free" > /etc/apt/sources.list.d/backports.list
+
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         netcat \
@@ -10,7 +12,7 @@ RUN apt-get update \
 	    pwgen \
 	    imagemagick \
 	    ffmpeg2theora \
-	    ufraw \
+	    #ufraw \
 	    poppler-utils \
 	    libwpd-tools \
 	    exiftool \
@@ -60,7 +62,7 @@ ENTRYPOINT ["/entrypoint.sh"]
 CMD ["start"]
 
 
-EXPOSE 8080
-EXPOSE 8000
+EXPOSE 8081
+EXPOSE 8001
 
 WORKDIR $NUXEO_HOME

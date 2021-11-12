@@ -123,7 +123,12 @@
 			<version>${project.version}</version>
 			<type>war</type>
 		 </dependency>	 		 
-
+		 <dependency>
+			<groupId>fr.index.cloud.ens.portal.collaboration</groupId>
+			<artifactId>index-cloud-ens-portal-trash</artifactId>
+			<version>${project.version}</version>
+			<type>war</type>
+		 </dependency>
 			   
   
 	</dependencies>

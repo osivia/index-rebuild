@@ -1,0 +1,29 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+
+<portlet:resourceURL id="toolbar" var="toolbarUrl" />
+
+<c:set var="namespace"><portlet:namespace/></c:set>
+
+
+<div class="portal-table-toolbar-container" data-url="${toolbarUrl}">
+    <%--Contextual toolbar--%>
+    <div class="portal-table-toolbar">
+        <div></div>
+    </div>
+
+    <div>
+        <%--Restore all--%>
+        <a href="#${namespace}-restore-all" class="btn btn-link btn-link-hover-primary text-primary-dark btn-sm ml-1 no-ajax-link" data-toggle="modal">
+            <i class="glyphicons glyphicons-basic-history"></i>
+            <span class="d-none d-lg-inline"><op:translate key="TRASH_MENUBAR_RESTORE_ALL"/></span>
+        </a>
+
+        <%--Empty trash--%>
+        <a href="#${namespace}-empty-trash" class="btn btn-link btn-link-hover-primary text-primary-dark btn-sm ml-1 no-ajax-link" data-toggle="modal">
+            <i class="glyphicons glyphicons-basic-bin"></i>
+            <span class="d-none d-lg-inline"><op:translate key="TRASH_MENUBAR_EMPTY_TRASH"/></span>
+        </a>
+    </div>
+</div>

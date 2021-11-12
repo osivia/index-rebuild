@@ -1,0 +1,66 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="op" uri="http://www.osivia.org/jsp/taglib/osivia-portal" %>
+<%@ taglib prefix="ttc" uri="http://www.toutatice.fr/jsp/taglib/toutatice" %>
+
+
+<c:set var="checkboxTitle"><op:translate key="TABLE_CHECKBOX_TITLE"/></c:set>
+
+
+<c:choose>
+    <c:when test="${empty trashForm.trashedDocuments}">
+        <div class="portal-table-row-group">
+            <div class="portal-table-row">
+                <div class="portal-table-cell">
+                    <span class="text-muted"><op:translate key="TRASH_EMPTY_MESSAGE"/></span>
+                </div>
+            </div>
+        </div>
+    </c:when>
+
+    <c:otherwise>
+        <div class="portal-table-row-group portal-table-selectable popover-container">
+            <c:forEach var="trashedDocument" items="${trashForm.trashedDocuments}">
+                <div class="portal-table-row portal-table-selectable-filter"
+                     data-location-path="${trashedDocument.location.document.path}">
+                    <%--Checkbox--%>
+                    <div class="portal-table-cell" data-column="checkbox">
+                        <div class="portal-table-checkbox">
+                            <a href="javascript:" class="no-ajax-link" title="${checkboxTitle}">
+                                <i class="glyphicons glyphicons-basic-square-empty"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <%--Document--%>
+                    <div class="portal-table-cell" data-column="document">
+                        <div class="card-custom-icon mr-3 ${trashedDocument.folderish ? 'text-black' : ''}">
+                            <ttc:icon document="${trashedDocument.document}" />
+                        </div>
+
+                        <div class="file-browser-draggable text-truncate mr-auto">
+                            <strong><ttc:title document="${trashedDocument.document}"/></strong>
+                        </div>
+                    </div>
+
+                    <%--Date--%>
+                    <div class="portal-table-cell" data-column="date">
+                        <div class="d-flex flex-wrap overflow-hidden">
+                            <div class="text-truncate">
+                                <span><op:formatRelativeDate value="${trashedDocument.document.properties['dc:modified']}" tooltip="false"/></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%--Location--%>
+                    <div class="portal-table-cell" data-column="location">
+                        <div class="text-truncate">
+                            <a href="javascript:" data-location-path="${trashedDocument.location.document.path}">
+                                <span><ttc:title document="${trashedDocument.location.document}" linkable="false" /></span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </c:otherwise>
+</c:choose>

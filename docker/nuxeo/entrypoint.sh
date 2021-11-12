@@ -51,6 +51,7 @@ ANTIVIRUS_ICAP_HOST=${ANTIVIRUS_ICAP_HOST:-}
 ANTIVIRUS_ICAP_PORT=${ANTIVIRUS_ICAP_PORT:-}
 ANTIVIRUS_ICAP_SERVICE=${ANTIVIRUS_ICAP_SERVICE:-}
 
+echo "Configuration..."
 
 #if [ "$1" = "nuxeoctl" ]; then
 if [ "$1" = "start" ]; then

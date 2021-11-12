@@ -23,7 +23,8 @@
                 <include>${project.groupId}:index-cloud-ens-portal-test</include>
                 <include>${project.groupId}:index-cloud-ens-portal-search</include> 
                 <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-file-browser</include>                
-                <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-mutualization</include>   
+                <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-mutualization</include> 
+                <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-trash</include>   
                 <include>${project.groupId}:index-cloud-ens-portal-discussion</include>
                 <include>${project.groupId}:index-cloud-ens-portal-taskbar</include>                
                   <!-- services -->

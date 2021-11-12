@@ -1,0 +1,28 @@
+@import "../../../../../index-cloud-ens-portal-charte/src/main/sass/cloud-ens/variables";
+@import "../../../../../index-cloud-ens-portal-charte/src/main/sass/osivia/glyphicons/mixins";
+
+
+.portal-table-header-group {
+  .portal-table-cell {
+    &[data-column="document"] {
+      a {
+        margin-left: calc(48px + 1rem);
+      }
+    }
+  }
+}
+
+
+.portal-table-row {
+  &, &.ui-selecting, &.ui-selected {
+    .portal-table-cell {
+      &[data-column="document"] {
+        font-size: $font-size-base;
+
+        a {
+          color: $black !important;
+        }
+      }
+    }
+  }
+}
