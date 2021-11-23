@@ -24,6 +24,7 @@ ENV PORTAL_DISTRIBUTION_ZIP ${PORTAL_DISTRIBUTION_NAME}-${PORTAL_VERSION}.zip
 
 RUN mkdir -p "$CATALINA_HOME"
 RUN mkdir -p "/home/portal"
+RUN mkdir -p "/data/exports"
 WORKDIR $CATALINA_HOME
 
 # Distribution

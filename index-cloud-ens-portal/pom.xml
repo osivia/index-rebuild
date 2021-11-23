@@ -28,6 +28,8 @@
         <!--Services -->
         <collaboration.version>5.0-SNAPSHOT</collaboration.version>
         <tasks.version>5.0-SNAPSHOT</tasks.version>
+        <procedures.version>5.0-SNAPSHOT</procedures.version>
+
 
     </properties>
 
@@ -109,6 +111,7 @@
 		<module>index-cloud-ens-portal-test</module>
 		<module>index-cloud-ens-portal-discussion</module>
 		<module>index-cloud-ens-portal-taskbar</module>		
+		<module>index-cloud-ens-portal-maintenance</module>
     </modules>
 
 

@@ -21,6 +21,7 @@
     <modules>
         <module>index-cloud-ens-portal-directory-socle</module>
 		<module>index-cloud-ens-portal-directory-person-card</module>
+		<module>index-cloud-ens-portal-directory-person-creation</module>
     </modules>
 
 

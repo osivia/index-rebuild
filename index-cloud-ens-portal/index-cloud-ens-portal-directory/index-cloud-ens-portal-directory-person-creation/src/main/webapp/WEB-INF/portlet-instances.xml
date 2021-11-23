@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE deployments PUBLIC "-//JBoss Portal//DTD Portlet Instances 2.6//EN" "http://www.jboss.org/portal/dtd/portlet-instances_2_6.dtd">
+
+<deployments>
+
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud-ens - create account</display-name>
+            <display-name xml:lang="fr">Cloud-ens - Création de compte</display-name>
+            <instance-id>cloudens-person-creation-portlet-instance</instance-id>
+            <portlet-ref>cloudens-person-creation-portlet</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud-ens - Renew password</display-name>
+            <display-name xml:lang="fr">Cloud-ens - Renouveler mot de passe</display-name>
+            <instance-id>cloudens-person-renew-pwd-portlet-instance</instance-id>
+            <portlet-ref>cloudens-person-renew-pwd-portlet</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud-ens - Deleting person</display-name>
+            <display-name xml:lang="fr">Cloud-ens - Supprimer un compte</display-name>
+            <instance-id>cloudens-person-deleting-portlet-instance</instance-id>
+            <portlet-ref>cloudens-person-deleting-portlet</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud-ens - export person data</display-name>
+            <display-name xml:lang="fr">Cloud-ens - Exporter les données du compte</display-name>
+            <instance-id>cloudens-person-export-portlet-instance</instance-id>
+            <portlet-ref>cloudens-person-export-portlet</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <unchecked />
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>    
+
+</deployments>

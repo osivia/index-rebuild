@@ -1,0 +1,50 @@
+<!DOCTYPE portlet-app PUBLIC "-//JBoss Portal//DTD JBoss Portlet 2.6//EN" "http://www.jboss.org/portal/dtd/jboss-portlet_2_6.dtd">
+
+<portlet-app>
+
+    <portlet>
+        <portlet-name>cloudens-person-creation-portlet</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+
+    </portlet>
+
+    <portlet>
+        <portlet-name>cloudens-person-renew-pwd-portlet</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+    
+    </portlet>
+
+    <portlet>
+        <portlet-name>cloudens-person-deleting-portlet</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+        
+        <header-content>
+             <script type="text/javascript" src="/js/delete-account.js"></script>
+        </header-content>        
+    </portlet>
+    
+    <portlet>
+        <portlet-name>cloudens-person-export-portlet</portlet-name>
+
+        <transaction>
+            <trans-attribute>Required</trans-attribute>
+        </transaction>
+      
+    </portlet>
+        
+	<service>
+        <service-name>CustomizationModulesRepository</service-name>
+        <service-class>org.osivia.portal.api.customization.ICustomizationModulesRepository</service-class>
+        <service-ref>osivia:service=CustomizationService</service-ref>
+    </service>
+    
+</portlet-app>
