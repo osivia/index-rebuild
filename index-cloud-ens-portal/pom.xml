@@ -112,6 +112,7 @@
 		<module>index-cloud-ens-portal-discussion</module>
 		<module>index-cloud-ens-portal-taskbar</module>		
 		<module>index-cloud-ens-portal-maintenance</module>
+		<module>index-cloud-ens-portal-initializer</module>
     </modules>
 
 

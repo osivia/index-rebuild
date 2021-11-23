@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document repository="default" id="f90cadeb-a094-45c1-8739-8e34be5b9891">
+  <system>
+    <type>ProcedureModel</type>
+    <path>procedures-models/person-creation</path>
+    <lifecycle-state>project</lifecycle-state>
+    <lifecycle-policy>undefined</lifecycle-policy>
+    <facet>Versionable</facet>
+    <facet>Folderish</facet>
+    <access-control/>
+  </system>
+  <schema xmlns:uid="http://project.nuxeo.com/geide/schemas/uid/" name="uid">
+    <uid:uid><![CDATA[]]></uid:uid>
+    <uid:minor_version><![CDATA[0]]></uid:minor_version>
+    <uid:major_version><![CDATA[0]]></uid:major_version>
+  </schema>
+  <schema xmlns:dc="http://www.nuxeo.org/ecm/schemas/dublincore/" name="dublincore">
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <dc:source><![CDATA[]]></dc:source>
+    <dc:nature><![CDATA[]]></dc:nature>
+    <dc:contributors>
+      <item><![CDATA[admin]]></item>
+    </dc:contributors>
+    <dc:created><![CDATA[2017-11-02T14:34:52.71Z]]></dc:created>
+    <dc:description><![CDATA[]]></dc:description>
+    <dc:rights><![CDATA[]]></dc:rights>
+    <dc:subjects/>
+    <dc:publisher><![CDATA[]]></dc:publisher>
+    <dc:valid/>
+    <dc:format><![CDATA[]]></dc:format>
+    <dc:issued/>
+    <dc:modified><![CDATA[2017-11-07T17:10:16.49Z]]></dc:modified>
+    <dc:language><![CDATA[]]></dc:language>
+    <dc:coverage><![CDATA[]]></dc:coverage>
+    <dc:expired/>
+    <dc:lastContributor><![CDATA[admin]]></dc:lastContributor>
+    <dc:title><![CDATA[Création de compte utilisateur]]></dc:title>
+  </schema>
+  <schema xmlns:ttc="http://www.nuxeo.org/ecm/project/schemas/ACRENNES2/toutatice" name="toutatice">
+    <ttc:childrenPageTemplate><![CDATA[]]></ttc:childrenPageTemplate>
+    <ttc:selectors><![CDATA[]]></ttc:selectors>
+    <ttc:isOnline><![CDATA[false]]></ttc:isOnline>
+    <ttc:spaceID><![CDATA[a8a8bb10-0f75-417e-bf08-6325874a61ef]]></ttc:spaceID>
+    <ttc:pageScope><![CDATA[]]></ttc:pageScope>
+    <ttc:contextualizeInternalContents><![CDATA[false]]></ttc:contextualizeInternalContents>
+    <ttc:extensionUrl><![CDATA[]]></ttc:extensionUrl>
+    <ttc:isPreloadedOnLogin><![CDATA[false]]></ttc:isPreloadedOnLogin>
+    <ttc:webid><![CDATA[procedure_person-creation]]></ttc:webid>
+    <ttc:keywords/>
+    <ttc:abstract><![CDATA[]]></ttc:abstract>
+    <ttc:explicitUrl><![CDATA[]]></ttc:explicitUrl>
+    <ttc:useES><![CDATA[false]]></ttc:useES>
+    <ttc:queryPart><![CDATA[]]></ttc:queryPart>
+    <ttc:contextualizeExternalContents><![CDATA[false]]></ttc:contextualizeExternalContents>
+    <ttc:showInMenu><![CDATA[true]]></ttc:showInMenu>
+    <ttc:hiddenInNavigation/>
+    <ttc:tabOrder><![CDATA[0]]></ttc:tabOrder>
+    <ttc:commentsForbidden/>
+    <ttc:hideMetadatas/>
+    <ttc:publicationDate/>
+    <ttc:modelVersion><![CDATA[]]></ttc:modelVersion>
+    <ttc:domainID><![CDATA[default-domain]]></ttc:domainID>
+    <ttc:editorialTitle><![CDATA[]]></ttc:editorialTitle>
+    <ttc:vignette/>
+    <ttc:pageTemplate><![CDATA[]]></ttc:pageTemplate>
+    <ttc:images/>
+    <ttc:theme><![CDATA[]]></ttc:theme>
+    <ttc:lstTargetedPublic/>
+  </schema>
+  <schema xmlns:pcd="http://www.nuxeo.org/ecm/project/schemas/osivia/models/procedure" name="procedure">
+    <pcd:startingStep><![CDATA[0]]></pcd:startingStep>
+    <pcd:globalVariablesDefinitions>
+      <definition>
+        <varOptions><![CDATA[]]></varOptions>
+        <name><![CDATA[mail]]></name>
+        <label><![CDATA[Adresse e-mail]]></label>
+        <type><![CDATA[TEXT]]></type>
+      </definition>
+    </pcd:globalVariablesDefinitions>
+    <pcd:webIdParent/>
+    <pcd:authorizedActors/>
+    <pcd:steps>
+      <step>
+        <stringMsg><![CDATA[${document:linkWithText(taskPath,taskName)}]]></stringMsg>
+        <index><![CDATA[0]]></index>
+        <actionIdYes><![CDATA[]]></actionIdYes>
+        <actionIdClosable><![CDATA[]]></actionIdClosable>
+        <reference><![CDATA[0]]></reference>
+        <acquitable><![CDATA[false]]></acquitable>
+        <endStepMsg><![CDATA[L'invitation a bien été envoyée.]]></endStepMsg>
+        <initAction>
+          <filtersList/>
+          <label><![CDATA[]]></label>
+          <actionId><![CDATA[]]></actionId>
+          <stepReference><![CDATA[]]></stepReference>
+        </initAction>
+        <closable><![CDATA[false]]></closable>
+        <globalVariablesReferences>
+          <globalVariablesReference>
+            <variableName><![CDATA[mail]]></variableName>
+            <isInput><![CDATA[true]]></isInput>
+            <path><![CDATA[0]]></path>
+            <isFieldSet><![CDATA[false]]></isFieldSet>
+            <superLabel><![CDATA[Adresse e-mail]]></superLabel>
+            <helpText><![CDATA[Une invitation sera envoyée à cette adresse avec les identifiants de connexion.]]></helpText>
+            <required><![CDATA[true]]></required>
+          </globalVariablesReference>
+        </globalVariablesReferences>
+        <name><![CDATA[Inviter un nouvel utilisateur]]></name>
+        <actionIdDefault><![CDATA[]]></actionIdDefault>
+        <actors/>
+        <notifiable><![CDATA[true]]></notifiable>
+        <actions>
+          <action>
+            <filtersList>
+              <filter>
+                <filterInstanceId><![CDATA[PERSON_CREATION0]]></filterInstanceId>
+                <filterId><![CDATA[PERSON_CREATION]]></filterId>
+                <argumentsList>
+                  <argument>
+                    <argumentValue><![CDATA[password]]></argumentValue>
+                    <argumentType><![CDATA[TEXT]]></argumentType>
+                    <argumentName><![CDATA[passwordVariableName]]></argumentName>
+                  </argument>
+                  <argument>
+                    <argumentValue><![CDATA[mail]]></argumentValue>
+                    <argumentType><![CDATA[TEXT]]></argumentType>
+                    <argumentName><![CDATA[mailVariableName]]></argumentName>
+                  </argument>
+                </argumentsList>
+                <filterName><![CDATA[]]></filterName>
+                <filterPath><![CDATA[0]]></filterPath>
+              </filter>
+              <filter>
+                <filterInstanceId><![CDATA[SendMailFilter1]]></filterInstanceId>
+                <filterId><![CDATA[SendMailFilter]]></filterId>
+                <argumentsList>
+                  <argument>
+                    <argumentValue><![CDATA[Bonjour,
+Votre compte utilisateur du ${portal:link('portail de démonstration')} a été créé.
+
+Vous pouvez vous connecter avec les identifiants suivants :
+ - login : ${mail}
+ - mot de passe : ${password}
+]]></argumentValue>
+                    <argumentType><![CDATA[TEXTAREA]]></argumentType>
+                    <argumentName><![CDATA[body]]></argumentName>
+                  </argument>
+                  <argument>
+                    <argumentValue><![CDATA[${user:email(procedureInitiator)}]]></argumentValue>
+                    <argumentType><![CDATA[TEXT]]></argumentType>
+                    <argumentName><![CDATA[mailFrom]]></argumentName>
+                  </argument>
+                  <argument>
+                    <argumentValue><![CDATA[]]></argumentValue>
+                    <argumentType><![CDATA[BOOLEAN]]></argumentType>
+                    <argumentName><![CDATA[continue]]></argumentName>
+                  </argument>
+                  <argument>
+                    <argumentValue><![CDATA[${mail}]]></argumentValue>
+                    <argumentType><![CDATA[TEXT]]></argumentType>
+                    <argumentName><![CDATA[mailTo]]></argumentName>
+                  </argument>
+                  <argument>
+                    <argumentValue><![CDATA[Votre compte a été créé]]></argumentValue>
+                    <argumentType><![CDATA[TEXT]]></argumentType>
+                    <argumentName><![CDATA[mailObject]]></argumentName>
+                  </argument>
+                </argumentsList>
+                <filterName><![CDATA[]]></filterName>
+                <filterPath><![CDATA[1]]></filterPath>
+              </filter>
+            </filtersList>
+            <label><![CDATA[Inviter]]></label>
+            <actionId><![CDATA[00]]></actionId>
+            <stepReference><![CDATA[endStep]]></stepReference>
+          </action>
+        </actions>
+        <notifEmail><![CDATA[false]]></notifEmail>
+        <actionIdNo><![CDATA[]]></actionIdNo>
+      </step>
+    </pcd:steps>
+    <pcd:authorizedGroups/>
+    <pcd:dashboards/>
+    <pcd:procedureObjects/>
+  </schema>
+</document>

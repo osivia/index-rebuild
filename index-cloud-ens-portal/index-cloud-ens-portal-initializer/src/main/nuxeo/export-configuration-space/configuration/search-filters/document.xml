@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document repository="default" id="9bbd9744-8507-4c15-9a57-4fc34a437579">
+  <system>
+    <type>Staple</type>
+    <path>search-filters</path>
+    <lifecycle-state>project</lifecycle-state>
+    <lifecycle-policy>default_toutatice</lifecycle-policy>
+    <facet>TTCPortalConfigurable</facet>
+    <facet>Versionable</facet>
+    <access-control>
+      <acl name="local">
+        <entry principal="members" permission="Read" grant="true"/>
+      </acl>
+      <acl name="inherited">
+        <entry principal="Administrator" permission="Everything" grant="true"/>
+        <entry principal="members" permission="Read" grant="true"/>
+      </acl>
+    </access-control>
+  </system>
+  <schema xmlns:uid="http://project.nuxeo.com/geide/schemas/uid/" name="uid">
+    <uid:uid><![CDATA[]]></uid:uid>
+    <uid:minor_version><![CDATA[0]]></uid:minor_version>
+    <uid:major_version><![CDATA[0]]></uid:major_version>
+  </schema>
+  <schema xmlns:dc="http://www.nuxeo.org/ecm/schemas/dublincore/" name="dublincore">
+    <dc:creator><![CDATA[admin]]></dc:creator>
+    <dc:source><![CDATA[]]></dc:source>
+    <dc:nature><![CDATA[]]></dc:nature>
+    <dc:contributors>
+      <item><![CDATA[admin]]></item>
+    </dc:contributors>
+    <dc:created><![CDATA[2019-06-26T14:52:34.25Z]]></dc:created>
+    <dc:description><![CDATA[]]></dc:description>
+    <dc:rights><![CDATA[]]></dc:rights>
+    <dc:subjects/>
+    <dc:publisher><![CDATA[]]></dc:publisher>
+    <dc:valid/>
+    <dc:format><![CDATA[]]></dc:format>
+    <dc:issued/>
+    <dc:modified><![CDATA[2019-06-28T13:05:12.50Z]]></dc:modified>
+    <dc:language><![CDATA[]]></dc:language>
+    <dc:coverage><![CDATA[]]></dc:coverage>
+    <dc:expired/>
+    <dc:lastContributor><![CDATA[admin]]></dc:lastContributor>
+    <dc:title><![CDATA[Filtres de recherche]]></dc:title>
+  </schema>
+  <schema xmlns:ttc="http://www.nuxeo.org/ecm/project/schemas/ACRENNES2/toutatice" name="toutatice">
+    <ttc:childrenPageTemplate><![CDATA[]]></ttc:childrenPageTemplate>
+    <ttc:selectors><![CDATA[]]></ttc:selectors>
+    <ttc:isOnline><![CDATA[false]]></ttc:isOnline>
+    <ttc:spaceID><![CDATA[822a9f79-c324-4a56-a77b-b184e2083128]]></ttc:spaceID>
+    <ttc:pageScope><![CDATA[]]></ttc:pageScope>
+    <ttc:contextualizeInternalContents><![CDATA[false]]></ttc:contextualizeInternalContents>
+    <ttc:extensionUrl><![CDATA[]]></ttc:extensionUrl>
+    <ttc:isPreloadedOnLogin><![CDATA[false]]></ttc:isPreloadedOnLogin>
+    <ttc:webid><![CDATA[vstaple_SEARCH_FILTERS]]></ttc:webid>
+    <ttc:keywords/>
+    <ttc:abstract><![CDATA[]]></ttc:abstract>
+    <ttc:explicitUrl><![CDATA[]]></ttc:explicitUrl>
+    <ttc:useES><![CDATA[false]]></ttc:useES>
+    <ttc:queryPart><![CDATA[]]></ttc:queryPart>
+    <ttc:contextualizeExternalContents><![CDATA[false]]></ttc:contextualizeExternalContents>
+    <ttc:showInMenu><![CDATA[true]]></ttc:showInMenu>
+    <ttc:hiddenInNavigation/>
+    <ttc:tabOrder><![CDATA[0]]></ttc:tabOrder>
+    <ttc:commentsForbidden/>
+    <ttc:hideMetadatas><![CDATA[false]]></ttc:hideMetadatas>
+    <ttc:publicationDate/>
+    <ttc:modelVersion><![CDATA[]]></ttc:modelVersion>
+    <ttc:domainID><![CDATA[default-domain]]></ttc:domainID>
+    <ttc:editorialTitle><![CDATA[]]></ttc:editorialTitle>
+    <ttc:vignette/>
+    <ttc:pageTemplate><![CDATA[/default/templates/search-filters]]></ttc:pageTemplate>
+    <ttc:images/>
+    <ttc:theme><![CDATA[]]></ttc:theme>
+    <ttc:lstTargetedPublic/>
+  </schema>
+  <schema xmlns:common="http://www.nuxeo.org/ecm/schemas/common/" name="common">
+    <common:icon><![CDATA[/icons/staple.jpg]]></common:icon>
+    <common:icon-expanded><![CDATA[]]></common:icon-expanded>
+    <common:size/>
+  </schema>
+  <schema xmlns:stpl="http://www.nuxeo.org/ecm/project/schemas/ottc/staple" name="staple">
+    <stpl:stapleId><![CDATA[]]></stpl:stapleId>
+  </schema>
+  <schema xmlns:ottcweb="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/webmode" name="ottc_web">
+    <ottcweb:segment><![CDATA[]]></ottcweb:segment>
+  </schema>
+</document>

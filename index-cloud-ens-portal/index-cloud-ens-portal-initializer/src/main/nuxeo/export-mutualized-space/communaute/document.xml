@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<document repository="default" id="46e6b781-4614-45c6-9170-c43e720c5fa6">
+    <system>
+        <type>PortalSite</type>
+        <path>communaute</path>
+        <lifecycle-state>approved</lifecycle-state>
+        <lifecycle-policy>default_toutatice</lifecycle-policy>
+        <facet>TTCAttachableImages</facet>
+        <facet>TTCPortalConfigurable</facet>
+        <facet>isLocalPublishLive</facet>
+        <facet>SpaceNavigationItem</facet>
+        <facet>TTCPublishSpace</facet>
+        <facet>SuperSpace</facet>
+        <facet>MasterPublishSpace</facet>
+        <facet>Versionable</facet>
+        <facet>Folderish</facet>
+        <facet>FolderishEditable</facet>
+        <facet>Orderable</facet>
+        <facet>Space</facet>
+        <access-control>
+            <acl name="local">
+                <entry principal="members" permission="ReadWrite" grant="true"/>
+            </acl>
+            <acl name="inherited">
+                <entry principal="Administrator" permission="Everything" grant="true"/>
+                <entry principal="members" permission="Read" grant="true"/>
+            </acl>
+        </access-control>
+    </system>
+    <schema xmlns:uid="http://project.nuxeo.com/geide/schemas/uid/" name="uid">
+        <uid:uid/>
+        <uid:minor_version><![CDATA[1]]></uid:minor_version>
+        <uid:major_version><![CDATA[0]]></uid:major_version>
+    </schema>
+    <schema xmlns:ttcs="http://www.nuxeo.org/ecm/project/schemas/ACRENNES2/toutatice-space" name="toutatice_space">
+        <ttcs:spaceCommentable><![CDATA[true]]></ttcs:spaceCommentable>
+        <ttcs:visibility/>
+        <ttcs:catSpaceKey/>
+        <ttcs:spaceMembers/>
+        <ttcs:lstPublicAuth/>
+    </schema>
+    <schema xmlns:common="http://www.nuxeo.org/ecm/schemas/common/" name="common">
+        <common:icon><![CDATA[/icons/portalsite.png]]></common:icon>
+        <common:icon-expanded/>
+        <common:size/>
+    </schema>
+    <schema xmlns:listfgt="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/list_fragments" name="list_fragments">
+        <listfgt:listFragment/>
+    </schema>
+    <schema xmlns:ptlprops="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/portlet_properties"
+            name="portlet_properties">
+        <ptlprops:properties/>
+    </schema>
+    <schema name="portalsite"></schema>
+    <schema xmlns:ottcweb="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/webmode" name="ottc_web">
+        <ottcweb:segment/>
+    </schema>
+    <schema xmlns:rg="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/fragments" name="regions">
+        <rg:regions/>
+    </schema>
+    <schema xmlns:smyfgt="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/summary_fragments"
+            name="summary_fragments">
+        <smyfgt:summaryFragment/>
+    </schema>
+    <schema xmlns:crtlistfgt="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/criteria_list_fragments"
+            name="criteria_list_fragments">
+        <crtlistfgt:criteriaListFragment/>
+    </schema>
+    <schema xmlns:ptlfgt="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/portlet_fragments"
+            name="portlet_fragments">
+        <ptlfgt:portletFragment/>
+    </schema>
+    <schema xmlns:ttc="http://www.nuxeo.org/ecm/project/schemas/ACRENNES2/toutatice" name="toutatice">
+        <ttc:childrenPageTemplate/>
+        <ttc:selectors/>
+        <ttc:isOnline><![CDATA[false]]></ttc:isOnline>
+        <ttc:spaceID><![CDATA[d63bc2f5-ec73-4c7f-8920-f2eac10babdc]]></ttc:spaceID>
+        <ttc:pageScope/>
+        <ttc:contextualizeInternalContents><![CDATA[true]]></ttc:contextualizeInternalContents>
+        <ttc:extensionUrl/>
+        <ttc:isPreloadedOnLogin><![CDATA[false]]></ttc:isPreloadedOnLogin>
+        <ttc:webid><![CDATA[CDaTEJ]]></ttc:webid>
+        <ttc:keywords/>
+        <ttc:abstract/>
+        <ttc:explicitUrl/>
+        <ttc:useES><![CDATA[false]]></ttc:useES>
+        <ttc:queryPart/>
+        <ttc:contextualizeExternalContents><![CDATA[false]]></ttc:contextualizeExternalContents>
+        <ttc:showInMenu><![CDATA[true]]></ttc:showInMenu>
+        <ttc:hiddenInNavigation/>
+        <ttc:tabOrder><![CDATA[0]]></ttc:tabOrder>
+        <ttc:commentsForbidden/>
+        <ttc:hideMetadatas/>
+        <ttc:publicationDate/>
+        <ttc:modelVersion/>
+        <ttc:domainID><![CDATA[default-domain]]></ttc:domainID>
+        <ttc:editorialTitle/>
+        <ttc:vignette/>
+        <ttc:pageTemplate/>
+        <ttc:images/>
+        <ttc:theme/>
+        <ttc:lstTargetedPublic/>
+    </schema>
+    <schema xmlns:htmlfgt="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/html_fragments" name="html_fragments">
+        <htmlfgt:htmlFragment/>
+    </schema>
+    <schema xmlns:ewf="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/portlet_fragments" name="ew_fragments">
+        <ewf:ewFragmentList/>
+    </schema>
+    <schema xmlns:ottcwebc="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/webmode" name="ottc_web_container">
+        <ottcwebc:enableWebUrl><![CDATA[false]]></ottcwebc:enableWebUrl>
+    </schema>
+    <schema xmlns:ewfp="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/portlet_properties"
+            name="ew_fragments_properties">
+        <ewfp:ewFragmentProperties/>
+    </schema>
+    <schema xmlns:dc="http://www.nuxeo.org/ecm/schemas/dublincore/" name="dublincore">
+        <dc:creator><![CDATA[admin]]></dc:creator>
+        <dc:source/>
+        <dc:nature/>
+        <dc:contributors>
+            <item><![CDATA[admin]]></item>
+        </dc:contributors>
+        <dc:created><![CDATA[2019-05-16T07:55:21.00Z]]></dc:created>
+        <dc:description/>
+        <dc:rights/>
+        <dc:subjects/>
+        <dc:publisher/>
+        <dc:valid><![CDATA[2019-05-16T07:55:22.07Z]]></dc:valid>
+        <dc:format/>
+        <dc:issued/>
+        <dc:modified><![CDATA[2019-05-16T07:55:21.00Z]]></dc:modified>
+        <dc:language/>
+        <dc:coverage/>
+        <dc:expired/>
+        <dc:lastContributor><![CDATA[admin]]></dc:lastContributor>
+        <dc:title><![CDATA[Cloud mutualisé]]></dc:title>
+    </schema>
+    <schema xmlns:files="http://www.nuxeo.org/ecm/schemas/files/" name="files">
+        <files:files/>
+    </schema>
+    <schema xmlns:setfgt="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/set_fragments" name="set_fragments">
+        <setfgt:setFragment/>
+    </schema>
+    <schema xmlns:lk="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/links" name="links">
+        <lk:links/>
+    </schema>
+    <schema xmlns:sldlistfgt="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/slider_list_fragments"
+            name="slider_list_fragments">
+        <sldlistfgt:sliderListFragment/>
+    </schema>
+    <schema xmlns:zfgt="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/zoom_fragments" name="zoom_fragments">
+        <zfgt:zoomFragment/>
+    </schema>
+    <schema xmlns:ttcn="http://www.nuxeo.org/ecm/schemas/toutatice/ecm/platform/toutatice_navigation"
+            name="toutatice_navigation">
+        <ttcn:picture/>
+    </schema>
+    <schema xmlns:webp="http://project.nuxeo.org/schemas/webengine/site/sites/webpage" name="webpage">
+        <webp:isRichtext><![CDATA[true]]></webp:isRichtext>
+        <webp:pushtomenu><![CDATA[true]]></webp:pushtomenu>
+        <webp:theme><![CDATA[sites]]></webp:theme>
+        <webp:template/>
+        <webp:tags/>
+        <webp:themePage><![CDATA[page]]></webp:themePage>
+        <webp:content><![CDATA[]]></webp:content>
+        <webp:themePerspective/>
+    </schema>
+    <schema xmlns:fgts="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/fragments" name="fragments">
+        <fgts:fragments/>
+    </schema>
+    <schema xmlns:lkfgt="http://www.nuxeo.org/ecm/project/schemas/ACRENNES5/links_fragments" name="links_fragments">
+        <lkfgt:linksFragment/>
+    </schema>
+    <schema xmlns:rssfgt="http://www.nuxeo.org/ecm/project/schemas/opentoutatice/rss_fragments" name="rss_fragments">
+        <rssfgt:rssFragment/>
+    </schema>
+</document>

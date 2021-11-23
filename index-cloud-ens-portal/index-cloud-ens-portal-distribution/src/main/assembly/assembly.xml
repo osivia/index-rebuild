@@ -29,7 +29,9 @@
                 <include>fr.index.cloud.ens.portal.collaboration:index-cloud-ens-portal-trash</include>   
                 <include>${project.groupId}:index-cloud-ens-portal-discussion</include>
                 <include>${project.groupId}:index-cloud-ens-portal-taskbar</include>  
-                <include>${project.groupId}:index-cloud-ens-portal-maintenance</include>                              
+                <include>${project.groupId}:index-cloud-ens-portal-maintenance</include>   
+                <include>${project.groupId}:index-cloud-ens-portal-initializer</include>                              
+                                            
                   <!-- services -->
                 <include>org.osivia.services:osivia-services-widgets</include>
                 <include>org.osivia.services:osivia-services-document-edition</include>
