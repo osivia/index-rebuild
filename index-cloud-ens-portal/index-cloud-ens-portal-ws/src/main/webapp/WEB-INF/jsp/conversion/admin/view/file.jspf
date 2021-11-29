@@ -1,0 +1,111 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+
+<c:set var="namespace"><portlet:namespace/></c:set>
+
+<portlet:actionURL name="delete-file" var="deleteUrl" />
+
+   <c:choose>
+        <c:when test="${empty conversionForm.fileDownloadUrl}">
+           <!-- No file -->
+           <p class="form-control-plaintext">
+               <span><op:translate key="CONVERSION_ADMIN_EMPTY_FILE"/></span>
+           </p>
+       </c:when>
+
+       <c:otherwise>
+           <!-- Download -->
+           
+			<div class="m-2 d-flex">
+				<div class="my-auto">
+					<a href="${conversionForm.fileDownloadUrl}"><op:translate key="CONVERSION_ADMIN_DOWNLOAD"/> </a>
+				</div>
+				<div class="flex-grow-1 text-right">
+					 <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#${namespace}-delete-modal">
+                    	<i class="glyphicons glyphicons-bin"></i>
+                    	<span><op:translate key="DELETE" /></span>
+                	</button>
+				</div>
+ 				<!-- Modal -->
+                <div id="${namespace}-delete-modal" class="modal fade" role="dialog">
+                    <div class="modal-dialog modal-sm">
+                        <div class="modal-content">
+							<div class="modal-header">
+                                <h4 class="modal-title"><op:translate key="CONVERSION_ADMIN_DELETE_MODAL_TITLE" /></h4>
+
+                                <button type="button" class="close" data-dismiss="modal">
+                                    <i class="glyphicons glyphicons-remove"></i>
+                                    <span class="sr-only"><op:translate key="CLOSE" /></span>
+                                </button>
+                            </div>                            
+            
+                            <div class="modal-body">
+                                <p><op:translate key="CONVERSION_ADMIN_DELETE_MODAL_MESSAGE" /></p>
+                            </div>
+            
+                            <div class="modal-footer">
+                                <a href="${deleteUrl}" class="btn btn-danger" data-dismiss="modal">
+                                    <i class="glyphicons glyphicons-bin"></i>
+                                    <span><op:translate key="DELETE" /></span>
+                                </a>
+            
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                                    <span><op:translate key="CANCEL" /></span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>           				
+		   </div>           
+
+       </c:otherwise>
+   </c:choose>
+
+   <div class="form-row">
+       <!-- Upload -->
+       <div class="col">
+           <div class="custom-file">
+               <c:set var="browse"><op:translate key="CONVERSION_ADMIN_BROWSE"/></c:set>
+               <form:input type="file" path="fileUpload" cssClass="custom-file-input"
+                           data-change-submit="${namespace}-file"/>
+               <form:label path="fileUpload" cssClass="custom-file-label" data-browse="${browse}"><op:translate
+                       key="CONVERSION_ADMIN_FILE_INPUT_LABEL"/></form:label>
+           </div>
+           <input id="${namespace}-file" type="submit" name="upload-file" class="d-none">
+       </div>
+
+       <!-- Delete -->
+       <div class="col-auto">
+            <button type="submit" name="cancel-file" class="btn btn-secondary">
+               <i class="glyphicons glyphicons-basic-bin"></i>
+               <span class="sr-only"><op:translate key="CONVERSION_ADMIN_DELETE"/></span>
+           </button>          
+				
+       </div>
+   </div>
+   
+   <c:choose>
+	   <c:when test="${not empty conversionForm.errorMessage}">
+		   <div class="mt-2 alert alert-danger" role="alert">
+	  			<span>${conversionForm.errorMessage}</span>
+		   </div>
+	   </c:when>
+	   <c:when test="${not empty conversionForm.successMessage}">
+			<div role="alert" class="mt-2 alert alert-success d-flex">
+				<div class="my-auto"><span>${conversionForm.successMessage}</span></div>
+				<div class="flex-grow-1 text-right">
+					<button type="submit" name="save-file" class="btn  align-center btn-secondary">
+				               		<op:translate key="CONVERSION_ADMIN_CONFIRM"/>
+				     </button>
+				</div>
+		   </div>
+	   </c:when>		   
+   </c:choose>
+	    
+
+   
+   
+   

@@ -1,0 +1,53 @@
+<%@ taglib uri="http://java.sun.com/portlet_2_0" prefix="portlet" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+
+<c:set var="namespace"><portlet:namespace/></c:set>
+
+	
+	
+   <div class="form-row">
+       <!-- Upload -->
+       <div class="col">
+           <div class="custom-file">
+               <c:set var="browse"><op:translate key="CONVERSION_ADMIN_BROWSE"/></c:set>
+               <form:input type="file" path="patchUpload" cssClass="custom-file-input"
+                           data-change-submit="${namespace}-patch"/>
+               <form:label path="patchUpload" cssClass="custom-file-label" data-browse="${browse}"><op:translate
+                       key="CONVERSION_ADMIN_PATCH_FILE_INPUT_LABEL"/></form:label>
+           </div>
+           <input id="${namespace}-patch" type="submit" name="upload-patch" class="d-none">
+       </div>
+
+       <!-- Delete -->
+       <div class="col-auto">
+           <button type="submit" name="cancel-patch" class="btn btn-secondary">
+               <i class="glyphicons glyphicons-basic-bin"></i>
+               <span class="sr-only"><op:translate key="CONVERSION_ADMIN_DELETE"/></span>
+           </button>
+       </div>
+   </div>
+   
+   <c:choose>
+	   <c:when test="${not empty conversionForm.patchErrorMessage}">
+		   <div class="mt-2 alert alert-danger" role="alert">
+	  			<span>${conversionForm.patchErrorMessage}</span>
+		   </div>
+	   </c:when>
+	   <c:when test="${not empty conversionForm.patchSuccessMessage}">
+			<div role="alert" class="mt-2 alert alert-success d-flex">
+				<div class="my-auto"><span>${conversionForm.patchSuccessMessage}</span></div>
+				<div class="flex-grow-1 text-right">
+					<button type="submit" name="apply-patch" class="btn  align-center btn-secondary">
+				               		<op:translate key="CONVERSION_ADMIN_CONFIRM"/>
+				     </button>
+				</div>
+		   </div>
+	   </c:when>		   
+   </c:choose>
+    
+  
+   
+   

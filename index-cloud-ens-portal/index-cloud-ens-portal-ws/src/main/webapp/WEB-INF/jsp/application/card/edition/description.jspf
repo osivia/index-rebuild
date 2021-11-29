@@ -1,0 +1,9 @@
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
+<%@ taglib uri="http://www.osivia.org/jsp/taglib/osivia-portal" prefix="op" %>
+
+<div class="form-group">
+    <form:label path="bean.description" cssClass="col-sm-3 col-lg-2 col-form-label"><op:translate key="APPLICATION_CARD_DESCRIPTION" /></form:label>
+    <div class="col-sm-9 col-lg-10">
+        <form:textarea path="bean.description" cssClass="form-control application-edition-description" />
+    </div>
+</div>

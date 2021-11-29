@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<root>
+ 
+    <properties>
+        <property>
+            <name>supervisor.genericPassword</name>
+            <value>ABCDEF</value>
+        </property>
+    </properties>
+
+
+
+    <hosts> 
+            <host>
+                <name>CLDENS-CAS-D11.dev.index.france</name>
+                <tests>
+                       <test>
+                            <name>url</name>
+                            <url>wget --no-check-certificate https://authentification.index-education.net/cas/serviceValidate -O /tmp/supervise.html</url>
+                            <regexp>(.*)INVALID_REQUEST(.*)</regexp>
+                       </test>
+                </tests>
+            </host>    
+   
+            <host>
+                <name>CLDENS-WEB-D11.dev.index.france</name>
+                <tests>
+                       <test>
+                            <name>size</name>
+                        </test>
+                       <test>
+                            <name>port</name>
+                            <remoteHost>dev-fs-d01.dev.index.france</remoteHost>
+                            <remotePort>445</remotePort>
+                        </test>                        
+                </tests>
+            </host> 
+            <host>
+                <name>CLDENS-WEB-D12.dev.index.france</name>
+                <tests>
+                       <test>
+                            <name>size</name>
+                        </test>
+                       <test>
+                            <name>port</name>
+                            <remoteHost>dev-fs-d01.dev.index.france</remoteHost>
+                            <remotePort>445</remotePort>
+                        </test>                        
+                </tests>
+            </host>             
+            <host>
+                <name>CLDENS-NUX-D11.dev.index.france</name>
+                <tests>
+                       <test>
+                            <name>size</name>
+                        </test>
+                       <test>
+                            <name>port</name>
+                            <remoteHost>icap-svc-d01.index-education.france</remoteHost>
+                            <remotePort>1344</remotePort>
+                        </test>   
+                                             
+                </tests>
+            </host>                                                
+    </hosts>
+</root>

@@ -1,0 +1,17 @@
+version: "3"
+services:
+
+  test:
+    image: tomcat:9.0
+    environment:
+      - TZ=Europe/Paris
+      - JPDA_ADDRESS=8000
+      - JPDA_TRANSPORT=dt_socket
+    ports:
+      - 8888:8080
+    entrypoint:
+      - /usr/local/tomcat/bin/catalina.sh
+      - jpda
+      - run
+
+

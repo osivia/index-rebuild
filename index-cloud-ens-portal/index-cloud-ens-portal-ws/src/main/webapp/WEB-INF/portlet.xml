@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<portlet-app
+    xmlns="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd http://java.sun.com/xml/ns/portlet/portlet-app_2_0.xsd"
+    version="2.0">
+
+
+	<portlet>
+        <portlet-name>index-cloud-portal-ens-ws-dashboardPortlet</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.dashboard.DashboardPortletConfiguration</value>
+        </init-param>
+        
+        <expiration-cache>0</expiration-cache>
+
+		<supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        
+		<portlet-info>
+			<title>User dashboard</title>
+		</portlet-info>
+	</portlet>
+
+	<portlet>
+        <portlet-name>index-cloud-portal-ens-application-managementPortlet</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.application.management.ApplicationManagementPortletConfiguration</value>
+        </init-param>
+        
+        <expiration-cache>180</expiration-cache>
+
+		<supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        
+		<portlet-info>
+			<title>Application management</title>
+		</portlet-info>
+	</portlet>
+
+
+
+	<portlet>
+        <portlet-name>index-cloud-portal-ens-application-cardPortlet</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.application.card.ApplicationCardConfiguration</value>
+        </init-param>
+        
+        <expiration-cache>180</expiration-cache>
+
+		<supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        
+		<portlet-info>
+			<title>Application management</title>
+		</portlet-info>
+	</portlet>
+
+    <portlet>
+        <portlet-name>cloudens-application-creation-plugin</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.application.creation.ApplicationCreationPluginConfiguration</value>
+        </init-param>
+        
+        <expiration-cache>180</expiration-cache>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>Application creation plugin</title>
+        </portlet-info>
+    </portlet>
+    
+    
+    <portlet>
+        <portlet-name>index-cloud-portal-ens-conversion-adminPortlet</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.ens.conversion.admin.ConversionAdminConfiguration</value>
+        </init-param>
+        
+        <expiration-cache>0</expiration-cache>
+
+		<supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        
+		<portlet-info>
+			<title>Conversion management</title>
+		</portlet-info>
+	</portlet>
+    
+
+	<portlet>
+        <portlet-name>index-cloud-portal-ens-ws</portlet-name>
+        <portlet-class>fr.index.cloud.ens.ws.portlet.WSUtilPortlet</portlet-class>
+
+		<supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        
+		<portlet-info>
+			<title>Simple Web Service portlet</title>
+		</portlet-info>
+	</portlet>
+	
+	
+	<!-- Client detail customizer -->
+
+	<portlet>
+        <portlet-name>cloud-ens-client-customizer</portlet-name>
+        <portlet-class>org.springframework.web.portlet.DispatcherPortlet</portlet-class>
+
+        <init-param>
+            <name>contextClass</name>
+            <value>org.osivia.portal.api.portlet.AnnotationPortletApplicationContext</value>
+        </init-param>
+        <init-param>
+            <name>contextConfigLocation</name>
+            <value>fr.index.cloud.customizer.ClientDetailConfiguration</value>
+        </init-param>
+        
+        <expiration-cache>180</expiration-cache>
+
+		<supports>
+            <mime-type>text/html</mime-type>
+            <portlet-mode>view</portlet-mode>
+        </supports>
+        
+		<portlet-info>
+			<title>Client Detail management</title>
+		</portlet-info>
+	</portlet>
+ 
+</portlet-app>

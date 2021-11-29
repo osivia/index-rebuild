@@ -1,0 +1,58 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="op" uri="http://www.osivia.org/jsp/taglib/osivia-portal" %>
+<%@ taglib prefix="ttc" uri="http://www.toutatice.fr/jsp/taglib/toutatice" %>
+
+
+<c:set var="checkboxTitle"><op:translate key="TABLE_CHECKBOX_TITLE"/></c:set>
+
+
+<c:choose>
+    <c:when test="${empty dashboardForm.applications}">
+        <div class="portal-table-row-group">
+            <div class="portal-table-row">
+                <div class="portal-table-cell">
+                    <div class="portal-table-cell-inner">
+                        <span class="text-muted"><op:translate key="DASHBOARD_EMPTY_MESSAGE"/></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </c:when>
+
+    <c:otherwise>
+        <div class="portal-table-row-group portal-table-selectable popover-container">
+            <c:forEach var="application" items="${dashboardForm.applications}">
+                <div class="portal-table-row portal-table-selectable-filter">
+                    <%--Application--%>
+                    <div class="portal-table-cell" data-column="application">
+                        <div class="portal-table-cell-inner" data-column="application">
+                            <div class="d-flex flex-column">
+                                <div>${application.clientName}</div>
+                                <c:if test="${not empty application.token.expirationDate}">
+                                    <div>
+                                        <small class="text-muted">
+                                            <span><op:translate key="DASHBOARD_EXPIRES_MESSAGE" /></span>
+                                            <span><fmt:formatDate value="${application.token.expirationDate}" type="date" dateStyle="medium" /></span>
+                                        </small>
+                                    </div>
+                                </c:if>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Checkbox -->
+                    <div class="portal-table-cell" data-column="checkbox">
+                        <div class="portal-table-cell-inner" data-column="checkbox">
+                            <div class="portal-table-checkbox">
+                                <a href="javascript:" class="no-ajax-link" title="${checkboxTitle}">
+                                    <i class="glyphicons glyphicons-basic-square-empty"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+        </div>
+    </c:otherwise>
+</c:choose>

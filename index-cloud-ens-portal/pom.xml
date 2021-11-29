@@ -108,11 +108,11 @@
         <module>index-cloud-ens-portal-directory</module>
         <module>index-cloud-ens-portal-collaboration</module>
 		<module>index-cloud-ens-portal-search</module>		
-		<module>index-cloud-ens-portal-test</module>
 		<module>index-cloud-ens-portal-discussion</module>
 		<module>index-cloud-ens-portal-taskbar</module>		
 		<module>index-cloud-ens-portal-maintenance</module>
 		<module>index-cloud-ens-portal-initializer</module>
+		<module>index-cloud-ens-portal-ws</module>
     </modules>
 
 

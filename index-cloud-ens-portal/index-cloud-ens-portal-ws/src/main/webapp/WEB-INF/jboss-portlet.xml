@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE portlet-app PUBLIC "-//JBoss Portal//DTD JBoss Portlet 2.6//EN" "http://www.jboss.org/portal/dtd/jboss-portlet_2_6.dtd">
+
+<portlet-app>
+
+
+    <!-- Dashboard -->
+    <portlet>
+        <portlet-name>index-cloud-portal-ens-ws-dashboardPortlet</portlet-name>
+        <header-content>
+            <link rel="stylesheet" href="/css/ws-dashboard.min.css" />
+            <script type="text/javascript" src="/js/ws-dashboard.js"></script>            
+         </header-content>
+    </portlet>
+
+
+    <!-- Applications -->
+    <portlet>
+        <portlet-name>index-cloud-portal-ens-application-managementPortlet</portlet-name>
+        <header-content>
+            <script type="text/javascript" src="/js/application-management.js"></script>            
+         </header-content>
+    </portlet>
+
+
+
+
+    <!-- Customization modules repository -->
+    <service>
+        <service-name>CustomizationModulesRepository</service-name>
+        <service-class>org.osivia.portal.api.customization.ICustomizationModulesRepository</service-class>
+        <service-ref>osivia:service=CustomizationService</service-ref>
+    </service>
+
+</portlet-app>
+	
