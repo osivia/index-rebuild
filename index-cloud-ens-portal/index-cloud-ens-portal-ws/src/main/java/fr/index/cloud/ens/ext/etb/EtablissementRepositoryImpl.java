@@ -1,7 +1,10 @@
 package fr.index.cloud.ens.ext.etb;
 
+import javax.portlet.PortletException;
+
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.osivia.portal.api.cache.services.CacheInfo;
+import org.osivia.portal.api.cms.service.UpdateScope;
 import org.osivia.portal.core.web.IWebIdService;
 import org.springframework.stereotype.Repository;
 
@@ -66,6 +69,19 @@ public class EtablissementRepositoryImpl implements EtablissementRepository {
     }
     
     
+    
+    /**
+     * Gets the root path.
+     *
+     * @return the root path
+     */
+    public static String getConfigSpace() {
+        // Check if root folder exists
+        String folderPath = System.getProperty("config.rootPath") ;
+
+        return folderPath;
+    }
+    
 
     /**
      * Gets the root.
@@ -119,7 +135,17 @@ public class EtablissementRepositoryImpl implements EtablissementRepository {
         }       
       
         // Create or update document
-        getNuxeoControllerNoCache().executeNuxeoCommand(new ApplicationEditionCommand(root,application, doc));
+        Document updatedDoc = (Document) getNuxeoControllerNoCache().executeNuxeoCommand(new ApplicationEditionCommand(root,application, doc));
+        
+        
+        // Notify CMS change 
+
+        try {
+            nuxeoController.notifyUpdate( updatedDoc.getPath(), getConfigSpace(), UpdateScope.SCOPE_SPACE, false);
+        } catch (PortletException e) {
+            throw new RuntimeException(e);
+        }
+        
         
         nuxeoController.getDocumentContext(applicationPath).reload();
         

@@ -144,20 +144,17 @@ public class EtablissementService implements IApplicationService {
                     }
                 }
             }
-        }   else    {
-            if( create) {
-                // Not a PRONOTE Application
-                Application application = repository.getApplication(EtablissementService.APPLICATION_ID_PREFIX + clientID);
-                if( application == null)    {
-                    // Create with default name
-                    application = new Application(EtablissementService.APPLICATION_ID_PREFIX + clientID, "Application "+ clientID);
-                    repository.update(application);
-                }
-            }
-         }
-
-        // Get from repository
+        } 
+        
         Application application = repository.getApplication(EtablissementService.APPLICATION_ID_PREFIX + clientID);
+        
+        if (application == null && create) {
+            // Create with default name
+            application = new Application(EtablissementService.APPLICATION_ID_PREFIX + clientID, "Application " + clientID);
+            repository.update(application);
+       }
+
+
         return application;
     }
 

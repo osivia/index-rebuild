@@ -83,6 +83,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             	.loginProcessingUrl("/login")
                 .failureUrl("/login.jsp?authentication_error=true")
                 .loginPage("/login.jsp")
+                
                 ;
                 
         // @formatter:on

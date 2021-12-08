@@ -36,7 +36,8 @@ public class ApplicationEditionCommand implements INuxeoCommand {
         // Document service
         DocumentService documentService = nuxeoSession.getAdapter(DocumentService.class);
 
-
+        
+        
         if (doc == null) {
             // Type
             String type = EtablissementRepositoryImpl.APPLICATION_TYPE;
@@ -48,9 +49,9 @@ public class ApplicationEditionCommand implements INuxeoCommand {
 
 
             // Creation
-            Document newDoc =  documentService.createDocument(root, type, null, properties, true);
+            doc =  documentService.createDocument(root, type, null, properties, true);
             if( application.getDescription() != null)   {
-                documentService.setProperty(newDoc, "dc:description", application.getDescription());               
+                documentService.setProperty(doc, "dc:description", application.getDescription());               
             }
             
           } else {
@@ -63,7 +64,7 @@ public class ApplicationEditionCommand implements INuxeoCommand {
 
         }
 
-        return null;
+        return doc;
     }
 
     /**

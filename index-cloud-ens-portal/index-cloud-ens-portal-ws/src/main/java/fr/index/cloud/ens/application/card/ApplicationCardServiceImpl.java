@@ -84,7 +84,7 @@ public class ApplicationCardServiceImpl implements ApplicationCardService {
         
         // May have been deleted
         if( application != null)    {
-            card.setCode(application.getCode().substring(EtablissementService.APPLICATION_ID_PREFIX.length()));
+            card.setCode(application.getCode());
             card.setTitle(application.getTitle());
             card.setDescription((String) application.getDescription());
         }   

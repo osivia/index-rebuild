@@ -21,6 +21,7 @@ import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.FileBlob;
 import org.nuxeo.ecm.automation.client.model.PropertyMap;
 import org.osivia.portal.api.cache.services.CacheInfo;
+import org.osivia.portal.api.cms.service.UpdateScope;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.springframework.stereotype.Repository;
 
@@ -104,10 +105,18 @@ public class ConversionRepositoryImpl implements ConversionRepository {
         else
             binary = null;
 
-        nuxeoController.executeNuxeoCommand(new UpdateConfigurationCommand(parent, config, binary));
+        config = (Document) nuxeoController.executeNuxeoCommand(new UpdateConfigurationCommand(parent, config, binary));
 
-        // reload
-        getNuxeoController( true).getDocumentContext(getConfigurationPath()).reload();        
+        
+        // Notify CMS change 
+
+        try {
+            nuxeoController.notifyUpdate( config.getPath(), getConfigurationRootPath(), UpdateScope.SCOPE_SPACE, false);
+        } catch (PortletException e) {
+            throw new RuntimeException(e);
+        }
+        
+   
         
     }
     

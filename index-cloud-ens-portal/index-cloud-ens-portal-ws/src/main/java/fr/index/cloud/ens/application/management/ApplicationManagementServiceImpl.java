@@ -237,6 +237,8 @@ public class ApplicationManagementServiceImpl implements ApplicationManagementSe
             properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
             properties.put("osivia.ajaxLink", "1");
             properties.put("applicationId", applicationWebID);
+            properties.put("osivia.windowState","normal");
+            properties.put("osivia.windowName","application-detail");
 
             try {
                 dynamicService.startDynamicWindow(portalControllerContext, region, "index-cloud-portal-ens-application-cardInstance", properties);

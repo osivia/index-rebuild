@@ -13,7 +13,7 @@
  
 	<mvc:annotation-driven />
 	<context:component-scan
-		base-package="fr.index.cloud.ens.ws, fr.index.cloud.ens.ext, fr.index.cloud.oauth, fr.index.security.oauth" />
+		base-package="fr.index.cloud.oauth.config , fr.index.cloud.ens.ws, fr.index.cloud.ens.ext, fr.index.cloud.oauth, fr.index.security.oauth" />
  
 
 </beans>

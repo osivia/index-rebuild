@@ -4,7 +4,9 @@ package fr.index.cloud.oauth.config;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.TreeSet;
 
+import org.apache.commons.lang3.StringUtils;
 import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.api.tokens.ITokenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -143,7 +145,7 @@ public class OAuth2ServerConfig {
                     if (application != null) {
                         BaseClientDetails details = new BaseClientDetails();
                         details.setClientId(clientId);
-                        details.setClientSecret(System.getProperty("pronote.oauth2.client.secret"));
+                        details.setClientSecret("{noop}"+System.getProperty("pronote.oauth2.client.secret"));
                         details.setAuthorizedGrantTypes(Arrays.asList("password", "authorization_code", "refresh_token", "implicit"));
                         details.setScope(Arrays.asList("drive"));
                         details.setResourceIds(Arrays.asList("cloud"));
@@ -151,6 +153,15 @@ public class OAuth2ServerConfig {
                         authorities.add(new SimpleGrantedAuthority("ROLE_CLIENT"));
                         authorities.add(new SimpleGrantedAuthority("ROLE_TRUSTED_CLIENT"));
                         details.setAuthorities(authorities);
+                        
+                        //TODO : externalize
+                        String redirectUrisProp = System.getProperty("pronote.oauth2.client.redirect_uris");
+                        if(StringUtils.isNotEmpty(redirectUrisProp))    {
+                            String[] redirectUrisArray = redirectUrisProp.split(",");
+                            Set<String> redirectUris = new TreeSet<>(Arrays.asList(redirectUrisArray));
+                            redirectUris.addAll(redirectUris);
+                            details.setRegisteredRedirectUri(redirectUris);
+                        }
 /*                        
                         // 10 secunds
                         details.setAccessTokenValiditySeconds(30);
@@ -187,6 +198,7 @@ public class OAuth2ServerConfig {
         @Override
         public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
             ITokenService tokenService = Locator.findMBean(ITokenService.class, ITokenService.MBEAN_NAME);
+
             endpoints.tokenEnhancer(new AccessTokenEnhancer()).tokenStore(tokenStore).userApprovalHandler(userApprovalHandler).authenticationManager(authenticationManager).authorizationCodeServices( new PortalAuthorizationCodeStore( tokenService));
         }
 
