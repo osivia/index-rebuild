@@ -28,7 +28,7 @@
                     <div class="card-title text-center font-weight-bold"><op:translate
                             key="createaccount.title"/></div>
 
-                    <form:form action="${submitFormUrl}" method="post" modelAttribute="form" role="form">
+                    <form:form action="${submitFormUrl}" autocomplete="chrome-off" method="post" modelAttribute="form" role="form">
                         <div class="row">
                             <div class="col-md">
                                     <%--Nickname--%>
@@ -72,7 +72,7 @@
                                     <div class="form-group required">
                                         <c:set var = "placeholder"> <op:translate
                                                 key="createaccount.form.mail"/></c:set>                                           
-                                                
+                                                 
                                         <form:input path="mail" type="email" cssClass="form-control"
                                                     cssErrorClass="form-control is-invalid" placeholder="${placeholder}" />
                                         <form:errors path="mail" cssClass="invalid-feedback"/>
@@ -122,7 +122,7 @@
                                                 cssClass="form-check-label">
                                             <op:translate
                                             key="createaccount.form.acceptTermsOfService.beforeLink"/>   
-                                            <a href="javascript:" class="no-ajax-link" data-target="#osivia-modal"
+                                            <a href="javascript:"  data-target="#osivia-modal"
                                                 data-load-url="${termsOfServiceUrl}" data-title="${title}" data-footer="true">
                                                 <span><op:translate key="createaccount.form.acceptTermsOfService.link"/></span>
                                             </a>

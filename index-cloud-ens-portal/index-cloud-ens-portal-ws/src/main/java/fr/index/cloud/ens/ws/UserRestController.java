@@ -26,10 +26,14 @@ import org.bouncycastle.util.io.pem.PemObject;
 import org.bouncycastle.util.io.pem.PemReader;
 import org.osivia.directory.v2.service.PersonUpdateService;
 import org.osivia.portal.api.PortalException;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.directory.v2.model.Person;
+import org.osivia.portal.api.locator.Locator;
 import org.osivia.portal.api.tokens.ITokenService;
+import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -67,6 +71,12 @@ public class UserRestController {
     
     @Autowired
     private ErrorMgr errorMgr;
+    
+    
+    @Autowired
+    private IPortalUrlFactory portalUrlFactory;
+
+
 
     /** Logger. */
     private static final Log logger = LogFactory.getLog(UserRestController.class);
@@ -107,7 +117,7 @@ public class UserRestController {
     
                 // 4 - Compute and return a link to start UserCreation procedure
                 //computeCreateAccountProcUrl(request, returnObject, webToken);
-                computeCreateAccountUrl(request, returnObject, webToken);
+                computeCreateAccountUrl(request, response,returnObject, webToken);
                 returnObject.put("returnCode", ErrorMgr.ERR_OK);
             }
             
@@ -248,12 +258,18 @@ public class UserRestController {
 	 * @param returnObject
 	 * @param webToken
 	 */
-	private void computeCreateAccountUrl(HttpServletRequest request, Map<String, Object> returnObject,
+	private void computeCreateAccountUrl(HttpServletRequest request, HttpServletResponse response,Map<String, Object> returnObject,
 			String webToken) {
 		
-        String url = "/portal/portal/default/create-account/";
+	    
+	    WSPortalControllerContext ctx = new WSPortalControllerContext(request, response);
+	    
+        //String url = "/portal/portal/default/create-account/";
+        String url = "/portal/content/idx/DEFAULT_CREATE-ACCOUNT";
 
         String publicHost = System.getProperty("osivia.tasks.host");
+        
+        
         url = publicHost + url + "?init=true&token=" + webToken;
         returnObject.put("url", url);
 		
