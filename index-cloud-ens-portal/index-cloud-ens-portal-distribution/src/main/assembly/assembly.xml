@@ -51,8 +51,12 @@
             <includes>
                 <include>fr.index.cloud.ens.portal.directory:index-cloud-ens-portal-directory-interfaces</include>
                 <include>org.osivia.services.directory.socle:osivia-services-directory-socle-interfaces</include>
+				<include>${project.groupId}:index-cloud-ens-portal-cas-client</include>                
                 <!-- third party -->
                 <include>commons-fileupload:commons-fileupload</include>
+                <include>org.jasig.cas.client:cas-client-integration-tomcat-v85</include>
+                <include>org.jasig.cas.client:cas-client-core</include>
+                <include>org.jasig.cas.client:cas-client-integration-tomcat-common</include>
  
              </includes> 
         </dependencySet>
@@ -80,11 +84,14 @@
             <includes>
                 <include>/**</include>
             </includes>
+            <excludes>
+            	<exclude>conf/context.xml</exclude>
+            	<exclude>conf/server.xml</exclude>
+            </excludes>
          </fileSet>
         <fileSet>
             <outputDirectory>/</outputDirectory>
             <directory>src/main/resources</directory>
-        
         </fileSet>         
 
       </fileSets>

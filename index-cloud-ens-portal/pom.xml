@@ -60,6 +60,26 @@
 	            <scope>provided</scope>
 	        </dependency>            
 
+
+	  		<dependency>
+			    <groupId>org.jasig.cas.client</groupId>
+			    <artifactId>cas-client-integration-tomcat-v85</artifactId>
+			    <version>3.6.4</version>
+	 		</dependency>
+			
+	   		<dependency>
+			    <groupId>org.jasig.cas.client</groupId>
+			    <artifactId>cas-client-core</artifactId>
+			    <version>3.6.4</version>
+			</dependency> 
+			
+			<dependency>
+			    <groupId>org.jasig.cas.client</groupId>
+			    <artifactId>cas-client-integration-tomcat-common</artifactId>
+			    <version>3.6.4</version>
+			</dependency> 
+
+
         </dependencies>
     </dependencyManagement>
 
@@ -113,6 +133,7 @@
 		<module>index-cloud-ens-portal-maintenance</module>
 		<module>index-cloud-ens-portal-initializer</module>
 		<module>index-cloud-ens-portal-ws</module>
+		<module>index-cloud-ens-portal-cas-client</module>
     </modules>
 
 

@@ -181,6 +181,28 @@
 		 </dependency>
 			   
   
+  		<dependency>
+		    <groupId>org.jasig.cas.client</groupId>
+		    <artifactId>cas-client-integration-tomcat-v85</artifactId>
+ 		</dependency>
+		
+   		<dependency>
+		    <groupId>org.jasig.cas.client</groupId>
+		    <artifactId>cas-client-core</artifactId>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>org.jasig.cas.client</groupId>
+		    <artifactId>cas-client-integration-tomcat-common</artifactId>
+		</dependency> 
+		
+		<dependency>
+		    <groupId>${project.groupId}</groupId>
+		    <artifactId>index-cloud-ens-portal-cas-client</artifactId>
+		    <version>${project.version}</version>
+		</dependency>		
+		
+  
 	</dependencies>
 	
 

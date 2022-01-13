@@ -6,6 +6,21 @@ services:
       - 389:389
     volumes:
       - opendj-data:/opt/opendj/db
+  tomcat:
+    image: osivia/tomcat:cloud-ens
+    environment:
+        - LDAP_HOST=opendj
+        - JPDA_ADDRESS=8000
+        - JPDA_TRANSPORT=dt_socket
+        - PUBLIC_HOST=${PUBLIC_HOST}
+        - PRONOTE_SERVICEVALIDATE_URL=${PRONOTE_SERVICEVALIDATE_URL}
+    ports:
+        - 8080
+        - 8789:8000
+    volumes:
+        - httpd-ssl:/export/httpd/ssl
+    depends_on:
+       - httpd
   portal-1:
     image: osivia/index-portal:5.0
     environment:
