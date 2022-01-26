@@ -24,7 +24,7 @@ public class CloudEnsAvatarModule implements AvatarModule {
     /**
      * Default avatar URL.
      */
-    private static final String DEFAULT_URL = "/index-cloud-ens-charte/img/icons/user.svg";
+    private static final String DEFAULT_URL = "/index-cloud-ens-portal-charte/img/icons/user.svg";
 
     /**
      * Avatar Nuxeo document property.

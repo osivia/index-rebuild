@@ -25,7 +25,7 @@
 	<div class="container d-flex flex-column flex-sm-row flex-grow-1 flex-shrink-0 justify-content-center py-4">
 
 		<div class="my-auto mx-auto mx-sm-0">
-			<img alt="Cloud PRONOTE" src="/index-cloud-ens-charte/img/logo-cloud-pronote.svg" height="200px">
+			<img alt="Cloud PRONOTE" src="/index-cloud-ens-portal-charte/img/logo-cloud-pronote.svg" height="200px">
 		</div>
 		
 		<div class="ml-5 my-auto">

@@ -30,7 +30,8 @@
                 <include>${project.groupId}:index-cloud-ens-portal-taskbar</include>  
                 <include>${project.groupId}:index-cloud-ens-portal-maintenance</include>   
                 <include>${project.groupId}:index-cloud-ens-portal-initializer</include>                              
-                <include>${project.groupId}:index-cloud-ens-portal-ws</include>                                             
+                <include>${project.groupId}:index-cloud-ens-portal-ws</include>
+                <include>${project.groupId}:index-cloud-ens-portal-charte</include>                                       
                   <!-- services -->
                 <include>org.osivia.services:osivia-services-widgets</include>
                 <include>org.osivia.services:osivia-services-document-edition</include>
@@ -42,7 +43,19 @@
          			
             </includes>
             <useProjectArtifact>false</useProjectArtifact>
+            <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
         </dependencySet>
+        
+        <dependencySet>
+            <outputDirectory>webapps</outputDirectory>
+            <unpack>false</unpack>
+            <scope>runtime</scope>
+            <includes>
+                <include>toutatice-portail.cms:toutatice-portail-cms-nuxeo-web</include>
+            </includes>
+            <useProjectArtifact>false</useProjectArtifact>
+            <outputFileNameMapping>index-cloud-ens-portal-cms-nuxeo.${artifact.extension}</outputFileNameMapping>
+        </dependencySet>        
 
         <dependencySet>
             <outputDirectory>/lib</outputDirectory>
@@ -57,22 +70,10 @@
                 <include>org.jasig.cas.client:cas-client-integration-tomcat-v85</include>
                 <include>org.jasig.cas.client:cas-client-core</include>
                 <include>org.jasig.cas.client:cas-client-integration-tomcat-common</include>
- 
-             </includes> 
+              </includes> 
         </dependencySet>
         
-        <dependencySet>
-            <outputDirectory>/webapps</outputDirectory>
-            <unpack>false</unpack>
-            <scope>runtime</scope>
- 			<includes>
-                <include>${project.groupId}:index-cloud-ens-portal-charte</include>
-             </includes>
-             <outputFileNameMapping>index-cloud-ens-charte.war</outputFileNameMapping>       
-        </dependencySet>        
-        
-          
-                            
+                           
     </dependencySets>
 
 
@@ -87,6 +88,7 @@
             <excludes>
             	<exclude>conf/context.xml</exclude>
             	<exclude>conf/server.xml</exclude>
+            	<exclude>webapps/toutatice-portail-cms-nuxeo-web**</exclude>
             </excludes>
          </fileSet>
         <fileSet>

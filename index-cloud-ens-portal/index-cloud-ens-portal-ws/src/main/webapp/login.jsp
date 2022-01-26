@@ -19,7 +19,7 @@
 <op:resourceAdapter directive="<script type='text/javascript' src='/osivia-portal-custom-web-assets/components/jquery-ui/jquery-ui-1.11.3.min.js'></script>" />
 <op:resourceAdapter directive="<link rel='stylesheet' href='/osivia-portal-custom-web-assets/components/jquery-ui/jquery-ui-1.11.3.min.css'>" />
 <op:resourceAdapter directive="<script type='text/javascript'   src='/osivia-portal-custom-web-assets/components/jquery-mobile/jquery.mobile.custom.min.js'></script>" />
-<op:resourceAdapter directive="<link rel='stylesheet' href='/index-cloud-ens-charte/css/cloud-ens.css' />" />
+<op:resourceAdapter directive="<link rel='stylesheet' href='/index-cloud-ens-portal-charte/css/cloud-ens.css' />" />
 <op:resourceAdapter directive="<script src='/osivia-portal-custom-web-assets/components/bootstrap/js/bootstrap.bundle.min.js'></script>" />
 
 
@@ -34,7 +34,7 @@
                 <%--Brand--%>
                 <a href="/portal" class="navbar-brand mx-auto py-0">
                     <img alt="Cloud PRONOTE"
-                         src="/index-cloud-ens-charte/img/logo-cloud-pronote-toolbar.png" height="45">
+                         src="/index-cloud-ens-portal-charte/img/logo-cloud-pronote-toolbar.png" height="45">
                 </a>
             </nav>                    
     </div>

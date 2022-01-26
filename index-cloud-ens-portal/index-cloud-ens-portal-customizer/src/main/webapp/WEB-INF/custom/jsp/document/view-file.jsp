@@ -11,7 +11,7 @@
 <c:choose>
     <c:when test="${not empty QCMUrl}">
         <div class="document-qcm d-flex flex-column flex-grow-1 ">
-            <iframe id="qcmPlayer" src="/index-cloud-ens-charte/qcm/visioQCM.html?url=${QCMUrl}" class="flex-grow-1" onFinish="alert('on finish event!')"></iframe>
+            <iframe id="qcmPlayer" src="/index-cloud-ens-portal-charte/qcm/visioQCM.html?url=${QCMUrl}" class="flex-grow-1" onFinish="alert('on finish event!')"></iframe>
         </div>
     </c:when>
 

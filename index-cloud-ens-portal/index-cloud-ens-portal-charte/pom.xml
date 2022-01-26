@@ -14,9 +14,7 @@
 
     <name>Cloud enseignant - Charte Portail</name>
     
-    <properties>
-        <war.name>index-cloud-ens-charte</war.name>
-    </properties>
+
     
     <build>
         <plugins>
@@ -26,13 +24,7 @@
                 <groupId>com.github.warmuuh</groupId>
                 <artifactId>libsass-maven-plugin</artifactId>
             </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-war-plugin</artifactId>
-                <configuration>
-                    <warName>${war.name}</warName>
-                </configuration>
-            </plugin>
+
         </plugins>
     </build>
     

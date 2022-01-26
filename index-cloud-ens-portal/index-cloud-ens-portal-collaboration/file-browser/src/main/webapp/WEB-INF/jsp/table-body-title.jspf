@@ -14,7 +14,7 @@
     <c:if test="${item.pronote}">
         <c:set var="title"><op:translate key="TOOLTIP_PRONOTE"/></c:set>
         <div class="ml-2">
-            <img src="/index-cloud-ens-charte/img/pronote-indicator.svg" alt="${title}" title="${title}" height="21">
+            <img src="/index-cloud-ens-portal-charte/img/pronote-indicator.svg" alt="${title}" title="${title}" height="21">
         </div>
     </c:if>
     
