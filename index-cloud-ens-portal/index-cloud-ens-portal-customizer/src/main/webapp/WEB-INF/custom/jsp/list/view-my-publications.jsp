@@ -20,7 +20,7 @@
 							<%--PRONOTE indicator--%>
 							<c:if test="${not empty document.properties['rshr:targets']}">
 								<c:set var="title"><op:translate key="TOOLTIP_PRONOTE"/></c:set>
-								<img src="/index-cloud-ens-charte/img/pronote-indicator.svg" alt="PRONOTE" title="${title}" height="16">
+								<img src="/index-cloud-ens-portal-charte/img/pronote-indicator.svg" alt="PRONOTE" title="${title}" height="16">
 							</c:if>
 
 	                        <%--SHARED indicator--%>

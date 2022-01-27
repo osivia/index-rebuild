@@ -42,7 +42,8 @@
 	<!-- to avoid Warning messages -->
 	<JarScanner scanManifest="false" />
 
-
+    <Valve className="org.osivia.portal.core.error.ErrorValve" />
+        
 	<Valve
     className="org.jasig.cas.client.tomcat.v85.Cas20CasAuthenticator"
     encoding="UTF-8"
