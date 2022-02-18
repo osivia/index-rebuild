@@ -47,7 +47,7 @@ services:
       - postgres
       - es
   httpd:
-    image: osivia/httpd:cloud-ens
+    image: osivia/index-httpd:5.0
     environment:
         - PUBLIC_HOST=${PUBLIC_HOST}
         - CAS_HOST=tomcat
