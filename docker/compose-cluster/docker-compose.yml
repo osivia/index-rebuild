@@ -1,0 +1,101 @@
+version: "3"
+services:
+  opendj:
+    image: osivia/opendj:cloud-ens
+    ports:
+      - 389:389
+    volumes:
+      - opendj-data:/opt/opendj/db
+  tomcat:
+    image: osivia/tomcat:cloud-ens
+    environment:
+        - LDAP_HOST=opendj
+        - JPDA_ADDRESS=8000
+        - JPDA_TRANSPORT=dt_socket
+        - PUBLIC_HOST=${PUBLIC_HOST}
+        - PRONOTE_SERVICEVALIDATE_URL=${PRONOTE_SERVICEVALIDATE_URL}
+    ports:
+        - 8080
+        - 8789:8000
+    volumes:
+        - httpd-ssl:/export/httpd/ssl
+    depends_on:
+       - httpd
+  portal-1:
+    image: osivia/index-portal:5.0
+    environment:
+      - TZ=Europe/Paris
+      - JPDA_ADDRESS=8000
+      - JPDA_TRANSPORT=dt_socket
+      - MAIL_PWD=${MAIL_PWD}
+      - ROUTE_ID=portal-1
+    ports:
+      - 8000:8000
+      - 8080:8080
+  portal-2:
+    image: osivia/index-portal:5.0
+    environment:
+      - TZ=Europe/Paris
+      - JPDA_ADDRESS=8000
+      - JPDA_TRANSPORT=dt_socket
+      - MAIL_PWD=${MAIL_PWD}
+      - ROUTE_ID=portal-2
+    ports:
+      - 8002:8000
+      - 8082:8080
+  nuxeo:
+    image: osivia/index-nuxeo:5.0
+    environment:
+      - LDAP_HOST=opendj
+      - NUXEO_DB_HOST=postgres
+      - NUXEO_ES_CLUSTER=cloud-ens-cluster
+      - NUXEO_ES_NODES=es:9300
+    ports:
+      - 8081:8081
+      - 8001:8001
+    volumes:
+      - nuxeo-data:/data
+    depends_on:
+      - postgres
+      - es
+  httpd:
+    image: osivia/index-httpd:5.0
+    environment:
+        - PUBLIC_HOST=${PUBLIC_HOST}
+        - CAS_HOST=tomcat
+        - NUXEO_HOST=nuxeo
+        - PORTAL_HOSTS=portal-1,portal-2
+        - OO_HOST=onlyoffice
+        - PUBLIC_HOST_HTTPS_CRT=${PUBLIC_HOST_HTTPS_CRT}
+        - PUBLIC_HOST_HTTPS_KEY=${PUBLIC_HOST_HTTPS_KEY}
+        - LDAP_HOST=opendj
+    ports:
+        - 80:80
+        - 81:81            
+        - 443:443
+    volumes:
+        - ${PRONOTE_HOST_RESOURCES_PATH}:/var/resources                    
+        - httpd-ssl:/etc/ssl
+    networks:
+        default:
+            aliases:
+                - ${PUBLIC_HOST}      
+  postgres:
+    image: postgres:9.5
+    environment:
+      - POSTGRES_PASSWORD=osivia
+      - POSTGRES_USER=nuxeo
+      - POSTGRES_DB=nuxeodb
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  es:
+    image: elasticsearch:1.7.6
+    command: elasticsearch -Des.cluster.name=cloud-ens-cluster
+    volumes:
+      - es-data:/usr/share/elasticsearch/data      
+volumes:
+  nuxeo-data:
+  opendj-data:
+  postgres-data:
+  es-data:
+  httpd-ssl:
