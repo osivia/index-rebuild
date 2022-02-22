@@ -4,6 +4,7 @@ import fr.toutatice.portail.cms.nuxeo.api.CMSPortlet;
 import org.osivia.directory.v2.service.PersonUpdateService;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.directory.v2.service.PersonService;
+import org.osivia.portal.api.ha.IHAService;
 import org.osivia.portal.api.internationalization.IBundleFactory;
 import org.osivia.portal.api.internationalization.IInternationalizationService;
 import org.osivia.portal.api.locator.Locator;
@@ -106,4 +107,9 @@ public class InitializerConfig extends CMSPortlet {
         return DirServiceFactory.getService(PersonUpdateService.class);
     }
 
+    
+    @Bean
+    public IHAService getHAService() {
+        return Locator.getService(IHAService.MBEAN_NAME, IHAService.class);
+    }
 }

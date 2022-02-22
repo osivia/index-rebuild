@@ -8,22 +8,43 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 
 <portlet:defineObjects />
+
 <portlet:actionURL var="checkInitialized">
 	<portlet:param name="action" value="checkInit" />
 </portlet:actionURL>
 
+<portlet:actionURL var="initCaches">
+	<portlet:param name="action" value="initCaches" />
+</portlet:actionURL>
+
+
 <div class="initialization">
 
 	<form:form action="${checkInitialized}" method="post"
-		cssClass="form-horizontal">
+		cssClass="m-2 form-horizontal">
 
 		<c:set var="title">
 			<op:translate key="INIT_TITLE" />
 		</c:set>
 		<button type="submit" class="btn btn-primary">
-
 			<span>${title}</span>
 		</button>
+
+
+
+	</form:form>
+	
+	<form:form action="${initCaches}" method="post"
+		cssClass="m-2 form-horizontal">
+
+
+		<c:set var="titleCaches">
+			<op:translate key="INIT_CACHES" />
+		</c:set>
+		<button type="submit" class="btn btn-primary">
+			<span>${titleCaches}</span>
+		</button>
+
 
 	</form:form>
 </div>

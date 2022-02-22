@@ -62,7 +62,13 @@ public class CasLdapRealmDelegate implements CasRealm {
         if (MEMBERS.equals(role) && principal != null)
             return true;
         
+
         Group group = getGroupService().get(role);
+        if( group == null)  {
+            // redeployment of custom service ?
+            groupService = null;
+            group = getGroupService().get(role);
+        }
         
         if (group != null) {
             List<Name> names = group.getMembers();

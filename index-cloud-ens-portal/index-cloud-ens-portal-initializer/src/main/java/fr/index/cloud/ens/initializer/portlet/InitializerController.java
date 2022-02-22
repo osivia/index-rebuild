@@ -14,6 +14,7 @@ import fr.index.cloud.ens.initializer.service.InitializerService;
 import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.context.PortalControllerContext;
+import org.osivia.portal.api.ha.IHAService;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.windows.PortalWindow;
 import org.osivia.portal.api.windows.WindowFactory;
@@ -41,6 +42,9 @@ public class InitializerController {
 	@Autowired
     private PortletContext portletContext;
 	
+    @Autowired
+    private IHAService haService;
+	
 	
 	@RenderMapping
     public String view(RenderRequest request, RenderResponse response) throws PortletException {
@@ -51,6 +55,11 @@ public class InitializerController {
     public void checkInit(ActionRequest request, ActionResponse response) throws PortalException, IOException, PortletException {
     	PortalControllerContext portalControllerContext = new PortalControllerContext(portletContext, request, response);
 		service.initialize(portalControllerContext);
+    }
+    
+    @ActionMapping(params = "action=initCaches")
+    public void initCaches(ActionRequest request, ActionResponse response) throws PortalException, IOException, PortletException {
+        haService.initPortalParameters();
     }
 
 }
