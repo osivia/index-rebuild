@@ -40,7 +40,7 @@
                 <include>org.osivia.services:osivia-services-procedure</include>
        			<include>org.osivia.services.directory.person:osivia-services-directory-person-management</include>
        			<include>org.osivia.services.directory.person:osivia-services-directory-person-creation</include>
-         			
+         		<include>org.osivia.services.directory.person:osivia-services-directory-user-saved-searches</include>	
             </includes>
             <useProjectArtifact>false</useProjectArtifact>
             <outputFileNameMapping>${artifact.artifactId}.${artifact.extension}</outputFileNameMapping>
