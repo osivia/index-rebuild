@@ -392,7 +392,7 @@ public class DriveRestController {
             Map<String, String> tokenAttributes = new ConcurrentHashMap<>();
             tokenAttributes.put("uid", principal.getName());
             String webToken = tokenService.generateToken(tokenAttributes);
-            String url = getUrl(request) + "/"+NuxeoController.getCMSNuxeoWebContextName()+"/binary?id=" + id + "&webToken=" + webToken + "&viewer=true";
+            String url = getUrl(request) + "/"+NuxeoController.getCMSNuxeoWebContextName()+"/binary?id=" + id + "&webToken=" + webToken ;
             returnObject.put("url", url);
 
         } catch (Exception e) {
