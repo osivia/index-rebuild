@@ -27,7 +27,8 @@ services:
       - TZ=Europe/Paris
       - JPDA_ADDRESS=8000
       - JPDA_TRANSPORT=dt_socket
-      - MAIL_PWD=${MAIL_PWD}      
+      - MAIL_PWD=${MAIL_PWD}
+      - ROUTE_ID=portal-1
     ports:
       - 8000:8000
       - 8080:8080

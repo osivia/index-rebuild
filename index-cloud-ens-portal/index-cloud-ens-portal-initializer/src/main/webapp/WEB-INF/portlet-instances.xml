@@ -18,5 +18,27 @@
             </security-constraint>
         </instance>
     </deployment>
+    
+    <deployment>
+        <if-exists>overwrite</if-exists>
+        <instance>
+            <display-name xml:lang="en">Cloud Ens - Test admin</display-name>
+            <display-name xml:lang="fr">Cloud Ens - Test admin</display-name>
+            <instance-id>index-cloud-ens-test-admin-instance</instance-id>
+            <portlet-ref>index-cloud-ens-initializer</portlet-ref>
+            <security-constraint>
+                <policy-permission>
+                    <action-name>view</action-name>
+                    <role-name>Administrators</role-name>
+                </policy-permission>
+                <policy-permission>
+                    <action-name>admin</action-name>
+                    <role-name>Administrators</role-name>
+                </policy-permission>
+            </security-constraint>
+        </instance>
+    </deployment>
+    
+    
 
 </deployments>
