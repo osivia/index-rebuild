@@ -7,7 +7,8 @@ function saveSearchFiltersLocation(button) {
 	// Update hidden input
 	$form.find("input[type=hidden][name$=locationPath]").val(path);
 
-	// Submit form
+	// Submit main form
+	view_state = $JQry("#osivia-modal").data("saved_state");	
 	$form.find("input[type=submit][name='update-location']").click();
 }
 
