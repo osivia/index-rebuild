@@ -63,7 +63,20 @@
     </portlet>
     
     
-  
+      
+    <!-- Project customizer -->
+    <portlet>
+        <portlet-name>cloud-ens-project-customizer</portlet-name>
+        <portlet-class>fr.index.cloud.ens.customizer.project.ProjectCustomizer</portlet-class>
+
+        <supports>
+            <mime-type>text/html</mime-type>
+        </supports>
+
+        <portlet-info>
+            <title>Project customizer</title>
+        </portlet-info>
+    </portlet>
 
 
 </portlet-app>

@@ -32,6 +32,11 @@ import org.osivia.portal.api.taskbar.TaskbarTask;
 import org.osivia.portal.api.urls.IPortalUrlFactory;
 import org.osivia.portal.api.windows.PortalWindow;
 import org.osivia.portal.api.windows.WindowFactory;
+import org.osivia.portal.core.cms.CMSException;
+import org.osivia.portal.core.cms.CMSItem;
+import org.osivia.portal.core.cms.CMSServiceCtx;
+import org.osivia.portal.core.cms.ICMSService;
+import org.osivia.portal.core.cms.ICMSServiceLocator;
 import org.osivia.portal.core.page.PageProperties;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
@@ -92,6 +97,12 @@ public class TaskbarServiceImpl implements TaskbarService {
      */
     @Autowired
     private INotificationsService notificationsService;
+    
+    /**
+     * CMS Service
+     */
+    @Autowired
+    private ICMSServiceLocator cmsServiceLocator;
 
 
     /**
@@ -656,6 +667,23 @@ public class TaskbarServiceImpl implements TaskbarService {
                 TaskbarWindowProperties windowProperties = this.getWindowProperties(portalControllerContext);
 
                 path = this.repository.getBasePath(portalControllerContext, windowProperties);
+                
+                // CMS service
+                ICMSService cmsService = this.cmsServiceLocator.getCMSService();
+                // CMS context
+                CMSServiceCtx cmsContext = new CMSServiceCtx();
+                cmsContext.setPortalControllerContext(portalControllerContext);
+                
+                // User workspace
+                CMSItem userWorkspace;
+                try {
+                    userWorkspace = cmsService.getUserWorkspace(cmsContext);
+                    if( userWorkspace.getCmsPath().equals(path))
+                    	path = path + "/documents";
+                    
+                } catch (CMSException e) {
+                    throw new PortletException( e);
+                }
             } else {
                 path = location;
             }

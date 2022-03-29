@@ -11,6 +11,7 @@ import org.jboss.portal.theme.impl.render.dynamic.DynaRenderOptions;
 import org.osivia.directory.v2.service.PersonUpdateService;
 import org.osivia.portal.api.Constants;
 import org.osivia.portal.api.PortalException;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.model.Person;
 import org.osivia.portal.api.internationalization.Bundle;
@@ -142,21 +143,8 @@ public class PersonDeletingServiceImpl implements PersonDeletingService {
 
     @Override
     public String getCancelUrl(PortalControllerContext portalControllerContext) {
-         // Current portal
-        Portal portal = PortalObjectUtils.getPortal(portalControllerContext);
-
-        // My account page
-        Page myAccountPage = portal.getChild("mon-compte", Page.class);
-
-        // URL
-        String url;
-        if (myAccountPage == null) {
-            url = null;
-        } else {
-            String myAccountPageId = myAccountPage.getId().toString(PortalObjectPath.SAFEST_FORMAT);
-            url = "#";
-            //url = this.portalUrlFactory.getViewPageUrl(portalControllerContext, myAccountPageId);
-        }
+        UniversalID myAccountDocumentId = new UniversalID( "idx", "DEFAULT_MON-COMPTE");
+        String  url = this.portalUrlFactory.getViewContentUrl(portalControllerContext, myAccountDocumentId);
 
         return url;
     }

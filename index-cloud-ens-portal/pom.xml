@@ -29,7 +29,7 @@
         <collaboration.version>5.0-SNAPSHOT</collaboration.version>
         <tasks.version>5.0-SNAPSHOT</tasks.version>
         <procedures.version>5.0-SNAPSHOT</procedures.version>
-
+        <cgu.version>4.9.1</cgu.version>
 
     </properties>
 

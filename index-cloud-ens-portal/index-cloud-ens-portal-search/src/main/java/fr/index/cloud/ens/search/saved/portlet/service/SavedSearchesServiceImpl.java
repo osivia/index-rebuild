@@ -202,7 +202,7 @@ public class SavedSearchesServiceImpl extends SearchCommonServiceImpl implements
             if (StringUtils.startsWith(navigationPath, MUTUALIZED_SPACE_PATH)) {
                 path = MUTUALIZED_SPACE_PATH;
             } else if (StringUtils.isEmpty(location)) {
-                path = this.repository.getUserWorkspacePath(portalControllerContext);
+                path = this.repository.getUserWorkspacePath(portalControllerContext) + "/documents";
             } else {
                 path = location;
             }

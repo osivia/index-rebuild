@@ -148,7 +148,13 @@
             <artifactId>osivia-services-procedure</artifactId>
             <version>${procedures.version}</version>
             <type>war</type>
-        </dependency>        	     
+        </dependency>        
+        <dependency>
+            <groupId>org.osivia.services.cgu</groupId>
+            <artifactId>osivia-services-cgu-portail</artifactId>
+            <version>${cgu.version}</version>
+            <type>war</type>
+        </dependency>
 	     <dependency>
 	         <groupId>org.osivia.services</groupId>
 	         <artifactId>osivia-services-widgets</artifactId>

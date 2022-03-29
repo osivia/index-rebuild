@@ -221,16 +221,7 @@ public class PersonCreationServiceImpl implements PersonCreationService {
      * @return terms of service
      */
     private String getPortalTermsOfService(PortalControllerContext portalControllerContext) {
-        // Portal
-        Portal portal = PortalObjectUtils.getPortal(portalControllerContext);
-
-        // Terms of service
-        String termsOfService;
-        if (portal == null) {
-            termsOfService = null;
-        } else {
-            termsOfService = portal.getProperty("osivia.services.cgu.level");
-        }
+       	String    termsOfService = System.getProperty("osivia.services.cgu.level");
 
         return termsOfService;
     }
@@ -332,16 +323,10 @@ public class PersonCreationServiceImpl implements PersonCreationService {
 
     @Override
     public String getTermsOfServiceUrl(PortalControllerContext portalControllerContext) throws PortletException {
-        // Page
-        Page page = PortalObjectUtils.getPage(portalControllerContext);
-
+ 
         // Terms of service path
-        String path;
-        if (page == null) {
-            path = null;
-        } else {
-            path = page.getProperty("osivia.services.cgu.path");
-        }
+        String path = System.getProperty("osivia.services.cgu.path");
+
 
         // Terms of service URL
         String url;

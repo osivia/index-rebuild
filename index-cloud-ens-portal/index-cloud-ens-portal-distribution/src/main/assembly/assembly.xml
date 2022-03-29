@@ -38,6 +38,7 @@
                 <include>org.osivia.services:osivia-services-tasks</include>  
                 <include>org.osivia.services.workspace:osivia-services-workspace-quota</include>
                 <include>org.osivia.services:osivia-services-procedure</include>
+                <include>org.osivia.services.cgu:osivia-services-cgu-portail</include>                 
        			<include>org.osivia.services.directory.person:osivia-services-directory-person-management</include>
        			<include>org.osivia.services.directory.person:osivia-services-directory-person-creation</include>
          		<include>org.osivia.services.directory.person:osivia-services-directory-user-saved-searches</include>	

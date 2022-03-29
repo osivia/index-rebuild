@@ -7,7 +7,7 @@ services:
     volumes:
       - opendj-data:/opt/opendj/db
   tomcat:
-    image: osivia/tomcat:cloud-ens
+    image: osivia/index-tomcat:5.0
     environment:
         - LDAP_HOST=opendj
         - JPDA_ADDRESS=8000

@@ -1,4 +1,4 @@
-FROM tomcat:8.5.60-jdk8
+FROM tomcat:8.5-jdk8
 MAINTAINER Cédric Krommenhoek <ckrommenhoek@osivia.com>
 
 RUN apt-get update && apt-get install -y locales vim  \
@@ -41,6 +41,10 @@ COPY portal.properties /
 COPY environnement_portail.properties /
 COPY ldap-portlets.properties /
 COPY cloud_fr.properties /home/portal
+
+#send mail (remove tlsv1)
+COPY java.security /usr/local/openjdk-8/jre/lib/security
+
 # Entrypoint
 COPY entrypoint.sh /
 RUN chmod +x /entrypoint.sh
