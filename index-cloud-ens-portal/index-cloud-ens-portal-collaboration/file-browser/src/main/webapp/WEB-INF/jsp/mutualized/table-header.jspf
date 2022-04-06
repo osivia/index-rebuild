@@ -33,6 +33,11 @@
                 <%--Author--%>
                 <%@ include file="table-header-author.jspf" %>
             </c:when>
+            
+            <c:when test="${column.id eq 'licence'}">
+                <%--Licence--%>
+                <%@ include file="table-header-licence.jspf" %>
+            </c:when>
 
             <c:when test="${column.id eq 'file-size'}">
                 <%--File size--%>

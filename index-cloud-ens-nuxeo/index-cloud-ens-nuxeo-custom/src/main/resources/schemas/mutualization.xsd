@@ -12,5 +12,6 @@
     <xs:element name="sourceVersion" type="xs:string"/>
     <xs:element name="views" type="xs:int" default="0"/>
     <xs:element name="downloads" type="xs:int" default="0"/>
-
+    <xs:element name="licence" type="xs:string"/>
+    <xs:element name="comment" type="xs:string"/>
 </xs:schema>

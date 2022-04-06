@@ -98,6 +98,19 @@
             <cacheTimeout>3600</cacheTimeout>
             <cacheMaxSize>1000</cacheMaxSize>
         </directory>
+        
+                <!--File format-->
+        <directory name="idx_licence">
+            <schema>xvocabulary</schema>
+            <dataSource>java:/nxsqldirectory</dataSource>
+            <table>vocabulary_licence</table>
+            <idField>id</idField>
+            <autoincrementIdField>false</autoincrementIdField>
+            <createTablePolicy>always</createTablePolicy>
+            <dataFile>vocabularies/licence.csv</dataFile>
+            <cacheTimeout>3600</cacheTimeout>
+            <cacheMaxSize>1000</cacheMaxSize>
+        </directory>
 
     </extension>
 

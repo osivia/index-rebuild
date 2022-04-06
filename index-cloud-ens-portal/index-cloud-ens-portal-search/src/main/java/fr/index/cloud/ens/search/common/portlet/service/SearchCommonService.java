@@ -74,6 +74,12 @@ public interface SearchCommonService {
      * Format selector identifier.
      */
     String FORMATS_SELECTORID = "formats";
+    
+    /**
+     * Licence selector identifier.
+     */
+    String LICENCES_SELECTORID = "licences";
+    
     /**
      * Shared selector identifier.
      */

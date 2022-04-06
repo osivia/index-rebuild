@@ -29,7 +29,11 @@ public enum SearchFiltersVocabulary {
     /**
      * Share.
      */
-    SHARED("idx_shared", "SEARCH_FILTERS_SHARED_ALL");
+    SHARED("idx_shared", "SEARCH_FILTERS_SHARED_ALL"),
+    /**
+     * Share.
+     */
+    LICENCE("idx_licence", "SEARCH_FILTERS_LICENCE_ALL");
     
     /**
      * Vocabulary name.

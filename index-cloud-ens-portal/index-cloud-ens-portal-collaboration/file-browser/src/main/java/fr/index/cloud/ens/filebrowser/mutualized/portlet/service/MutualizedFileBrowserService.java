@@ -42,7 +42,10 @@ public interface MutualizedFileBrowserService extends AbstractFileBrowserService
      * Author selector identifier.
      */
     String AUTHORS_SELECTOR_ID = "authors";
-
+    /**
+     * Author selector identifier.
+     */
+    String LICENCES_SELECTOR_ID = "licences";
 
     /**
      * Get form.

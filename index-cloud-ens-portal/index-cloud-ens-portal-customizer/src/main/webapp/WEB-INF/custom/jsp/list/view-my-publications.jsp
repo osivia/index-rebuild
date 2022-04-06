@@ -20,7 +20,7 @@
 							<%--PRONOTE indicator--%>
 							<c:if test="${not empty document.properties['rshr:targets']}">
 								<c:set var="title"><op:translate key="TOOLTIP_PRONOTE"/></c:set>
-								<img src="/index-cloud-ens-portal-charte/img/pronote-indicator.svg" alt="PRONOTE" title="${title}" height="16">
+								<img src="/index-cloud-ens-portal-charte/img/pronote-indicator.png" alt="PRONOTE" title="${title}" height="16">
 							</c:if>
 
 	                        <%--SHARED indicator--%>
@@ -28,6 +28,12 @@
 	                            <c:set var="title"><op:translate key="TOOLTIP_SHARED"/></c:set>
 	                            <i class="glyphicons glyphicons-basic-paired customized-icon-shared-small" title="${title}"></i>
 	                        </c:if>     
+	                        
+                            <%--COPIED indicator--%>
+                            <c:if test="${not empty document.properties['mtz:sourceWebId']}">
+                                <c:set var="title"><op:translate key="TOOLTIP_COPIED"/></c:set>
+                                <i class="glyphicons glyphicons-basic-copy-duplicate text-orange" title="${title}"></i>
+                            </c:if>  	                        
 
 							<%--Mutualized document--%>
 							<c:if test="${document.properties['mtz:enable']}">

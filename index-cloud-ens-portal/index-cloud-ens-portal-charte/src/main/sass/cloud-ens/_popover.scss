@@ -1,0 +1,16 @@
+@import "variables";
+
+
+.popover-sized-image  {
+
+  width: 302px;
+  max-width: 302px;  
+  height: 535px;
+
+ 
+  img	{
+   	width: 300px;
+   	height: 500px;
+   	background-color: white;
+  }
+}

@@ -30,6 +30,12 @@
                         <c:if test="${ empty document.properties['rshr:targets'] and document.properties['rshr:enabledLink']}">
                             <c:set var="title"><op:translate key="TOOLTIP_SHARED"/></c:set>
                             <i class="glyphicons glyphicons-basic-paired customized-icon-shared-small" title="${title}"></i>
+                        </c:if>
+                        
+                        <%--COPIED indicator--%>
+                         <c:if test="${not empty document.properties['mtz:sourceWebId']}">
+                             <c:set var="title"><op:translate key="TOOLTIP_COPIED"/></c:set>
+                             <i class="glyphicons glyphicons-basic-copy-duplicate text-orange" title="${title}"></i>
                         </c:if>                        
 
                         <%--Mutualized document--%>

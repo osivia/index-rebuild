@@ -1,0 +1,6 @@
+
+<div class="portal-table-cell" data-column="licence">
+    <div class="d-flex flex-wrap overflow-hidden">
+        <ttc:vocabularyLabel name="idx_licence" key="${item.licence}"/></li>
+    </div>
+</div>

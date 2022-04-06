@@ -31,6 +31,15 @@ public class CustomizedFileBrowserItem extends AbstractFileBrowserItem {
      */
     private boolean shared;
 
+    /**
+     * COPIED indicator.
+     */
+    private boolean copied;
+    
+    
+
+
+
 
     
     /**
@@ -74,5 +83,14 @@ public class CustomizedFileBrowserItem extends AbstractFileBrowserItem {
 
     public void setMutualized(boolean mutualized) {
         this.mutualized = mutualized;
+    }
+    
+    public boolean isCopied() {
+        return copied;
+    }
+
+    
+    public void setCopied(boolean copied) {
+        this.copied = copied;
     }
 }

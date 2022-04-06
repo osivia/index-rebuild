@@ -14,7 +14,7 @@
 	<form:form action="${saveUrl}" method="post" modelAttribute="editionForm" cssClass="form-horizontal" role="form">
 	   <fieldset>
 		       <legend><op:translate key="APPLICATION_CARD_EDITION_LEGEND" /></legend>
-		       <div >
+		       <div class="portlet-filler">
 		       
 		        <!-- Code- -->
 			    <%@ include file="edition/code.jspf" %>

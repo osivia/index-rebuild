@@ -392,7 +392,7 @@ public class DriveRestController {
             Map<String, String> tokenAttributes = new ConcurrentHashMap<>();
             tokenAttributes.put("uid", principal.getName());
             String webToken = tokenService.generateToken(tokenAttributes);
-            String url = getUrl(request) + "/"+NuxeoController.getCMSNuxeoWebContextName()+"/binary?id=" + id + "&webToken=" + webToken ;
+            String url = getUrl(request) + "/"+NuxeoController.getCMSNuxeoWebContextName()+"/binary?id=" + id + "&webToken=" + webToken + "&viewer=true";
             returnObject.put("url", url);
 
         } catch (Exception e) {
@@ -1297,6 +1297,7 @@ public class DriveRestController {
 
                     long fileSize = 0;
                     long quota = 0;
+                    long number = 0;
                    
                     
                     Blob quotaInfos =  (Blob) nuxeoController.executeNuxeoCommand(command);        
@@ -1314,10 +1315,12 @@ public class DriveRestController {
                         
                         fileSize = quotaContent.getLong("treesize");
                         quota = quotaContent.getLong("quota");
+                        number = quotaContent.getLong("number");                        
                      }
                     
                     userStorage.setFileSize(fileSize);
                     userStorage.setQuota(quota);
+                    userStorage.setNumber(number);
                 }
                 
 

@@ -5,13 +5,10 @@
 <%@ page isELIgnored="false" %>
 
 
-<c:set var="previewUrl"><ttc:filePreview document="${document}"/></c:set>
-<c:set var="resourceContext"><ttc:resourceContext/></c:set>
-
 <c:choose>
     <c:when test="${not empty QCMUrl}">
         <div class="document-qcm d-flex flex-column flex-grow-1 ">
-            <iframe id="qcmPlayer" src="/index-cloud-ens-portal-charte/qcm/visioQCM.html?url=${QCMUrl}" class="flex-grow-1" onFinish="alert('on finish event!')"></iframe>
+            <iframe id="qcmPlayer" src="${QCMUrl}" class="flex-grow-1" onFinish="alert('on finish event!')"></iframe>
         </div>
     </c:when>
 
@@ -19,6 +16,7 @@
         <script type="text/javascript" src="/index-cloud-ens-portal-cms-nuxeo/components/PDFViewer/preview.js"></script>
 
         <div class="document-file d-flex flex-column flex-grow-1">
+            <c:set var="previewUrl"><ttc:filePreview document="${document}"/></c:set>
             <c:choose>
                 <c:when test="${empty previewUrl}">
                     <div>
@@ -43,8 +41,10 @@
                     <%--Preview in iframe--%>
 					<div class="d-lg-flex flex-column flex-grow-1 px-4 px-md-0">
 						<div class="embed-responsive embed-responsive-4by3 embed-responsive-lg-0 d-lg-flex flex-column flex-grow-1">
-				            <iframe src="${resourceContext}/components/PDFViewer/web/viewer.html" webkitallowfullscreen=""
-				                    allowfullscreen="" class="pdf-preview-iframe d-none flex-grow-1" data-preview-url="${previewUrl}"
+							<iframe src="/index-cloud-ens-portal-cms-nuxeo/components/PDFViewer/web/viewer.html"
+									webkitallowfullscreen=""
+									allowfullscreen="" class="pdf-preview-iframe embed-responsive-item d-none flex-grow-1"
+									data-preview-url="${previewUrl}"
 				                    onload="downloadPreview();"></iframe>
 						</div>
 					</div>

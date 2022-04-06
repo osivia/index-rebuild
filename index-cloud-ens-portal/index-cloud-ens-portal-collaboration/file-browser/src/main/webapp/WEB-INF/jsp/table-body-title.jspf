@@ -14,15 +14,25 @@
     <c:if test="${item.pronote}">
         <c:set var="title"><op:translate key="TOOLTIP_PRONOTE"/></c:set>
         <div class="ml-2">
-            <img src="/index-cloud-ens-portal-charte/img/pronote-indicator.svg" alt="${title}" title="${title}" height="21">
+            <img src="/index-cloud-ens-portal-charte/img/pronote-indicator.png" alt="${title}" title="${title}" height="21">
         </div>
     </c:if>
     
-        <%--PRONOTE indicator--%>
+   <%--SHARED indicator--%>
     <c:if test="${item.shared and (not item.pronote)}">
         <c:set var="title"><op:translate key="TOOLTIP_SHARED"/></c:set>
         <div class="ml-2">
             <i class="glyphicons glyphicons-basic-paired customized-icon-shared" title="${title}"></i>
+        </div>
+    </c:if>
+    
+    <%--COPIED indicator--%>
+    <c:if test="${item.copied}">
+        <c:set var="title"><op:translate key="TOOLTIP_COPIED"/></c:set>
+        <div class="ml-2">
+            <span class="text-orange" title="${title}">
+                <i class="glyphicons glyphicons-basic-copy-duplicate" title="${title}"></i>
+            <span>
         </div>
     </c:if>
 

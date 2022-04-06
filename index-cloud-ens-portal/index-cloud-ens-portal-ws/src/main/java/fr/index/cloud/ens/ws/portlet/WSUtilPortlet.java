@@ -16,6 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import fr.index.cloud.ens.ext.etb.EtablissementService;
 import fr.index.cloud.ens.ws.DriveRestController;
 import fr.index.cloud.ens.ws.UserRestController;
+import fr.index.cloud.ens.ws.nuxeo.NuxeoDrive;
 import fr.index.cloud.oauth.config.SecurityFilter;
 import fr.toutatice.portail.cms.nuxeo.api.CMSPortlet;
 
@@ -37,6 +38,7 @@ public class WSUtilPortlet extends CMSPortlet {
         PortletContext portletContext = getPortletContext();
 
         DriveRestController.portletContext = portletContext;
+        NuxeoDrive.portletContext = portletContext;
         UserRestController.portletContext = portletContext;
         EtablissementService.portletContext = portletContext;
         

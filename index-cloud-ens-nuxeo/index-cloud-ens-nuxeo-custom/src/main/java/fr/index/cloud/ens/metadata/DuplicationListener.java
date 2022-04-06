@@ -3,7 +3,9 @@
  */
 package fr.index.cloud.ens.metadata;
 
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.commons.logging.Log;
@@ -27,8 +29,10 @@ public class DuplicationListener implements EventListener {
     /** Log. */
     private static final Log log = LogFactory.getLog(DuplicationListener.class);
 
-    private static String SCHEMA_NAME = "resourceSharing";
+  
 
+    
+    private List<String> nonDuplicateSchemas = Arrays.asList("resourceSharing","mutualization");
 
     @Override
     public void handleEvent(Event event) throws ClientException {
@@ -42,23 +46,25 @@ public class DuplicationListener implements EventListener {
 
             DocumentModel copiedDoc = evtCtx.getSourceDocument();
 
-            if (copiedDoc.hasSchema(SCHEMA_NAME)) {
-                Map<String, Object> properties = copiedDoc.getProperties(SCHEMA_NAME);
+            for(String schema: nonDuplicateSchemas) {
+                if (copiedDoc.hasSchema(schema)) {
+                    Map<String, Object> properties = copiedDoc.getProperties(schema);
                 if (properties != null) {
                     // Reset properties
                     Map<String, Object> resetMap = new HashMap<>();
-
+    
                     // Hard reset to null
                     for (String propName : properties.keySet()) {
                         resetMap.put(propName, null);
-
+    
                         if (log.isTraceEnabled()) {
                             log.trace(String.format("Property [%s] reset to null", propName));
                         }
                     }
-
+    
                     // Update document model
-                    copiedDoc.setProperties(SCHEMA_NAME, resetMap);
+                        copiedDoc.setProperties(schema, resetMap);
+                    }
                 }
             }
         }

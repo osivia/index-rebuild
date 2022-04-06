@@ -48,6 +48,21 @@ public class MutualizationForm {
 
 
     /**
+     * Licence.
+     */
+    private String licence;
+    
+    
+    /**
+     * Comment.
+     */
+    private String comment;
+
+    
+
+
+
+    /**
      * Constructor.
      */
     public MutualizationForm() {
@@ -111,4 +126,21 @@ public class MutualizationForm {
         this.subjects = subjects;
     }
 
+    public String getLicence() {
+        return licence;
+    }
+
+    
+    public void setLicence(String licence) {
+        this.licence = licence;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 }

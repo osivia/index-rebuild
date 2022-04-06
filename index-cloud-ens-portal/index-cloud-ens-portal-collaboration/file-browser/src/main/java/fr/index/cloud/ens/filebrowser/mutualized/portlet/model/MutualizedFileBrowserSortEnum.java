@@ -48,6 +48,10 @@ public enum MutualizedFileBrowserSortEnum implements MutualizedFileBrowserSortFi
      */
     AUTHOR("author", true, "dc:lastContributor"),
     /**
+     * Author sort.
+     */
+    LICENCE("licence", true, "mtz:licence"),    
+    /**
      * File size sort.
      */
     FILE_SIZE("file-size", true, "common:size"),

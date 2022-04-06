@@ -6,6 +6,7 @@ import fr.toutatice.portail.cms.nuxeo.api.INuxeoCommand;
 
 import java.util.Date;
 
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.nuxeo.ecm.automation.client.OperationRequest;
 import org.nuxeo.ecm.automation.client.Session;
@@ -77,7 +78,8 @@ public class EnableMutualizationCommand implements INuxeoCommand {
         properties.set(MutualizationRepository.LEVELS_PROPERTY, StringUtils.trimToNull(StringUtils.join(this.form.getLevels(), ",")));
         properties.set(MutualizationRepository.SUBJECTS_PROPERTY, StringUtils.trimToNull(StringUtils.join(this.form.getSubjects(), ",")));
         properties.set(MutualizationRepository.ISSUED_PROPERTY, new Date());
-        
+        properties.set(MutualizationRepository.LICENCE_PROPERTY, this.form.getLicence());
+        properties.set(MutualizationRepository.COMMENT_PROPERTY, StringEscapeUtils.escapeHtml(form.getComment()).replaceAll("(\r\n|\n)", "<br>"));       
         
 
         // Operation request

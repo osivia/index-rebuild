@@ -22,6 +22,9 @@
 <portlet:resourceURL id="load-vocabulary" var="loadFileFormatsUrl">
     <portlet:param name="vocabulary" value="idx_file_format"/>
 </portlet:resourceURL>
+<portlet:resourceURL id="load-vocabulary" var="loadLicencesUrl">
+    <portlet:param name="vocabulary" value="idx_licence"/>
+</portlet:resourceURL>
 <portlet:resourceURL id="load-vocabulary" var="loadSharedUrl">
     <portlet:param name="vocabulary" value="idx_shared"/>
 </portlet:resourceURL>
@@ -122,6 +125,30 @@
                </form:select>
             </div>
         </div>      
+        
+        <%--Licence--%>
+        <c:if test="${ form.view.id ne  'default'}">  
+	        <div class="form-group row">
+	            <form:label path="licences" cssClass="col-md-3 col-form-label"><op:translate
+	                    key="SEARCH_FILTERS_LICENCE_LABEL"/></form:label>
+	            <div class="col-md-7">
+	                <form:select path="licences" cssClass="form-control select2 select2-default" data-url="${loadLicencesUrl}" data-searching="${select2Searching}" data-no-results="${select2NoResults}" data-sort="id">
+	                    <c:forEach var="licence" items="${form.licences}">
+	                        <form:option value="${licence}"><ttc:vocabularyLabel name="idx_licence" key="${licence}"/></form:option>
+	                    </c:forEach>
+	               </form:select>
+	            </div>
+		        <div class="col-md-1 d-flex">
+		            <div class="my-md-auto">
+		                <c:set var="popupTitle"><op:translate key="LICENCE_CC_TITLE"/></c:set>
+		                 <a href="javascript:;" class="no-ajax-link html-popover border-0 p-0 m-0 text-secondary "  data-popover-style="popover-sized-image" data-popover-content="<img src='/index-cloud-ens-portal-mutualization/img/licences.png' >" data-popover-title="${popupTitle}">
+		                          <i class="glyphicons glyphicons-basic-circle-question"></i>
+		                          <span class="d-md-none"><op:translate key="HELP"/></span>
+		                </a>
+		            </div>
+		        </div>  	            
+	        </div>     
+        </c:if>
         
         <%--Shared--%>
         <c:if test="${form.view.id eq 'default'}">         

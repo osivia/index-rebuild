@@ -11,6 +11,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 import org.apache.commons.lang.BooleanUtils;
 import org.apache.commons.lang.CharEncoding;
+import org.apache.commons.lang.StringEscapeUtils;
 import org.apache.commons.lang.StringUtils;
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.PropertyList;
@@ -148,6 +149,14 @@ public class MutualizationServiceImpl implements MutualizationService {
         // Subjects
         List<String> subjects = this.getPropertyList(properties, MutualizationRepository.SUBJECTS_PROPERTY);
         form.setSubjects(subjects);
+        
+        // Licence
+        String licence = document.getString(MutualizationRepository.LICENCE_PROPERTY, MutualizationRepository.LICENCE_DEFAULT_VALUE);
+        form.setLicence(licence);
+        
+        // Subjects
+        String comment = document.getString(MutualizationRepository.COMMENT_PROPERTY, "");
+        form.setComment(StringEscapeUtils.unescapeHtml(comment.replaceAll("<br>", "\n")));
 
         return form;
     }

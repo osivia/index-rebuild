@@ -13,6 +13,20 @@ public class UserStorageBean {
 
     Set<String> clientId=new TreeSet<String>();
     long fileSize = 0;
+    long number = 0;    
+    
+    public long getNumber() {
+        return number;
+    }
+
+
+
+    
+    public void setNumber(long number) {
+        this.number = number;
+    }
+
+
     long quota = 0;    
     
  

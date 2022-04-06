@@ -78,6 +78,13 @@ public class SearchFiltersForm {
     /** The format. */
     private List<String> formats;
     
+    /** The licences. */
+    private List<String> licences;
+    
+    
+
+
+
     /** The share. */
     private List<String> shareds;
 
@@ -262,5 +269,15 @@ public class SearchFiltersForm {
     public void setAuthors(List<CustomPerson> authors) {
         this.authors = authors;
     }
+    
+    public List<String> getLicences() {
+        return licences;
+    }
+
+    
+    public void setLicences(List<String> licences) {
+        this.licences = licences;
+    }
+
 
 }

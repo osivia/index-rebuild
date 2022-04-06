@@ -177,6 +177,9 @@ public class SearchFiltersServiceImpl extends SearchCommonServiceImpl implements
         List<String> formats = selectors.get(FORMATS_SELECTORID);
         form.setFormats(formats);
         
+        List<String> licences = selectors.get(LICENCES_SELECTORID);
+        form.setLicences(licences);        
+        
         List<String>  shareds = selectors.get( SHAREDS_SELECTOR_ID);
         form.setShareds(shareds);
    
@@ -442,6 +445,11 @@ public class SearchFiltersServiceImpl extends SearchCommonServiceImpl implements
         List<String> formats = form.getFormats();
         if (CollectionUtils.isNotEmpty(formats)) {
             selectors.put(FORMATS_SELECTORID, formats);
+        }
+        
+        List<String> licences = form.getLicences();
+        if (CollectionUtils.isNotEmpty(licences)) {
+            selectors.put(LICENCES_SELECTORID, licences);
         }
         
         

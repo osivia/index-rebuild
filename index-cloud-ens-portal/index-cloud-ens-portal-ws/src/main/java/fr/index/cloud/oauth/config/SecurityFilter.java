@@ -100,6 +100,14 @@ public class SecurityFilter implements Filter {
 
             if( request.getRequestURI().endsWith("/oauth/authorize"))    {
                 defaultContentType = "text/html";
+            }
+            
+            
+            request = new CheckHeaderCompatibility(request, defaultContentType);
+            
+            if( request.getRequestURI().endsWith("/oauth/authorize"))    {
+                
+                
                 
                 // /oauth/authorize must be accessed just one time par login
                 // if not, the user must reauthenticate for security reason (ie. the browser is kept opened)
@@ -145,14 +153,15 @@ public class SecurityFilter implements Filter {
             }
             
             
+            ClusterInfo.instance.set(new ClusterInfo(request));
             
             checkSynchronizationSessionWithOAuth2(request);
 
 
             try {
 
-                ClusterInfo.instance.set(new ClusterInfo(request));
-                chain.doFilter(new CheckHeaderCompatibility(request, defaultContentType), res);
+
+                chain.doFilter(request, res);
             } finally {
                 ClusterInfo.instance.set(null);
             }

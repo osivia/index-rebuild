@@ -54,6 +54,15 @@
   }
 }
 
+[data-column="licence"] {
+  width: 120px;
+
+  @include media-breakpoint-up("xl") {
+    width: 150px;
+  }
+}
+
+
 .portal-table-header-group {
   .portal-table-cell {
     &[data-column="title"] {

@@ -39,10 +39,27 @@ public interface MutualizationRepository {
      * Subjects property.
      */
     String SUBJECTS_PROPERTY = "idxcl:subjects";
+    
+    /**
+     * Licence property.
+     */
+    String LICENCE_PROPERTY = "mtz:licence";
+    /**
+     * Comment property.
+     */
+    String COMMENT_PROPERTY = "mtz:comment";
+    
     /**
      * Issued property.
      */
     String ISSUED_PROPERTY = "dc:issued";
+    
+    
+    /**
+     *  The licence default value (CC-ZERO)
+     */
+    
+    String LICENCE_DEFAULT_VALUE = "1";
 
     /**
      * Get document.

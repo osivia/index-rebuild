@@ -97,8 +97,83 @@ $JQry(function() {
         });
     }
     
+    
+    
+    $JQry(".html-popover").each(function(index, element) {
+        var $element = $JQry(element);
+        
+        
+
+        if (!$element.data("html-popover")) {
+        	
+        	var style = $element.data("popover-style");
+        	var tmpl = "<div class='popover "+style+"' role='tooltip'><div></div><h3 class='popover-header'></h3><div class='popover-body p-0'></div></div>";
+        	
+        	
+         		// popover
+            	$element.popover({
+        			content: function () {
+        				var result = $element.data("popover-content");
+        				return result;
+        			},
+        			title: "Creative commons",
+        			html: true,
+        			title: function () {
+        				var title = $element.data("popover-title");
+        				if( title !== undefined)
+        					return title
+        				else
+        					return "";
+        			},
+        			placement: "top",
+        			trigger: "manual",	
+        			template: tmpl,
+        			boundary: 'viewport'
+        		});           	
+            	
+ 
+            	// Focus doesn't enable re-click to dismis
+            	// Click mode doesn't enable to click anywhere to dismiss
+            	// -> Use manual mode
+            	
+            	$element.on('shown.bs.popover', function() {
+            		$element.data('visible', true);
+            	});
+
+            	$element.on('hidden.bs.popover', function() {
+            		$element.data('visible', false);
+            	});
+            	
+            	element.addEventListener('click', function() {
+            		if( $element.data('visible') === undefined || $element.data('visible') == false)	{
+            			$element.popover('show')
+            		}
+                }, false);
+            	
+            	document.addEventListener('click', function() {
+           			hideAllHTMLPopovers();
+                }, false);
+          	
+            	
+            	$element.data("html-popover", true);
+        }
+        
+
+        
+    });
+    
+    
 
 });
+
+function hideAllHTMLPopovers(){
+    $JQry('.html-popover').each(function() {
+        if ($JQry(this).data("visible") == true){
+        	$JQry(this).popover('hide');                
+        }
+    });
+}
+
 
 
 

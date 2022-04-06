@@ -1,6 +1,6 @@
 package fr.index.cloud.ens.customizer.plugin;
 
-import fr.index.cloud.ens.customizer.plugin.avatar.CloudEnsAvatarModule;
+
 import fr.index.cloud.ens.customizer.plugin.cms.CloudEnsNavigationAdapter;
 import fr.index.cloud.ens.customizer.plugin.cms.FileDocumentModule;
 import fr.index.cloud.ens.customizer.plugin.cms.MutualizationSpaceSummaryListModule;

@@ -23,7 +23,14 @@ public class MutualizedFileBrowserItem extends AbstractFileBrowserItem {
     /** The downloads. */
     public Long downloads;
     
+    /** The licence. */
+    private String licence;
     
+    
+    
+
+
+
     /**
      * Getter for views.
      * @return the views
@@ -59,6 +66,27 @@ public class MutualizedFileBrowserItem extends AbstractFileBrowserItem {
         this.downloads = downloads;
     }
 
+    /**
+     * Gets the licence.
+     *
+     * @return the licence
+     */
+    public String getLicence() {
+        return licence;
+    }
+
+
+    
+    /**
+     * Sets the licence.
+     *
+     * @param licence the new licence
+     */
+    public void setLicence(String licence) {
+        this.licence = licence;
+    }
+    
+    
     /**
      * Constructor.
      */

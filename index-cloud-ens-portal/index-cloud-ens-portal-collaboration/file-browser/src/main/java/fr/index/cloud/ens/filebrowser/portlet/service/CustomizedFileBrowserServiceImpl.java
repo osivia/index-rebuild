@@ -141,7 +141,16 @@ public class CustomizedFileBrowserServiceImpl extends AbstractFileBrowserService
         // Mutualized indicator
         boolean mutualized = BooleanUtils.isTrue(nuxeoDocument.getProperties().getBoolean("mtz:enable"));
         item.setMutualized(mutualized);
+
+        // Copied indicator
+        boolean copied = StringUtils.isNotEmpty(nuxeoDocument.getProperties().getString("mtz:sourceWebId"));
+        item.setCopied(copied);
+        
+        
         super.createItem(portalControllerContext, nuxeoDocument);
+        
+
+
 
         return item;
     }
@@ -180,7 +189,7 @@ public class CustomizedFileBrowserServiceImpl extends AbstractFileBrowserService
         // Enum values
         CustomizedFileBrowserSortEnum[] values = CustomizedFileBrowserSortEnum.values();
 
-        return new ArrayList<FileBrowserSortField>(Arrays.asList(values));
+        return new ArrayList<>(Arrays.asList(values));
     }
 
 
@@ -205,7 +214,7 @@ public class CustomizedFileBrowserServiceImpl extends AbstractFileBrowserService
 
     @Override
     protected void addToolbarItem(Element toolbar, String url, String target, String title, String icon, boolean noAjaxLink) {
-        // Base HTML classes
+    	         // Base HTML classes
         String baseHtmlClasses = "btn btn-link btn-link-hover-green text-green-dark btn-sm mr-1";
         
         if(noAjaxLink)

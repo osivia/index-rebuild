@@ -47,7 +47,7 @@ public class MutualizedFileBrowserServiceImpl extends AbstractFileBrowserService
     /**
      * Selector identifiers.
      */
-    public static final List<String> SELECTOR_IDENTIFIERS = Arrays.asList(KEYWORDS_SELECTOR_ID, DOCUMENT_TYPES_SELECTOR_ID, LEVELS_SELECTOR_ID, SUBJECTS_SELECTOR_ID, COMPUTED_SIZE_SELECTOR_ID, COMPUTED_DATE_SELECTOR_ID, FORMATS_SELECTOR_ID, AUTHORS_SELECTOR_ID);
+    public static final List<String> SELECTOR_IDENTIFIERS = Arrays.asList(KEYWORDS_SELECTOR_ID, DOCUMENT_TYPES_SELECTOR_ID, LEVELS_SELECTOR_ID, SUBJECTS_SELECTOR_ID, COMPUTED_SIZE_SELECTOR_ID, COMPUTED_DATE_SELECTOR_ID, FORMATS_SELECTOR_ID, AUTHORS_SELECTOR_ID, LICENCES_SELECTOR_ID);
 
 
     /**
@@ -282,6 +282,10 @@ public class MutualizedFileBrowserServiceImpl extends AbstractFileBrowserService
         if( downloads != null)  {
             item.setDownloads(downloads);
         }
+        
+        // licence
+        String licence = nuxeoDocument.getString("mtz:licence");
+        item.setLicence((String) licence);
 
         return item;
     }
@@ -322,7 +326,7 @@ public class MutualizedFileBrowserServiceImpl extends AbstractFileBrowserService
         // Enum values
         MutualizedFileBrowserSortEnum[] values = MutualizedFileBrowserSortEnum.values();
 
-        return new ArrayList<FileBrowserSortField>(Arrays.asList(values));
+        return new ArrayList<>(Arrays.asList(values));
     }
 
 

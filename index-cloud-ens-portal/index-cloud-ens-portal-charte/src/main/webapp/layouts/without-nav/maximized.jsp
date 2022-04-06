@@ -17,7 +17,7 @@
 <%@include file="../includes/header.jspf" %>
 
 <main class="d-flex flex-column flex-grow-1 overflow-auto bg-green-light background-clouds">
-    <div class="container-fluid d-flex flex-column flex-grow-1 py-4">
+    <div class="container-fluid d-flex flex-column flex-grow-1 flex-shrink-0 py-4">
         <%--Breadcrumb--%>
         <p:region regionName="breadcrumb"/>
 

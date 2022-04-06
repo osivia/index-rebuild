@@ -191,7 +191,29 @@ public class FileDocumentModule extends PortletModule {
                 String createFileLink = nuxeoController.createFileLink(document, "file:content");
                 try {
                     createFileLink = URLEncoder.encode(createFileLink, "UTF-8");
-                    request.setAttribute("QCMUrl", createFileLink);
+                    
+                    
+                    String QCMViewerBaseUrl;
+                    String crossUrl = System.getProperty("portal.cms.binaries.Access-Control-Allow-Origin");
+                    if( crossUrl != null) {
+                        // External Viewer (ne marche pas !)
+                        // Access-Control-Allow-Origin: https://www.index-education.com
+                        String host = System.getProperty("osivia.tasks.host");
+                        if( host == null)
+                            host = "";
+                        QCMViewerBaseUrl = crossUrl+"/contenu/js/visio/visioQCM.php?url=";
+                        
+                        // Le host doit être absolu
+                        createFileLink = host + createFileLink;
+                    }   else    {
+                        // Internal Viewer
+                        QCMViewerBaseUrl = "/index-cloud-ens-portal-charte/qcm/visioQCM.html?url=";
+                    }
+                    
+                    request.setAttribute("qcmBaseUrl", QCMViewerBaseUrl);
+
+                    
+                    request.setAttribute("QCMUrl", QCMViewerBaseUrl + createFileLink);
                 } catch (UnsupportedEncodingException e) {
                     // Don't block on a link
                     LOGGER.error("Link on " + map.getString("name") + " generates " + e.getMessage());
