@@ -34,7 +34,7 @@ public class AccessConfirmationController {
     
     public AccessConfirmationController()   {
         super();
-        System.out.println("AccessConfirmationController");
+       // System.out.println("AccessConfirmationController");
 
     }
 
