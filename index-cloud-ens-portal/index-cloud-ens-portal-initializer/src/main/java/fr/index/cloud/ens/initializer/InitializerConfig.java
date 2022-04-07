@@ -1,7 +1,15 @@
 package fr.index.cloud.ens.initializer;
 
+import fr.index.cloud.ens.initializer.service.InitializerService;
 import fr.toutatice.portail.cms.nuxeo.api.CMSPortlet;
+import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;
+import fr.toutatice.portail.cms.nuxeo.api.services.NuxeoCommandContext;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.osivia.directory.v2.service.PersonUpdateService;
+import org.osivia.portal.api.cache.services.CacheInfo;
+import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.DirServiceFactory;
 import org.osivia.portal.api.directory.v2.service.PersonService;
 import org.osivia.portal.api.ha.IHAService;
@@ -19,6 +27,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 import javax.annotation.PostConstruct;
 import javax.portlet.PortletConfig;
+import javax.portlet.PortletContext;
 import javax.portlet.PortletException;
 
 /**
@@ -27,14 +36,26 @@ import javax.portlet.PortletException;
 @Configuration
 @ComponentScan(basePackages = {"fr.index.cloud.ens.initializer", "org.osivia.services.workspace.portlet"})
 public class InitializerConfig extends CMSPortlet {
+	
+    /**
+     * Log.
+     */
+    private final Log log=  LogFactory.getLog(this.getClass());
+
 
     /**
      * Portlet config.
      */
     @Autowired
     private PortletConfig portletConfig;
+    
 
-
+	@Autowired
+	private InitializerService service;
+	
+    @Autowired
+    private IHAService haService;
+    
     /**
      * Get view resolver.
      *
@@ -75,6 +96,8 @@ public class InitializerConfig extends CMSPortlet {
     }
 
 
+
+    
     /**
      * Post-construct.
      *
@@ -83,7 +106,12 @@ public class InitializerConfig extends CMSPortlet {
     @PostConstruct
     public void postConstruct() throws PortletException {
         super.init(this.portletConfig);
-    }
+        PortalControllerContext portalControllerContext = new PortalControllerContext(getPortletContext());
+        if( haService.isMaster()) {
+        		log.info("Checking datas ...");
+				service.initialize(portalControllerContext);
+        }
+     }
 
 
     /**

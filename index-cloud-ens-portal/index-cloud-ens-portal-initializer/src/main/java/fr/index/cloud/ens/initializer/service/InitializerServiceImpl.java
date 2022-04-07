@@ -8,6 +8,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Set;
 
+import javax.portlet.PortletException;
+
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.osivia.portal.api.cache.services.CacheInfo;
 import org.osivia.portal.api.context.PortalControllerContext;
@@ -34,7 +36,7 @@ public class InitializerServiceImpl implements InitializerService {
     @Override
     public void initialize(PortalControllerContext portalControllerContext) {
         // Nuxeo controller
-        NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
+        NuxeoController nuxeoController = new NuxeoController(portalControllerContext.getPortletCtx());
         nuxeoController.setAuthType(NuxeoCommandContext.AUTH_TYPE_SUPERUSER);
         nuxeoController.setCacheType(CacheInfo.CACHE_SCOPE_NONE);
         nuxeoController.setAsynchronousCommand(false);
@@ -60,5 +62,7 @@ public class InitializerServiceImpl implements InitializerService {
         nuxeoController.executeNuxeoCommand(new CreateMutualizedSpaceCommand(portalControllerContext.getPortletCtx()));
         
     }
+
+
 
 }
