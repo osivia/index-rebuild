@@ -2,7 +2,7 @@
 set -e
 
 # Portal properties
-PORTAL_PROPERTIES=/portal.properties
+PORTAL_PROPERTIES=/home/portal/portal.properties
 
 
 PUBLIC_HOST=${PUBLIC_HOST:-localhost}

@@ -25,6 +25,8 @@ ENV PORTAL_DISTRIBUTION_ZIP ${PORTAL_DISTRIBUTION_NAME}-${PORTAL_VERSION}.zip
 RUN mkdir -p "$CATALINA_HOME"
 RUN mkdir -p "/home/portal"
 RUN mkdir -p "/data/exports"
+RUN mkdir -p "/var/log/portal"
+RUN cd /usr/local/tomcat && rm -Rf logs && ln -s /var/log/portal logs
 WORKDIR $CATALINA_HOME
 
 # Distribution
@@ -35,11 +37,7 @@ RUN cd / \
     && rm -f ${PORTAL_DISTRIBUTION_ZIP}
 
 #Logs
-COPY logging.properties /usr/local/tomcat/conf
-COPY catalina.properties /usr/local/tomcat/conf
-COPY portal.properties /
-COPY environnement_portail.properties /
-COPY ldap-portlets.properties /
+COPY portal.properties /home/portal
 COPY cloud_fr.properties /home/portal
 
 #send mail (remove tlsv1)
