@@ -170,7 +170,13 @@ public class SearchFiltersServiceImpl extends SearchCommonServiceImpl implements
 
         // Location
         if (SearchFiltersView.DEFAULT.equals(view)) {
-            form.setLocationPath(navigationPath);
+        	String userPath = repository.getUserWorkspacePath(portalControllerContext);
+        	String initPath;
+        	if( StringUtils.equals(navigationPath, userPath))
+        		initPath = navigationPath + "/documents";
+        	else
+        		initPath = navigationPath;
+            form.setLocationPath(initPath);
             this.updateLocation(portalControllerContext, form);
         }
         
