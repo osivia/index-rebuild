@@ -19,6 +19,7 @@ import org.osivia.portal.api.PortalException;
 import org.osivia.portal.api.cms.CMSContext;
 import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.cms.VirtualNavigationUtils;
+import org.osivia.portal.api.cms.service.UpdateScope;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
@@ -479,7 +480,12 @@ public class TaskbarServiceImpl implements TaskbarService {
         Bundle bundle = this.bundleFactory.getBundle(request.getLocale());
 
         try {
+            NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
+            String spacePath = nuxeoController.getSpacePath();
+            
+            // Move
             this.repository.moveDocuments(portalControllerContext, sourceIds, targetId);
+            nuxeoController.notifyUpdate( null, spacePath, UpdateScope.SCOPE_SPACE,true);
 
             // Notification
             String message = bundle.getString("TASKBAR_MOVE_SUCCESS_MESSAGE");
