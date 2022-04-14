@@ -26,7 +26,7 @@ RUN mkdir -p "$CATALINA_HOME"
 RUN mkdir -p "/home/portal"
 RUN mkdir -p "/data/exports"
 RUN mkdir -p "/var/log/portal"
-RUN cd /usr/local/tomcat && rm -Rf logs && ln -s /var/log/portal logs
+
 WORKDIR $CATALINA_HOME
 
 # Distribution
@@ -37,6 +37,9 @@ RUN cd / \
     && rm -f ${PORTAL_DISTRIBUTION_ZIP}
 
 #Logs
+RUN  rm -f /usr/local/tomcat/conf/logging.properties
+
+#Properties
 COPY portal.properties /home/portal
 COPY cloud_fr.properties /home/portal
 
