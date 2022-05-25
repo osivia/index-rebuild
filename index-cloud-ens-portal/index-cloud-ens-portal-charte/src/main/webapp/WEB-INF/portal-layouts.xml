@@ -99,4 +99,12 @@
         </regions>
     </layout>
 
+    <layout>
+       <name>admin</name>
+        <uri>/layouts/anonymous-home/index.jsp</uri>
+        <uri state="maximized">/layouts/without-nav/maximized.jsp</uri>
+        <regions>
+            <region name="top" />
+        </regions>
+    </layout>
 </layouts>

@@ -109,7 +109,11 @@ public class InitializerConfig extends CMSPortlet {
         PortalControllerContext portalControllerContext = new PortalControllerContext(getPortletContext());
         if( haService.isMaster()) {
         		log.info("Checking datas ...");
+        		try   {
 				service.initialize(portalControllerContext);
+        		} catch( Exception e) {
+        		    log.error(e);
+        		}
         }
      }
 
@@ -140,4 +144,6 @@ public class InitializerConfig extends CMSPortlet {
     public IHAService getHAService() {
         return Locator.getService(IHAService.MBEAN_NAME, IHAService.class);
     }
-}
+    
+    
+ }

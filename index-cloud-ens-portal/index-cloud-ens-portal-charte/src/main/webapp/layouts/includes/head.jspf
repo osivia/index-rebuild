@@ -1,13 +1,18 @@
 <%@ taglib uri="portal-layout" prefix="p" %>
 
-
-<p:region regionName="header-metadata" />
-
-
 <%--<meta http-equiv="default-style" content="Cloud-ens">--%>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+<!-- meta-datas-begin -->
+<!-- meta-datas-end -->
+
+
+<!-- scripts-begin -->
 <p:theme themeName="cloud-ens-charte" resourceType="link"/>
+<!-- scripts-end -->
+
+
+
 <p:headerContent />
 <p:theme themeName="cloud-ens-charte" resourceType="script"/>
 

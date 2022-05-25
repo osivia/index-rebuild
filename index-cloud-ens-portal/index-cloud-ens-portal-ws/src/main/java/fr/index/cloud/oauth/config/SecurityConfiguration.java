@@ -2,6 +2,7 @@ package fr.index.cloud.oauth.config;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -19,6 +20,7 @@ import fr.index.cloud.oauth.authentication.PortalAuthenticationProvider;
 import fr.index.cloud.oauth.authentication.PortalUserDetailService;
 
 @Configuration
+@ComponentScan(basePackages = "fr.index.cloud.oauth.config, fr.index.cloud.ens.ws, fr.index.cloud.ens.ext, fr.index.cloud.oauth, fr.index.security.oauth")
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 

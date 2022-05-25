@@ -1,18 +1,12 @@
 package fr.index.cloud.oauth.authentication;
 
-import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import javax.security.auth.login.FailedLoginException;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.time.DateUtils;
 import org.osivia.directory.v2.service.PersonUpdateService;
-import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.directory.v2.model.Person;
-import org.osivia.portal.api.directory.v2.service.PersonService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -20,16 +14,10 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.stereotype.Component;
-import org.springframework.util.Assert;
+import org.springframework.stereotype.Service;
 
-import fr.index.cloud.ens.ws.DriveRestController;
-import fr.toutatice.portail.cms.nuxeo.api.NuxeoController;
-
-@Component
+@Service
 public class PortalAuthenticationProvider implements AuthenticationProvider {
 
 

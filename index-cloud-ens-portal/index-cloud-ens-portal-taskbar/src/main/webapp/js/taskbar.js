@@ -236,10 +236,14 @@ function taskbarState( element, action, state)	{
 	if( action == 'restore')	{
 		// restore expanded
 		$element.find(".fancytree").fancytree("getTree").visit(function(node) {
-            expanded = state.get(node.data.id);	
-            if( expanded != null)    {	
-           		node.setExpanded(expanded);	
-            }
+			if( node.isExpanded() == false)	{
+	            expanded = state.get(node.data.id);	
+	            if( expanded != null)    {	
+	           		node.setExpanded(expanded);	
+	            }
+            }	else	{
+				console.log("active node "+ node)
+			}
 		});
 	}
 
