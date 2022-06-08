@@ -241,10 +241,13 @@ function taskbarState( element, action, state)	{
 	            if( expanded != null)    {	
 	           		node.setExpanded(expanded);	
 	            }
-            }	else	{
-				console.log("active node "+ node)
-			}
+            }	
 		});
+		
+		// restore closest srollbar
+		if( state.get("scroll") != undefined)	{
+			 $element.closest('.overflow-auto').scrollTop( state.get("scroll"));
+		}
 	}
 
 	if( action == 'save')	{
@@ -255,6 +258,9 @@ function taskbarState( element, action, state)	{
 			map.set(node.data.id, node.isExpanded());
 
 		});
+		
+		map.set("scroll", $element.closest('.overflow-auto').scrollTop());
+
 		
 		return map;
 	}
