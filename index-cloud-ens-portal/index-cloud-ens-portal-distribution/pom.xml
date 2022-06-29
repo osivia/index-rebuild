@@ -69,7 +69,7 @@
 
           <dependency>
             <groupId>${project.groupId}</groupId>
-            <artifactId>index-cloud-ens-portal-ws</artifactId>
+            <artifactId>index-cloud-portal-ens-ws</artifactId>
             <version>${project.version}</version>
             <type>war</type>
         </dependency>    		

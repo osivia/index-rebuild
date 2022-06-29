@@ -45,7 +45,7 @@
     <Valve className="org.osivia.portal.core.error.ErrorValve" />
         
 	<Valve
-    className="org.jasig.cas.client.tomcat.v85.Cas20CasAuthenticator"
+    className="fr.index.cloud.ens.cas.client.Cas20CasAuthenticator"
     encoding="UTF-8"
     casServerLoginUrl="${cas.login}"
     casServerUrlPrefix="${cas.validate}"

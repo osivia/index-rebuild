@@ -1,12 +1,12 @@
 FROM tomcat:8.5-jdk8
 MAINTAINER Cédric Krommenhoek <ckrommenhoek@osivia.com>
 
-RUN apt-get update && apt-get install -y locales vim  \
+RUN apt-get update && apt-get install -y locales vim unzip \
 	&& localedef -i fr_FR -c -f UTF-8 -A /usr/share/locale/locale.alias fr_FR.UTF-8 \
 	&& apt-get purge -y \
     && rm -rf /var/lib/apt/lists/*
 
-ENV LANG fr_FR.utf8
+ENV LC_ALL fr_FR.utf8
 RUN locale >> /etc/default/locale
 
 ENV TZ=Europe/Paris

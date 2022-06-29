@@ -30,7 +30,7 @@
                 <include>${project.groupId}:index-cloud-ens-portal-taskbar</include>  
                 <include>${project.groupId}:index-cloud-ens-portal-maintenance</include>   
                 <include>${project.groupId}:index-cloud-ens-portal-initializer</include>                              
-                <include>${project.groupId}:index-cloud-ens-portal-ws</include>
+                <include>${project.groupId}:index-cloud-portal-ens-ws</include>
                 <include>${project.groupId}:index-cloud-ens-portal-charte</include>                                       
                   <!-- services -->
                 <include>org.osivia.services:osivia-services-widgets</include>

@@ -1057,13 +1057,13 @@ function init() {
     var host = "https://"+window.location.hostname;
     //var host = https://cloud-ens-ws.osivia.org
     
-    oauth.params.accessUrl = host+'/index-cloud-ens-portal-ws/oauth/token';
-    oauth.params.authorizeUrl= host+'/index-cloud-ens-portal-ws/oauth/authorize';  
-    oauth.params.resourceUrl = host+'/index-cloud-ens-portal-ws/rest';
+    oauth.params.accessUrl = host+'/index-cloud-portal-ens-ws/oauth/token';
+    oauth.params.authorizeUrl= host+'/index-cloud-portal-ens-ws/oauth/authorize';  
+    oauth.params.resourceUrl = host+'/index-cloud-portal-ens-ws/rest';
 	oauth.params.clientId =  'PRONOTE-1234';
 	oauth.params.clientSecretId = 'secret1234';
 	oauth.params.scope = 'drive';
-	oauth.params.clientUrl = host+'/index-cloud-ens-portal-ws/html/test.html';	
+	oauth.params.clientUrl = host+'/index-cloud-portal-ens-ws/html/test.html';	
     
    if( code != null)	{
 	   grant(code);

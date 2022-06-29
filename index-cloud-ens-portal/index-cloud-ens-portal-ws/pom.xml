@@ -8,7 +8,7 @@
         <version>5.0-SNAPSHOT</version>
     </parent>
 
-    <artifactId>index-cloud-ens-portal-ws</artifactId>
+    <artifactId>index-cloud-portal-ens-ws</artifactId>
     <packaging>war</packaging>
 
     <name>Cloud enseignant - Web Services Portail</name>

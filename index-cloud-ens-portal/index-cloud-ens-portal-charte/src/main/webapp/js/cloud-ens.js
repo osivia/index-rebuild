@@ -7,9 +7,8 @@ $JQry(function() {
     
     $JQry("#logout").each(function(index, element) {
 
-		const queryString = window.location.search;
-		const urlParams = new URLSearchParams(queryString);
-		const redirection = urlParams.get('redirection');
+
+		const redirection = portal_redirection;
 
 		
 		if( redirection != null)	{
