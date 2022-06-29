@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>fr.index.cloud.ens</groupId>
+        <artifactId>index-cloud-ens-parent</artifactId>
+        <version>5.0-SNAPSHOT</version>
+    </parent>
+
+	
+    <groupId>fr.index.cloud.ens.ext</groupId>
+    <artifactId>index-cloud-ens-ext-parent</artifactId>
+    <packaging>pom</packaging>
+    
+    <name>Cloud enseignant - Services externes</name>
+    
+    
+    <properties>
+        
+        
+    </properties>
+    
+    
+    <dependencyManagement>
+        <dependencies>
+        
+            
+        </dependencies>
+    </dependencyManagement>
+
+
+	<modules>
+		<module>index-cloud-ens-ext-ws</module>
+
+	</modules>
+    
+    
+    <dependencies>
+
+    </dependencies>
+    
+    
+    <build>
+        <pluginManagement>
+            <plugins>
+            
+                <!-- Compiler -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                        <source>1.7</source>
+                        <target>1.7</target>
+                    </configuration>
+                </plugin>
+                
+                <!-- Resources -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <version>2.7</version>
+                    <configuration>
+                        <encoding>UTF-8</encoding>
+                    </configuration>
+                </plugin>
+            
+                <!-- WAR -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-war-plugin</artifactId>
+                    <version>2.6</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                
+                <!-- EAR -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-ear-plugin</artifactId>
+                    <version>2.10.1</version>
+                    <configuration>
+                        <archive>
+                            <manifest>
+                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            </manifest>
+                        </archive>
+                    </configuration>
+                </plugin>
+                
+            
+                <!-- AntRun -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-antrun-plugin</artifactId>
+                    <version>1.8</version>
+                </plugin>
+                
+                <!-- Dependency -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.10</version>
+                </plugin>
+                
+                <!-- Assembly -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-assembly-plugin</artifactId>
+                    <version>2.6</version>
+                </plugin>
+            
+            </plugins>
+        </pluginManagement>
+    </build>
+    
+</project>
