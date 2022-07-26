@@ -22,7 +22,7 @@
         <dependency>
             <groupId>org.osivia.services.directory.socle</groupId>
             <artifactId>osivia-services-directory-socle-interfaces</artifactId>
-            <version>5.0-SNAPSHOT</version>
+            <version>5.0.1</version>
         </dependency>
         
         <dependency>
