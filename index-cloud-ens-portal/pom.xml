@@ -18,17 +18,17 @@
 
     <properties>
         <!-- Toutatice -->
-        <osivia.portal.version>5.0-SNAPSHOT</osivia.portal.version>
+        <osivia.portal.version>5.0.1</osivia.portal.version>
         <!-- Toutatice -->
-        <toutatice.cms.version>5.0-SNAPSHOT</toutatice.cms.version>		
+        <toutatice.cms.version>5.0.1</toutatice.cms.version>		
          <!-- Spring framework LDAP -->
         <springframework-ldap.version>2.1.0.RELEASE</springframework-ldap.version>
          <!--Directory -->
-        <directory.version>5.0-SNAPSHOT</directory.version>
+        <directory.version>5.0.1</directory.version>
         <!--Services -->
-        <collaboration.version>5.0-SNAPSHOT</collaboration.version>
-        <tasks.version>5.0-SNAPSHOT</tasks.version>
-        <procedures.version>5.0-SNAPSHOT</procedures.version>
+        <collaboration.version>5.0.1</collaboration.version>
+        <tasks.version>5.0.1</tasks.version>
+        <procedures.version>5.0.1</procedures.version>
         <cgu.version>4.9.1</cgu.version>
 
     </properties>
