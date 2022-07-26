@@ -22,7 +22,7 @@ services:
     depends_on:
        - httpd
   portal-1:
-    image: osivia/index-portal:5.0
+    image: osivia/index-portal:5.2
     environment:
       - TZ=Europe/Paris
       - JPDA_ADDRESS=8000
@@ -37,7 +37,7 @@ services:
       - 8000:8000
       - 8080:8080
   portal-2:
-    image: osivia/index-portal:5.0
+    image: osivia/index-portal:5.2
     environment:
       - TZ=Europe/Paris
       - JPDA_ADDRESS=8000
@@ -52,7 +52,7 @@ services:
       - 8002:8000
       - 8082:8080
   nuxeo:
-    image: osivia/index-nuxeo:5.0
+    image: osivia/index-nuxeo:5.2
     environment:
       - LDAP_HOST=opendj
       - NUXEO_DB_HOST=postgres
