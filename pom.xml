@@ -133,9 +133,9 @@
 
 
     <scm>
-        <url>https://github.com/osivia/index-cloud-ens</url>
-        <connection>scm:git:ssh://git@github.com/osivia/index-cloud-ens.git</connection>
-        <developerConnection>scm:git:ssh://git@github.com/osivia/index-cloud-ens.git</developerConnection>
+        <url>https://github.com/osivia/index-rebuild</url>
+        <connection>scm:git:ssh://git@github.com/osivia/index-rebuild.git</connection>
+        <developerConnection>scm:git:ssh://git@github.com/osivia/index-rebuild.git</developerConnection>
       <tag>HEAD</tag>
   </scm>
 
