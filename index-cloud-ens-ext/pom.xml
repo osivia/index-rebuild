@@ -5,7 +5,7 @@
     <parent>
         <groupId>fr.index.cloud.ens</groupId>
         <artifactId>index-cloud-ens-parent</artifactId>
-        <version>5.0.3</version>
+        <version>5.0-SNAPSHOT</version>
     </parent>
 
 	
