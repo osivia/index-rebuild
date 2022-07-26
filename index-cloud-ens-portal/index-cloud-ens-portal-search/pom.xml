@@ -3,7 +3,7 @@
 	<parent>
 		<groupId>fr.index.cloud.ens.portal</groupId>
 		<artifactId>index-cloud-ens-portal-parent</artifactId>
-		<version>5.2-SNAPSHOT</version>
+		<version>5.0-SNAPSHOT</version>
 	</parent>
     <modelVersion>4.0.0</modelVersion>
 
