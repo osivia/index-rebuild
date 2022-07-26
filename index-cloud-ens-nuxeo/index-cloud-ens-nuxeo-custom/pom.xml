@@ -6,7 +6,7 @@
 	<parent>
         <groupId>fr.index.cloud.ens.nuxeo</groupId>
         <artifactId>index-cloud-ens-nuxeo-parent</artifactId>
-        <version>5.0-SNAPSHOT</version>
+        <version>5.0.1</version>
     </parent>
     
     <artifactId>index-cloud-ens-nuxeo-custom</artifactId>
