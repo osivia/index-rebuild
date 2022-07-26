@@ -4,7 +4,7 @@ import javax.portlet.PortletException;
 
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.osivia.portal.api.cache.services.CacheInfo;
-import org.osivia.portal.api.cms.service.UpdateScope;
+import org.osivia.portal.api.cms.UpdateScope;
 import org.osivia.portal.core.web.IWebIdService;
 import org.springframework.stereotype.Repository;
 

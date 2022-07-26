@@ -29,6 +29,8 @@ services:
       - JPDA_TRANSPORT=dt_socket
       - MAIL_PWD=${MAIL_PWD}
       - ROUTE_ID=portal-1
+      - PRONOTE_ETB_SERVICE_URL_GET=${PRONOTE_ETB_SERVICE_URL_GET}
+      - PRONOTE_ETB_SERVICE_URL_CHECK=${PRONOTE_ETB_SERVICE_URL_CHECK}      
     ports:
       - 8000:8000
       - 8080:8080

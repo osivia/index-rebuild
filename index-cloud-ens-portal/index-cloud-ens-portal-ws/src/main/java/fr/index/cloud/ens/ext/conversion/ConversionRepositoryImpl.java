@@ -21,7 +21,7 @@ import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.FileBlob;
 import org.nuxeo.ecm.automation.client.model.PropertyMap;
 import org.osivia.portal.api.cache.services.CacheInfo;
-import org.osivia.portal.api.cms.service.UpdateScope;
+import org.osivia.portal.api.cms.UpdateScope;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.springframework.stereotype.Repository;
 

@@ -371,7 +371,7 @@ public class ConversionAdminServiceImpl implements ConversionAdminService {
         StringBuffer result = new StringBuffer();
         try {
             
-            List<String> orderedStrings = readLastLine(new File("/usr/local/tomcat/logs/conversion.log"),100);
+            List<String> orderedStrings = readLastLine(new File("/var/log/portal/portal_conversion.log"),100);
             
             
             result.append("<table class=\"table \">");

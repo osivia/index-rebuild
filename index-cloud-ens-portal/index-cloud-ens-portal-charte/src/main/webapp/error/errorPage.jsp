@@ -70,6 +70,10 @@
                                 <span><op:translate key="ERROR_${param['httpCode']}_MESSAGE"/></span>
                             </p>
                         </c:if>
+                        
+                       <c:if test="${not empty param['token'] }">
+                            <!-- TOKEN :  ${param['token']} -->
+                        </c:if>
 
                         <a href="/" class="card-link">
                             <span><op:translate key="BACK_TO_HOME"/></span>

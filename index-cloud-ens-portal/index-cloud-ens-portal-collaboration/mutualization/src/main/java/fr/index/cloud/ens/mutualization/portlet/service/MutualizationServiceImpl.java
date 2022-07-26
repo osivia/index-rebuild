@@ -16,7 +16,7 @@ import org.apache.commons.lang.StringUtils;
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.PropertyList;
 import org.nuxeo.ecm.automation.client.model.PropertyMap;
-import org.osivia.portal.api.cms.service.UpdateScope;
+import org.osivia.portal.api.cms.UpdateScope;
 import org.osivia.portal.api.context.PortalControllerContext;
 import org.osivia.portal.api.internationalization.Bundle;
 import org.osivia.portal.api.internationalization.IBundleFactory;
@@ -372,10 +372,9 @@ public class MutualizationServiceImpl implements MutualizationService {
         // Notify CMS change
         NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
         String spacePath = nuxeoController.getSpacePath(documentPath);
+                nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_SPACE, false);
         
-        //TODO : integrate publication to connect
-        nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_SPACE, false);
-        //nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_CONTENT, false);
+        nuxeoController.notifyUpdate(null, MUTUALIZED_SPACE_PATH,UpdateScope.SCOPE_SPACE, false);
         
         // Reset cache used for discussions
         DiscussionHelper.resetLocalPublications(portalControllerContext);
@@ -406,9 +405,9 @@ public class MutualizationServiceImpl implements MutualizationService {
         // Notify CMS change
         NuxeoController nuxeoController = new NuxeoController(portalControllerContext);
         String spacePath = nuxeoController.getSpacePath(documentPath);
-        //TODO : integrate publication to connect
+
         nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_SPACE, false);
-        //nuxeoController.notifyUpdate(documentPath, spacePath, UpdateScope.SCOPE_CONTENT, false);
+        nuxeoController.notifyUpdate(null, MUTUALIZED_SPACE_PATH,UpdateScope.SCOPE_SPACE, false);
         
         // Reset cache used for discussions
         DiscussionHelper.resetLocalPublications(portalControllerContext);
