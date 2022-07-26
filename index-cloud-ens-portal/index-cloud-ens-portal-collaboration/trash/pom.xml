@@ -5,7 +5,7 @@
     <parent>
         <artifactId>index-cloud-ens-portal-collaboration-parent</artifactId>
         <groupId>fr.index.cloud.ens.portal.collaboration</groupId>
-        <version>5.2-SNAPSHOT</version>
+        <version>5.0.2</version>
     </parent>
 
     <artifactId>index-cloud-ens-portal-trash</artifactId>
