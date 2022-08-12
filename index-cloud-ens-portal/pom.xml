@@ -10,7 +10,7 @@
 
     <groupId>fr.index.cloud.ens.portal</groupId>
     <artifactId>index-cloud-ens-portal-parent</artifactId>
-    <version>5.2-SNAPSHOT</version>
+
     <packaging>pom</packaging>
 
     <name>Cloud enseignant - Portail</name>
@@ -18,9 +18,9 @@
 
     <properties>
         <!-- Toutatice -->
-        <osivia.portal.version>5.0.1</osivia.portal.version>
+        <osivia.portal.version>5.2-SNAPSHOT</osivia.portal.version>
         <!-- Toutatice -->
-        <toutatice.cms.version>5.0.1</toutatice.cms.version>		
+        <toutatice.cms.version>5.2-SNAPSHOT</toutatice.cms.version>		
          <!-- Spring framework LDAP -->
         <springframework-ldap.version>2.1.0.RELEASE</springframework-ldap.version>
          <!--Directory -->

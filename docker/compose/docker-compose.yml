@@ -22,7 +22,7 @@ services:
     depends_on:
        - httpd
   portal-1:
-    image: osivia/index-portal:5.0
+    image: osivia/index-portal:5.2
     environment:
       - TZ=Europe/Paris
       - JPDA_ADDRESS=8000

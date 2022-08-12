@@ -52,7 +52,7 @@ services:
       - 8002:8000
       - 8082:8080
   nuxeo:
-    image: osivia/index-nuxeo:5.2
+    image: osivia/index-nuxeo:5.0
     environment:
       - LDAP_HOST=opendj
       - NUXEO_DB_HOST=postgres
