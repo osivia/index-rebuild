@@ -259,8 +259,7 @@ public class TaskbarRepositoryImpl implements TaskbarRepository {
                 properties.put("osivia.document.edition.multiple-files", String.valueOf(true));
             }
             properties.put("osivia.document.edition.modal", String.valueOf(true));
-            properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-            properties.put("osivia.ajaxLink", "1");
+
 
             // URL
             String url;

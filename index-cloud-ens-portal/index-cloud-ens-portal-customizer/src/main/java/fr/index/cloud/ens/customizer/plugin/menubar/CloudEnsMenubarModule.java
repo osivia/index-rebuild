@@ -206,8 +206,6 @@ public class CloudEnsMenubarModule implements MenubarModule {
         } else {
             properties.put("osivia.document.edition.path", path);
         }
-        properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-        properties.put("osivia.ajaxLink", "1");
 
         // URL
         String url = this.portalUrlFactory.getStartPortletUrl(portalControllerContext, DOCUMENT_EDITION_PORTLET_INSTANCE, properties, PortalUrlType.MODAL);

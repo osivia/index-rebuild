@@ -234,8 +234,6 @@ public class ApplicationManagementServiceImpl implements ApplicationManagementSe
             properties.put("osivia.hideTitle", "1");
             properties.put("osivia.bootstrapPanelStyle", String.valueOf(true));
             properties.put(ThemeConstants.PORTAL_PROP_REGION, region);
-            properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-            properties.put("osivia.ajaxLink", "1");
             properties.put("applicationId", applicationWebID);
             properties.put("osivia.windowState","normal");
             properties.put("osivia.windowName","application-detail");

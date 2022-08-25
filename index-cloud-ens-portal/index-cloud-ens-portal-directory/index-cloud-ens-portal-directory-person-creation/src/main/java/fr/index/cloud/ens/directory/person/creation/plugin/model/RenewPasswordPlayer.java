@@ -64,8 +64,6 @@ public class RenewPasswordPlayer implements INuxeoPlayerModule {
         properties.put("osivia.title", bundle.getString("renew.password.title"));
         properties.put("osivia.hideDecorators", "1");
         properties.put("osivia.hideTitle", "1");
-        properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-        properties.put("osivia.ajaxLink", "1");
         properties.put(RenewPasswordPortletController.VIEW_WINDOW_PROPERTY, RenewPasswordStep.PASSWORD.name());
         properties.put("mail", mail);
 

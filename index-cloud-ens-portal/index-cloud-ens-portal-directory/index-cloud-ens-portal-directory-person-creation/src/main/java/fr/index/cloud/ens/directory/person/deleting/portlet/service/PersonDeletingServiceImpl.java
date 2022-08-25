@@ -124,8 +124,6 @@ public class PersonDeletingServiceImpl implements PersonDeletingService {
         // Window properties
         Map<String, String> properties = new HashMap<>();
         properties.put("osivia.title", bundle.getString("deleting.title"));
-        properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-        properties.put("osivia.ajaxLink", String.valueOf(1));
         properties.put("osivia.back.reset", String.valueOf(true));
         properties.put(VIEW_FORM_WINDOW_PROPERTY, String.valueOf(true));
 

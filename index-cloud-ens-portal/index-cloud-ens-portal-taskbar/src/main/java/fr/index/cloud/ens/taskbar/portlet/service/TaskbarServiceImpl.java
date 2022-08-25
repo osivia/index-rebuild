@@ -613,8 +613,6 @@ public class TaskbarServiceImpl implements TaskbarService {
         // Window properties
         Map<String, String> windowProperties = new HashMap<>();
         windowProperties.put("osivia.title", bundle.getString(titleKey));
-        windowProperties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-        windowProperties.put("osivia.ajaxLink", String.valueOf(1));
         windowProperties.put("osivia.back.reset", String.valueOf(true));
 
         // URL

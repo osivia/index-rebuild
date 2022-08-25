@@ -67,8 +67,6 @@ public class CreateAccountPlayer implements INuxeoPlayerModule {
         properties.put("osivia.title", bundle.getString("createaccount.confirm.title"));
         properties.put("osivia.hideDecorators", "1");
         properties.put("osivia.hideTitle", "1");
-        properties.put(DynaRenderOptions.PARTIAL_REFRESH_ENABLED, String.valueOf(true));
-        properties.put("osivia.ajaxLink", "1");
         properties.put(PersonCreationController.VIEW_WINDOW_PROPERTY, PersonCreationForm.CreationStep.CONFIRM.name());
         properties.put("uid", uid);
         properties.put("termsOfService", termsOfService);
