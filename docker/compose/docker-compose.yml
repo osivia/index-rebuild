@@ -34,6 +34,8 @@ services:
     ports:
       - 8000:8000
       - 8080:8080
+    volumes:
+      - export-data:/data/exports        
   nuxeo:
     image: osivia/index-nuxeo:5.0
     environment:
@@ -90,3 +92,4 @@ volumes:
   postgres-data:
   es-data:
   httpd-ssl:
+  export-data:

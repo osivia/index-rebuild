@@ -24,7 +24,6 @@ ENV PORTAL_DISTRIBUTION_ZIP ${PORTAL_DISTRIBUTION_NAME}-${PORTAL_VERSION}.zip
 
 
 RUN mkdir -p "/home/portal"
-RUN mkdir -p "/data/exports"
 RUN mkdir -p "/var/log/portal"
 
 

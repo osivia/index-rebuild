@@ -127,7 +127,7 @@ $JQry(function() {
 								// We have a get
 						    options.method = "get"
 						    // We don't block
-						    options.asynchronous = false;
+						    options.asynchronous = true;
 							directAjaxCall(null,options, node.data.href, null);
                         }
                     }
