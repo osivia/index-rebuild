@@ -72,3 +72,26 @@
     color: $orange-700;
   }
 }
+
+
+// look for tasks modal must be the same
+// for each active thme
+
+.tasks	{
+	a	{
+		color: $black;
+		
+		@include hover() {
+    		color: $black;
+  		}
+	}
+	
+	.badge-secondary {
+		color: $white;
+		@include hover() {
+    		color: $white;
+  		}		
+	}
+	
+		
+}

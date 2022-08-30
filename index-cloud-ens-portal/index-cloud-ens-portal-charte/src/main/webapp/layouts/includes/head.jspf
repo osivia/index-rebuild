@@ -7,14 +7,10 @@
 <!-- meta-datas-end -->
 
 
-<!-- scripts-begin -->
 <p:theme themeName="cloud-ens-charte" resourceType="link"/>
-<!-- scripts-end -->
-
-
-
 <p:headerContent />
 <p:theme themeName="cloud-ens-charte" resourceType="script"/>
+
 
 
 
