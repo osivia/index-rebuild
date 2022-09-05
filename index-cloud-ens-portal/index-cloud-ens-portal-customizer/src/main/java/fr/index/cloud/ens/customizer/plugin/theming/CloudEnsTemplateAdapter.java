@@ -1,6 +1,7 @@
 package fr.index.cloud.ens.customizer.plugin.theming;
 
 import org.apache.commons.lang.StringUtils;
+import org.osivia.portal.api.cms.UniversalID;
 import org.osivia.portal.api.theming.TemplateAdapter;
 
 /**
@@ -14,20 +15,18 @@ public class CloudEnsTemplateAdapter implements TemplateAdapter {
         super();
     }
 
-
+    
+    
     @Override
-    public String adapt(String spacePath, String path, String spaceTemplate, String targetTemplate) {
-        // Adapted template
-        String template = null;
+    public UniversalID adapt(UniversalID templateId) {
 
-        // User workspace
-        if (StringUtils.startsWith(spacePath, "/default-domain/UserWorkspaces/")) {
-            if (StringUtils.equals(targetTemplate, "/default/templates/workspace")) {
-                template = "/default/templates/user-workspace";
-            }
+    if( templateId.getRepositoryName().equals("idx"))  {
+        if( templateId.getInternalID().equals("DEFAULT_TEMPLATES_WORKSPACE"))  {
+            templateId = new UniversalID("idx", "DEFAULT_TEMPLATES_USER-WORKSPACE");
         }
-
-        return template;
+    }          
+    
+    return templateId;
     }
 
 }
