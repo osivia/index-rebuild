@@ -6,7 +6,7 @@
         <if-exists>overwrite</if-exists>
         <instance>
             <display-name xml:lang="en">Index - discussion</display-name>
-            <display-name xml:lang="fr">Index - discussion</display-name>
+            <display-name xml:lang="fr">Cloud Ens - Discussions</display-name>
             <instance-id>index-cloud-ens-discussion-instance</instance-id>
             <portlet-ref>index-cloud-ens-discussion</portlet-ref>
             <security-constraint>
@@ -21,7 +21,7 @@
         <if-exists>overwrite</if-exists>
         <instance>
             <display-name xml:lang="en">Index - discussion - unread messages</display-name>
-            <display-name xml:lang="fr">Index - discussion - messages non lus</display-name>
+            <display-name xml:lang="fr">Cloud Ens - Discussion - messages non lus</display-name>
             <instance-id>index-cloud-ens-discussion-unread-instance</instance-id>
             <portlet-ref>index-cloud-ens-discussion-unread</portlet-ref>
             <security-constraint>

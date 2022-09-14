@@ -134,7 +134,7 @@
 	    />		
 
       <Host name="localhost"  appBase="webapps"
-            unpackWARs="true" autoDeploy="true" hostConfigClass="org.osivia.portal.kernel.tomcat.OrderedHostConfig">
+            unpackWARs="true" autoDeploy="true"  className="org.osivia.portal.kernel.tomcat.CustomTomcatHost">
 
         <!-- SingleSignOn valve, share authentication between web applications
              Documentation at: /docs/config/valve.html -->

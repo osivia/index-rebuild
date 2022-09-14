@@ -24,7 +24,8 @@
          <!-- Spring framework LDAP -->
         <springframework-ldap.version>2.1.0.RELEASE</springframework-ldap.version>
          <!--Directory -->
-        <directory.version>5.0.1</directory.version>
+        <!--<directory.version>5.0.1</directory.version>-->
+        <directory.version>5.0-SNAPSHOT</directory.version>
         <!--Services -->
         <collaboration.version>5.0.1</collaboration.version>
         <tasks.version>5.0.1</tasks.version>
