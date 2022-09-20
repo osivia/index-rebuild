@@ -23,6 +23,10 @@ public abstract class AbstractFileBrowserForm extends FileBrowserForm {
      * Search filters counter.
      */
     private int searchFiltersCounter;
+    
+    private boolean directorySearch;
+
+
 
 
     /**
@@ -56,4 +60,14 @@ public abstract class AbstractFileBrowserForm extends FileBrowserForm {
     public void setSearchFiltersCounter(int searchFiltersCounter) {
         this.searchFiltersCounter = searchFiltersCounter;
     }
+    
+    public boolean isDirectorySearch() {
+        return directorySearch;
+    }
+    
+    
+    public void setDirectorySearch(boolean directorySearch) {
+        this.directorySearch = directorySearch;
+    }
+
 }

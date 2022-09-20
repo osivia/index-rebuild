@@ -56,6 +56,11 @@ public interface AbstractFileBrowserService extends FileBrowserService {
      * Search filter parameter.
      */
     String SEARCH_FILTER_PARAMETER = "search-filter";
+    
+    /**
+     * Search filter parameter.
+     */
+    String SEARCH_LOCATION = "location";
 
 
     @Override

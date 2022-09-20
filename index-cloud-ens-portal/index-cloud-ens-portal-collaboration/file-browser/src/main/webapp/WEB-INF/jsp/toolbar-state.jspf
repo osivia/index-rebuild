@@ -48,6 +48,20 @@
                 </a>
             </div>
         </c:if>
+        
+       <c:if test="${form.directorySearch}">
+            <div class="mr-2">
+                <portlet:actionURL name="reset-search" var="url"/>
+                <c:set var="title"><op:translate key="FILE_BROWSER_TOOLBAR_RESET_SEARCH_TITLE"/></c:set>
+                <a href="${url}" class="btn btn-primary-light btn-sm rounded-pill" title="${title}">
+                    <strong>
+                        <op:translate key="FILE_BROWSER_TOOLBAR_BY_DIRECTORY"/>
+                    </strong>
+                    <i class="glyphicons glyphicons-basic-menu-close"></i>
+                </a>
+            </div>
+        </c:if>
+        
 
         <div class="mb-1 mr-2">${text}</div>
     </div>

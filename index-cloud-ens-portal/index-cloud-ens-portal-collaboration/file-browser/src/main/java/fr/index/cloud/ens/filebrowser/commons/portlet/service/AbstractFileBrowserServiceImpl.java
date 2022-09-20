@@ -155,6 +155,17 @@ public abstract class AbstractFileBrowserServiceImpl extends FileBrowserServiceI
                     }
                 }
             }
+            
+            // Do not count implicit selector LOCATION
+            if( CollectionUtils.isNotEmpty(selectors.get(SEARCH_LOCATION))) {
+                counter--;
+                if( counter > 0 )   {
+                    form.setDirectorySearch(false);
+                }   else    {
+                    form.setDirectorySearch(true);
+                }
+            }
+            
             form.setSearchFiltersCounter(counter);
 
             // Current document title
