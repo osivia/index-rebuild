@@ -4,6 +4,8 @@
 
 
 <header>
+	<%--Admin--%>
+	<p:region regionName="admin" />
     <%--Toolbar--%>
     <p:region regionName="toolbar" />
 </header>
