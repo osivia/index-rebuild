@@ -18,7 +18,7 @@ import javax.portlet.PortletException;
 import javax.portlet.PortletRequest;
 
 import org.apache.commons.io.input.ReversedLinesFileReader;
-import org.apache.log4j.spi.RepositorySelector;
+
 import org.nuxeo.ecm.automation.client.model.Document;
 import org.nuxeo.ecm.automation.client.model.FileBlob;
 import org.nuxeo.ecm.automation.client.model.PropertyMap;
